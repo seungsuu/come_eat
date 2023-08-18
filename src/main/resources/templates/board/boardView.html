@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+    <div class="content-wrap">
+		<div class="content-title">커뮤니티</div>
+		<form action="/" method="post" enctype="multipart/form-data">
+		<table class="tbl tbl-border">
+			<tr>
+				<th class="b-color-g" width="20%">제목</th>
+				<td colspan="3">
+                    <input type="text" name="boardTitle" class="input" value="제목입니다." style="text-align: center;">
+                </td>
+			</tr>
+			<tr>
+				<th class="b-color-g">카테고리</th>
+				<td colspan="3">
+                    <select name="category" class="input select">
+                        <option value="1">맛집추천</option>
+                        <option value="2">맛집비추</option>
+                        <option value="3">기타</option>
+                    </select>
+				</td>
+			</tr>
+            <tr>
+                <th class="b-color-g">작성자</th>
+				<td>
+				    <span>작성자출력</span>
+				    <input type="hidden" name="boardWriter" th:value="${session.m.memberId}">
+				</td>
+                <th class="b-color-g" width="20%">조회수</th>
+				<td>
+				    <span>조회수출력</span>
+				    <input type="hidden" name="boardWriter" th:value="${session.m.memberId}">
+				</td>
+            </tr>
+			<tr>
+				<th colspan="4" class="textarea-td">
+					<textarea name="boardContent" class="input textarea"></textarea>
+				</th>
+			</tr>
+		</table>
+        <table class="tbl tbl-border" style="border-top: none;">
+            <tr>
+                <th>
+                    <button type="submit" class="btn" style="width: 100%; font-size: 18px; line-height: 40px;">작성취소</button>
+                </th>
+                <th>
+                    <button type="submit" class="btn-o" style="width: 100%; font-size: 18px; line-height: 40px;">작성완료</button>
+                </th>
+            </tr>
+        </table>
+		</form>
+	</div>
+</body>
+</html>
