@@ -19,6 +19,7 @@ font-family: 'Noto Sans KR', sans-serif;
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 300;
     outline: none;
+    font-size: 16px;
 }
 
 /*중앙정렬 - 컨텐츠 가장 바깥 div 클래스*/
@@ -47,6 +48,7 @@ font-family: 'Noto Sans KR', sans-serif;
     text-align: center;
     border-radius: 5px;
     box-sizing: border-box;
+    border: none;
 }
 /*회색버튼 hover 시 오랜지로 변경*/
 .btn:hover{
@@ -63,4 +65,23 @@ font-family: 'Noto Sans KR', sans-serif;
     text-align: center;
     border-radius: 5px;
     box-sizing: border-box;
+    border: none;
+}
+
+/*input*/
+.input{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+/*text-area*/
+.textarea{
+    width: 100%;
+    background-color: transparent;
+    font-size: 16px;
+    height: 600px;
+    box-sizing: border-box;
+    padding: 10PX;
 }
