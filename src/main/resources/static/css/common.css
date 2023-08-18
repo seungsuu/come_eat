@@ -49,6 +49,7 @@ font-family: 'Noto Sans KR', sans-serif;
     border-radius: 5px;
     box-sizing: border-box;
     border: none;
+    cursor: pointer;
 }
 /*회색버튼 hover 시 오랜지로 변경*/
 .btn:hover{
@@ -61,27 +62,80 @@ font-family: 'Noto Sans KR', sans-serif;
     display: inline-block;
     padding: 10px;
     background-color: #ff3700ff;
+    color: #fff;
     width: 120px;
     text-align: center;
     border-radius: 5px;
     box-sizing: border-box;
     border: none;
+    cursor: pointer;
 }
+
+
+/*배경색 회색설정*/
+.b-color-g{
+    background-color: #eee;
+}
+/*배경색 오랜지설정&하얀색글씨*/
+.b-color-o{
+    background-color: #ff3700ff;
+    color: #fff;
+}
+
 
 /*input*/
 .input{
     width: 100%;
     border: none;
     background-color: transparent;
-    font-size: 16px;
 }
 
-/*text-area*/
+/*text-area - input클래스랑 같이 써야함*/
 .textarea{
+    height: 600px;
+}
+/*select - input클래스랑 같이 써야함*/
+.select{
+    cursor: pointer;
+    text-align: center;
+}
+
+
+
+
+
+/*테이블 테두리 추가*/
+.tbl-border{
+    border: 1px solid #eee;
+}
+
+/*테이블*/
+.tbl{
     width: 100%;
-    background-color: transparent;
-    font-size: 16px;
+    text-align: center;
+    border-collapse : collapse;
+}
+.tbl tr{
+    border-bottom: 1px solid #eee;
+}
+.tbl th{
+    font-weight: 400;
+    padding: 10px;
+}
+.tbl td{
+    padding: 10px;
+}
+.tbl tr.hover:hover>td,
+.tbl tr.hover:hover>td>a{
+    color: #ff3700ff;
+}
+.tbl tr:hover td{
+    font-weight: 400;
+}
+.textarea-td{
     height: 600px;
     box-sizing: border-box;
     padding: 10PX;
+    border: 1px solid #eee;
+    border-radius: 5px;
 }
