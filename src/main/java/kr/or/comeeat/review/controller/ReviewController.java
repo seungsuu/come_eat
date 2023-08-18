@@ -2,6 +2,7 @@ package kr.or.comeeat.review.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.comeeat.review.model.service.ReviewService;
@@ -11,5 +12,6 @@ import kr.or.comeeat.review.model.service.ReviewService;
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
+	
 	
 }
