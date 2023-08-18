@@ -9,6 +9,7 @@
 	<th:block th:include="common/header"></th:block>
 		<div class="content-wrap">
 			<div class="content-title">Magazine 게시판</div>
+			<a th:if="${session.m != null && session.m.memberLevel != 1}" href="/magazine/writeFrm" class="btn">글쓰기</a>
 			<div class="magazine-container">
 				<div class="magazine-item">1</div>
 				<div class="magazine-item">2</div>

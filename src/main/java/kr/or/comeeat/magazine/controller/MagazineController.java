@@ -17,4 +17,11 @@ public class MagazineController {
 	private String magazineList() {
 		return "magazine/magazineList";
 	}
+	
+	
+	
+	@GetMapping(value="/writeFrm")
+	public String magazineWriteFrm() {
+		return "magazine/magazineWriteFrm";
+	}
 }
