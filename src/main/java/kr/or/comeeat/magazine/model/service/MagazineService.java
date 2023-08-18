@@ -9,4 +9,15 @@ import kr.or.comeeat.magazine.model.dao.MagazineDao;
 public class MagazineService {
 	@Autowired
 	private MagazineDao magazineDao;
+
+	
+
+
+
+
+
+
+
+
 }
+

@@ -15,4 +15,5 @@ public class Magazine {
 	private String filepath;
 	private int readCount;
 	private int memberNo;
+	private String magazineSubtitle;
 }
