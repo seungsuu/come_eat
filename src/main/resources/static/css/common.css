@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+/* 
+폰트 이거 복사해서 쓰세요
+font-family: 'Noto Sans KR', sans-serif;
+
+색상
+#ff3700ff; -- 포인트컬러
+#eee; -- 회색
+#2f2f2f; -- 글씨 기본색
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: #2f2f2f;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    outline: none;
+}
+
+/*중앙정렬 - 컨텐츠 가장 바깥 div 클래스*/
+.content-wrap{
+    width: 1200px;
+    margin: 60px auto;
+    box-sizing: border-box;
+}
+
+/*제목공통클래스*/
+.content-title{
+    font-size: 36px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: 200;
+    padding: 80px 0 50px 0;
+    display: block;
+}
+
+/*회색버튼*/
+.btn{
+    display: inline-block;
+    padding: 10px;
+    background-color: #eee;
+    width: 120px;
+    text-align: center;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+/*회색버튼 hover 시 오랜지로 변경*/
+.btn:hover{
+    background-color: #ff3700ff;
+    color: #fff;
+    font-weight: 400;
+}
+/*오랜지색버튼*/
+.btn-o{
+    display: inline-block;
+    padding: 10px;
+    background-color: #ff3700ff;
+    width: 120px;
+    text-align: center;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
