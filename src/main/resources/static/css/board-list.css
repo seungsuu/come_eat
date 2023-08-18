@@ -1,0 +1,75 @@
+
+/*카테고리 탭*/
+.board-tab{
+    overflow: hidden;
+    margin: 40px 0 20px 0;
+}
+.board-tab>li{
+    float: left;
+    width: 25%;
+    padding: 15px;
+    background-color: #eee;
+    text-align: center;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+}
+.active-tab{
+    background-color: #ff3700ff;
+    color: #fff;
+    font-weight: 400;
+}
+
+/*카테고리 리스트*/
+.board-tbl{
+    width: 100%;
+    text-align: center;
+    border-collapse : collapse;
+    margin-bottom: 50px;
+}
+.board-tbl tr:first-child{
+    background-color: #eee;
+}
+.board-tbl tr{
+    border-bottom: 1px solid #eee;
+}
+.board-tbl th{
+    font-weight: 400;
+    padding: 10px;
+}
+.board-tbl td{
+    padding: 10px;
+}
+.board-tbl tr:hover>td,
+.board-tbl tr:hover>td>a{
+    color: #ff3700ff;
+}
+.board-tbl tr:hover td{
+    font-weight: 400;
+}
+.board-tbl tr:first-child:hover{
+    background-color: #eee;
+}
+
+/*리스트 내비게이션*/
+.board-navi>ul{
+    overflow: hidden;
+    width: 32%;
+    margin: 0 auto;
+}
+.board-navi li{
+    float: left;
+    margin: 0 10px;
+}
+.board-navi li>a{
+    display: block;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 400;
+}
+.board-navi li>a:hover{
+    color: #ff3700ff;
+}
+.board-navi li>a:hover>span{
+    color: #ff3700ff;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>board</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/board-list.css">
+</head>
+<body>
+    <div class="content-wrap">
+		<div class="content-title">커뮤니티</div>
+		<a th:if="${session.m != null}" href="/" class="btn">글쓰기</a>
+        <ul class="board-tab">
+            <li>
+                <a href="/">전체보기</a>
+            </li>
+            <li>
+                <a href="/">맛집추천</a>
+            </li>
+            <li>
+                <a href="/">맛집비추</a>
+            </li>
+            <li>
+                <a href="/">기타</a>
+            </li>
+        </ul>
+		<table class="board-tbl">
+			<tr>
+				<th style="width:8%">번호</th>
+                <th style="width:12%">카테고리</th>
+				<th style="width:43%">제목</th>
+				<th style="width:12%">작성자</th>
+				<th style="width:17%">작성일</th>
+				<th style="width:8%">조회수</th>
+			</tr>
+			<tr>
+				<td>번호</td>
+				<td>카테고리</td>
+                <td><a href="#">제목</a></td>
+				<td>작성자</td>
+				<td>작성일</td>
+				<td>조회수</td>
+			</tr>
+		</table>
+		<div class="board-navi">
+            <ul>
+                <li><a href="#"><span class="material-icons">arrow_back_ios</span></a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#"><span class="material-icons">arrow_forward_ios</span></a></li>
+            </ul>
+        </div>
+	</div>
+</body>
+</html>
