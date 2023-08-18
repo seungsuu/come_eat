@@ -128,8 +128,6 @@ font-family: 'Noto Sans KR', sans-serif;
 .tbl tr.hover:hover>td,
 .tbl tr.hover:hover>td>a{
     color: #ff3700ff;
-}
-.tbl tr:hover td{
     font-weight: 400;
 }
 .textarea-td{

@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>board</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/board-list.css">
 </head>
 <body>
+	<th:block th:include="common/header"></th:block>
     <div class="content-wrap">
 		<div class="content-title">커뮤니티</div>
-		<a th:if="${session.m != null}" href="/" class="btn">글쓰기</a>
+		<a href="/" class="btn">글쓰기</a>
         <ul class="board-tab">
             <li>
                 <a href="/">전체보기</a>
@@ -37,26 +36,19 @@
 				<th style="width:17%">작성일</th>
 				<th style="width:8%">조회수</th>
 			</tr>
-			<tr class="hover">
-				<td>번호</td>
-				<td>카테고리</td>
-                <td><a href="#">제목</a></td>
-				<td>작성자</td>
-				<td>작성일</td>
-				<td>조회수</td>
+			<tr class="hover" th:each="b : ${list}">
+				<td th:text="${b.boardNo}"></td>
+				<td th:if="${b.boardType} == 1">맛집추천</td>
+				<td th:if="${b.boardType} == 2">맛집비추</td>
+				<td th:if="${b.boardType} == 3">기타</td>
+                <td><a href="#" th:text="${b.boardTitle}"></a></td>
+				<td th:text="${b.boardWriter}"></td>
+				<td th:text="${b.regDate}"></td>
+				<td th:text="${b.boardCount}"></td>
 			</tr>
 		</table>
-		<div class="board-navi">
-            <ul>
-                <li><a href="#"><span class="material-icons">arrow_back_ios</span></a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#"><span class="material-icons">arrow_forward_ios</span></a></li>
-            </ul>
-        </div>
+		<div class="board-navi" th:utext="${navi}"></div>
 	</div>
+	<th:block th:include="common/footer"></th:block>
 </body>
 </html>

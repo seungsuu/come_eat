@@ -1,12 +1,86 @@
 package kr.or.comeeat.board.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.comeeat.board.model.dao.BoardDao;
+import kr.or.comeeat.board.model.vo.Board;
+import kr.or.comeeat.board.model.vo.BoardData;
 
 @Service
 public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
+
+	public BoardData boardList(int pageNum) {
+		//페이지당 게시물 수
+		int page = 10;
+		//마지막게시물번호
+		int end = pageNum * page;
+		//시작 게시물번호
+		int start = end - page + 1;
+		//게시물 조회해오기(해당 페이지 게시물 10개)
+		List list = boardDao.boardList(start,end);
+		
+		
+		//네비게이션
+		//총 게시물 수 조회
+		int totalList = boardDao.selectBoardTotal();
+		//총 페이지 수 계산(10개씩 잘랐을때 나머지 있으면 1페이지 추가)
+		int totalPage = totalList%page == 0 ? totalList/page : totalList/page+1;
+		
+		//한페이지에 보여줄 네비게이션 개수 지정
+		int pageNaviSize = 5;
+		int pageNo = ((pageNum-1)/pageNaviSize)*pageNaviSize + 1;
+		
+		//페이지 네비게이션 제작 시작
+		String pageNavi = "<ul>";
+		//이전버튼제작
+		if(pageNo != 1){
+			pageNavi += "<li>";
+			pageNavi += "<a href='/board/list?pageNum="+(pageNo-1)+"'>";
+			pageNavi += "<span class='material-icons'>arrow_back_ios</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		//페이지 숫자
+		for(int i=0;i<pageNaviSize;i++) {
+			if(pageNo == pageNum) {
+				//현재페이지와 요청페이지가 같은 경우(현재보고있는 페이지버튼에만 class로 백그라운드주기)
+				pageNavi += "<li>";
+				pageNavi += "<a href='/board/list?pageNum="+(pageNo)+"'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}else {
+				//현재페이지와 요청페이지가 같지 않은 경우
+				pageNavi += "<li>";
+				pageNavi += "<a href='/board/list?pageNum="+(pageNo)+"'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}
+			pageNo++;
+			if(pageNo>totalPage) {
+				//총 페이지 수 이상의 페이지 버튼은 만들어지지 않게 하기
+				break;
+			}
+		}
+		//다음버튼제작
+		if(pageNo <= totalPage) {
+			pageNavi += "<li>";
+			pageNavi += "<a href='/board/list?pageNum="+(pageNo)+"'>";//이미 for문에서 pageNo++; 했기 때문에 +1안함
+			pageNavi += "<span class='material-icons'>arrow_forward_ios</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		pageNavi += "</ul>";
+		
+		//pageNavi와 게시물List 두가지를 넘겨줘야 하므로 Vo생성
+		BoardData boardData = new BoardData(list,pageNavi);
+		
+		return boardData;
+	}
 }

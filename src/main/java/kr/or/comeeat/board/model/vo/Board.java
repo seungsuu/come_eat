@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class Board {
 	private int boardNo;
-	private int boardTypr;
+	private int boardType;
 	private String boardWriter;
 	private String boardTitle;
-	private String voardContent;
+	private String boardContent;
 	private String regDate;
 	private int boardCount;
 }
