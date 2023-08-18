@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html　xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+		<script type=""></script>
+		<script src="/summernote/summernote-lite.js"></script>
+		<script src="/summernote/lang/summernote-ko-KR.js"></script>
+		<link rel="stylesheet" href="/summernote/summernote-lite.css">
+		<div class="content-wrap">
+			<div class="content-title">Magazine</div>
+			<form action="/" method="post" enctype="multipart/form-data" >
+				<table class="tbl tbl-border">
+					<tr>
+						<th class="b-color-g" style="width: 20%;">제목</th>
+						<td>
+							<input type="text" name="magazineTitle" class="input" placeholder="제목을 입력하세요" style="text-align: center;">
+						</td>
+					</tr>
+					<tr>
+						<th class="b-color-g" style="width: 20%;">한줄소개</th>
+						<td>
+							<input type="text" name="magazineSubtitle" class="input" placeholder="간략요약해주세요" style="text-align: center;">
+						</td>
+					</tr>
+					<tr>
+						<th class="b-color-g" style="width: 20%;">인스타 주소</th>
+						<td>
+							<input type="text" name="instaAddr" class="input" placeholder="인스타그램 게시글 주소" style="text-align: center;">			
+						</td>
+					</tr>
+					<tr >
+						<td style="text-align: left;" colspan="2">
+							<textarea class="input textarea" name="magazineContent" id="magazineContent"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<button type="button" class="btn" style="width:45%;" onclick="location.href='/magazine/list'">작성 취소</button>	
+							<button type="submit" class="btn-o" style="width:45%;" >게시글 작성</button>	
+						</td>
+						<td>
+						</td>
+				</table>
+			</form>
+		</div>
+		
+	<th:block th:include="common/footer"></th:block>
+	<script >
+	$("#magazineContent").summernote({
+		height: 400,
+		lang : "ko-KR",
+		callbacks :{
+			onImageUpload : function(files){
+				uploadImage(files[0],this);
+			}	
+		}
+	});
+	function uploadImage(file,editor){
+		const form = new FormData();
+		form.append("file",file);
+		$.ajax({
+			url : "/magazine/editor",
+			type : "post",
+			data : form,
+			processData : false,
+			contentType : false,
+			success : function(data){
+				$(editor).summernote("insertImage",data);
+			}
+		});
+	}
+	</script>
+</body>
+</html>
