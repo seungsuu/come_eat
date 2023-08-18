@@ -1,0 +1,37 @@
+.main-slider>div{
+    width: 100%;
+    height: 600px;
+    background-color: beige;
+}
+.main-title{
+    text-align: left;
+}
+
+.clear{
+    clear: both;
+}
+/*베스트*/
+.main-content-best{
+    overflow: hidden;
+}
+.main-content-best>div{
+    width: 25%;
+    float: left;
+}
+.main-content-best>div:last-child{
+    clear: both;
+}
+.main-content-best>div>a{
+    display: block;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.main-content-best img{
+    display: block;
+    width: 100%;
+    height: 280px;
+    background-color: aqua;
+}
+/*매거진*/
+
+/*지역별맛집*/
