@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/board-list.css">
 </head>
 <body>
+	<th:block th:include="common/header"></th:block>
     <div class="content-wrap">
 		<div class="content-title">커뮤니티</div>
 		<a th:if="${session.m != null}" href="/" class="btn">글쓰기</a>
@@ -58,5 +59,6 @@
             </ul>
         </div>
 	</div>
+	<th:block th:include="common/footer"></th:block>
 </body>
 </html>
