@@ -10,5 +10,7 @@ import kr.or.comeeat.magazine.model.service.MagazineService;
 @RequestMapping(value="/magazine")
 public class MagazineController {
 	@Autowired
-	private MagazineService	magazineService; 
+	private MagazineService	magazineService;
+	
+	
 }
