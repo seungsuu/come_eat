@@ -1,0 +1,25 @@
+.footer-wrap{
+    padding: 50px;
+    background-color: #eee;
+    width: 100%;
+}
+.footer-wrap>div{
+    overflow: hidden;
+    position: relative;
+}
+.footer-left h1{
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 38px;
+}
+.footer-right{
+    position: absolute;
+    top: calc(50% - (50%/2));
+    right: 0;
+}
+.footer-right>a{
+    display: block;
+}
+.footer-right img{
+    height: 70px;
+}

@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+/* 
+폰트
+font-family: 'Noto Sans KR', sans-serif;
+
+색상
+#ff3700ff; -- 포인트컬러
+#eee; -- 회색
+#2f2f2f; -- 글씨 기본색
+*/
+
+/*공통 컨텐츠*/
+/*중앙정렬 - 컨텐츠 가장 바깥 div 클래스*/
+.content-wrap{
+    width: 1200px;
+    margin: 60px auto;
+    box-sizing: border-box;
+}
+/*제목공통클래스*/
+.content-title{
+    font-size: 36px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: 200;
+    padding: 80px 0 50px 0;
+    display: block;
+}
+
+.header-wrap{
+    background-color: #ff3700ff;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.center-wrap{
+    width: 1200px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.header-wrap .center-wrap>div{
+    float: left;
+}
+
+/*헤더 - 로고*/
+.header-left {
+    width: 20%;
+    box-sizing: border-box;
+}
+.header-left img{
+    width: 100%;
+    margin-top: 10px;
+}
+
+/*헤더 - 메뉴*/
+.header-center {
+    width: 68%;
+    box-sizing: border-box;
+}
+.header-center ul{
+    overflow: hidden;
+    text-align: center;
+    padding: 0 108px;
+}
+.header-center li{
+    float: left;
+    text-align: center;
+}
+.header-center li>a{
+    font-size: 18px;
+    display: block;
+    width: 120px;
+    font-weight: 400;
+    line-height: 60px;
+    color: #fff;
+}
+.header-center li>a:hover{
+    background-color: white;
+    color: #ff3700ff;
+}
+
+/*헤더 - 오른쪽 메뉴들*/
+.header-right {
+    width: 12%;
+    box-sizing: border-box;
+}
+.header-right>ul{
+    text-align: right;
+}
+.header-right li{
+    display: inline-block;
+}
+.header-right li>a{
+    display: block;
+}
+.header-right li span{
+    font-size: 28px;
+    margin-top: 10px;
+    margin-left: 5px;
+    padding: 5px;
+    color: #fff;
+}
+.header-right li span:hover{
+    border-radius: 30px;
+    background-color: #fff;
+    color: #ff3700ff;
+}
+
+/*헤더 - 검색창*/
+.header-search-box{
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 30px 0;
+    display: none;
+}
+.header-search-box>div{
+    width: 1000px;
+    margin: 0 auto;
+}
+.header-search-box input{
+    border: none;
+    border-bottom: 1px solid #2f2f2f;
+    background-color: transparent;
+    font-size: 18px;
+    width: 90%;
+}
+.header-search-box button{
+    border: none;
+    background-color: transparent;
+}
+.header-search-box button>span{
+    font-size: 40px;
+}
+.header-search-box p{
+    margin: 10px 0;
+}
+.header-search-box ul{
+    overflow: hidden;
+}
+.header-search-box li{
+    float: left;
+    margin-right: 5px;
+    padding: 5px 15px;
+    background-color: #ff3700ff;
+    border-radius: 30px;
+    color: #fff;
+}
+
+
+
+
+
+
+
