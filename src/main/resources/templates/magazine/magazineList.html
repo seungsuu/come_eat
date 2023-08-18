@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>매거진 게시판</title>
+<link rel="stylesheet" href="/css/magazineList.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+		<div class="content-wrap">
+			<div class="content-title">Magazine 게시판</div>
+			<div class="magazine-container">
+				<div class="magazine-item">1</div>
+				<div class="magazine-item">2</div>
+				<div class="magazine-item">3</div>
+			</div>
+			<button class="btn" id="more-btn" th:totalCount="${totalCount}" currentCount="0" value="1">더보기</button>
+			
+		</div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>
