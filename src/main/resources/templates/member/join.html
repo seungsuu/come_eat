@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>join</title>
+    <link rel="stylesheet" href="/css/join.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <script src="/js/jquery-3.6.0.js"></script>
+</head>
+<body>
+    <div class="join-wrap">
+        <div class="join-title">JOIN</div>
+        <p><span>* </span>필수 입력 항목</p>
+        <table class="join-table">
+            <tr>
+                <td class="join-th">
+                    <label for="memberId">아이디</label>
+                    <span> * </span>
+                </td>
+                <td>
+                    <input type="text" class="join-input-form" id="memberId">
+                </td>
+            <tr>
+                <td class="join-th">
+                    <label for="memberPw">비밀번호</label>
+                    <span> * </span>
+                </td>
+                <td>
+                    <input type="password" class="join-input-form" id="memberPw" placeholder="영문+숫자+특수문자 조합 8~16자리">
+                    <span class="comment"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="join-th">
+                    <label for="memberPwRe">비밀번호확인</label>
+                    <span> * </span>
+                </td>
+                <td>
+                    <input type="password" class="join-input-form" id="memberPwRe">
+                    <span class="comment"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="join-th">
+                    <label for="memberName">이름</label>
+                    <span> * </span>
+                </td>
+                <td>
+                    <input type="text" class="join-input-form" id="memberName" placeholder="ex)홍길동">
+                    <span class="comment"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="join-th">
+                    <label for="memberPhone">핸드폰번호</label>
+                </td>
+                <td>
+                    <input type="text" class="join-input-form" id="memberPhone" placeholder="ex)010-0000-0000">
+                    <span class="comment"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="join-th-end">
+                    <label for="memberEmail">이메일</label>
+                    <span> * </span>
+                </td>
+                <td class="join-td-end">
+                    <input type="text" class="join-input-form" id="memberEmail">
+                        @ 
+                        <select class="join-select-box" id="domain-list">
+                        <option value="naver.com">naver.com</option>
+                        <option value="google.com">google.com</option>
+                        <option value="hanmail.net">hanmail.net</option>
+                        <option value="nate.com">nate.com</option>
+                        </select>
+                </td>
+            </tr>  
+        </table>
+        <div class="join_agreement">
+            <ul class="join-ul">
+                <li id="join_agreementAll">
+                    <input type="checkbox" id="allAgreement">
+                    <label for="checkAgree"><span id="allAgreement">약관 전체 동의</span></label><br>
+                    <div class="join-allAgreeContent">
+                        <p>전체동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며, 개별적으로도 동의를 선택하실 수 있습니다.</p>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" id="essentialAgree1">
+                    <label for="checkAgree">만 14세 이상입니다.<span id="essential">(필수)</span></label>
+                </li>
+                <li>
+                    <input type="checkbox" id="essentialAgree2">
+                    <label for="checkAgree">이용약관 동의<span id="essential">(필수)</span></label>
+                    <button class="modal-open-btn">내용보기</button>
+                </li>
+                <li>
+                    <input type="checkbox" id="optionAgreement">
+                    <label for="checkAgree">개인정보 수집 및 이용안내<span id=option>(선택)</span></label>
+                    <button class="modal-open-btn">내용보기</button>
+                </li>
+            </ul>
+        </div>
+        <div class="join-btn-class">
+            <button type="button" id="btnCancel">취소</button>
+            <button type="button" id="btnConfirm">확인</button>
+        </div>
+        <div class="join-modal-wrap">
+            <div class="login-modal">
+                <div class="login-modal-top">
+                    <h2>개인정보 수집 및 이용안내(선택)</h2>
+                    <table class="join-tou-table">
+                        <tr>
+                            <th width="20%">구분</th>
+                            <th width="30%">수집항목</th>
+                            <th width="50%">이용목적</th>
+                        </tr>
+                        <tr>
+                            <td>기타서비스</td>
+                            <td>휴대폰 번호</td>
+                            <td>헤택/정보/웨이팅 안내 메세지 전송</td>
+                        </tr>
+                    </table>
+                    <div class="join-tou-content">
+                        <ul>
+                            <li>개인정보의 보유 및 이용기간 : 회원 탈퇴 시 30일 뒤 또는 법정 의무 보유기간</li>
+                            <li>선택사항의 동의를 거부하시는 경우에도 회원가입은 진행되오나, 부가서비스는 제한될 수 있습니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="/js/join.js"></script>
+</body>
+</html>
