@@ -70,5 +70,16 @@
         </div>
     </div>
     <th:block th:include="common/footer"></th:block>
+    
+    <script>
+    	$(".btn").on("click",function(){
+    		$(".btn").removeClass("active-btn");
+    		$(this).addClass("active-btn");
+    	});
+    	
+    	window.onload = function(){
+    		$(".btn").eq(0).click();
+    	};
+    </script>
 </body>
 </html>

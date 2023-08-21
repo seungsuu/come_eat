@@ -10,7 +10,10 @@
     font-weight: 400;
 }
 
-
+.location-btn .active-btn{
+    background-color: #ff3700ff;
+    color: #fff;
+}
 
 
 /*소제목*/
