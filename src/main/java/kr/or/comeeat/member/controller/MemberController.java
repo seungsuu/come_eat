@@ -23,6 +23,11 @@ public class MemberController {
 	public String login() {
 		return "member/login";
 	}
+	//회원가입 페이지로 이동
+	@GetMapping(value="/join")
+	public String join() {
+		return "member/join";
+	}
 	
 	//로그인
 	@PostMapping(value="/signin")
