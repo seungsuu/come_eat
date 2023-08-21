@@ -1,5 +1,7 @@
 package kr.or.comeeat.magazine.model.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,8 +14,9 @@ public class Magazine {
 	private String magazineTitle;
 	private String magazineContent;
 	private String magazineDate;
-	private String filepath;
 	private int readCount;
 	private int memberNo;
 	private String magazineSubtitle;
+	private List fileList;
+	
 }

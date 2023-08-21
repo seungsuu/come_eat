@@ -11,8 +11,6 @@
 			<div class="content-title">Magazine 게시판</div>
 			<a href="/magazine/magazineWriteFrm" class="btn">글쓰기</a>
 			<!-- th:if="${session.m != null && session.m.memberLevel != 1}"  -->
-			
-			
 			<div class="magazine-container">
 				<div class="magazine-item">1</div>
 				<div class="magazine-item">2</div>
@@ -62,6 +60,10 @@
 							<img src="파일경로">
 						</div>
 						*/
+						//a태그 추가
+						const a = $("<a>");
+						img.attr("th:href","@{/magazine/view(magazineNo=${m.magazineNo})}"");
+						imgDiv.append(a)
 						
 						const contentDiv = $("<div>");
 						contentDiv.addClass("magazine-item-content");
