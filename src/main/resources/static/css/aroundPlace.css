@@ -1,26 +1,8 @@
 
-/*
-메인색 : #ff3700ff
-회색 : #eee
-*/
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-/*
-폰트
-font-family: 'Noto Sans KR', sans-serif;
-*/
-*{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-    color: #2f2f2f;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 300;
-    outline: none;
-}
 .place-wrapper{
     width: 1200px;
     margin: 60px auto;
+    padding: 100px 0;
     box-sizing: border-box;
 }
 /* .aroundPlace-title{
