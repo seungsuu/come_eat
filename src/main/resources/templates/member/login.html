@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <script src="js/jquery-3.7.0.js"></script>
+</head>
+<body>
+    <div class="login-wrap">
+        <div class="login-header">
+            LOGIN
+        </div>
+        <div class="login-content">
+            <form action="" method="post" id="login-frm">
+                <div class="login-input-box">
+                    <label for="memberId">아이디</label>
+                    <input type="text" name="memberId" id="memberId" placeholder="아이디를 입력해주세요">
+                    <label for="memberPw">비밀번호</label>
+                    <input type="password" name="memberPw" id="memberPw" placeholder="영문+숫자+특수문자 조합 8~16자리를 입력해주세요">
+                </div>
+                <div class="login-btn-box">
+                    <input type="submit" value=" 로그인" id="login-btn">
+                </div>
+            </form>
+            <div class="login-link-wrap">
+                <a href="">아이디 찾기</a>
+                <a>|</a>
+                <a href="">비밀번호 찾기</a>
+            </div>
+        </div>
+        <div class="join">
+            <div class="join-wrap">
+                <p class="join-content">
+                    회원 가입 후 다양한 혜택을 받아보세요
+                </p>
+                <div class="join-btn">
+                    <input type="submit" value="회원가입">
+                </div>
+            </div>
+        </div>
+        <script src="js/login.js"></script>
+</body>
+</html>
