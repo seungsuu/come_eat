@@ -106,7 +106,7 @@ a:hover{
 }
 
 /*회원 가입 버튼*/
-.join-btn>input{
+.join-btn button{
     width: 560px;
     height: 50px;
     cursor: pointer;
@@ -117,7 +117,7 @@ a:hover{
     font-size: 15px;
     border-radius: 5px;
 }
-.join-btn>input:hover{
+.join-btn button:hover{
     background-color: #ff3700ff;
     color: #fff;
     font-weight: 400;
