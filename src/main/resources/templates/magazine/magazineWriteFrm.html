@@ -12,12 +12,23 @@
 		<link rel="stylesheet" href="/summernote/summernote-lite.css">
 		<div class="content-wrap">
 			<div class="content-title">Magazine</div>
-			<form action="/" method="post" enctype="multipart/form-data" >
+			<form action="/magazine/write" method="post" enctype="multipart/form-data" >
 				<table class="tbl tbl-border">
 					<tr>
 						<th class="b-color-g" style="width: 20%;">제목</th>
 						<td>
 							<input type="text" name="magazineTitle" class="input" placeholder="제목을 입력하세요" style="text-align: center;">
+						</td>
+					</tr>
+					<tr>
+						<th class="b-color-g">작성자</th>
+						<td>
+							<!--<span th:text="${session.m.memberId}"></span>
+							  <input type="hidden" name="magazineWriter" th:value="${session.m.memberId}"> -->
+						</td>
+						<th class="b-color-g">썸네일</th>
+						<td>
+							<input type="file" name="imageFile" accept=".jpg,.png,.jpeg">
 						</td>
 					</tr>
 					<tr>
@@ -33,12 +44,12 @@
 						</td>
 					</tr>
 					<tr >
-						<td style="text-align: left;" colspan="2">
+						<td style="text-align: left;" colspan="4">
 							<textarea class="input textarea" name="magazineContent" id="magazineContent"></textarea>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td colspan="4">
 							<button type="button" class="btn" style="width:45%;" onclick="location.href='/magazine/list'">작성 취소</button>	
 							<button type="submit" class="btn-o" style="width:45%;" >게시글 작성</button>	
 						</td>
