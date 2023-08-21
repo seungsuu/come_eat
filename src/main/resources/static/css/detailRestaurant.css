@@ -1,8 +1,7 @@
 
 .detail-wrap{
     width: 1200px;
-    margin: 60px auto;
-    padding-top: 30px;
+    padding-top: 100px;
 }
 .restaurant_title{
     overflow: hidden;
@@ -62,6 +61,10 @@
 .info-tbl th{
     padding: 15px;
     text-align: left;
+}
+
+.btn-o:hover{
+	font-weight: 700;
 }
 
 .restaurant_reviewList{
