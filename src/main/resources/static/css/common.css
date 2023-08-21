@@ -137,3 +137,9 @@ font-family: 'Noto Sans KR', sans-serif;
     border: 1px solid #eee;
     border-radius: 5px;
 }
+
+
+
+.clear{
+    clear: both;
+}
