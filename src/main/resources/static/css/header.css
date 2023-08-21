@@ -112,12 +112,12 @@ font-family: 'Noto Sans KR', sans-serif;
 
 /*헤더 - 검색창*/
 .header-search-box{
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 30px 0;
     display: none;
 }
 .header-search-box>div{
-    width: 1000px;
+    width: 600px;
     margin: 0 auto;
 }
 .header-search-box input{

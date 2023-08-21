@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
-	<script src="/js/jquery-3.6.0.js"></script>
-	<script src="/js/header.js"></script>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +7,8 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/common.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+	<script src="/js/jquery-3.6.0.js"></script>
+	<script src="/js/header.js"></script>
 </head>
 <body>
     <header class="header-wrap">
@@ -39,7 +39,7 @@
             </div>
             <div class="header-right">
                 <ul>
-                    <li><a href="#"><span class="material-icons">search</span></a></li>
+                    <li><a href="javascript:void(0)" id="search-btn"><span class="material-icons">search</span></a></li>
                     <li><a href="#"><span class="material-icons">login</span></a></li>
                     <li><a href="#"><span class="material-icons">face</span></a></li>
                 </ul>
@@ -62,5 +62,11 @@
                 </div>
         </div>
     </header>
+    <script>
+  	//검색창토글
+    $("#search-btn").on("click",function(){
+                $(".header-search-box").slideToggle();
+    });
+    </script>
 </body>
 </html>

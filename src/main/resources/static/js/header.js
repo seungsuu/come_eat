@@ -1,4 +1,3 @@
-
 function alertFunc(icon){
 	swal({
         title: '제목',
