@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>리뷰작성</title>
+<link rel="stylesheet" href="/css/review.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+		<div class="review-wrapper content-wrap">
+        <div class="review-title">
+            <h2>맛집이름</h2>
+            <span>에 대한 리뷰를 작성해주세요</span>
+        </div>
+        <div class="review-editor">
+            <form action="/review/reviewWrite" method="post">
+                <div class="review-editor-wrap">
+                    <div class="review-grade-picker">
+                        <ul class="grade-picker-list">
+                            <li class="grade-picker-item">
+                                <span class="material-icons">sentiment_very_satisfied</span>
+                                <span>맛있어요</span>
+                            </li>
+                            <li class="grade-picker-item">
+                                <span class="material-icons">sentiment_satisfied_alt</span>
+                                <span>괜찮아요</span>
+                            </li>
+                            <li class="grade-picker-item">
+                                <span class="material-icons">sentiment_very_dissatisfied</span>
+                                <span>별로예요</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <textarea class="review-content" maxlength="4000" placeholder="리뷰를 작성해주세요"></textarea>
+                </div>
+                <p class="review-editor-textLength">
+                    <span class="change-tl">0</span>
+                    <span>/4000</span>
+                </p>
+                <div class="review-file-wrapper">
+                    <div class="review-file-upload">
+                        <label for="reviewFile" class="btn">첨부 사진</label>
+                        <input type="file" name="reviewFile" id="reviewFile" style="display: none;">
+                        <div class="imageThumb">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="review-btn">
+                    <button type="button" name="cancelBtn" class="btn cancelBtn">취소</button>
+                    <button type="submit" class="btn-o submitBtn">리뷰 등록</button>
+                </div>
+            </form>
+        </div>
+    </div>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+	<script>
+		//아이콘 누르기
+		const tab = $(".grade-picker-item");
+		//몇번째 li인지 찾기
+		tab.on("click", function() {
+			const index = tab.index(this);
+			//누른 인덱스번호를 받아서 기능추가
+			changeTab(index);
+			//console.log(index);
+		});
+		function changeTab(tabNo) {
+			tab.find("span").removeClass("active-tab");
+			tab.find("span").addClass("active-tab");
+		}
+		
+		//글자 수 확인
+		$(".review-content").on("keyup", function() {
+			const content = $(this).val();
+
+			//text count
+			if (content.length == 0 || content == "") {
+				$(".change-tl").text("0");
+			} else {
+				$(".change-tl").text(content.length);
+			}
+			//text maxlength
+			const maxlength = 4000;
+			if (content.length > maxlength) {
+				alert("최대 작성은 4000자 입니다.");
+			}
+		});
+	</script>
+</body>
+</html>

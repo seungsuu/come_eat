@@ -1,0 +1,86 @@
+/* 맛집 이름 제목 */
+.review-title{
+	padding: 100px 0 50px 0 ;
+}
+.review-title>h2{
+    display: inline-block;
+    font-size: 30px;
+    color: #ff3700ff;
+    font-weight:700;
+}
+.review-title>span{
+    font-size: 18px;
+}
+.review-editor-wrap{
+    border: 1px solid #eee;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+.review-editor{
+    overflow: hidden;
+}
+/* 리뷰 아이콘 */
+.grade-picker-list{
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+.grade-picker-item{
+    float: left;
+    width: 10%;
+    cursor: pointer;
+}
+.grade-picker-item>span{
+	color:#ebebeb;
+}
+.grade-picker-item>:first-child{
+    font-size: 50px;
+}
+.grade-picker-item>:last-child{
+    display: block;
+    font-weight: 800;
+}
+/* js용 클래스(색바뀌기) */
+.active-tab{
+    color: #ff3700ff;
+}
+/* textarea 글쓰기 */
+.review-content{
+    border: none;
+    width: 95%;
+    min-height: 200px;
+    display: block;
+    resize: none;
+    font-size: 16px;
+    padding: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.review-content:focus{
+    outline: none;
+}
+.review-editor-textLength{
+    float: right;
+    margin: 10px 0;
+}
+.review-btn>*{
+    font-size: 20px;
+    width: 100px;
+}
+.btn-o:hover{
+	font-weight:700;
+}
+.cancelBtn{
+    margin-right: 20px;
+}
+.review-file-upload{
+    /* position: absolute; */
+    overflow: hidden;
+}
+#reviewImg{
+    width: 100px;
+    height: 100px;
+}
+.review-btn{
+    text-align: right;
+}

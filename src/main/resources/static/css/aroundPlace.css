@@ -45,12 +45,14 @@
     line-height: 50px;
     color: #eee;
 }
+/*
 .around-map{
     width: 100%;
     height: 400px;
     background-color: lightseagreen;
     margin: 50px auto;
 }
+*/
 .aroundPlace-content>ul{
     list-style-type: none;
     overflow: hidden;

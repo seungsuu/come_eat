@@ -5,6 +5,8 @@
 <title>내주변 식당 찾기</title>
 <link rel="stylesheet" href="/css/aroundPlace.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -13,8 +15,8 @@
 			<div class="aroundPlace-title">
 				<form action="#" method="get">
 					<div class="search-box">
-						<span>현재 보고있는 맛집 지역은</span>
-						<input type="text" name="searchPlace" id="searchPlace" placeholder="검색">
+						<span>현재 보고있는 맛집 지역은</span> <input type="text" name="searchPlace"
+							id="searchPlace" placeholder="검색">
 						<button type="submit" name="searchBtn" id="searchBtn">
 							<span class="material-icons">search</span>
 						</button>
@@ -22,25 +24,35 @@
 					</div>
 				</form>
 			</div>
-			<div id="aroundPlace-map" class="around-map"></div> 
+			<div id="map" style="width:100%; height:400px"></div>
 			<div class="aroundPlace-content">
 				<ul>
-					<li class="aroundPlace-list">
-						<a href="#">
-							<div class="imgBox">
-							</div>
+					<li class="aroundPlace-list"><a
+						href="/review/detailRestaurant">
+							<div class="imgBox"></div>
 							<div class="img-content">
-								<span>맛집 이름</span>
-								<span>평점</span>
+								<span>맛집 이름</span> <span>평점</span>
 								<div>위치</div>
 								<div>메뉴메뉴메뉴</div>
 							</div>
-						</a>
-					</li>
+					</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e951a9675edffd5bbc4faec7164c3441&libraries=services"></script>
+	<script>
+		const mapContainer = $("#map"), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+
+		// 지도를 생성합니다    
+		const map = new kakao.maps.Map(mapContainer, mapOption);
+	</script>
+
 </body>
 </html>
