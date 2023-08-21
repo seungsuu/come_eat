@@ -5,6 +5,8 @@
 <title>상세페이지</title>
 <link rel="stylesheet" href="/css/detailRestaurant.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ktt3zjyi3e&submodules=geocoder"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -63,7 +65,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="detailRestaurant_map">지도</div>
+				<div id="map" class="detailRestaurant_map">지도</div>
 			</div>
 		</div>
 		<div class="reservationBtn">
@@ -73,5 +75,16 @@
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
+	<script>
+		const map = new naver.maps.Map("map",{
+			center : new naver.maps.LatLng(37.533837,126.896836),
+			zoom : 16,
+			zoomControl : true,
+			zoomControlOptions:{
+				position : naver.maps.Position.TOP_RIGHT,
+				style : naver.maps.ZoomControlStyle.SMALL
+			}
+		});
+	</script>
 </body>
 </html>
