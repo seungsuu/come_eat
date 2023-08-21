@@ -37,7 +37,8 @@ public class MemberController {
 			model.addAttribute("title","로그인 실패."); //title : 제목
 			model.addAttribute("msg", "아이디 또는 비밀번호를 확인하세요.");
 			model.addAttribute("icon", "error");
-			model.addAttribute("loc", "/"); // 회원가입 페이지로 넘어가도록 수정  
+			model.addAttribute("loc", "/member/login");
+			
 		}else {
 			session.setAttribute("m", m);
 			model.addAttribute("loc", "/");

@@ -17,7 +17,7 @@ public class MemberDao {
 	private MemberRowMapper memberRowMapper;
 	
 	public Member selectOneMember(String signId, String signPw) {
-		String query = "select * from member_tbl where member_id=? and member_pw=?";
+		String query = "select * from member where member_id=? and member_pw=?";
 		List list = jdbc.query(query, memberRowMapper, signId, signPw);
 		if(list.isEmpty()) {
 			return null; 
