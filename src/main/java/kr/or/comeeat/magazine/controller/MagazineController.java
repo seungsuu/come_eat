@@ -28,7 +28,7 @@ public class MagazineController {
 	private MagazineService	magazineService;
 	@Autowired
 	private FileUtil fileUtil;
-	@Value("${file.root]")
+	@Value("${file.root}")
 	private String root;
 	
 	@GetMapping(value="/list")

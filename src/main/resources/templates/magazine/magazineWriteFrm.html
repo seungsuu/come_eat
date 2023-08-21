@@ -26,10 +26,6 @@
 							<!--<span th:text="${session.m.memberId}"></span>
 							  <input type="hidden" name="magazineWriter" th:value="${session.m.memberId}"> -->
 						</td>
-						<th class="b-color-g">썸네일</th>
-						<td>
-							<input type="file" name="imageFile" accept=".jpg,.png,.jpeg">
-						</td>
 					</tr>
 					<tr>
 						<th class="b-color-g" style="width: 20%;">한줄소개</th>
@@ -80,7 +76,10 @@
 			processData : false,
 			contentType : false,
 			success : function(data){
+				console.log(data);
 				$(editor).summernote("insertImage",data);
+				
+				$("#thumbnailPath").append("<option value="+data.url+">"+data.originName+"</option>");
 			}
 		});
 	}
