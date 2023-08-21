@@ -13,5 +13,10 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	
+	@GetMapping(value="/detailRestaurant")
+	public String detailRestaurant() {
+		return "review/detailRestaurant";
+	}
+	
 	
 }
