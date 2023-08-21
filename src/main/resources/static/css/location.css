@@ -2,7 +2,7 @@
     overflow: hidden;
 }
 
-.btn{
+.location-btn .btn{
     width: 300px;
     float: left;
     box-sizing: border-box;

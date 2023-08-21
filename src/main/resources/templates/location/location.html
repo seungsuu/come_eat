@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html　xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>지역별 맛집</title>
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/location.css">
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 </head>
 <body>
+	<th:block th:include="common/header"></th:block>
     <div class="content-wrap">
         <div class="content-title">지역별 맛집</div>
         <div class="location-btn">
@@ -69,37 +67,8 @@
                     </div>
                 </a>
             </div>
-            <div class="location-content">
-                <a href="#">
-                    <div class="location-img-box">
-                        <img src="/">
-                    </div>
-                    <div class="location-content-info">
-                        <p>맛집이름</p>
-                        <p>맛집설명</p>
-                        <div class="star">
-                            <span class="material-icons-round">grade</span>
-                            <span>4.5</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="location-content">
-                <a href="#">
-                    <div class="location-img-box">
-                        <img src="/">
-                    </div>
-                    <div class="location-content-info">
-                        <p>맛집이름</p>
-                        <p>맛집설명</p>
-                        <div class="star">
-                            <span class="material-icons-round">grade</span>
-                            <span>4.5</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
         </div>
     </div>
+    <th:block th:include="common/footer"></th:block>
 </body>
 </html>
