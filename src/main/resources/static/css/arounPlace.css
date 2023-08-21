@@ -1,0 +1,104 @@
+
+/*
+메인색 : #ff3700ff
+회색 : #eee
+*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/*
+폰트
+font-family: 'Noto Sans KR', sans-serif;
+*/
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: #2f2f2f;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    outline: none;
+}
+.place-wrapper{
+    width: 1200px;
+    margin: 60px auto;
+    box-sizing: border-box;
+}
+/* .aroundPlace-title{
+    text-align: center;
+} */
+.search-box{
+    overflow: hidden;
+    left: 50px;
+    padding-left: 200px;
+}
+.search-box>*{
+    float: left;
+}
+.search-box>span{
+    display: block;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 50px;
+    
+}
+#searchPlace{
+    width: 300px;
+    height: 50px;
+    font-size: 24px;
+    border: none;
+    border-bottom: 5px solid #eee;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+#searchBtn{
+    border: none;
+    background-color: #ff3700ff;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+#searchBtn>span{
+    font-size: 30px;
+    line-height: 50px;
+    color: #eee;
+}
+.around-map{
+    width: 100%;
+    height: 400px;
+    background-color: lightseagreen;
+    margin: 50px auto;
+}
+.aroundPlace-content>ul{
+    list-style-type: none;
+    overflow: hidden;
+}
+.aroundPlace-list{
+    float: left;
+    width: calc(100%/5);
+    box-sizing: border-box;
+    padding: 20px;
+}
+.aroundPlace-list>a{
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+.imgBox{
+    width: 90%;
+    margin: 0 auto;
+}
+.imgBox>img{
+    width: 100%;
+}
+.img-content{
+    width: 80%;
+    margin: 0 auto;
+}
+.img-content>:first-child{
+    font-size: 24px;
+    font-weight: 600;
+}
+.img-content>:nth-child(2){
+    color: #ff3700ff;
+}
