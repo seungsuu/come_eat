@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>상세페이지</title>
+<link rel="stylesheet" href="css/detailRestaurant.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+		<div class="detail-wrap">
+			<div class="restaurant_title_wrap">
+				<div class="title_header">
+					<h1 th:text=""></h1>
+					<span th:text=""></span>
+				</div>
+				<div class="review_icons">
+					<div class="icon1">
+						<a href="/review/reviewWriteFrm">
+							 <div class="reviewBtn">
+                                <span class="material-icons">edit_document</span>
+                            </div>
+                            <div>
+                                <span>리뷰쓰기</span>
+                            </div>
+						</a>
+					</div>
+					<div class="icon2">
+						<div class="reviewBtn">
+							<span class="material-icons">favorite_border</span>
+						</div>
+						<div>
+							<span>저장</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="restaurant_content_wrap">
+			<div class="restaurant_content">
+				<div class="restaurant_info">
+					<table class="info-tbl">
+						<tr>
+							<th>주소</th>
+							<td th:text=""></td>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<td th:text=""></td>
+						</tr>
+						<tr>
+							<th>음식 종류</th>
+							<td th:text=""></td>
+						</tr>
+						<tr>
+							<th>주차</th>
+							<td th:text=""></td>
+						</tr>
+						<tr>
+							<th>영업시간</th>
+							<td th:text=""></td>
+						</tr>
+					</table>
+				</div>
+				<div class="detailRestaurant_map">지도</div>
+			</div>
+		</div>
+		<div class="reservationBtn">
+			<button type="button" class="btn-o" name="reserveBtn" id="reserveBtn">예약하기</button>
+		</div>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

@@ -1,0 +1,108 @@
+
+.detail-wrap{
+    width: 1200px;
+    margin: 60px auto;
+    padding-top: 30px;
+}
+.restaurant_title{
+    overflow: hidden;
+}
+.title_header{
+    float: left;
+}
+.title_header>h1{
+    font-size: 40px;
+    display: inline-block;
+    margin-right: 20px;
+    font-weight: 700;
+}
+.title_header>span{
+    font-size: 40px;
+    color: #ff3700ff;
+}
+.review_icons{
+    overflow: hidden;
+}
+.review_icons>div{
+    float: right;
+    width: 10%;
+    text-align: center;
+}
+.reviewBtn>span{
+    font-size: 40px;
+}
+.icon1>a{
+    text-decoration: none;
+    color: black;
+}
+.icon2:hover{
+    cursor: pointer;
+    color: #fff;
+}
+.restaurant_content{
+    overflow: hidden;
+    padding: 60px 0 30px 0;
+}
+.restaurant_info{
+    width: 48%;
+    float: left;
+    border-top: 3px solid #eee;
+    border-bottom: 3px solid #eee;
+    box-sizing: border-box;
+}
+.detailRestaurant_map{
+    width: 48%;
+    background-color: lightseagreen;
+    float: right;
+    height: 300px;
+}
+.info-tbl{
+    width: 100%;
+}
+.info-tbl th{
+    padding: 15px;
+    text-align: left;
+}
+
+.restaurant_reviewList{
+    margin: 50px 0;
+    border-top: 1px solid #eee;
+}
+.reviewList_title{
+    padding: 30px;
+}
+.reviewList_title>h2{
+    font-weight: 700;
+}
+.review_content_img{
+    width: 200px;
+}
+.reviewList_content_check{
+    overflow: hidden;
+    margin: 50px 0;
+    padding: 30px 0;
+    border-bottom: 1px solid #eee;
+}
+.reviewList_content_check>li{
+    float: left;
+}
+.reviewList_content_check>li:first-child{
+    width: 20%;
+    text-align: center;
+    height: 200px;
+    line-height: 200px;
+}
+.reviewList_content_check>li:first-child>span{
+    font-size: 20px;
+    font-weight: 500;
+}
+.reviewList_content_check>li:nth-child(2){
+    width: 50%;
+}
+.reviewList_content_check>li:last-child{
+    width: 30%;
+    text-align: center;
+}
+.review_detail_content{
+    padding-top: 20px;
+}
