@@ -12,7 +12,6 @@ public class MagazineRowMapper implements RowMapper<Magazine>{
 	@Override
 	public Magazine mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Magazine m = new Magazine();
-		m.setFilepath(rs.getString("filepath"));
 		m.setMagazineContent(rs.getString("magazine_content"));
 		m.setMagazineDate(rs.getString("magazine_date"));
 		m.setMagazineNo(rs.getInt("magazine_no"));

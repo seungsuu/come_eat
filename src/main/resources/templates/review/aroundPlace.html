@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>내주변 식당 찾기</title>
+<link rel="stylesheet" href="/css/aroundPlace.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+		<div class="place-wrapper">
+			<div class="aroundPlace-title">
+				<form action="#" method="get">
+					<div class="search-box">
+						<span>현재 보고있는 맛집 지역은</span>
+						<input type="text" name="searchPlace" id="searchPlace" placeholder="검색">
+						<button type="submit" name="searchBtn" id="searchBtn">
+							<span class="material-icons">search</span>
+						</button>
+						<span>입니다</span>
+					</div>
+				</form>
+			</div>
+			<div id="aroundPlace-map" class="around-map"></div> 
+			<div class="aroundPlace-content">
+				<ul>
+					<li class="aroundPlace-list">
+						<a href="#">
+							<div class="imgBox">
+							</div>
+							<div class="img-content">
+								<span>맛집 이름</span>
+								<span>평점</span>
+								<div>위치</div>
+								<div>메뉴메뉴메뉴</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

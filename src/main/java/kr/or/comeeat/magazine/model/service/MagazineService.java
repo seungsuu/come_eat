@@ -1,11 +1,16 @@
 package kr.or.comeeat.magazine.model.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import kr.or.comeeat.magazine.model.dao.MagazineDao;
 import kr.or.comeeat.magazine.model.vo.Magazine;
+import kr.or.comeeat.magazine.model.vo.MagazineFile;
 
 @Service
 public class MagazineService {
@@ -18,9 +23,30 @@ public class MagazineService {
 	}
 	
 	@Transactional
-	public int insertMagazine(Magazine m) {
+	public int insertMagazine(Magazine m, ArrayList<MagazineFile> fileList) {
 		int result = magazineDao.insertMagazein(m);
+		if(fileList != null) {
+			int magazineNo = magazineDao.getMagazineNo();
+			for(MagazineFile file : fileList) {
+				file.setMagazineNo(magazineNo);
+				result += magazineDao.insertMagazineFile(file);
+			}
+		}
 		return result;
+	}
+
+	
+	@Transactional
+	public Magazine selectOneMagazine(int magazineNo, int memberNo) {
+		int result = magazineDao.updateReadCount(magazineNo);
+		if(result>0) {
+			Magazine m = magazineDao.selectOneMagazine(magazineNo);
+			List fileList = magazineDao.selectMagazineFile(magazineNo);
+			m.setFileList(fileList);
+			return m;
+		}else {
+			return null;
+		}
 	}
 
 	

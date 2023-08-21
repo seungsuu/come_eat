@@ -50,7 +50,7 @@ public class BoardService {
 			if(pageNo == pageNum) {
 				//현재페이지와 요청페이지가 같은 경우(현재보고있는 페이지버튼에만 class로 백그라운드주기)
 				pageNavi += "<li>";
-				pageNavi += "<a href='/board/list?pageNum="+(pageNo)+"'>";
+				pageNavi += "<a class='active-page' href='/board/list?pageNum="+(pageNo)+"'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
