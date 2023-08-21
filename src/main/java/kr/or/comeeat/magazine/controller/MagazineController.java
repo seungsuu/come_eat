@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -87,6 +88,19 @@ public class MagazineController {
 		return "magazine/view";
 	}
 	
-	
+	@ResponseBody
+	@PostMapping(value="/editor", produces = "plain/text;charset=utf-8")
+	public String editorUpload(MultipartFile file) {
+		String savepath = root+"editor/";
+		String filepath = fileUtil.getFilepath(savepath, file.getOriginalFilename());
+		File image = new File(savepath+filepath);
+		try {
+			file.transferTo(image);
+		} catch (IllegalStateException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "/editor/"+filepath;
+	}
 		
 }
