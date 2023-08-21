@@ -45,3 +45,8 @@
 .board-navi li>a:hover>span{
     color: #ff3700ff;
 }
+
+
+.active-page{
+    color: #ff3700ff;
+}
