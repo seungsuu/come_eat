@@ -24,6 +24,7 @@ public class LocationDao {
 		for(Location location : list) {
 			Object[] params = {location.getLoCode(),location.getLoTitle(),location.getLoInfo(),location.getLoLat(),location.getLoLng(),location.getLoAddr(),location.getLoTel(),location.getLoTime(),location.getLoMenu(),location.getLoThumb()};
 			result = jdbc.update(query,params);
+			System.out.println(result);
 		}
 		return result;
 	}

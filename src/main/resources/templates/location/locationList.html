@@ -46,6 +46,32 @@
                 <a href="#" class="btn lo-btn">영주</a>
             </div>
         </div>
+        <div class="sub-title clear">
+            	서울 맛집
+        </div>
+        <div class="location-map">
+            	<div id="map" style="width:100%;height:100%;"></div>
+        </div>
+        <div class="location-content-wrap" th:if="${list != null}"> 
+            <div class="location-content" th:each="location : ${list}">
+                <a href="#">
+                    <div class="location-img-box">
+                        <img th:src="${location.loThumb}">
+                    </div>
+                    <div class="location-content-info">
+                        <p th:text="${location.loTitle}"></p>
+                        <p th:text="${location.loInfo}"></p>
+                        <div class="star">
+                            <span class="material-icons-round">grade</span>
+                            <span>4.5</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+        <button class="btn clear" id="more-btn">더보기</button>
+        </div>
+        
     </div>
     <th:block th:include="common/footer"></th:block>
     
@@ -56,9 +82,19 @@
     		$(this).addClass("active-btn");
     	});
     	
-    	window.onload = function(){
+/*     	window.onload = function(){
     		$(".lo-btn").eq(0).click();
     	};
+    	 */
+    	//카카오 지도 API
+		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+			center: new kakao.maps.LatLng(37.566815192716994, 126.97865226139427), //지도의 중심좌표.
+			level: 4 //지도의 레벨(확대, 축소 정도)
+		};
+		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		
+		
     </script>
 </body>
 </html>

@@ -19,7 +19,7 @@ public class LocationService {
 	@Transactional
 	public List busan(ArrayList<Location> list) {
 		List bList = locationDao.busanSelect();
-		if(list.isEmpty()) {			
+		if(bList.isEmpty()) {			
 			int result = locationDao.busanInsert(list);
 			List bList2 = locationDao.busanSelect();
 			return bList2;
