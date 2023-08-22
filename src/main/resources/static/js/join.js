@@ -74,3 +74,11 @@ $(".modal-open-btn").on("click",function(){
 $(".input-wrap>input[type=button]").on("click",function(){
     $(".join-modal-wrap").css("display","none");
 });
+
+
+
+$(document).mouseup(function (e){
+	if($(".login-modal").has(e.target).length === 0){
+		$(".login-modal").fadeOut(500);
+	}
+});

@@ -9,95 +9,13 @@
 	<th:block th:include="common/header"></th:block>
 		<div class="content-wrap">
 			<div class="content-title">Magazine 게시판</div>
-			<a href="/magazine/magazineWriteFrm" class="btn">글쓰기</a>
-			<!-- th:if="${session.m != null && session.m.memberLevel != 1}"  -->
 			<div class="magazine-container">
 				<div class="magazine-item">1</div>
 				<div class="magazine-item">2</div>
 				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				
-			</div>	
-					<div class=button-box>		
-						<button class="btn-more" id="magazine-more-btn"
-						th:totalCount="${totalCount}"
-						currentCount="0"
-						value="1"		
-						>더보기</button>
-					</div>
+			</div>
+			<button class="btn" id="more-btn" th:totalCount="${totalCount}" currentCount="0" value="1">더보기</button>
 		</div>
 	<th:block th:include="common/footer"></th:block>
-	<script>
-		$("#magazine-more-btn").on("click",function(){
-			const start = $(this).val();
-			const amount = 3;
-			const end = Number(start)+amount-1;
-			$.ajax({
-				url : "/magazine/more",
-				type :"post",
-				data : {start:start,end:end},
-				success : function(data){
-					for(let i=0; i<data.length; i++){
-						const photo = data[i];
-						const div = $("<div>");
-						div.addClass("magazine-item");
-												
-						const imgDiv = $("<div>");
-						imgDiv.addClass("magazine-item-img")
-
-						
-						const img = $("<img>");
-						img.attr("src","/magazine/"+magazine.filepath);
-						imgDiv.append(img);
-						/*
-						<div class="magazine-item-img">
-							<img src="파일경로">
-						</div>
-						*/
-						//a태그 추가
-						const a = $("<a>");
-						img.attr("th:href","@{/magazine/view(magazineNo=${m.magazineNo})}"");
-						imgDiv.append(a)
-						
-						const contentDiv = $("<div>");
-						contentDiv.addClass("magazine-item-content");
-						
-						const title = $("<p>");
-						title.text(magazine.magazineTitle);
-						
-						contentDiv.append(title);
-						
-						div.append(imgDiv).append(contentDiv);
-					
-						$(".photoWrapper").append(div);
-					}
-					
-					
-					const currentVal= Number($("#magazine-more-btn").val());
-					$("#magazine-more-btn").val(currentVal+amount);
-					
-					const currentCount = Number($("#magazine-more-btn").attr("currentCount"));
-					
-					const changeCount = currentCount+data.length;
-					$("#magazine-more-btn").attr("currentCount",changeCount);
-					
-					const totalCount = Number($("#magazine-more-btn").attr("totalCount"));
-					if(totalCount == changeCount){
-						$("#magazine-more-btn").remove();
-					}
-					
-				}
-			});
-		});
-		
-		})
-	
-	</script>
 </body>
 </html>

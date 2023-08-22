@@ -47,7 +47,6 @@ public class MagazineController {
 	@PostMapping(value="/write")
 	public String write(Magazine m, MultipartFile[] upfile, Model model) {
 		ArrayList<MagazineFile> fileList=null;
-		
 		if(!upfile[0].isEmpty()) {
 			fileList = new ArrayList<MagazineFile>();
 			String savepath = root+"magazine/";

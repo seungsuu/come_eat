@@ -23,8 +23,8 @@
 					<tr>
 						<th class="b-color-g">작성자</th>
 						<td>
-							<!--<span th:text="${session.m.memberId}"></span>
-							  <input type="hidden" name="magazineWriter" th:value="${session.m.memberId}"> -->
+							<span th:text="${session.m.memberId}"></span>
+							<input type="hidden" name="magazineWriter" th:value="${session.m.memberId}">
 						</td>
 					</tr>
 					<tr>
@@ -58,6 +58,18 @@
 	<th:block th:include="common/footer"></th:block>
 	<script >
 	$("#magazineContent").summernote({
+		  toolbar: [
+			    ['fontname', ['fontname']],
+			    ['fontsize', ['fontsize']],
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['color', ['forecolor','color']],
+			    ['table', ['table']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['insert',['picture','link','video']],
+			    ['view', ['fullscreen', 'help']]],
+				fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+				fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
 		height: 400,
 		lang : "ko-KR",
 		callbacks :{
