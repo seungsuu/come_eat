@@ -20,6 +20,7 @@ public class MagazineRowMapper implements RowMapper<Magazine>{
 		m.setReadCount(rs.getInt("read_count"));
 		m.setMagazineSubtitle(rs.getString("magazine_subtitle"));
 		m.setMagazineStorename(rs.getString("magazine_storename"));
+		m.setFilepath(rs.getString("filepath"));
 		return m;
 	}
 	
