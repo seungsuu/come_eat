@@ -24,16 +24,20 @@
 				<img class="magazine-img">
 			</div>
 			<div class="magazine-content" th:utext="${m.magazineContent}">
-				
-				"내용내용내용내용"<br>
-				영업시간|등등<br>
-				주소|등등
+
 			</div>
-			<div>
+			<div th:if="${session.m !=null && session.m.memberNo == m.memberNo}">
 				<a class="btn magazineViewBtn" th:href="@{/magazine/magazineUpdateFrm(magazineNo=${m.magazineNo})}">수정</a>
 				<button class="btn magazineViewBtn" th:onclick="magazineDelete([[${m.magazineNo}]])">삭제</button>
 			</div>
 		</div>
 	<th:block th:include="common/footer"></th:block>
+	<script>
+	function magazineDelete(magazineNo){
+		if(confirm("게시글을 삭제하시겠습니까?")){
+			location.href="/magazine/delete?magazineNo="+magazineNo;
+		}
+	}
+	</script>
 </body>
 </html>

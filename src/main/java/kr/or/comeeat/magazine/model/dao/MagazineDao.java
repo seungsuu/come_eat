@@ -79,5 +79,13 @@ public class MagazineDao {
 		List magazineList = jdbc.query(query, magazineRowMapper, start, end);
 		return magazineList;
 	}
+
+
+	public int deleteMagazine(int magazineNo) {
+		String query="delete from magazine where magazine_no=?";
+		Object[] params = {magazineNo};
+		int result = jdbc.update(query, params);
+		return result;
+	}
 	
 }

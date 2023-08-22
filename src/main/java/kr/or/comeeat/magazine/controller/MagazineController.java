@@ -141,5 +141,27 @@ public class MagazineController {
 		return magazineList;
 	}
 
+	@GetMapping(value="/delete")
+	public String deleteMagazine(int magazineNo, Model model) {
+		List list = magazineService.deleteMagazine(magazineNo);
+		if(list != null) {
+			String savepath = root+"magazine/";
+			for(Object obj : list) {
+				MagazineFile file = (MagazineFile)obj;
+				File delFile = new File(savepath+file.getMFilepath());
+				delFile.delete();
+			}
+			model.addAttribute("title","Magazine");
+			model.addAttribute("msg","게시글이 삭제되었습니다.");
+			model.addAttribute("icon","success");
+			model.addAttribute("loc","/magazine/list");
+		}else {
+			model.addAttribute("title","Magazine");
+			model.addAttribute("msg","삭제 실패 관리자에게 문의하세요!");
+			model.addAttribute("icon","error");
+			model.addAttribute("loc","/magazine/view?magazineNo="+magazineNo);
+		}
+		return "common/msg";
+	}
 		
 }
