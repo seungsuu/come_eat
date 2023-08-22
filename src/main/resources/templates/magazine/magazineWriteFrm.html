@@ -78,8 +78,7 @@
 			success : function(data){
 				console.log(data);
 				$(editor).summernote("insertImage",data);
-				
-				$("#thumbnailPath").append("<option value="+data.url+">"+data.originName+"</option>");
+				$("#thumbnailPath").append("<option value="+data+">"+data.originName+"</option>");
 			}
 		});
 	}
