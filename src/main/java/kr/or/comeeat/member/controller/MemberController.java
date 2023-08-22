@@ -62,7 +62,7 @@ public class MemberController {
 				model.addAttribute("loc", "/");
 			}else {
 				model.addAttribute("title", "회원가입 실패");
-				model.addAttribute("msg", " * 필수항목란과 이용약관을 확인해주세요.");
+				model.addAttribute("msg", "필수 정보 입력란을 확인해주세요");
 				model.addAttribute("icon", "error");
 				model.addAttribute("loc", "/");
 			}
