@@ -39,10 +39,10 @@
 }
 .grade-picker-item>:last-child{
     display: block;
-    font-weight: 800;
+    font-weight: 700;
 }
 /* js용 클래스(색바뀌기) */
-.active-tab{
+#active-tab{
     color: #ff3700ff;
 }
 /* textarea 글쓰기 */

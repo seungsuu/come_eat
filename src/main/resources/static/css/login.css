@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/*
+폰트
+font-family: 'Noto Sans KR', sans-serif;
+*/
+
+/*
+색상
+#ff3700ff; -- 포인트컬러
+#eee; -- 회색
+#2f2f2f; -- 글씨 기본색
+*/
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: #2f2f2f;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    outline: none;
+}
+
+.login-wrap{
+    width: 1200px;  
+    margin: 0 auto;
+    height: 800px;
+}
+
+.login-header{
+    font-size: 36px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: 200;
+    padding: 80px 0 50px 0;
+    display: block;
+}
+.login-content{
+    border-top: 1px solid #2f2f2f;
+    border-bottom: 1px solid #eee;
+    padding-top: 70px;
+    padding-bottom: 100px;
+}
+#login-frm{
+    width: 600px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.login-input-box{
+    width: 400px;
+    float: left;
+}  
+
+.login-input-box>input{
+    width: 400px;
+    height: 45px;
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+.login-btn-box{
+    width: 200px;
+    float: left;
+    text-align: center;
+    margin-top:25px;
+}
+
+/* 로그인 버튼*/
+.login-btn-box>button{
+    width: 130px;
+    height: 115px;
+    border: none;
+    background-color: #eee;
+    border-radius: 5px;
+    color: #2f2f2f;
+    font-size: 16px;
+    cursor: pointer;
+}
+.login-btn-box>button:hover{
+    background-color: #ff3700ff;
+    color: #fff;
+    font-weight: 400;
+}
+.login-link-wrap{
+    margin-top: 10px;
+    margin-left: 700px;
+}
+
+.login-link-wrap>a{
+    font-size: 13px;
+    cursor: pointer;
+    padding-left: 5px;
+}
+a:hover{
+    text-decoration: underline;
+}
+.join {
+    border-bottom : 1px solid black;
+
+}
+.join-wrap{
+    width: 600px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+/*회원 가입 버튼*/
+.join-btn button{
+    width: 560px;
+    height: 50px;
+    cursor: pointer;
+    background-color: #eee;
+    border:none;
+    color : #2f2f2f;
+    margin: 40px 0 100px;
+    font-size: 15px;
+    border-radius: 5px;
+}
+.join-btn button:hover{
+    background-color: #ff3700ff;
+    color: #fff;
+    font-weight: 400;
+}
+

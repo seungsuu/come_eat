@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="review-btn">
-                    <button type="button" name="cancelBtn" class="btn cancelBtn">취소</button>
+                    <button type="button" name="cancelBtn" class="btn cancelBtn" onclick="location.href='/review/detailRestaurant'">취소</button>
                     <button type="submit" class="btn-o submitBtn">리뷰 등록</button>
                 </div>
             </form>
@@ -69,8 +69,10 @@
 			//console.log(index);
 		});
 		function changeTab(tabNo) {
-			tab.find("span").removeClass("active-tab");
-			tab.find("span").addClass("active-tab");
+			//tab.removeAttr("id","active-tab");
+			//tab.removeAttr("id","active-tab");
+			//tab.eq(tabNo).find("span").attr("id","active-tab");
+		
 		}
 		
 		//글자 수 확인

@@ -15,12 +15,13 @@
 			<div class="restaurant_title_wrap">
 				<div class="title_header">
 					<h1>테스트</h1>
+					<span class="material-icons-round">grade</span>
 					<span>4.0</span>
 				</div>
 				<div class="review_icons">
 					<div class="icon1">
-						<a href="/review/reviewWriteFrm">
-							 <div class="reviewBtn">
+						<a href="/review/reviewWriteFrm"> 
+							<div class="reviewBtn">
                                 <span class="material-icons">edit_document</span>
                             </div>
                             <div>
@@ -30,11 +31,11 @@
 					</div>
 					<div class="icon2">
 						<div class="reviewBtn">
-							<span class="material-icons">favorite_border</span>
-						</div>
-						<div>
-							<span>저장</span>
-						</div>
+                            <span class="material-icons">favorite_border</span>
+                        </div>
+                        <div>
+                            <span>저장</span>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -72,6 +73,51 @@
 			<a href="/">
 				<button type="button" class="btn-o" name="reserveBtn" id="reserveBtn">예약하기</button>		
 			</a>
+		</div>
+		<div class="restaurant_reviewList">
+			<div class="reviewList_title">
+				<h2>리뷰</h2>
+			</div>
+			<div class="reviewList_content_wrapper">
+				<div class="reviewList_content">
+					<ul class="reviewList_content_check">
+						<li>
+							<span>username</span>
+						</li>
+						<li>
+							<p class="reviewList_content_link">
+								<span>리뷰 단 날짜</span>
+								<a href="#">수정</a>
+								<a href="#">삭제</a>
+							</p>
+							<p class="review_detail_content">
+								후기후기후기후기후기후기후기후기후기후기
+							</p>
+						</li>
+						<li>
+							<div class="testImg"></div>
+						</li>
+					</ul>
+					<ul class="reviewList_content_check">
+						<li>
+							<span>userName</span>
+						</li>
+						<li>
+							<p class="reviewList_content_link">
+								<span>리뷰 단 날짜</span>
+								<a href="#">수정</a>
+								<a href="#">삭제</a>
+							</p>
+							<p class="review_detail_content">
+								후기후기후기후기후기후기후기후기후기후기
+							</p>
+						</li>
+						<li>
+							<div class="testImg"></div>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>

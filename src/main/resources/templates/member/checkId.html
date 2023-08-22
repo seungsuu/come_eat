@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="/js/jquery-3.6.0.js"></script>
+</head>
+<body>
+	<div id="check-container">
+		<th:block th:if="${result == 0}">
+		[<span class="" th:text="${checkId}"></span>]는 사용 가능한 아이디 입니다.
+		<br><br>
+		<button type="button" class="" id="closeBtn">닫기</button>
+		
+		<!--닫기버튼 클릭시 창 종료 -->
+		<script>
+		self.close();
+		</script>
+		
+		<!-- 추가 보완 -->
+		
+	
+	
+	
+	
+	
+	
+	</div>
+</body>
+</html>

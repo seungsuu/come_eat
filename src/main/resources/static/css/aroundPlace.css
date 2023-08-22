@@ -68,6 +68,9 @@
     text-decoration: none;
     color: black;
 }
+.aroundPlace-list>a:hover{
+	box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+}
 .imgBox{
     width: 90%;
     margin: 0 auto;
@@ -79,10 +82,12 @@
     width: 80%;
     margin: 0 auto;
 }
-.img-content>:first-child{
-    font-size: 24px;
-    font-weight: 600;
+.img-content>h2{
+	font-size:24px;
+	font-weight:600;
 }
-.img-content>:nth-child(2){
+
+.img-content>span{
     color: #ff3700ff;
+    font-weight:500;
 }

@@ -30,14 +30,18 @@
 .reviewBtn>span{
     font-size: 40px;
 }
-.icon1>a{
-    text-decoration: none;
-    color: black;
+.icon1>a:hover>div>span{
+	color:#ff3700ff;
+	font-weight:600;
+}
+.icon2:hover>div>span{
+	color:#ff3700ff;
+	font-weight:500;
 }
 .icon2:hover{
     cursor: pointer;
-    color: #fff;
 }
+
 .restaurant_content{
     overflow: hidden;
     padding: 60px 0 30px 0;
@@ -62,11 +66,12 @@
     padding: 15px;
     text-align: left;
 }
-
+/*예약하기 버튼*/
 .btn-o:hover{
 	font-weight: 700;
 }
 
+/*리뷰 리스트*/
 .restaurant_reviewList{
     margin: 50px 0;
     border-top: 1px solid #eee;
@@ -75,7 +80,12 @@
     padding: 30px;
 }
 .reviewList_title>h2{
-    font-weight: 700;
+	font-size:36px;
+}
+.testImg{
+	width:200px;
+	height:200px;
+	background-color:lightpink;
 }
 .review_content_img{
     width: 200px;
@@ -83,7 +93,7 @@
 .reviewList_content_check{
     overflow: hidden;
     margin: 50px 0;
-    padding: 30px 0;
+    padding-bottom: 30px;
     border-bottom: 1px solid #eee;
 }
 .reviewList_content_check>li{
