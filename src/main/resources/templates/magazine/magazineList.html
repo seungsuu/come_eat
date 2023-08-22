@@ -2,7 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+
 <title>매거진 게시판</title>
+
 <link rel="stylesheet" href="/css/magazineList.css">
 </head>
 <body>
@@ -12,17 +14,7 @@
 			<a th:if="${session.m != null && session.m.memberLevel == 2}" href="/magazine/magazineWriteFrm" class="btn">글쓰기</a>
 			
 			<div class="magazine-container">
-				<div class="magazine-item">1</div>
-				<div class="magazine-item">2</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				<div class="magazine-item">3</div>
-				
+
 			</div>	
 					<div class=button-box>		
 						<button class="btn-more" id="magazine-more-btn"
@@ -44,7 +36,7 @@
 				data : {start:start,end:end},
 				success : function(data){
 					for(let i=0; i<data.length; i++){
-						const photo = data[i];
+						const magazine = data[i];
 						const div = $("<div>");
 						div.addClass("magazine-item");
 												
@@ -61,10 +53,11 @@
 						</div>
 						*/
 						//a태그 추가
+						/*
 						const a = $("<a>");
 						img.attr("th:href","@{/magazine/view(magazineNo=${m.magazineNo})}"");
 						imgDiv.append(a)
-						
+						*/
 						const contentDiv = $("<div>");
 						contentDiv.addClass("magazine-item-content");
 						
@@ -75,7 +68,7 @@
 						
 						div.append(imgDiv).append(contentDiv);
 					
-						$(".photoWrapper").append(div);
+						$(".magazine-container").append(div);
 					}
 					
 					
@@ -95,9 +88,6 @@
 				}
 			});
 		});
-		
-		})
-	
 	</script>
 </body>
 </html>

@@ -17,13 +17,13 @@
 					<tr>
 						<th class="b-color-g" style="width: 20%;">제목</th>
 						<td>
-							<input type="text" name="magazineTitle" class="input" placeholder="제목을 입력하세요" style="text-align: center;">
+							<input type="text" name="magazineTitle" class="input" placeholder="제목을 입력하세요" style="text-align: left; text-indent: 2em;">
 						</td>
 					</tr>
 					<tr>
 						<th class="b-color-g">작성자</th>
 						<td>
-							<span th:text="${session.m.memberId}" style="text-align: left; text-indent: 2em;"></span>
+							<span th:text="${session.m.memberId}" style="text-align: left; text-indent: 2em; display:block;"></span>
 							<input type="hidden" name="memberNo" th:value="${session.m.memberNo}">
 						</td>
 					</tr>
@@ -36,7 +36,11 @@
 					<tr>
 						<th class="b-color-g" style="width: 20%;">상호명</th>
 						<td>
-							<input type="text" name="magazineStorename" class="input" placeholder="매장 상호명" style="text-align: left; text-indent: 2em;">			
+							<input type="text" name="magazineStorename" class="input" placeholder="매장 상호명" style="text-align: left; text-indent: 2em;">
+						</td>
+						<th class="b-color-g" style="width: 20%;">썸네일</th>
+						<td>
+							<input type="file" name="imageFile" accept=".jpg,.png,.jpeg">	
 						</td>
 					</tr>
 					<tr >
@@ -94,6 +98,19 @@
 			}
 		});
 	}
+	
+	$("[name=imageFile]").on("change",function(){
+		console.log(this.files);
+		if(this.files.length !=0 && this.files[0] != 0){
+			const reader = new FileReader();
+			reader.readAsDataURL(this.files[0]);
+			reader.onload =function(e){
+				$("#img-view").attr("src",e.target.result);
+			}
+		}else{
+			$("#img-view").attr("src","");
+		}
+	});
 	</script>
 </body>
 </html>
