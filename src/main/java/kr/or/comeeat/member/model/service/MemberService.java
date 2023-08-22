@@ -26,7 +26,7 @@ public class MemberService {
 	}
 	
 	//id중복검사 체크
-	public Member selectOneMemeber(String checkId) {
+	public Member selectOneMember(String checkId) {
 		Member m = memberDao.selectOneMember(checkId);
 		return m;
 	}

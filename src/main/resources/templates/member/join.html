@@ -6,79 +6,24 @@
     <link rel="stylesheet" href="/css/join.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <script src="/js/jquery-3.6.0.js"></script>
-    <link rel="stylesheet" href="/css/location.css">
 </head>
 <body>
-	<th:block th:include="common/header"></th:block>
-    <div class="content-wrap">
-        <div class="content-title">JOIN</div>
+     <div class="join-wrap">
+        <div class="join-title">JOIN</div>
         <p><span>* </span>필수 입력 항목</p>
-        <table class="join-table">
-            <tr>
-                <td class="join-th">
-                    <label for="memberId">아이디</label>
-                    <span> * </span>
-                </td>
-                <td>
-                    <input type="text" class="join-input-form" id="memberId">
-                    <button type="button" id="idChkbtn" class="join-idChkbtn">중복체크</button>
-                </td>
-            <tr>
-                <td class="join-th">
-                    <label for="memberPw">비밀번호</label>
-                    <span> * </span>
-                </td>
-                <td>
-                    <input type="password" class="join-input-form" id="memberPw" placeholder="영문+숫자+특수문자 조합 8~16자리">
-                    <span class="comment"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="join-th">
-                    <label for="memberPwRe">비밀번호확인</label>
-                    <span> * </span>
-                </td>
-                <td>
-                    <input type="password" class="join-input-form" id="memberPwRe">
-                    <span class="comment"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="join-th">
-                    <label for="memberName">이름</label>
-                    <span> * </span>
-                </td>
-                <td>
-                    <input type="text" class="join-input-form" id="memberName" placeholder="ex)홍길동">
-                    <span class="comment"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="join-th">
-                    <label for="memberPhone">핸드폰번호</label>
-                </td>
-                <td>
-                    <input type="text" class="join-input-form" id="memberPhone" placeholder="ex)010-0000-0000">
-                    <span class="comment"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="join-th-end">
-                    <label for="memberEmail">이메일</label>
-                    <span> * </span>
-                </td>
-                <td class="join-td-end">
-                    <input type="text" class="join-input-form" id="memberEmail">
-                        @ 
-                        <select class="join-select-box" id="domain-list">
-                        <option value="naver.com">naver.com</option>
-                        <option value="google.com">google.com</option>
-                        <option value="hanmail.net">hanmail.net</option>
-                        <option value="nate.com">nate.com</option>
-                        </select>
-                </td>
-            </tr>  
-        </table>
+        <form name="checkIdFrm" action="/member/checkId" method="post">
+			<input type="text" name="checkId">
+		</form>
+		<form action="/member/signup" method="post" id=signupFrm>
+			<div class="input-wrap">
+				<label for="memberId">아이디<span id="ajaxCheckId"></span></label>
+				<div class="id-wrap">
+				<input type="text" name="memberId" id="memberId" class="input-form" required>
+				<button type="button" id=idChkBtn class="btn bc2">중복체크</button>
+				</div>
+			</div>
+		</form>
+	</div>
         <div class="join_agreement">
             <ul class="join-ul">
                 <li id="join_agreementAll">
@@ -150,7 +95,7 @@
             </div>
         </div>        
     </div>
-    <th:block th:include="common/footer"></th:block>
-    <script src="/js/join.js"></script>
+    <script src="/js/join.js">
+    </script>
 </body>
 </html>
