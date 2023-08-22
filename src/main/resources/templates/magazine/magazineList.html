@@ -2,27 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-
 <title>매거진 게시판</title>
-
 <link rel="stylesheet" href="/css/magazineList.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
 		<div class="content-wrap">
 			<div class="content-title">Magazine 게시판</div>
-			<a th:if="${session.m != null && session.m.memberLevel == 2}" href="/magazine/magazineWriteFrm" class="btn">글쓰기</a>
-			
-			<div class="magazine-container">
+				<div class="magazine-input">
+					<a th:if="${session.m != null && session.m.memberLevel == 2}" href="/magazine/magazineWriteFrm" class="btn">글쓰기</a>
+				</div>
+				<div class="magazine-container">
 
-			</div>	
-					<div class=button-box>		
-						<button class="btn-more" id="magazine-more-btn"
-						th:totalCount="${totalCount}"
-						currentCount="0"
-						value="1"		
-						>더보기</button>
-					</div>
+				</div>	
+				<div class=button-box>		
+					<button class="btn-more" id="magazine-more-btn"
+							th:totalCount="${totalCount}"
+							currentCount="0"
+							value="1"		
+							>더보기</button>
+				</div>
 		</div>
 	<th:block th:include="common/footer"></th:block>
 	<script>
@@ -43,28 +42,27 @@
 						const imgDiv = $("<div>");
 						imgDiv.addClass("magazine-item-img")
 
-						
 						const img = $("<img>");
+						
 						img.attr("src","/magazine/"+magazine.filepath);
+						
 						imgDiv.append(img);
 						/*
 						<div class="magazine-item-img">
 							<img src="파일경로">
 						</div>
 						*/
-						//a태그 추가
-						/*
-						const a = $("<a>");
-						img.attr("th:href","@{/magazine/view(magazineNo=${m.magazineNo})}"");
-						imgDiv.append(a)
-						*/
+						
 						const contentDiv = $("<div>");
-						contentDiv.addClass("magazine-item-content");
-						
-						const title = $("<p>");
+						contentDiv.addClass("info");
+			
+						const title = $("<h3>");
+						contentDiv.addClass("h3");
 						title.text(magazine.magazineTitle);
+						const subcontent = $("<p>");
+						subcontent.text(magazine.magazineSubtitle);
 						
-						contentDiv.append(title);
+						contentDiv.append(title).append(subcontent);
 						
 						div.append(imgDiv).append(contentDiv);
 					
