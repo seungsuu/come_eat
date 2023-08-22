@@ -54,7 +54,7 @@ public class MagazineDao {
 
 
 	public List selectMagazineFile(int magazineNo) {
-		String query = "magazine * from magazine_file where magazine_no=?";
+		String query = "select * from magazine_file where magazine_no=?";
 		List list = jdbc.query(query, magazineFileRowMapper, magazineNo);
 		return list;
 	}

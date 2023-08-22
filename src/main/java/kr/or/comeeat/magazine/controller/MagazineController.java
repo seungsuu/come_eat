@@ -110,11 +110,13 @@ public class MagazineController {
 	
 	
 	@GetMapping(value="/view")
-	public String magazineView(int magazineNo, @SessionAttribute(required = false) Magazine m, Model model) {
-		int memberNo = (m == null)? 0 : m.getMemberNo();
-		m  = magazineService.selectOneMagazine(magazineNo, memberNo);
-		return "magazine/view";
+	public String magazineView(int magazineNo, Model model) { 
+		Magazine m  = magazineService.selectOneMagazine(magazineNo);
+		model.addAttribute("m", m);
+		return "magazine/magazineView";
 	}
+	
+	
 	
 	@ResponseBody
 	@PostMapping(value="/editor", produces = "plain/text;charset=utf-8")
@@ -138,5 +140,6 @@ public class MagazineController {
 		List magazineList = magazineService.selectMagazineList(start, end);
 		return magazineList;
 	}
+
 		
 }
