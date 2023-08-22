@@ -14,6 +14,11 @@ font-family: 'Noto Sans KR', sans-serif;
         outline: none;
         font-size: 13px;
 }
+.join-wrap{
+	width: 1200px;
+	margin: 60px auto;
+	box-sizing: border-box;
+}
 
 .join-title{
     font-size: 36px;
@@ -115,6 +120,9 @@ td{
 }
 
 /* 버튼 디자인*/
+.join-btn-class{
+	text-align: center;
+}
 .join-btn-class>button{
     display: inline-block;
     padding: 10px;
@@ -134,7 +142,7 @@ td{
 
 .join-ul>li>button{
     position:absolute;
-    top: calc(50% - (50%/2));
+    top: calc(50% - (50%/1.3));
     right: 20px;
     background-color: white;
     border: 1px solid #2F2F2F;
@@ -194,3 +202,99 @@ body{
     color: black;
     list-style: disc ;
 }
+/* 모달 X버튼 */
+.join-modal-close{
+    background-color: white;
+    border: none;
+    float: right;
+}
+#close{
+    color: #2F2F2F;
+}
+.noshow { 
+    display: none;
+}
+
+
+/*모달*/
+body{
+    margin: 0;
+}
+.join-modal-wrap-privacy{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.login-modal{
+    width: 500px;
+    background-color: #fff;
+    padding: 30px;
+}
+.login-modal-title>h2{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.join-tou-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.join-tou-table th{
+    border: 1px solid #2F2F2F;
+}
+.join-tou-table td{
+    vertical-align:bottom;
+    text-align: center;
+    height: 30px;
+    border: 1px solid #2F2F2F;
+}
+.join-tou-content>ul{
+    margin-top : 30px;
+    margin-bottom : 50px;
+}
+.join-tou-content li{
+    margin-left: 20px;
+    text-align: left;
+    color: black;
+    list-style: disc ;
+}
+/* 모달 X버튼 */
+.join-modal-close{
+    background-color: white;
+    border: none;
+    float: right;
+}
+#close{
+    color: #2F2F2F;
+}
+.join-privacy-content{
+    margin-top : 30px;
+    overflow: auto;
+    height: 500px;
+    padding: 20px;
+    border: 1px solid #eee;
+    font-size: 12px;
+}
+.join-privacy-content>*{
+    text-align: left;
+}
+
+
+/*아이디 중복체크 버튼*/
+.join-idChkbtn{
+    border:none;
+    background-color: #eee;
+    width: 120px;
+    border-radius: 5px;
+    height: 42px;
+    margin-left: 5px;
+}
+

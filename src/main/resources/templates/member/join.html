@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="/css/join.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <script src="/js/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="/css/location.css">
 </head>
 <body>
-    <div class="join-wrap">
-        <div class="join-title">JOIN</div>
+	<th:block th:include="common/header"></th:block>
+    <div class="content-wrap">
+        <div class="content-title">JOIN</div>
         <p><span>* </span>필수 입력 항목</p>
         <table class="join-table">
             <tr>
@@ -19,6 +21,7 @@
                 </td>
                 <td>
                     <input type="text" class="join-input-form" id="memberId">
+                    <button type="button" id="idChkbtn" class="join-idChkbtn">중복체크</button>
                 </td>
             <tr>
                 <td class="join-th">
@@ -92,7 +95,7 @@
                 <li>
                     <input type="checkbox" id="essentialAgree2">
                     <label for="checkAgree">이용약관 동의<span id="essential">(필수)</span></label>
-                    <button class="modal-open-btn">내용보기</button>
+                    <button class="modal-open-btn2">내용보기</button>
                 </li>
                 <li>
                     <input type="checkbox" id="optionAgreement">
@@ -108,6 +111,7 @@
         <div class="join-modal-wrap">
             <div class="login-modal">
                 <div class="login-modal-top">
+                    <button class="join-modal-close"><span class="material-icons" id="close">close</span></button>
                     <h2>개인정보 수집 및 이용안내(선택)</h2>
                     <table class="join-tou-table">
                         <tr>
@@ -129,7 +133,24 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="join-modal-wrap-privacy">
+            <div class="login-modal" sytle="overflow-y: scroll; height:500px";>
+                <div class="login-modal-top">
+                    <button class="join-modal-close"><span class="material-icons" id="close">close</span></button>
+                    <div class="login-modal-title">
+                        <h2>이용약관</h2>
+                        <hr>
+                        <div class="join-privacy-content">
+                        이용 약관 수정 예정.
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </div>
+    <th:block th:include="common/footer"></th:block>
     <script src="/js/join.js"></script>
 </body>
 </html>

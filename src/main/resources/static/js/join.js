@@ -66,11 +66,28 @@ $("#memberName").on("change",function(){
     }
 });
 
+/* 모달 */
 $(".modal-open-btn").on("click",function(){
-    console.log("클릭");
     $(".join-modal-wrap").css("display","flex");
     
 });
-$(".input-wrap>input[type=button]").on("click",function(){
+
+
+$(".join-modal-close").on("click",function(){
     $(".join-modal-wrap").css("display","none");
 });
+
+/* 모달 */
+$(".modal-open-btn2").on("click",function(){
+    $(".join-modal-wrap-privacy").css("display","flex");
+    
+});
+
+
+$(".join-modal-close").on("click",function(){
+    $(".join-modal-wrap-privacy").css("display","none");
+});
+
+
+
+
