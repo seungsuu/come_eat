@@ -73,7 +73,7 @@
 				$("#img-view").attr("src","");
 			}
 		});
-	/*
+		/*
 		//아이콘 누르기
 		const tab = $(".grade-picker-item");
 		//몇번째 li인지 찾기
@@ -88,7 +88,7 @@
 			tab.eq(tabNo).find("span").attr("id","active-tab");
 		
 		}
-	*/
+		*/
 		//아이콘 색 변경	
 		const li = $(".grade-picker-item");
 		li.click(function(){
@@ -96,6 +96,7 @@
 			li.not($(this)).find("span").removeAttr("id","active-tab");
 			$(this).find("span").attr("id","active-tab");
 		});
+		
 		//글자 수 확인
 		$(".review-content").on("keyup", function() {
 			const content = $(this).val();
