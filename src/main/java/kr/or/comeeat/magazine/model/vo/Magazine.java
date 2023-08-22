@@ -18,6 +18,7 @@ public class Magazine {
 	private int memberNo;
 	private String magazineSubtitle;
 	private String magazineStorename;
+	private String filepath;
 	private List fileList;
 	
 	
