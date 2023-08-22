@@ -25,6 +25,7 @@
     font-weight: 400;
 }
 
+
 .magazine-container{
     width: 1200px; 
     display: flex;
@@ -58,6 +59,13 @@
     position: absolute; right: 20px; top: 20px;
     transition: all 0.35s ease;
 }
+.magazine-item:before {
+  content: ' ';
+  background: #000;
+  width: 0px; height: 3px;
+  position: absolute; right: 20px; top: 20px;
+  transition: all 0.35s ease;
+}
 
 .magazine-item .info{
     position: absolute; left: 0; bottom: 0;
@@ -90,8 +98,9 @@
     opacity: 0.2;
 }
 .magazine-item:hover:before {
-    width: 60px;
+    width: 80px;
 }
 .magazine-item:hover:after {
-    height: 60px;
+    height: 80px;
+    
 }

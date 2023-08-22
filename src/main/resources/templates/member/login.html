@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body>
-    <div class="login-wrap">
+	<th:block th:include="common/header"></th:block>
+    <div class="content-wrap">
         <div class="login-header">
             LOGIN
         </div>
@@ -42,5 +43,7 @@
                 </div>
             </div>
         </div>
+    </div>
+    <th:block th:include="common/footer"></th:block>
 </body>
 </html>

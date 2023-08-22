@@ -54,7 +54,7 @@ public class MagazineDao {
 
 
 	public List selectMagazineFile(int magazineNo) {
-		String query = "magazine * from magazine_file where magazine_no=?";
+		String query = "select * from magazine_file where magazine_no=?";
 		List list = jdbc.query(query, magazineFileRowMapper, magazineNo);
 		return list;
 	}
@@ -78,6 +78,14 @@ public class MagazineDao {
 		String query = "select * from (select rownum as rnum, p.* from(select * from magazine order by 1 desc)p) where rnum between ? and ?";
 		List magazineList = jdbc.query(query, magazineRowMapper, start, end);
 		return magazineList;
+	}
+
+
+	public int deleteMagazine(int magazineNo) {
+		String query="delete from magazine where magazine_no=?";
+		Object[] params = {magazineNo};
+		int result = jdbc.update(query, params);
+		return result;
 	}
 	
 }

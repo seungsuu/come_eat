@@ -33,16 +33,13 @@ public class MagazineService {
 	}
 
 	@Transactional
-	public Magazine selectOneMagazine(int magazineNo, int memberNo) {
+	public Magazine selectOneMagazine(int magazineNo) {
 		int result = magazineDao.updateReadCount(magazineNo);
+		Magazine m = new Magazine();
 		if (result > 0) {
-			Magazine m = magazineDao.selectOneMagazine(magazineNo);
-			List fileList = magazineDao.selectMagazineFile(magazineNo);
-			m.setFileList(fileList);
-			return m;
-		} else {
-			return null;
+			m = magazineDao.selectOneMagazine(magazineNo);
 		}
+		return m;
 
 	}
 
@@ -51,4 +48,13 @@ public class MagazineService {
 		return magazineList;
 	}
 
+	public List deleteMagazine(int magazineNo) {
+		List list = magazineDao.selectMagazineFile(magazineNo);
+		int result = magazineDao.deleteMagazine(magazineNo);
+		if (result == 0) {
+			return null;
+		}
+		return list;
+
+	}
 }
