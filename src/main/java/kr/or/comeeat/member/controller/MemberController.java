@@ -76,16 +76,17 @@ public class MemberController {
 	
 	//id중복검사 체크(회원가입/중복검사 버튼 눌렀을때)
 	@PostMapping(value="/checkId")
+	//id가 사용중인지 아닌지 check
 	public String checkId(String checkId, Model model) {
-		Member member = memberService.selectOneMemeber(checkId);
-		model.addAttribute("chekId",checkId);
+		Member member = memberService.selectOneMember(checkId);
+		model.addAttribute("checkId", checkId);	
 		if(member == null) {
-			model.addAttribute("result", 0);
-		}else {
-			model.addAttribute("result",1);
+				model.addAttribute("result", 0);
+			}else {
+				model.addAttribute("result", 1);
+			}
+			return "member/checkId";
 		}
-		return "member/checkId";
-	}
 	
 	
 	

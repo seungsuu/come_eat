@@ -2,29 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>아이디 중복검사</title>
 <script src="/js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<div id="check-container">
 		<th:block th:if="${result == 0}">
-		[<span class="" th:text="${checkId}"></span>]는 사용 가능한 아이디 입니다.
+			[<span class="fc-4 f-bold" th:text="${checkId}"></span>]는 사용 가능 합니다.
 		<br><br>
-		<button type="button" class="" id="closeBtn">닫기</button>
-		
-		<!--닫기버튼 클릭시 창 종료 -->
+		<button type="button" class="btn bc1" id="closeBtn">닫기</button>
+		<!--닫기버튼 눌렀을때 창 닫힘-->
 		<script>
-		self.close();
+		$("#closeBtn").on("click",function(){
+			const id = $(".fc-4").text();
+			//현재창을 연 문서에서 해당요소를 찾을때
+			const inputId = $("#memberId",opener.document);
+			inputId.val(id);
+			//창 닫는코드
+			self.close();
+		});
 		</script>
-		
-		<!-- 추가 보완 -->
-		
-	
-	
-	
-	
-	
-	
+		</th:block>
+		<th:block th:if="${result == 1}">
+		<div>
+		[<span class="fc-6 f-bold" th:text="${checkId}"></span>]는 이미 사용중입니다.	
+		</div>
+		<br><br>
+		<form action="/member/checkId" method="post">
+		  <div class="id-wrap">
+			<input type="text" name="checkId" class="input-form">
+			<button type="submit" class="btn2 bc2">조회</button>
+		  </div>
+		</form>
+		</th:block>
 	</div>
 </body>
 </html>
