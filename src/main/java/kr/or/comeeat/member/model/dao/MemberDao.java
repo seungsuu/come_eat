@@ -33,6 +33,7 @@ public class MemberDao {
 		return result;
 	}
 	
+	//id중복검사
 	public Member selectOneMember(String checkId) {
 		String query = "select * from member where member_id=?";
 		List list = jdbc.query(query, memberRowMapper,checkId);
