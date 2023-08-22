@@ -14,7 +14,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import kr.or.comeeat.location.model.model.dao.LocationService;
+import kr.or.comeeat.location.model.model.sevice.LocationService;
 import kr.or.comeeat.location.model.vo.Busan;
 import kr.or.comeeat.location.model.vo.Jeonnam;
 
@@ -79,7 +79,6 @@ public class LocationController {
 	@ResponseBody
 	@GetMapping(value="/jeonnam")
 	public ArrayList<Jeonnam> jeonnam(String pageNo) {
-		System.out.println(pageNo);
 		String url = "http://apis.data.go.kr/6460000/jnFood";
 		String serviceKey = "2ip6zWd3dDjMLBB4jtDqTzBfPLU6UrsyBGtNSy78YNMk1QCbnA7bHFNHSo3wY3kev4HjybG5vgDaPLL4VjiRjw==";
 		String numOfRows = "10";
