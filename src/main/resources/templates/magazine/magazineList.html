@@ -37,16 +37,18 @@
 					for(let i=0; i<data.length; i++){
 						const magazine = data[i];
 						const div = $("<div>");
+						
 						div.addClass("magazine-item");
 												
 						const imgDiv = $("<div>");
 						imgDiv.addClass("magazine-item-img")
-
+						
+						const a = $("<a>")
+						a.attr("href","/magazine/view?magazineNo="+magazine.magazineNo)
 						const img = $("<img>");
-						
 						img.attr("src","/magazine/"+magazine.filepath);
-						
-						imgDiv.append(img);
+						a.append(img);
+						imgDiv.append(a);
 						/*
 						<div class="magazine-item-img">
 							<img src="파일경로">
@@ -82,6 +84,8 @@
 					if(totalCount == changeCount){
 						$("#magazine-more-btn").remove();
 					}
+					
+					
 					
 				}
 			});

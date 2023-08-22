@@ -33,17 +33,17 @@ public class MagazineService {
 	}
 
 	@Transactional
-	public Magazine selectOneMagazine(int magazineNo, int memberNo) {
+	public Magazine selectOneMagazine(int magazineNo) {
 		int result = magazineDao.updateReadCount(magazineNo);
+		Magazine m = new Magazine();
 		if (result > 0) {
-			Magazine m = magazineDao.selectOneMagazine(magazineNo);
-			List fileList = magazineDao.selectMagazineFile(magazineNo);
-			m.setFileList(fileList);
-			return m;
-		} else {
-			return null;
+			m = magazineDao.selectOneMagazine(magazineNo);
 		}
-
+		return m;
+		
+			
+		
+		
 	}
 
 	public List selectMagazineList(int start, int end) {
