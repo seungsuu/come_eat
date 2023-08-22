@@ -40,10 +40,7 @@ public class MagazineService {
 			m = magazineDao.selectOneMagazine(magazineNo);
 		}
 		return m;
-		
-			
-		
-		
+
 	}
 
 	public List selectMagazineList(int start, int end) {
@@ -51,4 +48,13 @@ public class MagazineService {
 		return magazineList;
 	}
 
+	public List deleteMagazine(int magazineNo) {
+		List list = magazineDao.selectMagazineFile(magazineNo);
+		int result = magazineDao.deleteMagazine(magazineNo);
+		if (result == 0) {
+			return null;
+		}
+		return list;
+
+	}
 }
