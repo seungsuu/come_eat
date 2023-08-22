@@ -92,7 +92,7 @@
 		//아이콘 색 변경	
 		const li = $(".grade-picker-item");
 		li.click(function(){
-			console.log(index(li));
+			//console.log($(this).index());
 			li.not($(this)).find("span").removeAttr("id","active-tab");
 			$(this).find("span").attr("id","active-tab");
 		});
