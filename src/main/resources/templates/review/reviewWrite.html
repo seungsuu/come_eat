@@ -42,10 +42,12 @@
                 </p>
                 <div class="review-file-wrapper">
                     <div class="review-file-upload">
-                        <label for="reviewFile" class="btn">첨부 사진</label>
-                        <input type="file" name="reviewFile" id="reviewFile" style="display: none;">
+                    	<div class="file-upload-btn" style="margin:30px 0;">
+	                        <label for="reviewFile" class="btn">첨부 사진</label>
+	                        <input type="file" name="reviewFile" id="reviewFile" style="display: none;" accept=".jpg,.png,.jpeg,.gif">
+                    	</div>
                         <div class="imageThumb">
-
+							<img id="img-view" width="200px">
                         </div>
                     </div>
                 </div>
@@ -59,6 +61,19 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	<script>
+		//썸네일 미리보기
+		$("[name=reviewFile]").on("change",function(){
+			if(this.files.length != 0 && this.files[0] != 0){
+				const reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function(e){
+					$("#img-view").attr("src",e.target.result);
+				}
+			}else{
+				$("#img-view").attr("src","");
+			}
+		});
+	/*
 		//아이콘 누르기
 		const tab = $(".grade-picker-item");
 		//몇번째 li인지 찾기
@@ -69,12 +84,18 @@
 			//console.log(index);
 		});
 		function changeTab(tabNo) {
-			//tab.removeAttr("id","active-tab");
-			//tab.removeAttr("id","active-tab");
-			//tab.eq(tabNo).find("span").attr("id","active-tab");
+			tab.removeAttr("id","active-tab");
+			tab.eq(tabNo).find("span").attr("id","active-tab");
 		
 		}
-		
+	*/
+		//아이콘 색 변경	
+		const li = $(".grade-picker-item");
+		li.click(function(){
+			console.log(index(li));
+			li.not($(this)).find("span").removeAttr("id","active-tab");
+			$(this).find("span").attr("id","active-tab");
+		});
 		//글자 수 확인
 		$(".review-content").on("keyup", function() {
 			const content = $(this).val();
