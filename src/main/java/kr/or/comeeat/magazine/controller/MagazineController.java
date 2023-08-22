@@ -3,6 +3,7 @@ package kr.or.comeeat.magazine.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,8 +33,9 @@ public class MagazineController {
 	private String root;
 	
 	@GetMapping(value="/list")
-	private String magazineList() {
+	private String magazineList(Model model) {
 		int totalCount = magazineService.totalCount();
+		model.addAttribute("totalCount", totalCount);
 		return "magazine/magazineList";
 	}
 	
@@ -45,19 +47,30 @@ public class MagazineController {
 	}
 
 	@PostMapping(value="/write")
-	public String write(Magazine m, Model model) {
+	public String write(Magazine m ,MultipartFile imageFile,Model model) {
+		String savepath = root+"magazine/";
+		String filepath = fileUtil.getFilepath(savepath, imageFile.getOriginalFilename());
+		m.setFilepath(filepath);
+		File upFile = new File(savepath+filepath);
+		try {
+			imageFile.transferTo(upFile);
+		} catch (IllegalStateException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int result = magazineService.insertMagazine(m);
 		if(result>0) {
 			model.addAttribute("title", "Magazine");
-			model.addAttribute("msg", "매거진 작성 완료!");
+			model.addAttribute("msg", "메거진 작성 완료!");
 			model.addAttribute("icon", "success");
 		}else {
-			model.addAttribute("title", "에러에ㅓㄹ에러");
-			model.addAttribute("msg", "에러당");
+			model.addAttribute("title", "작성실패");
+			model.addAttribute("msg", "에러에러");
 			model.addAttribute("icon", "error");
 		}
-		model.addAttribute("loc","/magazine/list");
+		model.addAttribute("loc", "/magazine/list");
 		return "common/msg";
+	}
 		
 		
 		/*
@@ -93,15 +106,17 @@ public class MagazineController {
 		model.addAttribute("loc","/magazine/list");
 		return "common/msg";
 		*/
-	}
+	
 	
 	
 	@GetMapping(value="/view")
-	public String magazineView(int magazineNo, @SessionAttribute(required = false) Magazine m, Model model) {
-		int memberNo = (m == null)? 0 : m.getMemberNo();
-		m  = magazineService.selectOneMagazine(magazineNo, memberNo);
-		return "magazine/view";
+	public String magazineView(int magazineNo, Model model) { 
+		Magazine m  = magazineService.selectOneMagazine(magazineNo);
+		model.addAttribute("m", m);
+		return "magazine/magazineView";
 	}
+	
+	
 	
 	@ResponseBody
 	@PostMapping(value="/editor", produces = "plain/text;charset=utf-8")
@@ -117,5 +132,14 @@ public class MagazineController {
 		}
 		return "/editor/"+filepath;
 	}
+	
+	
+	@ResponseBody
+	@PostMapping(value="/more")
+	public List more(int start, int end) {
+		List magazineList = magazineService.selectMagazineList(start, end);
+		return magazineList;
+	}
+
 		
 }

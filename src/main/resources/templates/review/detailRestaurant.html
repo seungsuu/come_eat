@@ -5,8 +5,7 @@
 <title>상세페이지</title>
 <link rel="stylesheet" href="/css/detailRestaurant.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ktt3zjyi3e&submodules=geocoder"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e951a9675edffd5bbc4faec7164c3441&libraries=services"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -57,11 +56,11 @@
 							<td></td>
 						</tr>
 						<tr>
-							<th>주차</th>
+							<th>영업시간</th>
 							<td></td>
 						</tr>
 						<tr>
-							<th>영업시간</th>
+							<th>소개</th>
 							<td></td>
 						</tr>
 					</table>
@@ -122,15 +121,33 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	<script>
-		const map = new naver.maps.Map("map",{
-			center : new naver.maps.LatLng(37.533837,126.896836),
-			zoom : 16,
-			zoomControl : true,
-			zoomControlOptions:{
-				position : naver.maps.Position.TOP_RIGHT,
-				style : naver.maps.ZoomControlStyle.SMALL
-			}
+		const lat = "37.5243352600843";
+		const lng = "127.044788076146";
+
+		var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+		
+		var mapContainer = document.getElementById('map'), 
+		mapOption = {
+			center : new kakao.maps.LatLng(lat,lng), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+	
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+		var ps = new kakao.maps.services.Places(); 
+		
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(lat,lng); 
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
 		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+		
 	</script>
 </body>
 </html>

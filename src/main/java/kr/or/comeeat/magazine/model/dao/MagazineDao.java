@@ -31,8 +31,8 @@ public class MagazineDao {
 
 
 	public int insertMagazine(Magazine m) {
-		String query ="insert into magazine values(magazine_seq.nextval,?,?,to_char(sysdate, 'yyyy-mm-dd'),0,?,?,?)";
-		Object[] params = {m.getMagazineTitle(),m.getMagazineContent(),m.getMemberNo(),m.getMagazineSubtitle(),m.getMagazineStorename()};
+		String query ="insert into magazine values(magazine_seq.nextval,?,?,to_char(sysdate, 'yyyy-mm-dd'),0,?,?,?,?)";
+		Object[] params = {m.getMagazineTitle(),m.getMagazineContent(),m.getMemberNo(),m.getMagazineSubtitle(),m.getMagazineStorename(),m.getFilepath()};
 		int result = jdbc.update(query, params);
 		return result;
 	}
@@ -54,7 +54,7 @@ public class MagazineDao {
 
 
 	public List selectMagazineFile(int magazineNo) {
-		String query = "magazine * from magazine_file where magazine_no=?";
+		String query = "select * from magazine_file where magazine_no=?";
 		List list = jdbc.query(query, magazineFileRowMapper, magazineNo);
 		return list;
 	}
@@ -74,6 +74,10 @@ public class MagazineDao {
 		return result;
 	}
 	
-	
+	public List selectMagazineList(int start, int end) {
+		String query = "select * from (select rownum as rnum, p.* from(select * from magazine order by 1 desc)p) where rnum between ? and ?";
+		List magazineList = jdbc.query(query, magazineRowMapper, start, end);
+		return magazineList;
+	}
 	
 }

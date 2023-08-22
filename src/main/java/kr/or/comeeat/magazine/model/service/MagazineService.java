@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import kr.or.comeeat.magazine.model.dao.MagazineDao;
 import kr.or.comeeat.magazine.model.vo.Magazine;
 import kr.or.comeeat.magazine.model.vo.MagazineFile;
@@ -21,44 +20,35 @@ public class MagazineService {
 		int totalCount = magazineDao.totalCount();
 		return totalCount;
 	}
-	
+
 	@Transactional
 	public int insertMagazine(Magazine m) {
 		int result = magazineDao.insertMagazine(m);
 		/*
-		if(fileList != null) {
-			int magazineNo = magazineDao.getMagazineNo();
-			for(MagazineFile file : fileList) {
-				file.setMagazineNo(magazineNo);
-				result += magazineDao.insertMagazineFile(file);
-			}
-		}
-		*/
+		 * if(fileList != null) { int magazineNo = magazineDao.getMagazineNo();
+		 * for(MagazineFile file : fileList) { file.setMagazineNo(magazineNo); result +=
+		 * magazineDao.insertMagazineFile(file); } }
+		 */
 		return result;
 	}
 
-	
 	@Transactional
-	public Magazine selectOneMagazine(int magazineNo, int memberNo) {
+	public Magazine selectOneMagazine(int magazineNo) {
 		int result = magazineDao.updateReadCount(magazineNo);
-		if(result>0) {
-			Magazine m = magazineDao.selectOneMagazine(magazineNo);
-			List fileList = magazineDao.selectMagazineFile(magazineNo);
-			m.setFileList(fileList);
-			return m;
-		}else {
-			return null;
+		Magazine m = new Magazine();
+		if (result > 0) {
+			m = magazineDao.selectOneMagazine(magazineNo);
 		}
+		return m;
+		
+			
+		
+		
 	}
 
-	
-
-
-
-
-
-
-
+	public List selectMagazineList(int start, int end) {
+		List magazineList = magazineDao.selectMagazineList(start, end);
+		return magazineList;
+	}
 
 }
-
