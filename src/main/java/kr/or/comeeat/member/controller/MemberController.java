@@ -41,7 +41,7 @@ public class MemberController {
 			
 		}else {
 			session.setAttribute("m", m);
-			model.addAttribute("loc", "/");
+			return "redirect:/";
 		}
 		return "common/msg";
 	}
