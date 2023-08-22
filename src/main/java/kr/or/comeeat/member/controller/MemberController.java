@@ -23,12 +23,6 @@ public class MemberController {
 	public String login() {
 		return "member/login";
 	}
-	//회원가입 페이지로 이동
-	@GetMapping(value="/join")
-	public String join() {
-		return "member/join";
-	}
-	
 	//로그인
 	@PostMapping(value="/signin")
 	public String signIn(String signId, String signPw, Model model, HttpSession session) {
@@ -53,10 +47,11 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//회원가입페이지로 이동
-	@GetMapping(value="/signupFrm")
-	public String signupFrm() {
-		return "member/signupFrm";
+	
+	//회원가입 페이지로 이동
+	@GetMapping(value="/joinFrm")
+	public String join() {
+		return "member/joinFrm";
 	}
 	
 	//회원가입
@@ -74,12 +69,12 @@ public class MemberController {
 			return "common/msg";
 	}
 	
-	//id중복검사 체크(회원가입/중복검사 버튼 눌렀을때)
+	//id중복검사
 	@PostMapping(value="/checkId")
 	//id가 사용중인지 아닌지 check
 	public String checkId(String checkId, Model model) {
 		Member member = memberService.selectOneMember(checkId);
-		model.addAttribute("checkId", checkId);	
+		model.addAttribute("checkId", checkId); //화면에서 id 출력할수 있도록 (checkId 변수)전달
 		if(member == null) {
 				model.addAttribute("result", 0);
 			}else {

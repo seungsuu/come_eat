@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+	<title>join</title>
+	<!-- 구글 폰트 -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <!-- jquery -->
+    <script src="/js/jquery-3.6.0.js"></script>
+	<link rel="stylesheet" href="/css/joinFrm.css">
+	
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+        <div class="content-title">JOIN</div>
+        <form name="checkIdFrm" action="/member/checkId" method="post">
+        	<input type="hidden" name="checkId">
+        </form>
+       	<!-- 회원 가입을 위한  form 태그 -->
+       	<form action="/member/signup" method="post" id="signupFrm">
+       		<div class="input-wrap">
+       			<label for="memberId">아이디</label>
+       			<div class=id-wrap>
+       				<input type="text" name="memberId" id="memberId" class="input-form" required>
+       				<!-- 기능용 버튼 *button type="button" -->
+       				<button type="button" id="idChkBtn" class="btn">중복체크</button>
+       			</div>
+       		</div>
+       		<div class="input-wrap">
+       			<label for="memberPw">비밀번호</label>
+       			<input type="password" name="memberPw" id="memberPw" class="input-form" required>
+       		</div>
+       		<div class="input-wrap">
+       			<label for="memberName">이름</label>
+       			<input type="password" name="memberName" id="memberName" class="input-form" required>
+       		</div>
+       		<div class="input-wrap">
+       			<label for="memberEmail">이메일</label>
+       			<input type="text" name="memberEmail" id="memberEmail" class="input-form" required>
+       			@
+       			<select>
+       			<option value="naver.com">naver.com</option>
+       			<option value="google.com">google.com</option>
+       			<option value="hanmail.net">hanmail.net</option>
+       			<option value="nate.com">nate.com</option>
+       			<option value="nate.com">kakao.com</option>
+       			</select>
+       		</div>
+       		<div class="input-wrap">
+       			<label for="memberPhone">핸드폰번호</label>
+       			<input type="text" name="memberPhone" id="memberPhone" class="input-form" placeholder="010-0000-0000" required >
+       		</div>
+       		<div class="submit-btn">
+       			<button type="submit" class="btn">회원가입</button>
+       		</div>
+       	</form>
+    </div>
+    <th:block th:include="common/footer"></th:block>
+    
+    
+    <script>
+    
+    //id 중복체크
+     $("#idChkBtn").on("click",function(){
+    	 inputVal = $("#memberId").val();
+    	 /*console.log(inputVal);*/
+    	 $("[name=checkId]").val(inputVal);
+    	 window.open("","checkId","left=700px,top=300px,width=300px,height=200px,menubar=no,status=no,scrollbar=yes");
+    	 /* form태그와 새창(="checkId") 연결" */
+    	 $("[name=checkIdFrm]").attr("target","checkId");
+    	 $("[name=checkIdFrm]").submit(); 
+     });
+    </script>
+</body>
+</html>

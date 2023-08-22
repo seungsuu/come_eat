@@ -4,36 +4,39 @@
 <meta charset="UTF-8">
 <title>아이디 중복검사</title>
 <script src="/js/jquery-3.6.0.js"></script>
+<!-- css 추가 예정 -->
+<link rel="stylesheet" href=""> 
 </head>
 <body>
 	<div id="check-container">
 		<th:block th:if="${result == 0}">
-			[<span class="fc-4 f-bold" th:text="${checkId}"></span>]는 사용 가능 합니다.
-		<br><br>
-		<button type="button" class="btn bc1" id="closeBtn">닫기</button>
-		<!--닫기버튼 눌렀을때 창 닫힘-->
-		<script>
-		$("#closeBtn").on("click",function(){
-			const id = $(".fc-4").text();
-			//현재창을 연 문서에서 해당요소를 찾을때
-			const inputId = $("#memberId",opener.document);
-			inputId.val(id);
-			//창 닫는코드
-			self.close();
-		});
-		</script>
+			<div>
+				'<span class="fc-4" th:text="${checkId}"></span>' 는 사용 가능한 아이디 입니다.
+			</div>
+			<br><br>
+			<button type="button" class="btn" id="closeBtn">닫기</button>
+			
+			<script>
+			<!-- 닫기버튼 클릭시 창 종료 -->
+			$("#closeBtn").on("click",function(){
+				const id = $(".fc-4").text();
+				const inputId = $("#memberId",opener.document);
+				inputId.val(id);
+				self.close();
+			});
+			</script>
 		</th:block>
 		<th:block th:if="${result == 1}">
-		<div>
-		[<span class="fc-6 f-bold" th:text="${checkId}"></span>]는 이미 사용중입니다.	
-		</div>
-		<br><br>
-		<form action="/member/checkId" method="post">
-		  <div class="id-wrap">
-			<input type="text" name="checkId" class="input-form">
-			<button type="submit" class="btn2 bc2">조회</button>
-		  </div>
-		</form>
+			<div>
+				'<span class="" th:text="${checkId}"></span>' 는 이미 사용중인 아이디 입니다.
+			</div>
+			<br><br>
+			<form action="/member/checkId" method="post">
+				<div class=id-wrap>
+					<input type="text" name="checkId" class="input-form">
+					<button type="submit" class="btn">조회</button>
+				</div>
+			</form>
 		</th:block>
 	</div>
 </body>
