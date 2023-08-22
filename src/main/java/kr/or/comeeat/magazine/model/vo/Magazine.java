@@ -17,6 +17,8 @@ public class Magazine {
 	private int readCount;
 	private int memberNo;
 	private String magazineSubtitle;
+	private String magazineStorename;
 	private List fileList;
+	
 	
 }

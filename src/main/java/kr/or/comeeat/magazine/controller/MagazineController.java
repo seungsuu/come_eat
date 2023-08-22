@@ -45,9 +45,23 @@ public class MagazineController {
 	}
 
 	@PostMapping(value="/write")
-	public String write(Magazine m, MultipartFile[] upfile, Model model) {
-		ArrayList<MagazineFile> fileList=null;
+	public String write(Magazine m, Model model) {
+		int result = magazineService.insertMagazine(m);
+		if(result>0) {
+			model.addAttribute("title", "Magazine");
+			model.addAttribute("msg", "매거진 작성 완료!");
+			model.addAttribute("icon", "success");
+		}else {
+			model.addAttribute("title", "에러에ㅓㄹ에러");
+			model.addAttribute("msg", "에러당");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc","/magazine/list");
+		return "common/msg";
 		
+		
+		/*
+		ArrayList<MagazineFile> fileList=null;
 		if(!upfile[0].isEmpty()) {
 			fileList = new ArrayList<MagazineFile>();
 			String savepath = root+"magazine/";
@@ -78,6 +92,7 @@ public class MagazineController {
 		}
 		model.addAttribute("loc","/magazine/list");
 		return "common/msg";
+		*/
 	}
 	
 	

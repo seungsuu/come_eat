@@ -30,9 +30,9 @@ public class MagazineDao {
 	}
 
 
-	public int insertMagazein(Magazine m) {
-		String query ="insert into magazine values(magazine_seq.nextval,?,?,to_char(sysdate, 'yyyy-mm-dd'),0,?,?";
-		Object[] params = {m.getMagazineTitle(),m.getMagazineContent(),m.getMemberNo(),m.getMagazineSubtitle()};
+	public int insertMagazine(Magazine m) {
+		String query ="insert into magazine values(magazine_seq.nextval,?,?,to_char(sysdate, 'yyyy-mm-dd'),0,?,?,?)";
+		Object[] params = {m.getMagazineTitle(),m.getMagazineContent(),m.getMemberNo(),m.getMagazineSubtitle(),m.getMagazineStorename()};
 		int result = jdbc.update(query, params);
 		return result;
 	}

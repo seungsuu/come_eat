@@ -23,20 +23,20 @@
 					<tr>
 						<th class="b-color-g">작성자</th>
 						<td>
-							<!--<span th:text="${session.m.memberId}"></span>
-							  <input type="hidden" name="magazineWriter" th:value="${session.m.memberId}"> -->
+							<span th:text="${session.m.memberId}" style="text-align: left; text-indent: 2em;"></span>
+							<input type="hidden" name="memberNo" th:value="${session.m.memberNo}">
 						</td>
 					</tr>
 					<tr>
 						<th class="b-color-g" style="width: 20%;">한줄소개</th>
 						<td>
-							<input type="text" name="magazineSubtitle" class="input" placeholder="간략요약해주세요" style="text-align: center;">
+							<input type="text" name="magazineSubtitle" class="input" placeholder="간략요약해주세요" style="text-align: left; text-indent: 2em;">
 						</td>
 					</tr>
 					<tr>
-						<th class="b-color-g" style="width: 20%;">인스타 주소</th>
+						<th class="b-color-g" style="width: 20%;">상호명</th>
 						<td>
-							<input type="text" name="instaAddr" class="input" placeholder="인스타그램 게시글 주소" style="text-align: center;">			
+							<input type="text" name="magazineStorename" class="input" placeholder="매장 상호명" style="text-align: left; text-indent: 2em;">			
 						</td>
 					</tr>
 					<tr >
@@ -58,6 +58,18 @@
 	<th:block th:include="common/footer"></th:block>
 	<script >
 	$("#magazineContent").summernote({
+		  toolbar: [
+			    ['fontname', ['fontname']],
+			    ['fontsize', ['fontsize']],
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['color', ['forecolor','color']],
+			    ['table', ['table']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['insert',['picture','link','video']],
+			    ['view', ['fullscreen', 'help']]],
+				fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+				fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
 		height: 400,
 		lang : "ko-KR",
 		callbacks :{

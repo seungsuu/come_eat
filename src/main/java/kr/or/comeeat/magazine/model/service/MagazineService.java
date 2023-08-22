@@ -23,8 +23,9 @@ public class MagazineService {
 	}
 	
 	@Transactional
-	public int insertMagazine(Magazine m, ArrayList<MagazineFile> fileList) {
-		int result = magazineDao.insertMagazein(m);
+	public int insertMagazine(Magazine m) {
+		int result = magazineDao.insertMagazine(m);
+		/*
 		if(fileList != null) {
 			int magazineNo = magazineDao.getMagazineNo();
 			for(MagazineFile file : fileList) {
@@ -32,6 +33,7 @@ public class MagazineService {
 				result += magazineDao.insertMagazineFile(file);
 			}
 		}
+		*/
 		return result;
 	}
 

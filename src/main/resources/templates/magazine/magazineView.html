@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html　xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/magazineView.css">
+<title>상세보기</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+		<div class="content-wrap">
+			<div class="content-title" >매거진타이틀</div>
+			<!--"${m.magazineTitle}"-->
+			<div class="magazine-content1">
+				<span class="magazine-subtitle-span">"</span>
+				<span class="magazine-subtitle-span">매장에대한 홍보글</span>
+				<span class="magazine-subtitle-span">"</span>
+			</div>
+			<div class="magazine-content-num">글번호</div>
+			<!--"${m.magazineNo}"-->
+			<hr class="magazine-hr1 magazinehr">
+			<div class="magazine-storename">양나민 대장과 아이들</div>
+			<hr class="magazine-hr2 magazinehr">
+			<div class="magazine-image">
+				<img class="magazine-img">
+			</div>
+			<div class="magazine-content">
+				<!--"${m.magazineContent}"-->
+				"내용내용내용내용"<br>
+				영업시간|등등<br>
+				주소|등등
+			</div>
+		</div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

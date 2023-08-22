@@ -16,6 +16,7 @@ import com.google.gson.JsonParser;
 
 import kr.or.comeeat.location.model.model.sevice.LocationService;
 import kr.or.comeeat.location.model.vo.Busan;
+import kr.or.comeeat.location.model.vo.Icheon;
 import kr.or.comeeat.location.model.vo.Jeonnam;
 
 @Controller
@@ -118,5 +119,27 @@ public class LocationController {
 				e.printStackTrace();
 			}
 		return list;
+	}
+	
+	@ResponseBody
+	@GetMapping(value="/icheon")
+	public void icheon(){
+		String url = "https://www.icheon.go.kr/portal/rssBbsNtt.do";
+		String bbsNo = "13";
+		String type = "p";
+		
+		ArrayList<Icheon> list = new ArrayList<Icheon>();
+		try {
+			String result = Jsoup.connect(url)
+					.data("bbsNo", bbsNo)
+					.data("type",type)
+					.ignoreContentType(true)
+					.get()
+					.text();
+			System.out.println(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
