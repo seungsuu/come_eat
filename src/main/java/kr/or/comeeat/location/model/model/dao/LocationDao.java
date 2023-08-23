@@ -19,7 +19,7 @@ public class LocationDao {
 	private LocationRowMapper locationRowMapper;
 
 	//부산맛집 저장하기
-	public int busanInsert(ArrayList<Location> list) {
+	public int locationInsert(ArrayList<Location> list) {
 		String query = "INSERT INTO LOCATION VALUES(LOCATION_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
 		int result = 0;
 		for(Location location : list) {
@@ -30,30 +30,34 @@ public class LocationDao {
 	}
 
 	//부산맛집 가져오기
-	public List busanSelect(String loCode, int end, int start) {
+	public List locationSelect(String loCode, int end, int start) {
 		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE LO_CODE=?) L) WHERE RNUM BETWEEN ? AND ?";
-		System.out.println(loCode);
-		System.out.println(start);
-		System.out.println(end);
-		
 		Object[] params = {loCode,start,end};
 		List bList = jdbc.query(query, locationRowMapper,params);
-		
-		System.out.println(bList);
 		return bList;
 	}
 	
-	//네비게이션제작 - 전체게시물 조회
+	//네비게이션제작 - 전체게시물 수 조회
 	public int selectTotal(String loCode) {
 		String query = "SELECT COUNT(*) FROM LOCATION WHERE LO_CODE=?";
 		int result = jdbc.queryForObject(query,Integer.class,loCode);
 		return result;
 	}
 
+	//지도위치 전체출력
+	public List locationMap(String loCode) {
+		String query = "SELECT * FROM LOCATION WHERE LO_CODE=?";
+		List list = jdbc.query(query, locationRowMapper,loCode);
+		return list;
+	}
+
+
 	public List searchAroundPlace(String searchPlace) {
 		String query = "select * from location where lo_addr like '%' || ? || '%'";
 		List list = jdbc.query(query, locationRowMapper,searchPlace);
 		return list;
 	}
+
+
 	
 }

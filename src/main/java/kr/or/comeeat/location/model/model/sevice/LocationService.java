@@ -64,7 +64,7 @@ public class LocationService {
 		String loCode = "BUSAN";//조회할 지역코드(부산)
 		
 		//DB select
-		List bList = locationDao.busanSelect(loCode,end,start);
+		List bList = locationDao.locationSelect(loCode,end,start);
 		
 		if(bList.isEmpty()) {
 			//공공데이터 파싱
@@ -118,10 +118,10 @@ public class LocationService {
 			loCode = list.get(0).getLoCode();
 			
 			//최초 DB insert
-			int result = locationDao.busanInsert(list);
+			int result = locationDao.locationInsert(list);
 			if(result>0) {				
 				//DB select
-				bList = locationDao.busanSelect(loCode,end,start);
+				bList = locationDao.locationSelect(loCode,end,start);
 			}
 		}
 		
@@ -193,9 +193,15 @@ public class LocationService {
 		return pageNavi;
 	}
 	
+	//지도위치 전체출력
+	public List locationMap(String loCode) {
+		List list = locationDao.locationMap(loCode);
+		return list;
+	}
 	
 	public List searchAroundPlace(String searchPlace) {
 		List list = locationDao.searchAroundPlace(searchPlace);
 		return list;
 	}
+
 }

@@ -102,3 +102,26 @@
     display: block;
     clear: both;
 }
+
+/*지도마커*/
+.marker{
+    background-color: #fff;
+    width: 250px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.marker>div{
+    margin: 5px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.marker>div:first-child{
+    font-size: 18px;
+    font-weight: 600;
+    color: #ff3700ff;
+}
+.marker>div:last-child{
+    font-size: 14px;
+    font-weight: 400;
+}
