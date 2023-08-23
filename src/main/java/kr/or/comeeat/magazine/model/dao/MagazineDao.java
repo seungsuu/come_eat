@@ -87,5 +87,14 @@ public class MagazineDao {
 		int result = jdbc.update(query, params);
 		return result;
 	}
+
+
+	public int updateMagazine(Magazine m) {
+		String query = "update magazine set magazine_title=?, magazine_subtitle=?, magazine_storename=?, magazine_content=? where magazine_no=?";
+		System.out.println(m.getMagazineNo());
+		Object[] params = {m.getMagazineTitle(), m.getMagazineSubtitle(), m.getMagazineStorename(), m.getMagazineContent(), m.getMagazineNo()};
+		int result = jdbc.update(query, params);
+		return result;
+	}
 	
 }

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html　xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+		<script type=""></script>
+		<script src="/summernote/summernote-lite.js"></script>
+		<script src="/summernote/lang/summernote-ko-KR.js"></script>
+		<link rel="stylesheet" href="/summernote/summernote-lite.css">
+		<div class="content-wrap">
+			<div class="content-title">Magazine 수정하기</div>
+			<form action="/magazine/update" method="post" enctype="multipart/form-data" >
+				<table class="tbl tbl-border">
+					<tr>
+						<th class="b-color-g" style="width: 20%;">제목</th>
+						<td>
+							<input type="text" name="magazineTitle" class="input" placeholder="제목을 입력하세요" style="text-align: left; text-indent: 2em;" th:value="${m.magazineTitle}">
+						</td>
+					</tr>
+					<tr>
+						<th class="b-color-g">작성자</th>
+						<td>
+							<span th:text="${session.m.memberId}" style="text-align: left; text-indent: 2em; display:block;"></span>
+							<input type="hidden" name="memberNo" th:value="${session.m.memberNo}">
+							<input type="hidden" name="magazineNo" th:value="${m.magazineNo}">
+						</td>
+					</tr>
+					<tr>
+						<th class="b-color-g" style="width: 20%;">한줄소개</th>
+						<td>
+							<input type="text" name="magazineSubtitle" class="input" placeholder="간략요약해주세요" style="text-align: left; text-indent: 2em;" th:value="${m.magazineSubtitle}">
+						</td>
+					</tr>
+					<tr>
+						<th class="b-color-g" style="width: 20%;">상호명</th>
+						<td>
+							<input type="text" name="magazineStorename" class="input" placeholder="매장 상호명" style="text-align: left; text-indent: 2em;" th:value="${m.magazineStorename}">
+						</td>
+						<th class="b-color-g" style="width: 20%;">썸네일</th>
+						<td>
+							<input type="file" name="imageFile" accept=".jpg,.png,.jpeg">	
+						</td>
+					</tr>
+					<tr >
+						<td style="text-align: left;" colspan="4">
+							<textarea class="input textarea" name="magazineContent" id="magazineContent" th:text="${m.magazineContent}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<button type="submit" class="btn" style="width:50%;">수정하기</button>		
+						</td>
+						<td>
+						</td>
+				</table>
+			</form>
+		</div>
+	<th:block th:include="common/footer"></th:block>
+	<script >
+	$("#magazineContent").summernote({
+		  toolbar: [
+			    ['fontname', ['fontname']],
+			    ['fontsize', ['fontsize']],
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['color', ['forecolor','color']],
+			    ['table', ['table']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['insert',['picture','link','video']],
+			    ['view', ['fullscreen', 'help']]],
+				fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+				fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+		height: 400,
+		lang : "ko-KR",
+		callbacks :{
+			onImageUpload : function(files){
+				uploadImage(files[0],this);
+			}	
+		}
+	});
+	function uploadImage(file,editor){
+		const form = new FormData();
+		form.append("file",file);
+		$.ajax({
+			url : "/magazine/editor",
+			type : "post",
+			data : form,
+			processData : false,
+			contentType : false,
+			success : function(data){
+				console.log(data);
+				$(editor).summernote("insertImage",data);
+				$("#thumbnailPath").append("<option value="+data+">"+data.originName+"</option>");
+			}
+		});
+	}
+	
+	$("[name=imageFile]").on("change",function(){
+		console.log(this.files);
+		if(this.files.length !=0 && this.files[0] != 0){
+			const reader = new FileReader();
+			reader.readAsDataURL(this.files[0]);
+			reader.onload =function(e){
+				$("#img-view").attr("src",e.target.result);
+			}
+		}else{
+			$("#img-view").attr("src","");
+		}
+	});
+	</script>	
+</body>
+</html>
