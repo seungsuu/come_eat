@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="/js/jquery-3.6.0.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>예약하기</title>
+
+<link rel="stylesheet" href="/css/bookingFrm.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+		<div class="modal">
+			<div class="modal_body">
+				<div class="content-title">예약하기</div>
+				<div class=booking-form>
+					<div class="date-select-button-up" style="padding-left: 20px; padding-right: 20px;">
+						<span class="material-icons" style="float: left; font-size: 70px;">calendar_month</span>
+						<span style="float: left; font-size: 36px;">날짜 선택</span> <span
+							class="material-icons" style="float: right; font-size: 80px;"
+							id="date-icon-updown">arrow_circle_up</span>
+					</div>
+					
+				</div>
+				<div class=booking-form style="overflow:hidden;">
+					<div class="totalnum-select-button-up" style="padding-left: 20px; padding-right: 20px;">
+						<span class="material-icons" style="float: left; font-size: 70px;">people</span>
+						<span style="float: left; font-size: 36px;">인원 선택</span>
+							<span class="material-icons" style="float: right; font-size: 80px;"
+							id="date-icon-updown">arrow_circle_up</span>
+					</div>
+					<div style="float:left;padding-left: 20px;" class="count-div"><span style="font-size:36px; line-height:70px">방문하는 인원 선택</span></div>
+					<div style="float:right; padding-right:20px;" class="count-div">
+						<button type="button" class="count_btn" id="minus">
+							<span class="material-icons">remove_circle_outline</span>
+						</button>
+						<input type="text" value="1" name="bookingTotalnum"
+							class="bookingTotalnum" style="text-align:center;">
+						<button type="button" class="count_btn" id="plus">
+							<span class="material-icons">add_circle_outline</span>
+						</button>
+					</div>
+				</div>
+				
+				<div class="booking-form">
+					<div class="booking-notice">
+						<p style="color:red; font-weight:500;"><span class="material-icons" style="color:red; font-size:50px;">error_outline</span>알립니다</p>
+						<p>주의사항</p>
+						<p>주의사항</p>
+						<p>주의사항</p>
+					</div>
+				</div>
+				<div class="booking-form">
+					<div style="overflow:hidden;">
+						<span style="float: left; font-size: 36px;">예약자 정보</span>
+					</div>
+					<div>
+						<div class="booking-info">
+							<label for="memberName">예약자</label>
+							<input type="text" id="memberName" >
+							<!-- th:value="${session.m.memberName}" -->
+						</div>
+						<div class="booking-info">
+							<label for="memberPhone">연락처</label>
+							<input type="text" id="memberPhone">
+							<!-- th:value="${session.m.memberPhone}" -->
+						</div>
+						<div class="booking-info">
+							<label for="memberEmail">이메일</label>
+							<input type="text" id="memberEmail">
+							<!-- th:value="${session.m.memberEmail}" -->
+						</div>
+					</div>
+				</div>
+				<div class="booking-form">
+					<div style="overflow:hidden;">
+						<span style="float: left; font-size: 36px; height: 70px;">예약금</span>
+						<span class="booking-price" style="line-height:70px; float: right; font-size:36px">10,000 원</span>
+					</div>
+				</div>	
+				<button type="submit" class="btn" style="width:300px; height:50px;">결제 및 예약하기</button>
+			</div>
+		</div>
+		<button class="modal-open-btn">Modal 띄우기</button>
+
+	</div>
+	
+	<script src="/js/bookingFrm.js"></script>
+	<script>
+		//datepicker
+
+		//슬라이드토글 아이콘
+		$(".date-select-button-up").on("click",
+						function() {
+							$('.container-fluid').slideToggle();
+							$('#date-icon-updown')
+									.text(
+											$('#date-icon-updown').text() == 'arrow_circle_up' ? "arrow_circle_down"
+													: "arrow_circle_up");
+						});
+
+		let count = 1;
+		$("#plus").on("click", function() {
+			if ($(".bookingTotalnum").val() < 10) {
+				count += 1;
+				$(".bookingTotalnum").val(count);
+			} else {
+				alert("최대인원입니다.")
+			}
+		})
+		$("#minus").on("click", function() {
+			if ($(".bookingTotalnum").val() == 1)
+				alert("최소인원입니다")
+			else {
+				count -= 1;
+				$(".bookingTotalnum").val(count);
+			}
+		})
+	</script>
+</body>
+</html>
