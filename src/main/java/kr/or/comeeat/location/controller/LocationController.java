@@ -29,6 +29,10 @@ public class LocationController {
 	public String locationList() {
 		return "location/location";
 	}
+	@GetMapping(value="/aroundPlace")
+	public String aroudPlace() {
+		return "location/aroundPlace";
+	}
 	
 	//서울맛집
 	/*

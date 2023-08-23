@@ -14,10 +14,7 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	
-	@GetMapping(value="/aroundPlace")
-	public String aroudPlace() {
-		return "review/aroundPlace";
-	}
+
 	
 	@GetMapping(value="/detailRestaurant")
 	public String detailRestaurant() {
