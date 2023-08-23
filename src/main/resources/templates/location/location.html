@@ -13,38 +13,61 @@
         <div class="content-title">지역별 맛집</div>
         <div class="location-btn">
             <div>
-                <a href="#" class="btn lo-btn">서울</a>
+                <a href="/location/foodList?pageNo=1&lo=su" class="btn lo-btn">서울</a>
             </div>
             <div>
-                <a href="#" class="btn lo-btn">경기도</a>
+                <a href="/location/foodList?pageNo=1&lo=kkd" class="btn lo-btn">경기도</a>
             </div>
             <div>
-                <a href="#" class="btn lo-btn">인천</a>
+                <a href="/location/foodList?pageNo=1&lo=ic" class="btn lo-btn">인천</a>
             </div>
             <div>
-                <a href="/location/busan?pageNo=1" class="btn lo-btn">부산</a>
+                <a href="/location/foodList?pageNo=1&lo=bs" class="btn lo-btn">부산</a>
             </div>
             <div>
-                <a href="#" class="btn lo-btn">대구</a>
+                <a href="/location/foodList?pageNo=1&lo=dg" class="btn lo-btn">대구</a>
             </div>
             <div>
-                <a href="#" class="btn lo-btn">김해</a>
+                <a href="/location/foodList?pageNo=1&lo=kh" class="btn lo-btn">김해</a>
             </div>
             <div>
-                <a href="#" class="btn lo-btn">전주</a>
+                <a href="/location/foodList?pageNo=1&lo=jj" class="btn lo-btn">전주</a>
             </div>
             <div>
-                <a href="#" class="btn lo-btn">전남</a>
+                <a href="/location/foodList?pageNo=1&lo=jn" class="btn lo-btn">전남</a>
             </div>
             <div>
-                <a href="#" class="btn lo-btn">충북</a>
+                <a href="/location/foodList?pageNo=1&lo=cb" class="btn lo-btn">충북</a>
             </div>
             <div>
-                <a href="#"class="btn lo-btn">포항</a>
+                <a href="/location/foodList?pageNo=1&lo=ph" class="btn lo-btn">포항</a>
             </div>
             <div>
-                <a href="#" class="btn lo-btn">영주</a>
+                <a href="/location/foodList?pageNo=1&lo=yj" class="btn lo-btn">영주</a>
             </div>
+        </div>
+        <div th:if="${list != null}">        
+	        <div class="sub-title clear" th:text="${title}"></div>
+	        <div class="location-map">
+	            	<div id="map" style="width:100%;height:100%;"></div>
+	        </div>
+	        <div class="location-content-wrap"> 
+	            <div class="location-content" th:each="location : ${list}">
+	                <a href="#">
+	                    <div class="location-img-box" th:style="'background-image:url(' + ${location.loThumb} + ');'">
+	                    </div>
+	                    <div class="location-content-info">
+	                        <p th:text="${location.loTitle}"></p>
+	                        <p th:text="${location.loInfo}"></p>
+	                        <div class="star">
+	                            <span class="material-icons-round">grade</span>
+	                            <span>4.5</span>
+	                        </div>
+	                    </div>
+	                </a>
+	            </div>
+	        </div>
+	        <div class="board-navi" th:utext="${navi}"></div>
         </div>
     </div>
     <th:block th:include="common/footer"></th:block>
@@ -55,10 +78,14 @@
     		$(".lo-btn").removeClass("active-btn");
     		$(this).addClass("active-btn");
     	});
-    	
-    	window.onload = function(){
-    		$(".lo-btn").eq(0).click();
-    	};
+    	//카카오 지도 API
+		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+			center: new kakao.maps.LatLng(37.566815192716994, 126.97865226139427), //지도의 중심좌표.
+			level: 4 //지도의 레벨(확대, 축소 정도)
+		};
+		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		
     </script>
 </body>
 </html>
