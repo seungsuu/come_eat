@@ -56,12 +56,11 @@
 }
 .location-img-box{
     float: left;
-}
-.location-img-box>img{
     width: 300px;
     height: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
-
 .location-content-info{
     float: left;
     padding-left: 10px;

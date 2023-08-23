@@ -19,34 +19,3 @@
     color: #fff;
     font-weight: 400;
 }
-
-/*리스트 내비게이션*/
-.board-navi{
-    margin-top: 50px;
-}
-.board-navi>ul{
-    overflow: hidden;
-    width: 36%;
-    margin: 0 auto;
-}
-.board-navi li{
-    float: left;
-    margin: 0 10px;
-}
-.board-navi li>a{
-    display: block;
-    padding: 10px;
-    font-size: 18px;
-    font-weight: 400;
-}
-.board-navi li>a:hover{
-    color: #ff3700ff;
-}
-.board-navi li>a:hover>span{
-    color: #ff3700ff;
-}
-
-
-.active-page{
-    color: #ff3700ff;
-}
