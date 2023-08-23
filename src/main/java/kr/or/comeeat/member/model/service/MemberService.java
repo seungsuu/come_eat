@@ -30,6 +30,11 @@ public class MemberService {
 		Member m = memberDao.selectOneMember(checkId);
 		return m;
 	}
+
+	public Member selectMemberId(String memberName, String memberEmail) {
+			Member member = memberDao.selectMemberId(memberName, memberEmail);
+			return member;
+	}
 	
 
 }

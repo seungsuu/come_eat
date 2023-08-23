@@ -70,7 +70,7 @@ public class MemberController {
 				model.addAttribute("icon", "error");
 				model.addAttribute("loc", "/member/joinFrm_copy");
 			}
-			System.out.println(member);
+			
 			return "common/msg";
 	}
 	
@@ -84,6 +84,18 @@ public class MemberController {
 		return "1";
 	}
   }
+	@GetMapping(value="/searchIdFrm")
+	public String searchIdFrm() {
+		return "member/searchIdFrm";
+	}
+	
+	//아이디 찾기
+	@PostMapping(value="/searchId")
+	public String searchId(String memberName, String memberEmail, Model model) {
+		Member member = memberService.selectMemberId(memberName, memberEmail);
+		model.addAttribute("member", member);
+		return "member/searchId";
+	}
 	
 	
 	

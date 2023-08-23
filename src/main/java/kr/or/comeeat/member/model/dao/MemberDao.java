@@ -43,5 +43,14 @@ public class MemberDao {
 		return (Member)list.get(0);
 	}
 
+	public Member selectMemberId(String memberName, String memberEmail) {
+		String query = "select * from member where member_name=? and member_email=?";
+		List list = jdbc.query(query, memberRowMapper,memberName,memberEmail);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Member)list.get(0);
+	}
+
 	
 }
