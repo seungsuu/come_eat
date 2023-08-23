@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.comeeat.member.model.service.MemberService;
 import kr.or.comeeat.member.model.vo.Member;
@@ -73,19 +74,16 @@ public class MemberController {
 			return "common/msg";
 	}
 	
-	//id중복검사
-	@PostMapping(value="/checkId")
-	//id가 사용중인지 아닌지 check
-	public String checkId(String checkId, Model model) {
-		Member member = memberService.selectOneMember(checkId);
-		model.addAttribute("checkId", checkId); //화면에서 id 출력할수 있도록 (checkId 변수)전달
-		if(member == null) {
-				model.addAttribute("result", 0);
-			}else {
-				model.addAttribute("result", 1);
-			}
-			return "member/checkId";
-		}
+	@ResponseBody
+	@GetMapping(value="/ajaxCheckId")
+	public String ajaxCheckId(String memberId) {
+	Member m = memberService.selectOneMember(memberId);
+	if(m == null) {
+		return "0";
+	}else {
+		return "1";
+	}
+  }
 	
 	
 	
