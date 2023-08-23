@@ -35,5 +35,11 @@ public class LocationDao {
 		List bList = jdbc.query(query, locationRowMapper,params);
 		return bList;
 	}
+
+	public List searchAroundPlace(String searchPlace) {
+		String query = "select * from location where lo_addr like '%' || ? || '%'";
+		List list = jdbc.query(query, locationRowMapper,searchPlace);
+		return list;
+	}
 	
 }

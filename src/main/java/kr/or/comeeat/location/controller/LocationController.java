@@ -148,4 +148,11 @@ public class LocationController {
 		return list;
 	}
 
+	
+	@GetMapping(value="/searchAroundPlace")
+	public String searchAroundPlace(String searchPlace, Model model) {
+		List list = locationService.searchAroundPlace(searchPlace);
+		model.addAttribute("searchList", list);
+		return "location/aroundPlace";
+	}
 }

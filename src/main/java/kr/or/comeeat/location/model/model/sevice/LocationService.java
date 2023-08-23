@@ -30,4 +30,9 @@ public class LocationService {
 		}
 		return bList;
 	}
+
+	public List searchAroundPlace(String searchPlace) {
+		List list = locationDao.searchAroundPlace(searchPlace);
+		return list;
+	}
 }
