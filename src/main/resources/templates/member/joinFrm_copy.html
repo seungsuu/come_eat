@@ -20,6 +20,7 @@
                 </td>
                 <td>
                     <input type="text" class="join-input-form" id="memberId" name="memberId">
+                    <span class="comment"></span>
                 </td>
             <tr>
                 <td class="join-th">
@@ -75,23 +76,23 @@
             <ul class="join-ul">
                 <li id="join_agreementAll">
                     <input type="checkbox" id="allAgreement">
-                    <label for="checkAgree"><span id="allAgreement">약관 전체 동의</span></label><br>
+                    <label for="allAgreement"><span id="allAgreement">약관 전체 동의</span></label><br>
                     <div class="join-allAgreeContent">
                         <p>전체동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며, 개별적으로도 동의를 선택하실 수 있습니다.</p>
                     </div>
                 </li>
                 <li>
                     <input type="checkbox" id="essentialAgree1">
-                    <label for="checkAgree">만 14세 이상입니다.<span id="essential">(필수)</span></label>
+                    <label for="essentialAgree1">만 14세 이상입니다.<span id="essential">(필수)</span></label>
                 </li>
                 <li>
                     <input type="checkbox" id="essentialAgree2">
-                    <label for="checkAgree">이용약관 동의<span id="essential">(필수)</span></label>
+                    <label for="essentialAgree2">이용약관 동의<span id="essential">(필수)</span></label>
                     <button class="modal-open-btn2" type="button">내용보기</button>
                 </li>
                 <li>
                     <input type="checkbox" id="optionAgreement">
-                    <label for="checkAgree">개인정보 수집 및 이용안내<span id=option>(선택)</span></label>
+                    <label for="optionAgreement">개인정보 수집 및 이용안내<span id=option>(선택)</span></label>
                     <button class="modal-open-btn" type="button">내용보기</button>
                 </li>
             </ul>
@@ -146,5 +147,8 @@
     <th:block th:include="common/footer"></th:block>
     
     <script src="/js/joinFrm_copy.js"></script>
+    <script>
+    
+    </script>
 </body>
 </html>
