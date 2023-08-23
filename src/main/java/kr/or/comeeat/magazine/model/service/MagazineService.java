@@ -48,6 +48,7 @@ public class MagazineService {
 		return magazineList;
 	}
 
+	@Transactional
 	public List deleteMagazine(int magazineNo) {
 		List list = magazineDao.selectMagazineFile(magazineNo);
 		int result = magazineDao.deleteMagazine(magazineNo);
@@ -56,5 +57,19 @@ public class MagazineService {
 		}
 		return list;
 
+	}
+
+	public Magazine getMagazine(int magazineNo) {
+		Magazine m = magazineDao.selectOneMagazine(magazineNo);
+		List fileList = magazineDao.selectMagazineFile(magazineNo);
+		m.setFileList(fileList);
+		return m;
+	}
+
+	@Transactional
+	public int updateMagazine(Magazine m) {
+		int result = magazineDao.updateMagazine(m);
+		System.out.println(result);
+		return result;
 	}
 }
