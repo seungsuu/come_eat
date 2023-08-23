@@ -31,7 +31,8 @@
 						<li class="aroundPlace-list">
 							<a th:href="@{/review/detailRestaurant(loTitle=${searchList.loTitle})}">
 								<div class="imgBox">
-									<img th:src="${searchList.loThumb}">
+									<img th:if="${searchList.loCode != 'SEOUL'}" th:src="${searchList.loThumb}">
+									<img th:if="${searchList.loCode == 'SEOUL'}" th:src="'/location/'+${searchList.loThumb}" style=height:250px;>
 								</div>
 								<div class="img-content">
 									<span class="material-icons-round">grade</span> 
