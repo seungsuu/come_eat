@@ -9,9 +9,8 @@
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-    <div class="join-wrap">
-        <div class="join-title">JOIN</div>
-        <p><span>* </span>필수 입력 항목</p>
+    <div class="content-wrap">
+        <div class="content-title">JOIN</div>
         <form action="/member/signup" method="post">
         <table class="join-table">
             <tr>
@@ -88,17 +87,17 @@
                 <li>
                     <input type="checkbox" id="essentialAgree2">
                     <label for="checkAgree">이용약관 동의<span id="essential">(필수)</span></label>
-                    <button class="modal-open-btn2">내용보기</button>
+                    <button class="modal-open-btn2" type="button">내용보기</button>
                 </li>
                 <li>
                     <input type="checkbox" id="optionAgreement">
                     <label for="checkAgree">개인정보 수집 및 이용안내<span id=option>(선택)</span></label>
-                    <button class="modal-open-btn">내용보기</button>
+                    <button class="modal-open-btn" type="button">내용보기</button>
                 </li>
             </ul>
         </div>
         <div class="join-btn-class">
-            <button type="submit" id="btnConfirm">회원가입</button>
+            <button type="submit" id="btnConfirm" class="btn">회원가입</button>
         </div>
         
         </form>
@@ -144,6 +143,7 @@
             </div>
         </div>        
     </div>
+    <th:block th:include="common/footer"></th:block>
     
     <script src="/js/joinFrm_copy.js"></script>
 </body>
