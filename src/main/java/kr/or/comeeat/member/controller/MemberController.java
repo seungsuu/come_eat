@@ -97,6 +97,11 @@ public class MemberController {
 		return "member/searchId";
 	}
 	
+	//마이페이지로 이동
+	@GetMapping(value="/mypage")
+	public String mypage() {
+		return "member/mypage";
+	}
 	
 	
 	

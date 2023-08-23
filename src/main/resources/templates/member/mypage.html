@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>MY PAGE</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+		<div class="content-title">MY PAGE</div>
+	<form action="/member/update" method="post">
+        <table class="mypage-table">
+            <tr>
+                <td class="join-th">
+                    <label for="memberId">아이디</label>
+                    <span> * </span>
+                </td>
+                <td>
+                    <input type="text" class="join-input-form" id="memberId" name="memberId" th:value="${session.m.memberId}">
+                    <span class="comment"></span>
+                </td>
+            <tr>
+                <td class="join-th">
+                    <label for="memberPw">비밀번호</label>
+                    <span> * </span>
+                </td>
+                <td>
+                    <input type="password" class="join-input-form" id="memberPw" name="memberPw" placeholder="영문+숫자+특수문자 조합 8~16자리를 입력해주세요.">
+                    <span class="comment"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="join-th">
+                    <label for="memberPwRe">비밀번호확인</label>
+                    <span> * </span>
+                </td>
+                <td>
+                    <input type="password" class="join-input-form" id="memberPwRe">
+                    <span class="comment"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="join-th">
+                    <label for="memberName">이름</label>
+                    <span> * </span>
+                </td>
+                <td>
+                    <input type="text" class="join-input-form" id="memberName" name="memberName" placeholder="ex)홍길동">
+                    <span class="comment"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="join-th">
+                    <label for="memberPhone">핸드폰번호</label>
+                </td>
+                <td>
+                    <input type="text" class="join-input-form" id="memberPhone" name="memberPhone" placeholder="ex)010-0000-0000">
+                    <span class="comment"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="join-th-end">
+                    <label for="memberEmail">이메일</label>
+                    <span> * </span>
+                </td>
+                <td class="join-td-end">
+                    <input type="text" class="join-input-form" id="memberEmail" name="memberEmail" placeholder="@를 포함한 이메일 형식으로 입력해주세요.">
+                </td>
+            </tr>  
+        </table>
+       </form>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

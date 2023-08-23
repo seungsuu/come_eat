@@ -59,5 +59,8 @@
 	color: white;
 	font-weight : 400;
 }
-
+input {
+	padding-left : 10px;
+	font-size : 14px;
+}
 
