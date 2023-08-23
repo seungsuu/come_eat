@@ -64,7 +64,6 @@ public class LocationController {
 								.ignoreContentType(true)
 								.get()
 								.text();
-				
 				JsonObject object = (JsonObject)JsonParser.parseString(result);
 				JsonObject foodKr = object.get("getFoodKr").getAsJsonObject();
 				JsonArray item = foodKr.get("item").getAsJsonArray();

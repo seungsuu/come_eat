@@ -69,10 +69,17 @@
     position: relative;
     height: 150px;
     overflow: hidden;
+    width: 48%;
 }
 .location-content-info>p:first-child{
     font-size: 20px;
     font-weight: 500;
+}
+.location-content-info>p:nth-child(2){
+	height: 70px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .star{

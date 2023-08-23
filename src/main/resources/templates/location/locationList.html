@@ -69,7 +69,7 @@
                 </a>
             </div>
             
-        <button class="btn clear" id="more-btn">더보기</button>
+        <button class="btn clear" id="more-btn" vlaue="1">더보기</button>
         </div>
         
     </div>
@@ -94,12 +94,27 @@
 		};
 		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 		
+/* 		//더보기버튼
 		$("#more-btn").on("click",function(){
+			//불러온 값 숫자로 형변환
 			const pageNo = Number($(this).val());
-			pageNo++;
+			$.ajax({
+				url : "/location/busan",
+				type : "get",
+				data : {pageNo:pageNo},
+				success : function(data){
+					console.log(data);
+					
+					for(let i=0;i<data.length;i++){					
+
+					}
+					$("#more-btn").val(pageNo+1);
+				}
+			});
 		});
 		
-		
+		$("#more-btn").click();
+		 */
 		
     </script>
 </body>

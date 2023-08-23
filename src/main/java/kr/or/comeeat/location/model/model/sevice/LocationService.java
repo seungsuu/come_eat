@@ -22,7 +22,6 @@ public class LocationService {
 		int num = 6; //출력개수
 		int end = num * Integer.parseInt(pageNo);//끝번호
 		int start = end - num + 1;//시작번호
-		System.out.println(pageNo+start+end);
 		List bList = locationDao.busanSelect(loCode,end,start);
 		if(bList.isEmpty()) {			
 			int result = locationDao.busanInsert(list);
