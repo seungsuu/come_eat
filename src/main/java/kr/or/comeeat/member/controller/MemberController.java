@@ -51,7 +51,7 @@ public class MemberController {
 	//회원가입 페이지로 이동
 	@GetMapping(value="/joinFrm")
 	public String join() {
-		return "member/joinFrm";
+		return "member/joinFrm_copy";
 	}
 	
 	//회원가입
@@ -59,13 +59,17 @@ public class MemberController {
 		public String signup(Member member, Model model) {
 			int result = memberService.insertMember(member);
 			if(result>0) {
-				model.addAttribute("loc", "/");
+				model.addAttribute("title", "회원가입 성공");
+				model.addAttribute("msg", "신규 회원 가입을 축하합니다.");
+				model.addAttribute("icon", "success");
+				model.addAttribute("loc", "/");	
 			}else {
 				model.addAttribute("title", "회원가입 실패");
 				model.addAttribute("msg", "필수 정보 입력란을 확인해주세요");
 				model.addAttribute("icon", "error");
-				model.addAttribute("loc", "/");
+				model.addAttribute("loc", "/member/joinFrm_copy");
 			}
+			System.out.println(member);
 			return "common/msg";
 	}
 	

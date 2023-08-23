@@ -27,8 +27,8 @@ public class MemberDao {
 
 	//회원가입
 	public int insertMember(Member member) {
-		String query ="insert into member values(member_seq.nextval,?,?,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'))";
-		Object[] params = {member.getMemberId(),member.getMemberPw(),member.getMemberEmail(),member.getMemberLevel(),member.getMemberPhone()};
+		String query ="insert into member values(member_seq.nextval,?,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'))";
+		Object[] params = {member.getMemberId(),member.getMemberPw(),member.getMemberName(),member.getMemberEmail(),1,member.getMemberPhone()};
 		int result = jdbc.update(query,params);
 		return result;
 	}
