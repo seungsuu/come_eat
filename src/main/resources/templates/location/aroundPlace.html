@@ -17,7 +17,7 @@
 					<div class="search-box">
 						<span>현재 보고있는 맛집 지역은</span> 
 						<input type="text" name="searchPlace" id="searchPlace" placeholder="검색">
-						<button type="submit" name="searchBtn" id="searchBtn">
+						<button type="submit" id="searchBtn">
 							<span class="material-icons">search</span>
 						</button>
 						<span>입니다</span>
@@ -29,7 +29,7 @@
 				<ul>
 					<th:block th:each="searchList : ${searchList}">
 						<li class="aroundPlace-list">
-							<a href="/review/detailRestaurant">
+							<a th:href="@{/review/detailRestaurant(loTitle=${searchList.loTitle})}">
 								<div class="imgBox">
 									<img th:src="${searchList.loThumb}">
 								</div>
@@ -64,7 +64,7 @@
 		var ps = new kakao.maps.services.Places(); 
 
 		// 키워드로 장소를 검색합니다
-		ps.keywordSearch('이태원 맛집', placesSearchCB); 
+		ps.keywordSearch('홍대 맛집', placesSearchCB); 
 
 		// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 		function placesSearchCB (data, status, pagination) {

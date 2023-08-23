@@ -47,17 +47,17 @@
     padding: 60px 0 30px 0;
 }
 .restaurant_info{
-    width: 48%;
+    width: 50%;
     float: left;
     border-top: 3px solid #eee;
     border-bottom: 3px solid #eee;
     box-sizing: border-box;
 }
+
 .detailRestaurant_map{
     width: 48%;
-    background-color: lightseagreen;
     float: right;
-    height: 300px;
+    height: 350px;
 }
 .info-tbl{
     width: 100%;
@@ -65,6 +65,7 @@
 .info-tbl th{
     padding: 15px;
     text-align: left;
+    width: 20%;
 }
 /*예약하기 버튼*/
 
