@@ -17,11 +17,16 @@ public class LocationService {
 
 	//부산맛집 DB insert
 	@Transactional
-	public List busan(ArrayList<Location> list) {
-		List bList = locationDao.busanSelect();
+	public List busan(ArrayList<Location> list, String pageNo) {
+		String loCode = list.get(0).getLoCode();
+		int num = 6; //출력개수
+		int end = num * Integer.parseInt(pageNo);//끝번호
+		int start = end - num + 1;//시작번호
+		System.out.println(pageNo+start+end);
+		List bList = locationDao.busanSelect(loCode,end,start);
 		if(bList.isEmpty()) {			
 			int result = locationDao.busanInsert(list);
-			List bList2 = locationDao.busanSelect();
+			List bList2 = locationDao.busanSelect(loCode,end,start);
 			return bList2;
 		}
 		return bList;
