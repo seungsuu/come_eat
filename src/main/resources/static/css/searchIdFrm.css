@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: #2f2f2f;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    outline: none;
+    font-size: 16px;
+}
+
+/*중앙정렬 - 컨텐츠 가장 바깥 div 클래스*/
+.content-wrap{
+    width: 1200px;
+    margin: 60px auto;
+    box-sizing: border-box;
+    padding-bottom : 200px;
+}
+
+/*제목공통클래스*/
+.content-title{
+    font-size: 36px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: 200;
+    padding: 80px 0 50px 0;
+    display: block;
+}
+
+.form-wrap{
+	margin: 0 auto;
+	width: 800px;
+}
+
+/*체크박스 라디오*/
+.radio-wrap{
+	width: 800px;
+	margin : 0 auto;
+	text-align:right;
+	
+}
+
+.input-box>input{
+	width: 100%;
+	height : 40px;
+	border : 1px solid #eee;
+	margin : 10px 0 10px 0;
+}
+.searchId-Btn>button{
+	border: none;
+	height : 40px;
+	width: 800px;
+}
+.searchId-Btn>button:hover{
+	background-color: #ff3700ff;
+	color: white;
+	font-weight : 400;
+}
+
+

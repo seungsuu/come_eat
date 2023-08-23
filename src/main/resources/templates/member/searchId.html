@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>이름,이메일로 아이디 찾기</title>
+</head>
+<body>
+	<h3 th:if="${member == null}">ID를 조회할수 없습니다.</h3>
+	<h3 th:if="${member != null}">회원님의 아이디는 <span th:text="${member.memberId}"></span>입니다.</h3>
+
+</body>
+</html>
