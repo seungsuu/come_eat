@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.comeeat.member.model.service.MemberService;
 import kr.or.comeeat.member.model.vo.Member;
@@ -51,7 +52,7 @@ public class MemberController {
 	//회원가입 페이지로 이동
 	@GetMapping(value="/joinFrm")
 	public String join() {
-		return "member/joinFrm";
+		return "member/joinFrm_copy";
 	}
 	
 	//회원가입
@@ -59,29 +60,30 @@ public class MemberController {
 		public String signup(Member member, Model model) {
 			int result = memberService.insertMember(member);
 			if(result>0) {
-				model.addAttribute("loc", "/");
+				model.addAttribute("title", "회원가입 성공");
+				model.addAttribute("msg", "신규 회원 가입을 축하합니다.");
+				model.addAttribute("icon", "success");
+				model.addAttribute("loc", "/");	
 			}else {
 				model.addAttribute("title", "회원가입 실패");
 				model.addAttribute("msg", "필수 정보 입력란을 확인해주세요");
 				model.addAttribute("icon", "error");
-				model.addAttribute("loc", "/");
+				model.addAttribute("loc", "/member/joinFrm_copy");
 			}
+			System.out.println(member);
 			return "common/msg";
 	}
 	
-	//id중복검사
-	@PostMapping(value="/checkId")
-	//id가 사용중인지 아닌지 check
-	public String checkId(String checkId, Model model) {
-		Member member = memberService.selectOneMember(checkId);
-		model.addAttribute("checkId", checkId); //화면에서 id 출력할수 있도록 (checkId 변수)전달
-		if(member == null) {
-				model.addAttribute("result", 0);
-			}else {
-				model.addAttribute("result", 1);
-			}
-			return "member/checkId";
-		}
+	@ResponseBody
+	@GetMapping(value="/ajaxCheckId")
+	public String ajaxCheckId(String memberId) {
+	Member m = memberService.selectOneMember(memberId);
+	if(m == null) {
+		return "0";
+	}else {
+		return "1";
+	}
+  }
 	
 	
 	
