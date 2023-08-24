@@ -35,15 +35,67 @@ public class LocationService {
 		
 		//DB select
 		List list = locationDao.searchList(search,end,start);
-		//네비게이션
-		String pageNavi = searchNavi(num,Integer.parseInt(pageNo),loCode,lo);
-		//소제목설정
-		String title = "부산맛집";
-		//리스트+네비 data 묶기
-		LocationData locationData = new LocationData(bList, pageNavi,title);
 		
-		return list;
+		//네비게이션
+		//총 게시물 수 조회
+		int total = locationDao.searchTotal(search);
+		
+		//총 페이지 수
+		int totalPage = total%num == 0 ? total/num : total/num+1;		
+		
+		//한페이지에 보여줄 네비게이션 개수 지정
+		int pageNaviSize = 5;
+		int pageNum = ((Integer.parseInt(pageNo)-1)/pageNaviSize)*pageNaviSize + 1;
+		
+		//페이지 네비게이션 제작 시작
+		String pageNavi = "<ul>";
+		//이전버튼제작
+		if(pageNum != 1){
+			pageNavi += "<li>";
+			pageNavi += "<a href='/location/foodList?pageNo="+(pageNum-1)+"'>";
+			pageNavi += "<span class='material-icons'>arrow_back_ios</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		//페이지 숫자
+		for(int i=0;i<pageNaviSize;i++) {
+			if(Integer.parseInt(pageNo) == pageNum) {
+				//현재페이지와 요청페이지가 같은 경우(현재보고있는 페이지버튼에만 class로 백그라운드주기)
+				pageNavi += "<li>";
+				pageNavi += "<a class='active-page' href='/location/foodList?pageNo="+(pageNum)+"'>";
+				pageNavi += pageNum;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}else {
+				//현재페이지와 요청페이지가 같지 않은 경우
+				pageNavi += "<li>";
+				pageNavi += "<a href='/location/foodList?pageNo="+(pageNum)+"'>";
+				pageNavi += pageNum;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}
+			pageNum++;
+			if(pageNum>totalPage) {
+				//총 페이지 수 이상의 페이지 버튼은 만들어지지 않게 하기
+				break;
+			}
+		}
+		//다음버튼제작
+		if(pageNum <= totalPage) {
+			pageNavi += "<li>";
+			pageNavi += "<a href='/location/foodList?pageNo="+(pageNum)+"'>";//이미 for문에서 pageNo++; 했기 때문에 +1안함
+			pageNavi += "<span class='material-icons'>arrow_forward_ios</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		pageNavi += "</ul>";
+
+		//리스트+네비 data 묶기
+		LocationData locationData = new LocationData(list, pageNavi,search);
+		
+		return locationData;
 	}
+	
 
 
 	//지역별 맛집리스트 가져오기
