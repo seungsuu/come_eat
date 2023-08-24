@@ -89,7 +89,7 @@
 
 /*헤더 - 검색창*/
 .header-search-box{
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 30px 0;
     display: none;
     box-shadow: 0 10px 20px #ccc
@@ -98,23 +98,37 @@
     width: 600px;
     margin: 0 auto;
 }
+.search-input{
+	display: flex;
+	align-item: center;
+}
 .search-input>input{
     border: none;
     border-bottom: 1px solid #2f2f2f;
     background-color: transparent;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 500;
     padding: 5px 0;
     width: 90%;
 }
+input::placeholder {color:#ccc;}
+input::-webkit-input-placeholder {color:#ccc;}
+input:-ms-input-placeholder {color:#ccc;}
 .search-input>button{
     border: none;
     background-color: transparent;
+    cursor: pointer;
+}
+.search-input>button:hover>span{
+    color: #ff3700ff;
 }
 .search-input>button>span{
     font-size: 40px;
 }
 .header-search-box p{
-    margin: 10px 0;
+    margin: 15px 0 10px 0;
+    font-weight: 600;
+     font-size: 18px;
 }
 .header-search-box ul{
     overflow: hidden;
@@ -128,6 +142,7 @@
     border-radius: 30px;
     cursor: pointer;
     background-color: transparent;
+    font-weight: 500;
 }
 .header-search-box li:hover>button{
     background-color: #ff3700ff;

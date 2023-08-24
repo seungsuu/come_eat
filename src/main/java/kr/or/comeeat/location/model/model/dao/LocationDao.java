@@ -20,12 +20,19 @@ public class LocationDao {
 	
 	//검색조회
 	public List searchList(String search, int end, int start) {
-		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE (LO_ADDR LIKE '%'|| ? ||'%') OR (LO_TITLE LIKE '%'|| ? ||'%') OR  (LO_INFO '%'|| ? ||'%') OR (LO_MENU LIKE '%'|| ? ||'%') ) L) WHERE RNUM BETWEEN ? AND ?";
-		Object[] params = {search,search,search,search,start,end};
+		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE (LO_ADDR LIKE ?) OR (LO_TITLE LIKE ?) OR  (LO_INFO LIKE ?) OR (LO_MENU LIKE ?) ) L) WHERE RNUM BETWEEN ? AND ?";
+		Object[] params = {"%"+search+"%","%"+search+"%","%"+search+"%","%"+search+"%",start,end};
 		List bList = jdbc.query(query, locationRowMapper,params);
 		return bList;
 	}
 
+	//네비게이션제작 - 전체게시물 수 조회
+	public int searchTotal(String search) {
+		String query = "SELECT COUNT(*) FROM (SELECT * FROM LOCATION WHERE (LO_ADDR LIKE ?) OR (LO_TITLE LIKE ?) OR  (LO_INFO LIKE ?) OR (LO_MENU LIKE ?))";
+		Object[] params = {"%"+search+"%","%"+search+"%","%"+search+"%","%"+search+"%"};
+		int result = jdbc.queryForObject(query,Integer.class,params);
+		return result;
+	}
 
 	//맛집 저장하기
 	public int locationInsert(ArrayList<Location> list) {
@@ -66,4 +73,7 @@ public class LocationDao {
 		List list = jdbc.query(query, locationRowMapper,searchPlace);
 		return list;
 	}
+
+
+	
 }

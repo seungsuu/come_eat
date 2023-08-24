@@ -27,6 +27,7 @@ font-family: 'Noto Sans KR', sans-serif;
     width: 1200px;
     margin: 60px auto;
     box-sizing: border-box;
+    min-height: calc(100vh - 350px);
 }
 
 /*제목공통클래스*/

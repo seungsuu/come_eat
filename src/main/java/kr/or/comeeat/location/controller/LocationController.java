@@ -22,7 +22,7 @@ public class LocationController {
 	
 	
 	//검색
-	@PostMapping(value="/search")
+	@GetMapping(value="/search")
 	public String searchList(String pageNo,String search,Model model) {
 		LocationData locationData = locationService.searchList(pageNo,search);
 		model.addAttribute("list", locationData.getList());

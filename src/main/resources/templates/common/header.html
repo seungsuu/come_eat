@@ -25,7 +25,7 @@
                         <a href="/location/aroundPlace">내주변맛집</a>
                     </li>
                     <li>
-                        <a href="/location/list">지역별맛집</a>
+                        <a href="/location/foodList?pageNo=1&lo=su">지역별맛집</a>
                     </li>
                     <li>
                         <a href="#">이벤트</a>
@@ -53,19 +53,20 @@
         </div>
         <div class="header-search-box">
                 <div>
-                    <form action="/location/search?pageNo=1">
+                    <form action="/location/search" method="get">
                     	<div class="search-input">
-	                        <input type="text" name="search">
+	                        <input type="text" name="search" placeholder="지역/식당명/음식 을 입력해주세요" required>
 	                        <button type="submit"><span class="material-icons">search</span></button>
                     	</div>
                         <p>추천검색어</p>
                         <ul>
-                            <li><button type="submit">#인기맛집</button></li>
-                            <li><button type="submit">#서울맛집</button></li>
-                            <li><button type="submit">#신규맛집</button></li>
-                            <li><button type="submit">#부산맛집</button></li>
-                            <li><button type="submit">#전남맛집</button></li>
+                            <li><button type="submit" name="search" value="인기맛집">#인기맛집</button></li>
+                            <li><button type="submit" name="search" value="서울맛집">#서울맛집</button></li>
+                            <li><button type="submit" name="search" value="신규맛집">#신규맛집</button></li>
+                            <li><button type="submit" name="search" value="부산맛집">#부산맛집</button></li>
+                            <li><button type="submit" name="search" value="전남맛집">#전남맛집</button></li>
                         </ul>
+                        <input type="hidden" name="pageNo" value="1">
                     </form>
                 </div>
         </div>
@@ -82,6 +83,10 @@
 	                $(this).children().addClass("hover");
                 }
     });
+  	
+  	$(".header-search-box li").on("click",function(){
+  		$(".search-input>input[name=search]").attr("required", false).attr("name", false)
+  	});
     </script>
 </body>
 </html>

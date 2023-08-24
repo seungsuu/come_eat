@@ -57,6 +57,7 @@
     height: 150px;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
 }
 .location-content-info{
     float: left;
@@ -161,4 +162,10 @@
 .marker-r>div:last-child{
     font-size: 14px;
     font-weight: 400;
+}
+.content-wrap>.box{
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	line-height: 350px;
+	padding: 0;
 }
