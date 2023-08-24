@@ -61,10 +61,16 @@ public class MemberDao {
 
 	//회원정보 수정
 	public int updateMember(Member member) {
-		String query = "update member set member_pw=?,member_name=?,member_email=?,member_phone=?";
-		Object[] params = {member.getMemberPw(), member.getMemberName(), member.getMemberEmail(), member.getMemberPhone()};
+		String query = "update member set member_pw=?,member_name=?,member_email=?,member_phone=? where member_id=?";
+		Object[] params = {member.getMemberPw(), member.getMemberName(), member.getMemberEmail(), member.getMemberPhone(),member.getMemberId()};
 		int result = jdbc.update(query,params);
 		return result;
+	}
+
+	public List selectAllMember() {
+		String query = "select * from member order by 1";
+		List list = jdbc.query(query, memberRowMapper);
+		return list;
 	}
 
 }
