@@ -58,6 +58,4 @@ public class LocationDao {
 		return list;
 	}
 
-
-	
 }
