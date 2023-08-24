@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.comeeat.member.model.service.MemberService;
 import kr.or.comeeat.member.model.vo.Member;
@@ -101,6 +102,25 @@ public class MemberController {
 	@GetMapping(value="/mypage")
 	public String mypage() {
 		return "member/mypage";
+	}
+	
+	
+	
+	//회원 탈퇴
+	@GetMapping(value="/delete")
+	public String delete(Model model, @SessionAttribute(required = false)Member m) {
+		int result = memberService.deleteMember(m.getMemberNo());
+		if(result>0) {
+			model.addAttribute("msg","자동 로그아웃 됩니다.");
+			model.addAttribute("icon","success");
+			model.addAttribute("loc","/");
+			
+		}else {
+			model.addAttribute("msg","다시 시도해주세요.");
+			model.addAttribute("icon","error");
+			model.addAttribute("loc","/member/mypage");
+		}
+		return "common/msg";
 	}
 	
 	

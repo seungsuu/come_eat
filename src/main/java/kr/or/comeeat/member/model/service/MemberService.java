@@ -35,6 +35,12 @@ public class MemberService {
 			Member member = memberDao.selectMemberId(memberName, memberEmail);
 			return member;
 	}
+
+	@Transactional
+	public int deleteMember(int memberNo) {
+		int result  = memberDao.deleteMember(memberNo);
+		return result;
+	}
 	
 
 }
