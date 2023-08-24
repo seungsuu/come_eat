@@ -38,118 +38,123 @@
 		<div class="modal">
 			<div class="modal_body">
 				<div class="content-title">예약하기</div>
-				<div class=booking-form>
-					<div class="date-select-button-up" style="padding-left: 20px; padding-right: 20px;">
-						<span class="material-icons" style="float: left; font-size: 70px;">calendar_month</span>
-						<span style="float: left; font-size: 36px;">날짜 선택</span> 
-						<span class="material-icons" style="float: right; font-size: 80px;" id="date-icon-updown1">arrow_circle_up</span>
-					</div>	
-					<div class="booking-cal">
-						<input class="form-control" type="datetime-local" id="bookingDate" name="bookingDate" required="날짜를 선택하세요">
-					</div>
-				</div>
-					
-				<div class=booking-form>
-					<div class="time-select-button-up" style="padding-left: 20px; padding-right: 20px;">
-						<span class="material-icons" style="float: left; font-size: 70px;">schedule</span>
-						<span style="float: left; font-size: 36px;">시간 선택</span> 
-						<span class="material-icons" style="float: right; font-size: 80px;" id="date-icon-updown2">arrow_circle_up</span>
-					</div>
-					<div class="booking-time">
-						<label>
-							<input type="radio" name="bookingTime" id="bookingTime" value="1" required="시간을 선택하세요">
-							<span>오후 1시</span>
-						</label>
-						<label>
-							<input type="radio" name="bookingTime" id="bookingTime" value="2">
-							<span>오후 2시</span>
-						</label>
-						<label>
-							<input type="radio" name="bookingTime" id="bookingTime" value="3">
-							<span>오후 3시</span>
-						</label>
-						<label>
-							<input type="radio" name="bookingTime" id="bookingTime" value="6">
-							<span>오후 6시</span>
-						</label>
-						<label>
-							<input type="radio" name="bookingTime" id="bookingTime" value="7">
-							<span>오후 7시</span>
-						</label>
-						<label>
-							<input type="radio" name="bookingTime" id="bookingTime" value="8">
-							<span>오후  8시</span>
-						</label>
-					</div>
-				</div>	
-					
-					
-					
-					
-				<div class=booking-form style="overflow:hidden;">
-					<div class="totalnum-select-button-up" style="padding-left: 20px; padding-right: 20px;">
-						<span class="material-icons" style="float: left; font-size: 70px;">people</span>
-						<span style="float: left; font-size: 36px;">인원 선택</span>
-							<span class="material-icons" style="float: right; font-size: 80px;"
-							id="date-icon-updown3">arrow_circle_up</span>
-					</div>
-					<div class="num-select">
-						<div style="float:left;padding-left: 20px;" class="count-div"><span style="font-size:36px; line-height:70px">방문하는 인원 선택</span></div>
-						<div style="float:right; padding-right:20px;" class="count-div">
-							<button type="button" class="count_btn" id="minus">
-								<span class="material-icons">remove_circle_outline</span>
-							</button>
-							<input type="text" value="1" name="bookingTotalnum"
-								class="bookingTotalnum" style="text-align:center;" required="인원을 선택하세요">
-							<button type="button" class="count_btn" id="plus">
-								<span class="material-icons">add_circle_outline</span>
-							</button>
-						</div>
-					</div>
-				</div>
 				
-				<div class="booking-form">
-					<div class="booking-notice">
-						<p style="color:red; font-weight:500;"><span class="material-icons" style="color:red; font-size:50px;">error_outline</span>알립니다</p>
-						<p>주의사항</p>
-						<p>주의사항</p>
-						<p>주의사항</p>
+				<form action="/booking/book" method="post">
+					<div class=booking-form>
+						<div class="date-select-button-up" style="padding-left: 20px; padding-right: 20px;">
+							<span class="material-icons" style="float: left; font-size: 70px;">calendar_month</span>
+							<span style="float: left; font-size: 36px;">날짜 선택</span> 
+							<span class="material-icons" style="float: right; font-size: 80px;" id="date-icon-updown1">arrow_circle_up</span>
+						</div>	
+						<div class="booking-cal">
+							<input class="form-control" type="datetime-local" id="bookingDate" name="bookingDate" required="날짜를 선택하세요">
+						</div>
 					</div>
+						
+					<div class=booking-form>
+						<div class="time-select-button-up" style="padding-left: 20px; padding-right: 20px;">
+							<span class="material-icons" style="float: left; font-size: 70px;">schedule</span>
+							<span style="float: left; font-size: 36px;">시간 선택</span> 
+							<span class="material-icons" style="float: right; font-size: 80px;" id="date-icon-updown2">arrow_circle_up</span>
+						</div>
+						<div class="booking-time">
+							<label>
+								<input type="radio" name="bookingTime" id="bookingTime" value="1" required="시간을 선택하세요">
+								<span>오후 1시</span>
+							</label>
+							<label>
+								<input type="radio" name="bookingTime" id="bookingTime" value="2">
+								<span>오후 2시</span>
+							</label>
+							<label>
+								<input type="radio" name="bookingTime" id="bookingTime" value="3">
+								<span>오후 3시</span>
+							</label>
+							<label>
+								<input type="radio" name="bookingTime" id="bookingTime" value="6">
+								<span>오후 6시</span>
+							</label>
+							<label>
+								<input type="radio" name="bookingTime" id="bookingTime" value="7">
+								<span>오후 7시</span>
+							</label>
+							<label>
+								<input type="radio" name="bookingTime" id="bookingTime" value="8">
+								<span>오후  8시</span>
+							</label>
+						</div>
+					</div>	
+						
+						
+						
+						
+					<div class=booking-form style="overflow:hidden;">
+						<div class="totalnum-select-button-up" style="padding-left: 20px; padding-right: 20px;">
+							<span class="material-icons" style="float: left; font-size: 70px;">people</span>
+							<span style="float: left; font-size: 36px;">인원 선택</span>
+								<span class="material-icons" style="float: right; font-size: 80px;"
+								id="date-icon-updown3">arrow_circle_up</span>
+						</div>
+						<div class="num-select">
+							<div style="float:left;padding-left: 20px;" class="count-div"><span style="font-size:36px; line-height:70px">방문하는 인원 선택</span></div>
+							<div style="float:right; padding-right:20px;" class="count-div">
+								<button type="button" class="count_btn" id="minus">
+									<span class="material-icons">remove_circle_outline</span>
+								</button>
+								<input type="text" value="1" name="bookingTotalnum"
+									class="bookingTotalnum" style="text-align:center;" required="인원을 선택하세요">
+								<button type="button" class="count_btn" id="plus">
+									<span class="material-icons">add_circle_outline</span>
+								</button>
+							</div>
+						</div>
+					</div>
+					
+					<div class="booking-form">
+						<div class="booking-notice">
+							<p style="color:red; font-weight:500;"><span class="material-icons" style="color:red; font-size:50px;">error_outline</span>알립니다</p>
+							<p>주의사항</p>
+							<p>주의사항</p>
+							<p>주의사항</p>
+						</div>
+					</div>
+					<div class="booking-form">
+						<div style="overflow:hidden;">
+							<span style="float: left; font-size: 36px;">예약자 정보</span>
+						</div>
+						<div>
+							<div class="booking-info">
+								<label for="memberName">예약자</label>
+								<input type="text" id="memberName" name="memberName" th:value="${session.m.memberName}" placeholder>
+								<!-- th:value="${session.m.memberName}" -->
+							</div>
+							<div class="booking-info">
+								<label for="memberPhone">연락처</label>
+								<input type="text" id="memberPhone" name="memberPhone" th:value="${session.m.memberPhone}" placeholder>
+								<!-- th:value="${session.m.memberPhone}" -->
+							</div>
+							<div class="booking-info">
+								<label for="memberEmail">이메일</label>
+								<input type="text" id="memberEmail" name="memberEmail" th:value="${session.m.memberEmail}" placeholder>
+								<!-- th:value="${session.m.memberEmail}" -->
+							</div>
+							<input type="hidden" name=memberNo th:value="${session.m.memberNo}">
+						</div>
+					</div>
+					<div class="booking-form">
+						<div style="overflow:hidden;">
+							<span style="float: left; font-size: 36px; height: 70px;">예약금</span>
+							<div class="price-form">
+								<input type="text" id="price" value="10000" disabled>
+								<span style="font-size:36px;">원</span>
+							</div>
+						</div>
+					</div>	
+					<button type="button" id="payBtn" class="btn" style="width:300px; height:50px;">결제 및 예약하기</button>
+				</form>
 				</div>
-				<div class="booking-form">
-					<div style="overflow:hidden;">
-						<span style="float: left; font-size: 36px;">예약자 정보</span>
-					</div>
-					<div>
-						<div class="booking-info">
-							<label for="memberName">예약자</label>
-							<input type="text" id="memberName" >
-							<!-- th:value="${session.m.memberName}" -->
-						</div>
-						<div class="booking-info">
-							<label for="memberPhone">연락처</label>
-							<input type="text" id="memberPhone">
-							<!-- th:value="${session.m.memberPhone}" -->
-						</div>
-						<div class="booking-info">
-							<label for="memberEmail">이메일</label>
-							<input type="text" id="memberEmail">
-							<!-- th:value="${session.m.memberEmail}" -->
-						</div>
-					</div>
-				</div>
-				<div class="booking-form">
-					<div style="overflow:hidden;">
-						<span style="float: left; font-size: 36px; height: 70px;">예약금</span>
-						<div class="price-form">
-							<input type="text" id="price" value="10000" disabled>
-							<span style="font-size:36px;">원</span>
-						</div>
-					</div>
-				</div>	
-				<button type="submit" id="payBtn" class="btn" style="width:300px; height:50px;">결제 및 예약하기</button>
 			</div>
-		</div>
+		
 		<button class="modal-open-btn">Modal 띄우기</button>
 
 	</div>
@@ -229,7 +234,7 @@
 				buyer_email : buyerMail
 			},function(rsp){
 				if(rsp.success){
-					alert("결재성공");
+					
 				}else{
 					alert("결재실패");
 				}

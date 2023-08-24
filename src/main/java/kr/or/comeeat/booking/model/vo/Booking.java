@@ -13,4 +13,5 @@ public class Booking {
 	private String bookingDate;
 	private int bookingTotalnum;
 	private int memberNo;
+	private String memberName;
 }

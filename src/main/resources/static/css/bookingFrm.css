@@ -214,7 +214,10 @@ cursor: pointer;
 	background-color: #ff3700ff;
 	color: #ffffff;
 }
-	
+
+.booking-info input[type="text"]{
+	text-align:right;
+}
 	
 	
 		

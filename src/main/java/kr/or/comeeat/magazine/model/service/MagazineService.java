@@ -69,7 +69,6 @@ public class MagazineService {
 	@Transactional
 	public int updateMagazine(Magazine m) {
 		int result = magazineDao.updateMagazine(m);
-		System.out.println(result);
 		return result;
 	}
 }
