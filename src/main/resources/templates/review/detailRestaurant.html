@@ -71,9 +71,9 @@
 			</div>
 		</div>
 		<div class="reservationBtn">
-			<a href="/">
-				<button type="button" class="btn-o" name="reserveBtn" id="reserveBtn">예약하기</button>		
-			</a>
+				<a href="booking/bookingFrm" class="btn" th:if="${session.m != null && session.m.memberLevel == 1}">예약하기</a>
+				<!-- 현재 관리자만 예약되게 되있음 -->
+			
 		</div>
 		<div class="restaurant_reviewList">
 			<div class="reviewList_title">

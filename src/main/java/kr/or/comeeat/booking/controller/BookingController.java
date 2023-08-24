@@ -12,18 +12,18 @@ import kr.or.comeeat.booking.model.service.BookingService;
 import kr.or.comeeat.booking.model.vo.Booking;
 
 @Controller
-@RequestMapping(value="/booking")
+
 public class BookingController {
 	@Autowired
 	private BookingService bookingService;
 	
-	@GetMapping(value="/bookingFrm")
+	@GetMapping(value="review/booking/bookingFrm")
 	public String bookingFrm() {
 		return "booking/bookingFrm";
 	}
 	
 	
-	@PostMapping(value="/book")
+	@PostMapping(value="booking/book")
 	public String book(Booking b, Model model) {
 		int result = bookingService.insertBooking(b);
 		if(result>0) {
