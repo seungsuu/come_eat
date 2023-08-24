@@ -88,21 +88,6 @@
     background-color: #ff3700ff;
     font-weight: 400;
 }
-/*
 .mypage-content{
-	display: none;
+	display:none;
 }
-*/
-.mypage-content-title>p{
-	text-align : center;
-	font-weight: 400;
-	font-size: 18px;
-	
-}
-input {
-	width: 300px;
-}
-
-
-
-
