@@ -46,6 +46,7 @@
                 <a href="/location/foodList?pageNo=1&lo=yj" class="btn lo-btn" title="영주맛집">영주</a>
             </div>
         </div>
+        <!-- 리스트출력 -->
         <div th:if="${list != null}">        
 	        <div class="sub-title clear" th:text="${title}"></div>
 	        <div class="location-map">
@@ -68,9 +69,6 @@
 	            </div>
 	        </div>
 	        <div class="board-navi" th:utext="${navi}"></div>
-	        
-	        
-	        
         </div>
     </div>
     <th:block th:include="common/footer"></th:block>

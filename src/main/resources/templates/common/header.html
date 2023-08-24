@@ -53,16 +53,18 @@
         </div>
         <div class="header-search-box">
                 <div>
-                    <form action="/">
-                        <input type="text" name="search">
-                        <button type="submit"><span class="material-icons">search</span></button>
+                    <form action="/location/search?pageNo=1">
+                    	<div class="search-input">
+	                        <input type="text" name="search">
+	                        <button type="submit"><span class="material-icons">search</span></button>
+                    	</div>
                         <p>추천검색어</p>
                         <ul>
-                            <li>#인기맛집</li>
-                            <li>#제주맛집</li>
-                            <li>#부산맛집</li>
-                            <li>#강원도맛집</li>
-                            <li>#신규맛집</li>
+                            <li><button type="submit">#인기맛집</button></li>
+                            <li><button type="submit">#서울맛집</button></li>
+                            <li><button type="submit">#신규맛집</button></li>
+                            <li><button type="submit">#부산맛집</button></li>
+                            <li><button type="submit">#전남맛집</button></li>
                         </ul>
                     </form>
                 </div>
@@ -72,6 +74,13 @@
   	//검색창토글
     $("#search-btn").on("click",function(){
                 $(".header-search-box").slideToggle();
+                if($(this).children().text()=="close"){
+                    $(this).children().text("search");
+	                $(this).children().removeClass("hover");
+                }else{                	
+	                $(this).children().text("close");
+	                $(this).children().addClass("hover");
+                }
     });
     </script>
 </body>

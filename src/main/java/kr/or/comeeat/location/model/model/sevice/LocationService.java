@@ -22,6 +22,25 @@ import kr.or.comeeat.location.model.vo.LocationData;
 public class LocationService {
 	@Autowired
 	private LocationDao locationDao;
+	
+	//검색조회
+	public LocationData searchList(String pageNo, String search) {
+		int num = 6; //출력개수
+		int end = num * Integer.parseInt(pageNo);//끝번호
+		int start = end - num + 1;//시작번호
+		
+		//DB select
+		List list = locationDao.searchList(search,end,start);
+		//네비게이션
+		String pageNavi = searchNavi(num,Integer.parseInt(pageNo),loCode,lo);
+		//소제목설정
+		String title = "부산맛집";
+		//리스트+네비 data 묶기
+		LocationData locationData = new LocationData(bList, pageNavi,title);
+		
+		return list;
+	}
+
 
 	//지역별 맛집리스트 가져오기
 	public LocationData foodList(String pageNo, String lo) {
@@ -204,4 +223,5 @@ public class LocationService {
 		return list;
 	}
 
+	
 }

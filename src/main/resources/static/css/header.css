@@ -81,29 +81,36 @@
     background-color: #fff;
     color: #ff3700ff;
 }
+.header-right li .hover{
+	border-radius: 30px;
+    background-color: #fff;
+    color: #ff3700ff;
+}
 
 /*헤더 - 검색창*/
 .header-search-box{
     background-color: rgba(255, 255, 255, 0.8);
     padding: 30px 0;
     display: none;
+    box-shadow: 0 10px 20px #ccc
 }
 .header-search-box>div{
     width: 600px;
     margin: 0 auto;
 }
-.header-search-box input{
+.search-input>input{
     border: none;
     border-bottom: 1px solid #2f2f2f;
     background-color: transparent;
     font-size: 18px;
+    padding: 5px 0;
     width: 90%;
 }
-.header-search-box button{
+.search-input>button{
     border: none;
     background-color: transparent;
 }
-.header-search-box button>span{
+.search-input>button>span{
     font-size: 40px;
 }
 .header-search-box p{
@@ -112,12 +119,18 @@
 .header-search-box ul{
     overflow: hidden;
 }
-.header-search-box li{
+.header-search-box li>button{
     float: left;
     margin-right: 5px;
     padding: 5px 15px;
-    background-color: #ff3700ff;
+    border: 1px solid #ff3700ff;
+    color: #ff3700ff;
     border-radius: 30px;
+    cursor: pointer;
+    background-color: transparent;
+}
+.header-search-box li:hover>button{
+    background-color: #ff3700ff;
     color: #fff;
 }
 

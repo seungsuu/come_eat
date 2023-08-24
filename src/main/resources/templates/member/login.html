@@ -45,5 +45,11 @@
         </div>
     </div>
     <th:block th:include="common/footer"></th:block>
+    <script th:inline="javascript">
+    	window.onload = function(){
+    		$("#search-btn").next().addClass("hover");
+    	};
+    	}
+    </script>
 </body>
 </html>

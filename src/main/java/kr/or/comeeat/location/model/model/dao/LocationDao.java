@@ -17,8 +17,17 @@ public class LocationDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private LocationRowMapper locationRowMapper;
+	
+	//검색조회
+	public List searchList(String search, int end, int start) {
+		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE (LO_ADDR LIKE '%'|| ? ||'%') OR (LO_TITLE LIKE '%'|| ? ||'%') OR  (LO_INFO '%'|| ? ||'%') OR (LO_MENU LIKE '%'|| ? ||'%') ) L) WHERE RNUM BETWEEN ? AND ?";
+		Object[] params = {search,search,search,search,start,end};
+		List bList = jdbc.query(query, locationRowMapper,params);
+		return bList;
+	}
 
-	//부산맛집 저장하기
+
+	//맛집 저장하기
 	public int locationInsert(ArrayList<Location> list) {
 		String query = "INSERT INTO LOCATION VALUES(LOCATION_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
 		int result = 0;
@@ -29,7 +38,7 @@ public class LocationDao {
 		return result;
 	}
 
-	//부산맛집 가져오기
+	//맛집 가져오기
 	public List locationSelect(String loCode, int end, int start) {
 		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE LO_CODE=?) L) WHERE RNUM BETWEEN ? AND ?";
 		Object[] params = {loCode,start,end};
@@ -58,6 +67,7 @@ public class LocationDao {
 		return list;
 	}
 
+	
 
 	
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+        <div class="content-title">지역별 맛집</div>
+        <!-- 리스트출력 -->
+        <div th:if="${list != null}">        
+	        <div class="sub-title clear" th:text="${title}"></div>
+	        <div class="location-map">
+	            	<div id="map" style="width:100%;height:100%;"></div>
+	        </div>
+	        <div class="location-content-wrap"> 
+	            <div class="location-content" th:each="location : ${list}">
+	                <a th:href="@{/review/detailRestaurant(loNo=${location.loNo})}">
+	                    <div class="location-img-box" th:style="'background-image:url(' + ${location.loThumb} + ');'">
+	                    </div>
+	                    <div class="location-content-info">
+	                        <p th:text="${location.loTitle}"></p>
+	                        <p th:text="${location.loInfo}"></p>
+	                        <div class="star">
+	                            <span class="material-icons-round">grade</span>
+	                            <span>4.5</span>
+	                        </div>
+	                    </div>
+	                </a>
+	            </div>
+	        </div>
+	        <div class="board-navi" th:utext="${navi}"></div>
+        </div>
+    </div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,6 +22,18 @@ public class LocationController {
 	@Autowired
 	private LocationService locationService;
 	
+	
+	//검색
+	@PostMapping(value="/search")
+	public String searchList(String pageNo,String search,Model model) {
+		LocationData locationData = locationService.searchList(pageNo,search);
+		model.addAttribute("list", locationData.getList());
+		model.addAttribute("navi", locationData.getNavi());
+		model.addAttribute("title", locationData.getTitle());
+		return "search/searchList";
+	}
+	
+	//지역별맛집 페이지로 이동
 	@GetMapping(value="/list")
 	public String locationList() {
 		return "location/location";
