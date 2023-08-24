@@ -1,5 +1,7 @@
 package kr.or.comeeat.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,6 +118,11 @@ public class MemberController {
 	public String mypage() {
 		return "member/mypage";
 	}
+	//마이페이지로 이동(관리자)
+		@GetMapping(value="/adminMypage")
+		public String adminMypage() {
+			return "member/adminMypage";
+		}
 	
 	
 	//회원 수정
@@ -158,10 +165,14 @@ public class MemberController {
 		return "common/msg";
 	}
 	
-	
-	
-	
-	
-	
+	//전체회원 조회 : admin
+	@GetMapping(value="/admin")
+		public String admin(Model model) {
+		 List list = memberService.selectAllMember();
+		 model.addAttribute("list", list);
+		 return "member/adminMypage";
+	}
 	
 }
+	
+

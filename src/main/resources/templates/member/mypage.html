@@ -96,8 +96,8 @@
         </table>
        		<div class="btn-box">
 					<button type="submit" class="btn">정보수정</button>
-					<a th:if="${session.m.memberLevel != 1}" href="/member/delete" class="btn">회원탈퇴</a>
-					<a th:if="${session.m.memberLevel == 1}" href="/member/admin" class="btn">회원관리</a>
+					<a href="/member/delete" class="btn">회원탈퇴</a>
+					
 			</div>
        </form> 
        </div>
