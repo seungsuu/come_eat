@@ -121,9 +121,7 @@ $("#memberId").on("change",function(){
 		}		
 	});
 	
-	$("#btnConfirm").on("click",function(){
-		console.log("버튼클릭");
-		});
+	
 
 
     
