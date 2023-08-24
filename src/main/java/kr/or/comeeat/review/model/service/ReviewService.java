@@ -14,8 +14,8 @@ public class ReviewService {
 	@Autowired
 	private ReviewDao reviewDao;
 
-	public Location selectOneRestaurant(String loTitle) {
-		Location l = reviewDao.selectOneRestaurant(loTitle);
+	public Location selectOneRestaurant(int loNo) {
+		Location l = reviewDao.selectOneRestaurant(loNo);
 		return l;
 	}
 }

@@ -19,9 +19,9 @@ public class ReviewDao {
 	@Autowired
 	private LocationRowMapper locationRowMapper;
 
-	public Location selectOneRestaurant(String loTitle) {
-		String query = "select * from location where lo_title=?";
-		List list = jdbc.query(query,locationRowMapper ,loTitle);
+	public Location selectOneRestaurant(int loNo) {
+		String query = "select * from location where lo_no=?";
+		List list = jdbc.query(query,locationRowMapper ,loNo);
 		return (Location)list.get(0);
 	}
 }

@@ -21,8 +21,8 @@ public class ReviewController {
 
 	
 	@GetMapping(value="/detailRestaurant")
-	public String detailRestaurant(String loTitle,Model model) {
-		Location l = reviewService.selectOneRestaurant(loTitle);
+	public String detailRestaurant(int loNo,Model model) {
+		Location l = reviewService.selectOneRestaurant(loNo);
 		model.addAttribute("list",l);
 		return "review/detailRestaurant";
 	}
