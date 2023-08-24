@@ -60,7 +60,7 @@ public class MemberController {
 	@PostMapping(value="/signup") 
 		public String signup(Member member, Model model) {
 			int result = memberService.insertMember(member);
-			if(result>0) {
+			if(result>0)  {
 				model.addAttribute("title", "회원가입 성공");
 				model.addAttribute("msg", "신규 회원 가입을 축하합니다.");
 				model.addAttribute("icon", "success");
