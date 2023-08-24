@@ -42,5 +42,12 @@ public class MemberService {
 		return result;
 	}
 	
+	@Transactional
+	//회원정보 수정
+	public int updateMember(Member member) {
+		int result = memberDao.updateMember(member);
+		return result;
+	}
+	
 
 }

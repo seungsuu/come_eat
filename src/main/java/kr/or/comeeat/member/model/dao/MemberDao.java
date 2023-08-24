@@ -59,4 +59,12 @@ public class MemberDao {
 		return result;
 	}
 
+	//회원정보 수정
+	public int updateMember(Member member) {
+		String query = "update member set member_pw=?,member_name=?,member_email=?,member_phone=?";
+		Object[] params = {member.getMemberPw(), member.getMemberName(), member.getMemberEmail(), member.getMemberPhone()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
 }

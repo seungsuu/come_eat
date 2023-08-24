@@ -95,7 +95,20 @@ public class MemberController {
 	public String searchId(String memberName, String memberEmail, Model model) {
 		Member member = memberService.selectMemberId(memberName, memberEmail);
 		model.addAttribute("member", member);
-		return "member/searchId";
+		if(member == null) {
+			model.addAttribute("msg","조회되는 아이디가 없습니다.");
+			model.addAttribute("icon","error");
+			model.addAttribute("loc", "/member/login");
+			
+		}else {
+			model.addAttribute("msg","회원님의 아이디는 "+member.getMemberId()+" 입니다.");
+			model.addAttribute("icon","success");
+			model.addAttribute("loc", "/member/login");
+		}
+		return "common/msg";
+		//System.out.println(member.getMemberId());
+		//return "member/searchId";
+		
 	}
 	
 	//마이페이지로 이동
@@ -105,6 +118,28 @@ public class MemberController {
 	}
 	
 	
+	//회원 수정
+	@PostMapping(value="/update")
+	public String update(Member member, Model model, @SessionAttribute(required = false)Member m) {
+		int result = memberService.updateMember(member);
+		if(result>0) {
+			
+			m.setMemberPw(member.getMemberPw());
+			m.setMemberName(member.getMemberName());
+			m.setMemberEmail(member.getMemberEmail());
+			m.setMemberPhone(member.getMemberPhone());
+			
+			model.addAttribute("msg","회원정보가 수정 되었습니다.");
+			model.addAttribute("icon","success");
+			model.addAttribute("loc","/member/mypage");
+		}
+		else {
+			model.addAttribute("msg","다시 시도해주세요.");
+			model.addAttribute("icon","success");
+			model.addAttribute("loc","/member/mypage");
+		}
+		return "common/msg";
+	}
 	
 	//회원 탈퇴
 	@GetMapping(value="/delete")
