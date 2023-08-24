@@ -20,7 +20,7 @@
 					<span style=display:none; th:text="${list.loLng}"></span>
 				</div>
 				<div class="review_icons">
-					<div class="icon1">
+					<div class="icon1" th:if="${session.m != null}">
 						<a href="/review/reviewWriteFrm"> 
 							<div class="reviewBtn">
                                 <span class="material-icons">edit_document</span>
@@ -154,6 +154,7 @@
 	
 			// 마커가 지도 위에 표시되도록 설정합니다
 			marker.setMap(map);
+
 	</script>
 </body>
 </html>
