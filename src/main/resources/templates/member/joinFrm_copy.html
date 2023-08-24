@@ -19,7 +19,7 @@
                     <span> * </span>
                 </td>
                 <td>
-                    <input type="text" class="join-input-form" id="memberId" name="memberId">
+                    <input type="text" class="join-input-form" id="memberId" name="memberId" required>
                     <span class="comment"></span>
                 </td>
             <tr>
@@ -28,7 +28,7 @@
                     <span> * </span>
                 </td>
                 <td>
-                    <input type="password" class="join-input-form" id="memberPw" name="memberPw" placeholder="영문+숫자+특수문자 조합 8~16자리를 입력해주세요.">
+                    <input type="password" class="join-input-form" id="memberPw" name="memberPw" placeholder="영문+숫자+특수문자 조합 8~16자리를 입력해주세요." required>
                     <span class="comment"></span>
                 </td>
             </tr>
@@ -38,7 +38,7 @@
                     <span> * </span>
                 </td>
                 <td>
-                    <input type="password" class="join-input-form" id="memberPwRe">
+                    <input type="password" class="join-input-form" id="memberPwRe" required>
                     <span class="comment"></span>
                 </td>
             </tr>
@@ -48,16 +48,17 @@
                     <span> * </span>
                 </td>
                 <td>
-                    <input type="text" class="join-input-form" id="memberName" name="memberName" placeholder="ex)홍길동">
+                    <input type="text" class="join-input-form" id="memberName" name="memberName" placeholder="ex)홍길동" required>
                     <span class="comment"></span>
                 </td>
             </tr>
             <tr>
                 <td class="join-th">
                     <label for="memberPhone">핸드폰번호</label>
+                    <span> * </span>
                 </td>
                 <td>
-                    <input type="text" class="join-input-form" id="memberPhone" name="memberPhone" placeholder="ex)010-0000-0000">
+                    <input type="text" class="join-input-form" id="memberPhone" name="memberPhone" placeholder="ex)010-0000-0000" required>
                     <span class="comment"></span>
                 </td>
             </tr>
@@ -67,7 +68,7 @@
                     <span> * </span>
                 </td>
                 <td class="join-td-end">
-                    <input type="text" class="join-input-form" id="memberEmail" name="memberEmail" placeholder="@를 포함한 이메일 형식으로 입력해주세요.">
+                    <input type="text" class="join-input-form" id="memberEmail" name="memberEmail" placeholder="@를 포함한 이메일 형식으로 입력해주세요." required>
                 </td>
             </tr>  
         </table>
@@ -148,6 +149,17 @@
     
     <script src="/js/joinFrm_copy.js"></script>
     <script>
+    $("#btnConfirm").on("click",function(){
+		
+		if($("#essentialAgree1").is(":checked") == true && $("#essentialAgree2").is(":checked") == true ){
+			console.log("성공");
+		}else
+			alert("이용약관 필수항목을 체크해주세요");
+		
+    });
+		
+
+
     
     </script>
 </body>

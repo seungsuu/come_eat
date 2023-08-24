@@ -74,13 +74,36 @@
 	hight:auto;
 	margin-top: 20px;
 	border-top: 2px solid #000;
-	padding: 30px 0px 30px 0px
+	padding: 30px 0px 30px 0px;
+	overflow:hidden;
 }
 .date-select-button-up{
 	overflow:hidden;
+	height : 80px;
+}
+.date-select-button-up>span{
+	line-height:80px;
 }
 .totalnum-select-button-up{
 	overflow:hidden;
+	height : 80px;
+}
+.totalnum-select-button-up>span{
+	line-height:80px;
+}
+
+.time-select-button-up{
+	overflow:hidden;
+	height : 80px;
+}
+
+.time-select-button-up>span{
+	line-height:80px;
+}
+
+.num-select{
+	overflow:hidden;
+	
 }
 
 
@@ -145,11 +168,53 @@
 	font-size:24px;
 	border:none;
 }
+
+.price-form{
+	float:right;
+	width: 70%
+}
+.price-form>input{
+	font-size:36px;
+	text-align:right;
+	width: 80%;
+	text-align:70px;
+}
+	
+	
+<!--달력 
+.bookingCal{
+        text-align: center;
+        width:200px;
+   }
+.bookingCal>input{
+	display: none;
+}
+
+.flatpickr-calendar {
+       margin: auto;
+       margin-top: 10px;
+    }
+.form-control{
+	display:none;
+}
+	
+	
+.booking-time input[type="radio"]{
+	display: none;
+}
+.booking-time input[type="radio"]+span{
+display: inline-block;
+padding: 15px 10px;
+border: 1px solid #dfdfdf;
+background-color: #ffffff;
+text-align: center;
+cursor: pointer;
+}
+.booking-time input[type="radio"]:checked + span {
+	background-color: #ff3700ff;
+	color: #ffffff;
+}
 	
 	
 	
-	
-	
-	
-	
-	
+		

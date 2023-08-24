@@ -35,6 +35,19 @@ public class MemberService {
 			Member member = memberDao.selectMemberId(memberName, memberEmail);
 			return member;
 	}
+
+	@Transactional
+	public int deleteMember(int memberNo) {
+		int result  = memberDao.deleteMember(memberNo);
+		return result;
+	}
+	
+	@Transactional
+	//회원정보 수정
+	public int updateMember(Member member) {
+		int result = memberDao.updateMember(member);
+		return result;
+	}
 	
 
 }

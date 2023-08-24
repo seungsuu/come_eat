@@ -28,7 +28,7 @@ public class MemberDao {
 	//회원가입
 	public int insertMember(Member member) {
 		String query ="insert into member values(member_seq.nextval,?,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'))";
-		Object[] params = {member.getMemberId(),member.getMemberPw(),member.getMemberName(),member.getMemberEmail(),1,member.getMemberPhone()};
+		Object[] params = {member.getMemberId(),member.getMemberPw(),member.getMemberName(),member.getMemberEmail(),2,member.getMemberPhone()};
 		int result = jdbc.update(query,params);
 		return result;
 	}
@@ -51,6 +51,20 @@ public class MemberDao {
 		}
 		return (Member)list.get(0);
 	}
-
 	
+	//회원 삭제
+	public int deleteMember(int memberNo) {
+		String query = "delete from member where member_no=?";
+		int result = jdbc.update(query,memberNo);
+		return result;
+	}
+
+	//회원정보 수정
+	public int updateMember(Member member) {
+		String query = "update member set member_pw=?,member_name=?,member_email=?,member_phone=?";
+		Object[] params = {member.getMemberPw(), member.getMemberName(), member.getMemberEmail(), member.getMemberPhone()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
 }

@@ -120,5 +120,10 @@ $("#memberId").on("change",function(){
 			comment.eq(0).css("font-weight","400");
 		}		
 	});
+	
+	$("#btnConfirm").on("click",function(){
+		console.log("버튼클릭");
+		});
+
 
     

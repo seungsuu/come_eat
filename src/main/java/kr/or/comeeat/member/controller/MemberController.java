@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.comeeat.member.model.service.MemberService;
 import kr.or.comeeat.member.model.vo.Member;
@@ -59,7 +60,7 @@ public class MemberController {
 	@PostMapping(value="/signup") 
 		public String signup(Member member, Model model) {
 			int result = memberService.insertMember(member);
-			if(result>0) {
+			if(result>0)  {
 				model.addAttribute("title", "회원가입 성공");
 				model.addAttribute("msg", "신규 회원 가입을 축하합니다.");
 				model.addAttribute("icon", "success");
@@ -94,13 +95,67 @@ public class MemberController {
 	public String searchId(String memberName, String memberEmail, Model model) {
 		Member member = memberService.selectMemberId(memberName, memberEmail);
 		model.addAttribute("member", member);
-		return "member/searchId";
+		if(member == null) {
+			model.addAttribute("msg","조회되는 아이디가 없습니다.");
+			model.addAttribute("icon","error");
+			model.addAttribute("loc", "/member/login");
+			
+		}else {
+			model.addAttribute("msg","회원님의 아이디는 "+member.getMemberId()+" 입니다.");
+			model.addAttribute("icon","success");
+			model.addAttribute("loc", "/member/login");
+		}
+		return "common/msg";
+		//System.out.println(member.getMemberId());
+		//return "member/searchId";
+		
 	}
 	
 	//마이페이지로 이동
 	@GetMapping(value="/mypage")
 	public String mypage() {
 		return "member/mypage";
+	}
+	
+	
+	//회원 수정
+	@PostMapping(value="/update")
+	public String update(Member member, Model model, @SessionAttribute(required = false)Member m) {
+		int result = memberService.updateMember(member);
+		if(result>0) {
+			
+			m.setMemberPw(member.getMemberPw());
+			m.setMemberName(member.getMemberName());
+			m.setMemberEmail(member.getMemberEmail());
+			m.setMemberPhone(member.getMemberPhone());
+			
+			model.addAttribute("msg","회원정보가 수정 되었습니다.");
+			model.addAttribute("icon","success");
+			model.addAttribute("loc","/member/mypage");
+		}
+		else {
+			model.addAttribute("msg","다시 시도해주세요.");
+			model.addAttribute("icon","success");
+			model.addAttribute("loc","/member/mypage");
+		}
+		return "common/msg";
+	}
+	
+	//회원 탈퇴
+	@GetMapping(value="/delete")
+	public String delete(Model model, @SessionAttribute(required = false)Member m) {
+		int result = memberService.deleteMember(m.getMemberNo());
+		if(result>0) {
+			model.addAttribute("msg","자동 로그아웃 됩니다.");
+			model.addAttribute("icon","success");
+			model.addAttribute("loc","/");
+			
+		}else {
+			model.addAttribute("msg","다시 시도해주세요.");
+			model.addAttribute("icon","error");
+			model.addAttribute("loc","/member/mypage");
+		}
+		return "common/msg";
 	}
 	
 	
