@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+
 <meta charset="UTF-8">
 <script src="/js/jquery-3.6.0.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>예약하기</title>
-
 <link rel="stylesheet" href="/css/bookingFrm.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
+<style>
+.flatpickr-month
+{
+	background-color:#ff3700ff !important;
+}
+.flatpickr-weekdays{
+	background-color:#ff3700ff !important;
+}
+.flatpickr-weekday{
+	background-color:#ff3700ff !important;
+}
+.flatpickr-day.selected{
+	background-color:#ff3700ff !important;
+}
+
+
+</style>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -19,29 +41,70 @@
 				<div class=booking-form>
 					<div class="date-select-button-up" style="padding-left: 20px; padding-right: 20px;">
 						<span class="material-icons" style="float: left; font-size: 70px;">calendar_month</span>
-						<span style="float: left; font-size: 36px;">날짜 선택</span> <span
-							class="material-icons" style="float: right; font-size: 80px;"
-							id="date-icon-updown">arrow_circle_up</span>
+						<span style="float: left; font-size: 36px;">날짜 선택</span> 
+						<span class="material-icons" style="float: right; font-size: 80px;" id="date-icon-updown1">arrow_circle_up</span>
+					</div>	
+					<div class="booking-cal">
+						<input class="form-control" type="datetime-local" id="bookingDate" name="bookingDate" required="날짜를 선택하세요">
 					</div>
-					
 				</div>
+					
+				<div class=booking-form>
+					<div class="time-select-button-up" style="padding-left: 20px; padding-right: 20px;">
+						<span class="material-icons" style="float: left; font-size: 70px;">schedule</span>
+						<span style="float: left; font-size: 36px;">시간 선택</span> 
+						<span class="material-icons" style="float: right; font-size: 80px;" id="date-icon-updown2">arrow_circle_up</span>
+					</div>
+					<div class="booking-time">
+						<label>
+							<input type="radio" name="bookingTime" id="bookingTime" value="1" required="시간을 선택하세요">
+							<span>오후 1시</span>
+						</label>
+						<label>
+							<input type="radio" name="bookingTime" id="bookingTime" value="2">
+							<span>오후 2시</span>
+						</label>
+						<label>
+							<input type="radio" name="bookingTime" id="bookingTime" value="3">
+							<span>오후 3시</span>
+						</label>
+						<label>
+							<input type="radio" name="bookingTime" id="bookingTime" value="6">
+							<span>오후 6시</span>
+						</label>
+						<label>
+							<input type="radio" name="bookingTime" id="bookingTime" value="7">
+							<span>오후 7시</span>
+						</label>
+						<label>
+							<input type="radio" name="bookingTime" id="bookingTime" value="8">
+							<span>오후  8시</span>
+						</label>
+					</div>
+				</div>	
+					
+					
+					
+					
 				<div class=booking-form style="overflow:hidden;">
 					<div class="totalnum-select-button-up" style="padding-left: 20px; padding-right: 20px;">
 						<span class="material-icons" style="float: left; font-size: 70px;">people</span>
 						<span style="float: left; font-size: 36px;">인원 선택</span>
 							<span class="material-icons" style="float: right; font-size: 80px;"
-							id="date-icon-updown">arrow_circle_up</span>
+							id="date-icon-updown3">arrow_circle_up</span>
 					</div>
-					<div style="float:left;padding-left: 20px;" class="count-div"><span style="font-size:36px; line-height:70px">방문하는 인원 선택</span></div>
-					<div style="float:right; padding-right:20px;" class="count-div">
-						<button type="button" class="count_btn" id="minus">
-							<span class="material-icons">remove_circle_outline</span>
-						</button>
-						<input type="text" value="1" name="bookingTotalnum"
-							class="bookingTotalnum" style="text-align:center;">
-						<button type="button" class="count_btn" id="plus">
-							<span class="material-icons">add_circle_outline</span>
-						</button>
+					<div class="num-select">
+						<div style="float:left;padding-left: 20px;" class="count-div"><span style="font-size:36px; line-height:70px">방문하는 인원 선택</span></div>
+						<div style="float:right; padding-right:20px;" class="count-div">
+							<button type="button" class="count_btn" id="minus">
+								<span class="material-icons">remove_circle_outline</span>
+							</button>
+							<input type="text" value="1" name="bookingTotalnum"
+								class="bookingTotalnum" style="text-align:center;" required="인원을 선택하세요">
+							<button type="button" class="count_btn" id="plus">
+								<span class="material-icons">add_circle_outline</span>
+							</button>
+						</div>
 					</div>
 				</div>
 				
@@ -78,10 +141,13 @@
 				<div class="booking-form">
 					<div style="overflow:hidden;">
 						<span style="float: left; font-size: 36px; height: 70px;">예약금</span>
-						<span class="booking-price" style="line-height:70px; float: right; font-size:36px">10,000 원</span>
+						<div class="price-form">
+							<input type="text" id="price" value="10000" disabled>
+							<span style="font-size:36px;">원</span>
+						</div>
 					</div>
 				</div>	
-				<button type="submit" class="btn" style="width:300px; height:50px;">결제 및 예약하기</button>
+				<button type="submit" id="payBtn" class="btn" style="width:300px; height:50px;">결제 및 예약하기</button>
 			</div>
 		</div>
 		<button class="modal-open-btn">Modal 띄우기</button>
@@ -89,18 +155,40 @@
 	</div>
 	
 	<script src="/js/bookingFrm.js"></script>
+	
 	<script>
 		//datepicker
 
 		//슬라이드토글 아이콘
 		$(".date-select-button-up").on("click",
 						function() {
-							$('.container-fluid').slideToggle();
-							$('#date-icon-updown')
+							$('.booking-cal').slideToggle();
+							$('#date-icon-updown1')
 									.text(
-											$('#date-icon-updown').text() == 'arrow_circle_up' ? "arrow_circle_down"
+											$('#date-icon-updown1').text() == 'arrow_circle_up' ? "arrow_circle_down"
 													: "arrow_circle_up");
 						});
+		$(".time-select-button-up").on("click",
+				function() {
+					$('.booking-time').slideToggle();
+					$('#date-icon-updown2')
+							.text(
+									$('#date-icon-updown2').text() == 'arrow_circle_up' ? "arrow_circle_down"
+											: "arrow_circle_up");
+				});
+		$(".totalnum-select-button-up").on("click",
+				function() {
+					$('.num-select').slideToggle();
+					$('#date-icon-updown3')
+							.text(
+									$('#date-icon-updown3').text() == 'arrow_circle_up' ? "arrow_circle_down"
+											: "arrow_circle_up");
+				});
+		
+		
+		
+		
+		
 
 		let count = 1;
 		$("#plus").on("click", function() {
@@ -119,6 +207,73 @@
 				$(".bookingTotalnum").val(count);
 			}
 		})
+		
+		//결제버튼
+		$("#payBtn").on("click",function(){
+			const price = $("#price").val();
+			const d = new Date();
+			const date = d.getFullYear()+""+(d.getMonth()+1)+""+d.getDate()+""+d.getHours()+""+d.getMinutes()+""+d.getSeconds();
+			const buyerName = $("#memberName").val();
+			const buyerPhone = $("#memberPhone").val();
+			const buyerMail = $("#memberEmail").val();
+			
+			IMP.init("imp62057672");
+			IMP.request_pay({
+				pg : "html5_inicis",
+				pay_method : "card",
+				merchant_uid : "상품번호_"+date, 	//상점에서 관리하는 주문번호
+				name : "comeeat!",
+				amount : price,			//결제금액 -> 정상적인 숫자가 들어가야함
+				buyer_name : buyerName,
+				buyer_tel : buyerPhone,
+				buyer_email : buyerMail
+			},function(rsp){
+				if(rsp.success){
+					alert("결재성공");
+				}else{
+					alert("결재실패");
+				}
+			});
+		});
+		
+		
+		//달력
+		flatpickr.localize(flatpickr.l10ns.ko);
+
+    	const today = new Date().setHours(0, 0, 0, 0)
+
+    	config = {
+	        enableTime: false, // 시간 속성 사용 여부
+	        dateFormat: "Y-m-d", // 달력 입력 포맷
+	        altInput: true,
+	        altFormat: "m월 d일", // 보여지는 입력 포맷
+	        dateFormat: "Y-m-d", // 달력 입력 포맷
+	        local: 'ko', // 언어 설정
+	        minDate: today, // 최소 날짜 설정
+	        maxDate: new Date().fp_incr(6),
+	    	/* 
+	        time_24hr: true, // 24시간 사용 여부 (false인 경우 오전, 오후로 설정됨)
+    		disable: [ // 해당 날짜 비활성화
+	            function (date) {
+                // return true to disable
+                return (date.getDay() === 0 || date.getDay() === 7);
+            }
+	        ],
+	        */
+	        /* 시간따로할예정
+	        minuteIncrement: 60, // 분 입력(스크롤 포함)의 단계를 조정한다.
+	        minTime: "09:00", // 최소 시간
+	        maxTime: "18:00", // 최대 시간
+	        defaultHour: "09", // 시간 기본값
+	        defaultMinute: "00", // 분 기본값
+	        */
+	        inline: true,
+	    	monthSelectorType : 'static',
+	    }
+
+    	flatpickr("input[type=datetime-local]", config);
+		
+		
 	</script>
 </body>
 </html>
