@@ -39,7 +39,7 @@
 			<div class="modal_body">
 				<div class="content-title">예약하기</div>
 				
-				<form action="/booking/book" method="post">
+				<form action="/booking/book" method="post" id="booking-form-date">
 					<div class=booking-form>
 						<div class="date-select-button-up" style="padding-left: 20px; padding-right: 20px;">
 							<span class="material-icons" style="float: left; font-size: 70px;">calendar_month</span>
@@ -145,7 +145,7 @@
 						<div style="overflow:hidden;">
 							<span style="float: left; font-size: 36px; height: 70px;">예약금</span>
 							<div class="price-form">
-								<input type="text" id="price" value="10000" disabled>
+								<input type="text" id="price" value="50" disabled>
 								<span style="font-size:36px;">원</span>
 							</div>
 						</div>
@@ -234,7 +234,7 @@
 				buyer_email : buyerMail
 			},function(rsp){
 				if(rsp.success){
-					
+					$("#booking-form-date").submit();
 				}else{
 					alert("결재실패");
 				}
