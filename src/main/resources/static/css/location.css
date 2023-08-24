@@ -37,7 +37,10 @@
 .location-content-wrap{
 }
 .location-content:hover{
-	box-shadow: 1px 1px 20px #ccc;
+	box-shadow: 5px 5px 20px #ccc;
+}
+.location-content:hover .location-content-info>p:first-child{
+	color: #ff3700ff;
 }
 .location-content{
     box-sizing: border-box;
@@ -54,7 +57,7 @@
 .location-img-box{
     float: left;
     width: 300px;
-    height: 150px;
+    height: 200px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -64,13 +67,13 @@
     padding-left: 10px;
     box-sizing: border-box;
     position: relative;
-    height: 150px;
+    height: 200px;
     overflow: hidden;
     width: 48%;
 }
 .location-content-info>p:first-child{
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
 }
 .location-content-info>p:nth-child(2){
 	height: 70px;
