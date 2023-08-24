@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>관리자페이지(전체회원조회)</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+		<div class="content-wrap">
+			<div class="content-title">회원관리</div>
+			<table class="tbl tbl-hover">
+			<tr class="tr-3">
+				<th>선택</th>
+				<th>회원번호</th>
+				<th>아이디</th>
+				<th>이름</th>
+				<th>이메일</th>
+				<th>핸드폰번호</th>
+				<th>가입일</th>
+				<th>회원등급</th>
+			</tr>
+			<tr class="tr-1" th:eack="m : ${list}">
+			<td><input type="checkbox" class="chk"></td>
+			<td th:text = "${m.memberNo}"></td>
+			<td th:text = "${m.memberId}"></td>
+			<td th:text = "${m.memberName}"></td>
+			<td th:text = "${m.memberEmail}"></td>
+			<td th:text = "${m.memberPhone}"></td>
+			<td th:text = "${m.Enrolldate}"></td>
+			<td th:switch = "${m.memberLevel}">
+				<select th:case="1" class="input-form">
+					<option value="1" selected>관리자</option>
+					<option value="2" selected>일반회원</option>
+				</select>
+			</td>
+			<td>
+				<button class="btn bc5 changeLevel">등급변경</button>
+			</td>
+			<th colspan="8">
+				<button class="btn checkedChangeLevel">선택회원등급변경</button>		
+			</table>
+		</div>
+		<th:block th:include="common/footer"></th:block>
+		
+		<script>
+			//선택회원등급변경 버튼
+			$(".checkedChangeLevel"),on("click",function(){
+				//체크된 체크박스
+				const check = $(".chk:checked");
+				//체크 x -> 함수 종료
+				if(check.length == 0){
+					return; 
+				}
+				//체크된 회원 번호 
+				const no = new Array();
+				//체크된 회원 등급 저장 
+				const level = new Array();
+				
+				check.each(function(index,item){
+					const memberNo = $(item).parent().next().text();
+					const memberLevel = $(item).parent().parent().find("select").val();
+					no.push(memberNo);
+					level.push(memberLevel);
+				});
+				location.href="/member/checkedChangeLevel?no="+no.join("/")+"&level="+level.join("/");
+			});
+			
+		
+			$(".changeLevel").on("click",function(){
+				const memberLevel = $(this).parent().prev().children().val();
+				const memberNo = $(this).parent().parent().children().eq(1).text();
+				//text <><>사이의 값
+				location.href= "/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+			});
+		</script>
+</body>
+</html>

@@ -18,8 +18,7 @@ public class BookingRowMapper implements RowMapper<Booking>{
 		b.setBookingTotalnum(rs.getInt("booking_totalnum"));
 		b.setMemberNo(rs.getInt("member_no"));
 		b.setMemberName(rs.getString("member_name"));
+		b.setLoTitle(rs.getString("lo_title"));
 		return null;
 	}
-	
-
 }

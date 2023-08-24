@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,6 +67,7 @@ public class LocationService {
 		case "jj":  
 			break;
 		case "jn":
+			locationdata = jeonnam(pageNo,lo);
 			break;
 		case "cb":
 			break;
@@ -150,6 +155,77 @@ public class LocationService {
 		String title = "부산맛집";
 		//리스트+네비 data 묶기
 		LocationData locationData = new LocationData(bList, pageNavi,title);
+		return locationData;
+	}
+	
+	@Transactional
+	public LocationData jeonnam(String pageNo, String lo) {
+		int num = 6; //출력개수
+		int end = num * Integer.parseInt(pageNo);//끝번호
+		int start = end - num + 1;//시작번호
+		String loCode = "JEONNAM";//조회할 지역코드(전남)
+		
+		//DB select
+		List jList = locationDao.locationSelect(loCode, end, start);
+		
+		if(jList.isEmpty()) {
+			String url = "http://apis.data.go.kr/6460000/jnFood/getNdfoodList";
+			String serviceKey = "8Tqm1xKZLdcdZFYKFmnzlGdwfr9qM8WJ42R%2BAOkOqjI3%2FejSUC0n8KLr7%2BqI67wMkv98ZND0DSUZUjQmf7%2FjYA%3D%3D";
+			String pageSize = "596";
+			String startPage = "1";
+			ArrayList<Location> list = new ArrayList<Location>();
+			try {
+				Document doc = Jsoup.connect(url)
+								.data("serviceKey", serviceKey)
+								.data("pageSize", pageSize)
+								.data("startPage", startPage)
+								.ignoreContentType(true)
+								.get()
+								;
+				Elements elements = doc.select("list");
+				for(Element ele : elements) {
+					String loTitle = ele.select("foodNm").text();
+					String loLat = ele.select("foodYpos").text();
+					String loLng = ele.select("foodXpos").text();
+					String loAddr = ele.select("foodAddr").text()+ele.select("foodAddrDetail").text();
+					String loTel = ele.select("foodTel").text();
+					String loThumb = ele.select("foodMainImg").text();
+					String loMenu = ele.select("foodMenuNm").text();
+					Location j = new Location();
+					j.setLoAddr(loAddr);
+					j.setLoCode("JEONNAM");
+					j.setLoInfo("");
+					j.setLoLat(loLat);
+					j.setLoLng(loLng);
+					j.setLoMenu(loMenu);
+					j.setLoTel(loTel);
+					j.setLoThumb(loThumb);
+					j.setLoTime("09:00 - 22:00");
+					j.setLoTitle(loTitle);
+					
+					if(!(j.getLoLat().isEmpty()||j.getLoLng().isEmpty()||j.getLoAddr().contains("NODATA"))) {
+						list.add(j);
+					}
+				}
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			loCode = list.get(0).getLoCode();
+			
+			//최초 db insert
+			int result = locationDao.locationInsert(list);
+			if(result>0) {
+				jList = locationDao.locationSelect(loCode, end, start);
+			}
+		}
+		//네비게이션
+		String pageNavi = navi(num, Integer.parseInt(pageNo), loCode, lo);
+		// 소제목설정
+		String title = "전남맛집";
+		// 리스트+네비 data 묶기
+		LocationData locationData = new LocationData(jList, pageNavi, title);
 		return locationData;
 	}
 

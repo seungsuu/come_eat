@@ -66,8 +66,4 @@ public class LocationDao {
 		List list = jdbc.query(query, locationRowMapper,searchPlace);
 		return list;
 	}
-
-	
-
-	
 }

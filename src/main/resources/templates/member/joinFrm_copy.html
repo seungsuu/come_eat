@@ -11,7 +11,7 @@
 	<th:block th:include="common/header"></th:block>
     <div class="content-wrap">
         <div class="content-title">JOIN</div>
-        <form action="/member/signup" method="post">
+        <form action="/member/signup" method="post" id="join-form">
         <table class="join-table">
             <tr>
                 <td class="join-th">
@@ -55,10 +55,9 @@
             <tr>
                 <td class="join-th">
                     <label for="memberPhone">핸드폰번호</label>
-                    <span> * </span>
                 </td>
                 <td>
-                    <input type="text" class="join-input-form" id="memberPhone" name="memberPhone" placeholder="ex)010-0000-0000" required>
+                    <input type="text" class="join-input-form" id="memberPhone" name="memberPhone" placeholder="ex)010-0000-0000">
                     <span class="comment"></span>
                 </td>
             </tr>
@@ -99,7 +98,7 @@
             </ul>
         </div>
         <div class="join-btn-class">
-            <button type="submit" id="btnConfirm" class="btn">회원가입</button>
+            <button type="button" id="btnConfirm" class="btn">회원가입</button>
         </div>
         
         </form>
@@ -150,17 +149,12 @@
     <script src="/js/joinFrm_copy.js"></script>
     <script>
     $("#btnConfirm").on("click",function(){
-		
-		if($("#essentialAgree1").is(":checked") == true && $("#essentialAgree2").is(":checked") == true ){
-			console.log("성공");
-		}else
+		if(($("#essentialAgree1").is(":checked") == true) && ($("#essentialAgree2").is(":checked") == true )){
+			$("#join-form").submit();
+		}else{
 			alert("이용약관 필수항목을 체크해주세요");
-		
+		}
     });
-		
-
-
-    
     </script>
 </body>
 </html>
