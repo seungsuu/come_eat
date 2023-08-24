@@ -2,12 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>관리자페이지(전체회원조회)</title>
+<title>마이페이지(관리자)</title>
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+<link rel="stylesheet" href="/css/adminMypage.css"> 
+<script src="/js/jquery-3.6.0.js"></script>
+
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-		<div class="content-wrap">
-			<div class="content-title">회원관리</div>
+    	<div class="content-wrap">
+		<div class="content-title">MY PAGE
+		<span class="material-icons">admin_panel_settings</span>
+		</div>
+			<div class="mypage-tab-wrap">
+				<ul class="mypage-tab">
+					<li>나의정보</li>
+					<li>예약내역</li>
+					<a href="/member/admin"><li>회원관리</li></a>
+				</ul>
+			</div>
+		<div class="mypage-content">
+		<div class="allmemberList-title">회원관리</div>
 			<table class="tbl tbl-hover">
 			<tr class="tr-3">
 				<th>선택</th>
@@ -31,6 +46,10 @@
 			<td th:switch = "${m.memberLevel}">
 				<select th:case="1" class="input-form">
 					<option value="1" selected>관리자</option>
+					<option value="2">일반회원</option>
+				</select>
+				<select th:case="2" class="input-form">
+					<option value="1">관리자</option>
 					<option value="2" selected>일반회원</option>
 				</select>
 			</td>
@@ -44,6 +63,7 @@
 			</tr>		
 			</table>
 		</div>
+	</div>
 		<th:block th:include="common/footer"></th:block>
 		
 		<script>
