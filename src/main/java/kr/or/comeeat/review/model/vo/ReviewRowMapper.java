@@ -18,6 +18,7 @@ public class ReviewRowMapper implements RowMapper<Review>{
 		r.setReviewGrade(rs.getInt("review_grade"));
 		r.setReviewNo(rs.getInt("review_no"));
 		r.setReviewWriter(rs.getString("review_writer"));
+		r.setLoNo(rs.getInt("lo_no"));
 		return r;
 	}
 

@@ -1,6 +1,7 @@
 package kr.or.comeeat.member.model.service;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,6 +78,29 @@ public class MemberService {
 		}
 		return 0;
 	}
-	
+
+	@Transactional
+	public int changeLevel(int memberNo, int memberLevel) {
+		int result = memberDao.changeLevel(memberNo,memberLevel);
+		return result;
+	}
+	@Transactional
+	public boolean checkedChangeLevel(String no, String level) {
+		StringTokenizer sT1 = new StringTokenizer(no,"/");
+		StringTokenizer sT2 = new StringTokenizer(level,"/");
+		boolean result = true;
+		while(sT1.hasMoreTokens()) {
+			int memberNo = Integer.parseInt(sT1.nextToken());
+			int memberLevel = Integer.parseInt(sT2.nextToken());
+			int changeResult = memberDao.changeLevel(memberNo, memberLevel);
+			if(changeResult == 0) {
+				result = false;
+				break;//한번이라도 실패가 일어나면 while문 종료
+			}
+		}
+		return result;
+	}
 
 }
+	
+

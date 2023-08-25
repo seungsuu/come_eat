@@ -68,11 +68,18 @@ public class MemberDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
-
+	
+	//전체회원 조회 : 관리자 (관리자가 1순위로 조회될수 있게 쿼리문 작성)
 	public List selectAllMember() {
-		String query = "select * from member order by 1";
+		String query = "select * from member order by (case when member_Level = 1 then 1 else 2 end),member_no asc";
 		List list = jdbc.query(query, memberRowMapper);
 		return list;
+	}
+	public int changeLevel(int memberNo, int memberLevel) {
+		String query = "update member set member_level = ? where member_no = ?";
+		Object[] params = {memberLevel,memberNo};
+		int result = jdbc.update(query,params);
+		return result;
 	}
 
 	//맛집저장조회

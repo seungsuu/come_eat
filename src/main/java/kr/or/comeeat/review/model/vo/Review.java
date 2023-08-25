@@ -14,4 +14,5 @@ public class Review {
 	private String reviewDate;
 	private int reviewGrade;
 	private String reviewFilepath;
+	private int loNo;
 }

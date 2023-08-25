@@ -24,4 +24,5 @@ public class ReviewDao {
 		List list = jdbc.query(query,locationRowMapper ,loNo);
 		return (Location)list.get(0);
 	}
+
 }
