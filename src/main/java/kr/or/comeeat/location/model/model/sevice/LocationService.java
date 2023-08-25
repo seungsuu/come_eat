@@ -171,6 +171,8 @@ public class LocationService {
 		
 		//DB select
 		List bList = locationDao.locationSelect(loCode,end,start);
+		
+		
 		//네비게이션
 		String pageNavi = navi(num,Integer.parseInt(pageNo),loCode,lo);
 		//소제목설정
@@ -321,6 +323,8 @@ public class LocationService {
 				jList = locationDao.locationSelect(loCode, end, start);
 			}
 		}
+
+		
 		//네비게이션
 		String pageNavi = navi(num, Integer.parseInt(pageNo), loCode, lo);
 		// 소제목설정

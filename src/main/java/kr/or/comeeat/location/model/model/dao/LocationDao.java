@@ -10,10 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.comeeat.location.model.vo.Location;
 import kr.or.comeeat.location.model.vo.LocationRowMapper;
+import kr.or.comeeat.location.model.vo.SavePlace;
 import kr.or.comeeat.location.model.vo.SavePlaceRowMapper;
 
 @Repository
 public class LocationDao {
+	private static final String Location = null;
 	@Autowired
 	private JdbcTemplate jdbc;
 	@Autowired
@@ -71,7 +73,7 @@ public class LocationDao {
 
 	//맛집 가져오기
 	public List locationSelect(String loCode, int end, int start) {
-		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE LO_CODE=?) L) WHERE RNUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE LO_CODE=?) L) WHERE RNUM BETWEEN ? AND ? ";
 		Object[] params = {loCode,start,end};
 		List bList = jdbc.query(query, locationRowMapper,params);
 		return bList;
