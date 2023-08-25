@@ -17,6 +17,7 @@ import kr.or.comeeat.FileUtil;
 import kr.or.comeeat.location.model.vo.Location;
 import kr.or.comeeat.review.model.service.ReviewService;
 import kr.or.comeeat.review.model.vo.Review;
+import kr.or.comeeat.review.model.vo.detailReviewList;
 
 @Controller
 @RequestMapping(value="/review")
@@ -32,8 +33,9 @@ public class ReviewController {
 	
 	@GetMapping(value="/detailRestaurant")
 	public String detailRestaurant(int loNo,Model model) {
-		Location l = reviewService.selectOneRestaurant(loNo);
-		model.addAttribute("list",l);
+		detailReviewList drl = reviewService.selectDetailRestaurant(loNo);
+		model.addAttribute("list", drl.getL());
+		model.addAttribute("reviewList", drl.getReviewList());
 		return "review/detailRestaurant";
 	}
 	

@@ -33,4 +33,10 @@ public class ReviewDao {
 		return result;
 	}
 
+	public List selectReviewList(int loNo) {
+		String query = "select * from review where lo_no=? order by 1 desc";
+		List list = jdbc.query(query, reviewRowMapper,loNo);
+		return list;
+	}
+
 }
