@@ -31,15 +31,18 @@
     width: 10%;
     cursor: pointer;
 }
-.grade-picker-item>span{
+input[type='radio']{
+	display : none;
+}
+.grade-picker-item span{
+	display : block;
 	color:#ebebeb;
 }
-.grade-picker-item>:first-child{
-    font-size: 50px;
+input[name='review-grade']+label>:first-child{
+	font-size:50px;
 }
-.grade-picker-item>:last-child{
-    display: block;
-    font-weight: 700;
+.span2{
+	font-weight:700;
 }
 /* js용 클래스(색바뀌기) */
 #active-tab{

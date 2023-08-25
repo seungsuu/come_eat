@@ -12,7 +12,7 @@
 	<div class="content-wrap">
 		<div class="review-wrapper content-wrap">
         <div class="review-title">
-            <h2>맛집이름</h2>
+            <h2 th:text="${list.loTitle}"></h2>
             <span>에 대한 리뷰를 작성해주세요</span>
         </div>
         <div class="review-editor">
@@ -20,17 +20,26 @@
                 <div class="review-editor-wrap">
                     <div class="review-grade-picker">
                         <ul class="grade-picker-list">
-                            <li class="grade-picker-item">
-                                <span class="material-icons">sentiment_very_satisfied</span>
-                                <span>맛있어요</span>
+                            <li class="grade-picker-item" >
+                            	<input type="radio" name="review-grade" value="5" id="grade1">
+                            	<label for="grade1">
+	                                <span class="material-icons" id="span1">sentiment_very_satisfied</span>
+	                                <span class="span2">맛있어요</span>
+                            	</label>
                             </li>
                             <li class="grade-picker-item">
-                                <span class="material-icons">sentiment_satisfied_alt</span>
-                                <span>괜찮아요</span>
+                               <input type="radio" name="review-grade" value="3" id="grade2">
+                            	<label for="grade2">
+	                                <span class="material-icons" id="span1">sentiment_very_satisfied</span>
+	                                <span class="span2">괜찮아요</span>
+                            	</label>
                             </li>
                             <li class="grade-picker-item">
-                                <span class="material-icons">sentiment_very_dissatisfied</span>
-                                <span>별로예요</span>
+                                <input type="radio" name="review-grade" value="1" id="grade3">
+                            	<label for="grade3">
+	                                <span class="material-icons">sentiment_very_satisfied</span>
+	                                <span class="span2">별로예요</span>
+                            	</label>
                             </li>
                         </ul>
                     </div>

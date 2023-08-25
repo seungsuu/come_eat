@@ -28,7 +28,9 @@ public class ReviewController {
 	}
 	
 	@GetMapping(value="/reviewWriteFrm")
-	public String reviewWriteFrm() {
+	public String reviewWriteFrm(int loNo,Model model) {
+		Location l = reviewService.selectOneRestaurant(loNo);
+		model.addAttribute("list", l);
 		return "review/reviewWrite";
 	}
 	
