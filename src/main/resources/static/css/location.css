@@ -48,8 +48,9 @@
     overflow: hidden;
     width: 50%;
     float: left;
+    position: relative;
 }
-.location-content>a{
+.location-content>a:first-child{
     display: block;
     overflow: hidden;
     width: 100%;
@@ -72,7 +73,7 @@
     width: 48%;
 }
 .location-content-info>p:first-child{
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
 }
 .location-content-info>p:nth-child(2){
@@ -82,6 +83,7 @@
 	white-space: nowrap;
 }
 
+/*평점*/
 .star{
     display: flex;
     align-items: center;
@@ -90,11 +92,11 @@
     left: 10px;
 }
 .star>span:first-child{
-    font-size: 26px;
+    font-size: 30px;
 }
 .star>span{
     color: #ff3700ff;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 500;
 }
 
@@ -103,6 +105,20 @@
     display: block;
     clear: both;
 }
+/*저장*/
+.save{
+	position: absolute;
+	bottom: 12px;
+	left: 12px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+}
+.save>.material-icons{
+	font-size: 36px;
+	color: rgba(255,255,255,0.7);
+}
+
 
 /*지도마커*/
 .marker{

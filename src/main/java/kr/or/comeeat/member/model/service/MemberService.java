@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.comeeat.member.model.dao.MemberDao;
 import kr.or.comeeat.member.model.vo.Member;
+import kr.or.comeeat.member.model.vo.SavePlace;
 
 @Service
 public class MemberService {
@@ -54,6 +55,27 @@ public class MemberService {
 	public List selectAllMember() {
 		List list = memberDao.selectAllMember();
 		return list;
+	}
+
+	//맛집저장
+	public int selectSavePlace(int loNo, int memberNo) {
+		//조회
+		List list = memberDao.selectSavePlace(loNo,memberNo);
+
+		if(list.isEmpty()) {
+			//저장내역이 없으면 insert
+			int result = memberDao.insertSavePlace(loNo,memberNo);
+			if(result>0) {				
+				return 1;
+			}
+		}else {
+			//저장내역이 있으면 delete
+			int result = memberDao.deleteSavePlace(loNo,memberNo);
+			if(result>0) {				
+				return 2;
+			}
+		}
+		return 0;
 	}
 	
 

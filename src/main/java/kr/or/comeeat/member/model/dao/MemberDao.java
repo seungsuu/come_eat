@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.comeeat.member.model.vo.Member;
 import kr.or.comeeat.member.model.vo.MemberRowMapper;
+import kr.or.comeeat.member.model.vo.SavePlaceRowMapper;
 
 @Repository
 public class MemberDao {
@@ -15,6 +16,7 @@ public class MemberDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private MemberRowMapper memberRowMapper;
+	@Autowired SavePlaceRowMapper savePlaceRowMapper;
 	
 	public Member selectOneMember(String signId, String signPw) {
 		String query = "select * from member where member_id=? and member_pw=?";
@@ -71,6 +73,27 @@ public class MemberDao {
 		String query = "select * from member order by 1";
 		List list = jdbc.query(query, memberRowMapper);
 		return list;
+	}
+
+	//맛집저장조회
+	public List selectSavePlace(int loNo, int memberNo) {
+		String query = "SELECT * FROM SAVEPLACE WHERE LO_NO = ? AND MEMBER_NO = ?";
+		List list = jdbc.query(query,savePlaceRowMapper, loNo, memberNo);
+		return list;
+	}
+
+	//맛집저장하기
+	public int insertSavePlace(int loNo, int memberNo) {
+		String query = "INSERT INTO SAVEPLACE VALUES(SAVEPLACE_SEQ.NEXTVAL,?,?)";
+		int result = jdbc.update(query, memberNo, loNo);
+		return result;
+	}
+
+	//맛집저장취소하기
+	public int deleteSavePlace(int loNo, int memberNo) {
+		String query = "DELETE FROM SAVEPLACE WHERE LO_NO = ? AND MEMBER_NO = ?";
+		int result = jdbc.update(query, loNo, memberNo);
+		return result;
 	}
 
 }

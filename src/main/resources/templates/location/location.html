@@ -6,6 +6,23 @@
     <title>지역별 맛집</title>
     <link rel="stylesheet" href="/css/location.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e951a9675edffd5bbc4faec7164c3441&libraries=services&libraries=clusterer"></script>
+	<style>
+		.swal-modal{
+			border-radius: 5px;
+		}
+		.swal-button 
+		{
+			background-color: #ddd;
+			font-size: 18px;
+			fonr-weight: 400;
+		}
+		.swal-button:not([disabled]):hover{
+			background-color: #ff3700ff;
+		}
+		.swal-footer{
+			text-align: center;
+		}
+</style>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -66,18 +83,20 @@
 	                        </div>
 	                    </div>
 	                </a>
+	                <button class="save" th:value="${location.loNo}">
+	                	<span class="material-icons done">favorite_border</span>
+	                </button>
 	            </div>
 	        </div>
 	        <div class="board-navi" th:utext="${navi}"></div>
         </div>
     </div>
     <th:block th:include="common/footer"></th:block>
-    
+    <script src="/js/sweetalert.min.js"></script>
     <script th:inline="javascript">
 		const list = [[${list}]];
 		const loCode = list[0].loCode;
 		const title = [[${title}]];
-		
 		if(list.length != 0){				
 			//클릭한 버튼만 색상 변경
 			$(".lo-btn").each(function(index, item){
@@ -85,6 +104,40 @@
 					$(item).addClass("active-btn");
 				}
 			})
+			
+			//저장버튼
+			$(".save").on("click",function(){
+				const loNo = $(this).val();
+				const thisSave = $(this);
+				$.ajax({
+					url : "/member/savePlace",
+					type : "get",
+					data : {loNo:loNo},
+					success : function(data){
+						let title = "로그인 필요";
+						let msg = "로그인이 필요한 기능입니다";
+						let icon = "warning";
+						
+						if(data == 1){							
+							$(thisSave).children("span").text("favorite");
+							title = "저장완료";
+							msg = "저장이 완료되었습니다";
+							icon = "success";
+						}else if(data == 2){
+							$(thisSave).children("span").text("favorite_border");
+							title = "저장취소";
+							msg = "저장이 취소되었습니다";
+							icon = "success";
+						}
+						//모달띄우기
+						swal({
+							title : title,
+							text : msg,
+							icon : icon
+						})
+					}
+				});
+			});
 			
 			//지도에는 전체위치 출력하기 위해 비동기 요청
 			$.ajax({
