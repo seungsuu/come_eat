@@ -20,8 +20,8 @@
 					<span style=display:none; th:text="${list.loLng}"></span>
 				</div>
 				<div class="review_icons">
-					<div class="icon1">
-					 <!-- th:if="${session.m != null}" -->
+					<div class="icon1" th:if="${session.m != null}">
+					 <!--  -->
 						<a th:href="@{/review/reviewWriteFrm(loNo=${list.loNo})}">
 							<div class="reviewBtn">
                                 <span class="material-icons">edit_document</span>
