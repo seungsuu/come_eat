@@ -150,7 +150,59 @@
     
     <script src="/js/joinFrm_copy.js"></script>
     <script>
-
+	$("#btnConfirm").on("click",function(){
+		
+		var str = "";
+		if($("#memberId").val() == ""){ // if( $('#id').val() == "" ) 도 가능
+			alert('아이디를 입력하세요');
+			$("#memberId").focus(); // 이건 그냥 마우스 커서가 여기로 오게 하는것
+			return false;
+		}
+		if($("#memberPw").val() == ""){
+			alert('비밀번호를 입력하세요');
+			$("#memberPw").focus();
+			return false;
+		}
+		if($("#memberPwRe").val() == ""){
+			alert("비밀번호확인을 입력하세요.");
+			$("#memberPwRe").focus();
+			return false;
+		}
+		if($("#memberPw").val() != $("#memberPwRe").val()){
+			alert("비밀번호가 일치하지 않습니다.");
+			 $("#memberPwRe").select(); // 마우스 커서도 오고, 텍스트가 블록 씌워진 상태로 됨
+			return false;
+		}
+		if($("#memberName").val() == ""){
+			alert('이름을 입력하세요');
+			$("#memberName").focus();
+			return false;
+		}
+		if($("#memberPhone").val() == ""){
+			alert('전화번호를 입력하세요');
+			$("#memberPhone").focus();
+			return false;
+		}
+		if($("#memberEmail").val().indexOf('@') == -1 ){      // indexOf 사용
+			alert('이메일 형식이 아닙니다.');
+			$("#memberEmail").select();
+			return false;
+		}
+		if( $('input[type="checkbox"]').is(':checked') == false ){
+			alert('필수동의항목에 체크하셔야 합니다.');
+			return false;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	});
     </script>
 </body>
 </html>
