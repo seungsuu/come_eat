@@ -76,4 +76,12 @@ public class ReviewController {
 		model.addAttribute("loc", "/review/detailRestaurant?loNo=" + r.getLoNo());
 		return "common/msg";
 	}
+	
+	//리뷰 수정 
+	@GetMapping(value="reviewUpdateFrm")
+	public String reviewUpdateFrm(int reviewNo, Model model) {
+		Review r = reviewService.selectOneReview(reviewNo);
+		model.addAttribute("r", r);
+		return "review/reviewUpdateFrm";
+	}
 }

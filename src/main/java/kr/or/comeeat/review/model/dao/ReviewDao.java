@@ -39,4 +39,10 @@ public class ReviewDao {
 		return list;
 	}
 
+	public Review selectOneReview(int reviewNo) {
+		String query = "select * from review where review_no=?";
+		List list = jdbc.query(query, reviewRowMapper,reviewNo);
+		return (Review)list.get(0);
+	}
+
 }

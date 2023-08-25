@@ -34,4 +34,9 @@ public class ReviewService {
 		detailReviewList drl = new detailReviewList(l, reviewList);
 		return drl;
 	}
+
+	public Review selectOneReview(int reviewNo) {
+		Review r = reviewDao.selectOneReview(reviewNo);
+		return r;
+	}
 }
