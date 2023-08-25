@@ -46,3 +46,71 @@
 			const memberNo = $(this).parent().parent().children().eq(1).text();
 			location.href= "/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
 		});
+
+
+		$(".checkedChangePay").on("click",function(){
+			//체크된 체크박스 가져옴
+			const check =$(".chk2:checked");
+			//체크된 체크박스 없이 버튼을 누르면 함수를 종료시킴
+			if(check.length == 0) {
+				return; //->함수종료.
+			}
+			//체크된 회원 번호를 저장할 배열
+			const no = new Array();
+			//체크된 회원 등급을 저장할 배열
+			const level = new Array();
+			
+			check.each(function(index,item){
+				const bookingNo = $(item).parent().next().text();
+				//item은 checkbox
+				const bookingPay = $(item).parent().parent().find("select").val();
+				//체크박스->td->tr->find()-> 후손 전체중에 검색
+				no.push(bookingNo);
+				level.push(bookingPay);
+			});
+			location.href="/booking/checkedChangePay?no="+no.join("/")+"&level="+level.join("/");
+		});
+		
+	
+		$(".changePay").on("click",function(){
+			const bookingPay = $(this).parent().prev().children().val();
+			const bookingNo = $(this).parent().parent().children().eq(1).text();
+			location.href= "/member/changePay?bookingNo="+bookingNo+"&bookingPay="+bookingPay;
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+				$(".checkedChangePay").on("click",function(){
+			//체크된 체크박스 가져옴
+			const check =$(".chk2:checked");
+			//체크된 체크박스 없이 버튼을 누르면 함수를 종료시킴
+			if(check.length == 0) {
+				return; //->함수종료.
+			}
+			//체크된 회원 번호를 저장할 배열
+			const no = new Array();
+			//체크된 회원 등급을 저장할 배열
+			const level = new Array();
+			
+			check.each(function(index,item){
+				const bookingNo = $(item).parent().next().text();
+				//item은 checkbox
+				const bookingPay = $(item).parent().parent().find("select").val();
+				//체크박스->td->tr->find()-> 후손 전체중에 검색
+				no.push(bookingNo);
+				level.push(bookingPay);
+			});
+			location.href="/booking/checkedChangePay?no="+no.join("/")+"&level="+level.join("/");
+		});
+		
+	
+		$(".changePay").on("click",function(){
+			const bookingPay = $(this).parent().prev().children().val();
+			const bookingNo = $(this).parent().parent().children().eq(1).text();
+			location.href= "/member/changePay?bookingNo="+bookingNo+"&bookingPay="+bookingPay;
+		});
