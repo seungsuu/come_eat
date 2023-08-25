@@ -79,17 +79,7 @@ td{
 }
 
 /* 약관동의 */
-.join-ul>li{
-    background-color: #eee;
-    list-style: none;
-    padding-left: 20px;
-    text-align: left;
-    height: 40px;
-    margin-bottom: 2px;
-    line-height: 40px;
-    font-size: 15px;
-    position: relative;
-}
+
 #join_agreementAll{
     background-color: white;
     padding-bottom: 60px;
@@ -169,32 +159,9 @@ body{
     padding: 20px;
     text-align: center;
     font-size: 18px;
-    font-weight: 400;
     margin-bottom: 20px;
 }
-.join-tou-table{
-    width: 100%;
-    border-collapse: collapse;
-}
-.join-tou-table th{
-    border: 1px solid #2F2F2F;
-}
-.join-tou-table td{
-    vertical-align:bottom;
-    text-align: center;
-    height: 30px;
-    border: 1px solid #2F2F2F;
-}
-.join-tou-content>ul{
-    margin-top : 30px;
-    margin-bottom : 50px;
-}
-.join-tou-content li{
-    margin-left: 20px;
-    text-align: left;
-    color: black;
-    list-style: disc ;
-}
+
 /* 모달 X버튼 */
 .join-modal-close{
     background-color: white;
