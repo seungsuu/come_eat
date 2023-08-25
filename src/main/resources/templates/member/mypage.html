@@ -63,6 +63,7 @@
 						<input th:case="1" type="text" name="memberLevel" id="memberLevel" class="mypage-input-form" th:value="관리자" disabled>
 						<input th:case="2" type="text" name="memberLevel" id="memberLevel" class="mypage-input-form" th:value="일반회원" disabled>
                 </td>
+            </tr>
             <tr>
                 <th>
                     <label for="memberId">아이디</label>
@@ -70,6 +71,7 @@
                 <td>
                     <input type="text" class="mypage-input-form " id="memberId" name="memberId" th:value="${session.m.memberId}" readonly>
                 </td>
+            </tr>
             <tr>
                 <th>
                     <label for="memberPw">비밀번호</label>
