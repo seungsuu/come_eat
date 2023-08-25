@@ -82,42 +82,31 @@
 			</div>
 			<div class="reviewList_content_wrapper">
 				<div class="reviewList_content">
-					<ul class="reviewList_content_check">
-						<li>
-							<span>username</span>
-						</li>
-						<li>
-							<p class="reviewList_content_link">
-								<span>리뷰 단 날짜</span>
-								<a href="#">수정</a>
-								<a href="#">삭제</a>
-							</p>
-							<p class="review_detail_content">
-								후기후기후기후기후기후기후기후기후기후기
-							</p>
-						</li>
-						<li>
-							<div class="testImg"></div>
-						</li>
-					</ul>
-					<ul class="reviewList_content_check">
-						<li>
-							<span>userName</span>
-						</li>
-						<li>
-							<p class="reviewList_content_link">
-								<span>리뷰 단 날짜</span>
-								<a href="#">수정</a>
-								<a href="#">삭제</a>
-							</p>
-							<p class="review_detail_content">
-								후기후기후기후기후기후기후기후기후기후기
-							</p>
-						</li>
-						<li>
-							<div class="testImg"></div>
-						</li>
-					</ul>
+					<th:block th:each="rl : ${reviewList}">
+						<ul class="reviewList_content_check">
+							<li>
+								<span th:text="${rl.reviewWriter}"></span>
+							</li>
+							<li>
+								<p class="reviewList_content_link">
+									<span th:text="${rl.reviewDate}"></span>
+									<a href="#">수정</a>
+									<a href="#">삭제</a>
+								</p>
+								<p class="review_detail_content" th:text="${rl.reviewContent}"></p>
+							</li>
+							<li>
+								<div>
+									<img th:src="'/review/'+${rl.reviewFilepath}" style="width:25%">
+								</div>
+							</li>
+							<li>
+								<span class="material-icons" th:if="${rl.reviewGrade==5}">sentiment_very_satisfied</span>
+								<span class="material-icons" th:if="${rl.reviewGrade==3}">sentiment_satisfied_alt</span>
+								<span class="material-icons" th:if="${rl.reviewGrade==1}">sentiment_very_dissatisfied</span>
+							</li>
+						</ul>
+					</th:block>
 				</div>
 			</div>
 		</div>
