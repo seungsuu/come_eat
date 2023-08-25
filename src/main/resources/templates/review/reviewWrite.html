@@ -16,26 +16,26 @@
             <span>에 대한 리뷰를 작성해주세요</span>
         </div>
         <div class="review-editor">
-            <form action="/review/reviewWrite" method="post">
+            <form action="/review/reviewWrite" method="post" enctype="multipart/form-data">
                 <div class="review-editor-wrap">
                     <div class="review-grade-picker">
                         <ul class="grade-picker-list">
                             <li class="grade-picker-item" >
-                            	<input type="radio" name="review-grade" value="5" id="grade1">
+                            	<input type="radio" name="reviewGrade" value="5" id="grade1">
                             	<label for="grade1">
-	                                <span class="material-icons" id="span1">sentiment_very_satisfied</span>
+	                                <span class="material-icons">sentiment_very_satisfied</span>
 	                                <span class="span2">맛있어요</span>
                             	</label>
                             </li>
                             <li class="grade-picker-item">
-                               <input type="radio" name="review-grade" value="3" id="grade2">
+                               <input type="radio" name="reviewGrade" value="3" id="grade2">
                             	<label for="grade2">
-	                                <span class="material-icons" id="span1">sentiment_very_satisfied</span>
+	                                <span class="material-icons">sentiment_very_satisfied</span>
 	                                <span class="span2">괜찮아요</span>
                             	</label>
                             </li>
                             <li class="grade-picker-item">
-                                <input type="radio" name="review-grade" value="1" id="grade3">
+                                <input type="radio" name="reviewGrade" value="1" id="grade3">
                             	<label for="grade3">
 	                                <span class="material-icons">sentiment_very_satisfied</span>
 	                                <span class="span2">별로예요</span>
@@ -43,7 +43,7 @@
                             </li>
                         </ul>
                     </div>
-                    <textarea class="review-content" maxlength="4000" placeholder="리뷰를 작성해주세요"></textarea>
+                    <textarea class="review-content" name="reviewContent" maxlength="4000" placeholder="리뷰를 작성해주세요"></textarea>
                 </div>
                 <p class="review-editor-textLength">
                     <span class="change-tl">0</span>
@@ -60,8 +60,10 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="reviewWriter" th:value="${session.m.memberId}">
+                <input type="hidden" name="loNo" th:value="${list.loNo}">
                 <div class="review-btn">
-                    <button type="button" name="cancelBtn" class="btn cancelBtn" onclick="location.href='/review/detailRestaurant'">취소</button>
+                    <button type="button" name="cancelBtn" class="btn cancelBtn" onclick="history.back()">취소</button>
                     <button type="submit" class="btn-o submitBtn">리뷰 등록</button>
                 </div>
             </form>
@@ -70,6 +72,7 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	<script>
+		
 		//썸네일 미리보기
 		$("[name=reviewFile]").on("change",function(){
 			if(this.files.length != 0 && this.files[0] != 0){
@@ -82,28 +85,21 @@
 				$("#img-view").attr("src","");
 			}
 		});
-		/*
-		//아이콘 누르기
-		const tab = $(".grade-picker-item");
-		//몇번째 li인지 찾기
-		tab.on("click", function() {
-			const index = tab.index(this);
-			//누른 인덱스번호를 받아서 기능추가
-			changeTab(index);
-			//console.log(index);
-		});
-		function changeTab(tabNo) {
-			tab.removeAttr("id","active-tab");
-			tab.eq(tabNo).find("span").attr("id","active-tab");
-		
-		}
-		*/
+	
 		//아이콘 색 변경	
 		const li = $(".grade-picker-item");
 		li.click(function(){
 			//console.log($(this).index());
 			li.not($(this)).find("span").removeAttr("id","active-tab");
 			$(this).find("span").attr("id","active-tab");
+			
+		});
+		
+		//아이콘 not checked 알림
+		$(".submitBtn").on("click",function(){
+			if($("input[type='radio']:not(:checked)")){
+				console.log("test");
+			}
 		});
 		
 		//글자 수 확인

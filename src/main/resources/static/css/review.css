@@ -24,6 +24,7 @@
     list-style-type: none;
     overflow: hidden;
     padding: 0 20px;
+    cursor:pointer;
 }
 
 .grade-picker-item{
@@ -38,7 +39,7 @@ input[type='radio']{
 	display : block;
 	color:#ebebeb;
 }
-input[name='review-grade']+label>:first-child{
+input[type='radio']+label>:first-child{
 	font-size:50px;
 }
 .span2{
