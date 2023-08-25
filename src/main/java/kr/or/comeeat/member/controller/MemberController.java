@@ -93,7 +93,7 @@ public class MemberController {
 		return "member/searchIdFrm";
 	}
 	
-	//아이디 찾기
+	//아이디 찾기(이름,이메일주소)
 	@PostMapping(value="/searchId")
 	public String searchId(String memberName, String memberEmail, Model model) {
 		Member member = memberService.selectMemberId(memberName, memberEmail);
@@ -113,6 +113,25 @@ public class MemberController {
 		//return "member/searchId";
 		
 	}
+	//아이디 찾기2(이름,핸드폰번호)
+		@PostMapping(value="/searchId2")
+		public String searchId2(String memberName, String memberPhone, Model model) {
+			Member member = memberService.selectMemberId2(memberName, memberPhone);
+			model.addAttribute("member", member);
+			if(member == null) {
+				model.addAttribute("msg","조회되는 아이디가 없습니다.");
+				model.addAttribute("icon","error");
+				model.addAttribute("loc", "/member/login");
+				System.out.println(member);
+				
+			}else {
+				model.addAttribute("msg","회원님의 아이디는 "+member.getMemberId()+" 입니다.");
+				model.addAttribute("icon","success");
+				model.addAttribute("loc", "/member/login");
+			}
+			return "common/msg";
+			
+		}
 	
 	//마이페이지로 이동
 	@GetMapping(value="/mypage")
@@ -179,7 +198,6 @@ public class MemberController {
 		if(result>0) {
 			return "redirect:/member/admin";
 		}else {
-			model.addAttribute("title","등급 변경 실패");
 			model.addAttribute("msg", "등급 변경에 실패했습니다.");
 			model.addAttribute("icon","error");
 			model.addAttribute("loc","member/admin");

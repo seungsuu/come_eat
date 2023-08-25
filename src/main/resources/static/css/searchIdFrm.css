@@ -34,6 +34,10 @@
 	margin: 0 auto;
 	width: 800px;
 }
+.form-wrap2{
+	margin: 0 auto;
+	width: 800px;
+}
 
 /*체크박스 라디오*/
 .radio-wrap{
@@ -52,7 +56,7 @@
 .searchId-Btn>button{
 	border: none;
 	height : 40px;
-	width: 800px;
+	width: 812px;
 }
 .searchId-Btn>button:hover{
 	background-color: #ff3700ff;
@@ -62,5 +66,8 @@
 input {
 	padding-left : 10px;
 	font-size : 14px;
+}
+.form-wrap2{
+	display:none;
 }
 
