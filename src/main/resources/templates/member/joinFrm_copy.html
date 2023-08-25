@@ -149,11 +149,18 @@
     
     <script src="/js/joinFrm_copy.js"></script>
     <script>
+    const memberid = $("#memberId").val();
+    const memberName = $("#memberName").val();
+    const memberPhone = $("#memberPhone").val();
+    const memberEmail = $("#memberEmail").val();
+    const memberPw = $("#memberPw").val();
+    const memberPwRe = $("memberPwRe").val();
     $("#btnConfirm").on("click",function(){
-		if(($("#essentialAgree1").is(":checked") == true) && ($("#essentialAgree2").is(":checked") == true )){
+		if(($("#essentialAgree1").is(":checked") == true) && ($("#essentialAgree2").is(":checked") == true 
+				&& memberId != null && memberName != null && memberPhone != null && memberEmail != null && memberPw != null	&& memberPwRe != null )){
 			$("#join-form").submit();
 		}else{
-			alert("이용약관 필수항목을 체크해주세요");
+			alert("필수 항목을 확인해주세요!");
 		}
     });
     </script>
