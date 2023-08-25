@@ -19,7 +19,8 @@
                     <span> * </span>
                 </td>
                 <td>
-                    <input type="text" class="join-input-form" id="memberId" name="memberId" required>
+                    <input type="text" class="join-input-form" id="memberId" name="memberId" 
+                    required oninvalid="this.setCustomValidity('양나민 대장과 아이들!')">
                     <span class="comment"></span>
                 </td>
             <tr>
@@ -28,7 +29,8 @@
                     <span> * </span>
                 </td>
                 <td>
-                    <input type="password" class="join-input-form" id="memberPw" name="memberPw" placeholder="영문+숫자+특수문자 조합 8~16자리를 입력해주세요." required>
+                    <input type="password" class="join-input-form" id="memberPw" name="memberPw" placeholder="영문+숫자+특수문자 조합 8~16자리를 입력해주세요." 
+                    required>
                     <span class="comment"></span>
                 </td>
             </tr>
@@ -57,7 +59,7 @@
                     <label for="memberPhone">핸드폰번호</label>
                 </td>
                 <td>
-                    <input type="text" class="join-input-form" id="memberPhone" name="memberPhone" placeholder="ex)010-0000-0000">
+                    <input type="text" class="join-input-form" id="memberPhone" name="memberPhone" placeholder="ex)010-0000-0000" required>
                     <span class="comment"></span>
                 </td>
             </tr>
@@ -82,11 +84,11 @@
                     </div>
                 </li>
                 <li>
-                    <input type="checkbox" id="essentialAgree1">
+                    <input type="checkbox" id="essentialAgree1" required>
                     <label for="essentialAgree1">만 14세 이상입니다.<span id="essential">(필수)</span></label>
                 </li>
                 <li>
-                    <input type="checkbox" id="essentialAgree2">
+                    <input type="checkbox" id="essentialAgree2" required>
                     <label for="essentialAgree2">이용약관 동의<span id="essential">(필수)</span></label>
                     <button class="modal-open-btn2" type="button">내용보기</button>
                 </li>
@@ -98,7 +100,7 @@
             </ul>
         </div>
         <div class="join-btn-class">
-            <button type="button" id="btnConfirm" class="btn">회원가입</button>
+            <button type="submit" id="btnConfirm" class="btn">회원가입</button>
         </div>
         
         </form>
@@ -148,20 +150,7 @@
     
     <script src="/js/joinFrm_copy.js"></script>
     <script>
-    const memberid = $("#memberId").val();
-    const memberName = $("#memberName").val();
-    const memberPhone = $("#memberPhone").val();
-    const memberEmail = $("#memberEmail").val();
-    const memberPw = $("#memberPw").val();
-    const memberPwRe = $("memberPwRe").val();
-    $("#btnConfirm").on("click",function(){
-		if(($("#essentialAgree1").is(":checked") == true) && ($("#essentialAgree2").is(":checked") == true 
-				&& memberId != null && memberName != null && memberPhone != null && memberEmail != null && memberPw != null	&& memberPwRe != null )){
-			$("#join-form").submit();
-		}else{
-			alert("필수 항목을 확인해주세요!");
-		}
-    });
+
     </script>
 </body>
 </html>

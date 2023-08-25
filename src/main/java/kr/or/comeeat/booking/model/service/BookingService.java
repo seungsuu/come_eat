@@ -23,9 +23,16 @@ public class BookingService {
 	
 
 	public List allBookingTime(String bookingDate) {
-		System.out.println("서비스통과1");
+		
 		List list = bookingDao.allBookingTime(bookingDate);
-		System.out.println("서비스통과2");
+		
 		return list;
+	}
+
+
+
+	public List selectAllBooking() {
+		List Booking = bookingDao.selectAllBooking();
+		return Booking;
 	}
 }

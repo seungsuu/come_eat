@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import kr.or.comeeat.booking.model.service.BookingService;
 import kr.or.comeeat.location.model.vo.SavePlace;
 import kr.or.comeeat.member.model.service.MemberService;
 import kr.or.comeeat.member.model.vo.Member;
@@ -22,6 +23,8 @@ import kr.or.comeeat.member.model.vo.Member;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private BookingService bookingService;
 	
 	//로그인 페이지로 이동
 	@GetMapping(value="login")
@@ -170,7 +173,9 @@ public class MemberController {
 	@GetMapping(value="/admin")
 		public String admin(Model model) {
 		 List list = memberService.selectAllMember();
+		 List booking = bookingService.selectAllBooking();
 		 model.addAttribute("list", list);
+		 model.addAttribute("b", booking);
 		 return "member/adminMypage";
 	}
 	@GetMapping(value="/changeLevel")
