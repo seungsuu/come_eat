@@ -42,10 +42,19 @@ public class MemberDao {
 		}
 		return (Member)list.get(0);
 	}
-
+	//아이디찾기
 	public Member selectMemberId(String memberName, String memberEmail) {
 		String query = "select * from member where member_name=? and member_email=?";
 		List list = jdbc.query(query, memberRowMapper,memberName,memberEmail);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Member)list.get(0);
+	}
+	//아이디찾기2
+	public Member selectMemberId2(String memberName, String memberPhone) {
+		String query = "select * from member where member_name=? and member_phone=?";
+		List list = jdbc.query(query, memberRowMapper,memberName,memberPhone);
 		if(list.isEmpty()) {
 			return null;
 		}

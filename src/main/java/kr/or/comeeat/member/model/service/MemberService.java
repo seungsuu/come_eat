@@ -33,11 +33,16 @@ public class MemberService {
 		Member m = memberDao.selectOneMember(checkId);
 		return m;
 	}
-
+	//아이디찾기
 	public Member selectMemberId(String memberName, String memberEmail) {
 			Member member = memberDao.selectMemberId(memberName, memberEmail);
 			return member;
 	}
+	//아이디찾기2
+	public Member selectMemberId2(String memberName, String memberPhone) {
+		Member member = memberDao.selectMemberId2(memberName, memberPhone);
+		return member;
+}
 
 	@Transactional
 	public int deleteMember(int memberNo) {
