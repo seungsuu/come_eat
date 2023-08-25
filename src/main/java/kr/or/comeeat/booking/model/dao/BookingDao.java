@@ -17,8 +17,8 @@ public class BookingDao {
 	private BookingRowMapper bookingRowMapper;
 
 	public int insertBooking(Booking b) {
-		String query = "insert into booking values(booking_seq.nextval,?,?,?,?,?)";
-		Object[] params = {b.getBookingTime(),b.getBookingDate(),b.getBookingTotalnum(),b.getMemberNo(), b.getMemberName()};
+		String query = "insert into booking values(booking_seq.nextval,?,?,?,?,?,?,?,1)";
+		Object[] params = {b.getBookingTime(),b.getBookingDate(),b.getBookingTotalnum(),b.getMemberNo(), b.getMemberName(), b.getLoNo(), b.getLoTitle()};
 		int result = jdbc.update(query, params);
 		return result;
 	}
@@ -26,10 +26,20 @@ public class BookingDao {
 
 	public List allBookingTime(String bookingDate) {
 		String query = "select * from booking where booking_date=?";
-		System.out.println("dao통과1");
+		
 		List list =jdbc.query(query, bookingRowMapper, bookingDate);
-		System.out.println("dao통과2");
+		
 		System.out.println(bookingDate);
 		return list;
 	}
+
+
+	public List selectAllBooking() {
+		String query = "select * from booking";
+		List Booking =jdbc.query(query, bookingRowMapper);
+		return Booking;
+	}
+
+
+
 }

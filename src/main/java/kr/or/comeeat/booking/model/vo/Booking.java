@@ -14,5 +14,7 @@ public class Booking {
 	private int bookingTotalnum;
 	private int memberNo;
 	private String memberName;
+	private int loNo;
 	private String loTitle;
+	private int bookingPay;
 }

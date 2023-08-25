@@ -17,6 +17,7 @@ import kr.or.comeeat.FileUtil;
 import kr.or.comeeat.location.model.vo.Location;
 import kr.or.comeeat.review.model.service.ReviewService;
 import kr.or.comeeat.review.model.vo.Review;
+import kr.or.comeeat.review.model.vo.detailReviewList;
 
 @Controller
 @RequestMapping(value="/review")
@@ -29,14 +30,16 @@ public class ReviewController {
 	public String root;
 	
 
-	
+	//식당 상세정보
 	@GetMapping(value="/detailRestaurant")
 	public String detailRestaurant(int loNo,Model model) {
-		Location l = reviewService.selectOneRestaurant(loNo);
-		model.addAttribute("list",l);
+		detailReviewList drl = reviewService.selectDetailRestaurant(loNo);
+		model.addAttribute("list", drl.getL());
+		model.addAttribute("reviewList", drl.getReviewList());
 		return "review/detailRestaurant";
 	}
 	
+	//리뷰쓰기
 	@GetMapping(value="/reviewWriteFrm")
 	public String reviewWriteFrm(int loNo,Model model) {
 		Location l = reviewService.selectOneRestaurant(loNo);
@@ -44,6 +47,7 @@ public class ReviewController {
 		return "review/reviewWrite";
 	}
 	
+	//리뷰 작성 insert
 	@PostMapping(value="/reviewWrite")
 	public String reviewWrite(Review r, MultipartFile reviewFile, Model model) {
 		// 작성자,내용,평점,식당번호 -> Review
