@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import kr.or.comeeat.location.model.vo.SavePlace;
 import kr.or.comeeat.member.model.service.MemberService;
 import kr.or.comeeat.member.model.vo.Member;
-import kr.or.comeeat.member.model.vo.SavePlace;
 
 @Controller
 @RequestMapping(value="/member")
@@ -199,20 +199,7 @@ public class MemberController {
 			return "common/msg";
 		}
 	}
-	
-	
-	//맛집저장
-	@ResponseBody
-	@GetMapping(value="/savePlace")
-	public int selectSavePlace(String loNo,@SessionAttribute(required = false) Member m, Model model) {
-		System.out.println(m);
-		int result = 0;
-		if(m != null) {
-			result = memberService.selectSavePlace(Integer.parseInt(loNo),m.memberNo);
-		}
-		System.out.println(result);
-		return result;
-	}
+
 	
 }
 	

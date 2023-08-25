@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.comeeat.location.model.vo.Location;
 import kr.or.comeeat.location.model.vo.LocationRowMapper;
+import kr.or.comeeat.location.model.vo.SavePlaceRowMapper;
 
 @Repository
 public class LocationDao {
@@ -17,7 +18,30 @@ public class LocationDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private LocationRowMapper locationRowMapper;
+	@Autowired SavePlaceRowMapper savePlaceRowMapper;
 	
+	
+	//맛집저장조회
+	public List selectSavePlace(int loNo, int memberNo) {
+		String query = "SELECT * FROM SAVEPLACE WHERE LO_NO = ? AND MEMBER_NO = ?";
+		List list = jdbc.query(query,savePlaceRowMapper, loNo, memberNo);
+		return list;
+	}
+	
+	//맛집저장하기
+	public int insertSavePlace(int loNo, int memberNo) {
+		String query = "INSERT INTO SAVEPLACE VALUES(SAVEPLACE_SEQ.NEXTVAL,?,?)";
+		int result = jdbc.update(query, memberNo, loNo);
+		return result;
+	}
+
+	//맛집저장취소하기
+	public int deleteSavePlace(int loNo, int memberNo) {
+		String query = "DELETE FROM SAVEPLACE WHERE LO_NO = ? AND MEMBER_NO = ?";
+		int result = jdbc.update(query, loNo, memberNo);
+		return result;
+	}
+		
 	//검색조회
 	public List searchList(String search, int end, int start) {
 		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE (LO_ADDR LIKE ?) OR (LO_TITLE LIKE ?) OR  (LO_INFO LIKE ?) OR (LO_MENU LIKE ?) ) L) WHERE RNUM BETWEEN ? AND ?";

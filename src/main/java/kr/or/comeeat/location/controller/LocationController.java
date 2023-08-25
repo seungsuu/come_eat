@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.comeeat.location.model.model.sevice.LocationService;
 import kr.or.comeeat.location.model.vo.LocationData;
+import kr.or.comeeat.member.model.vo.Member;
 
 @Controller
 @RequestMapping(value="/location")
@@ -31,12 +33,6 @@ public class LocationController {
 		return "search/searchList";
 	}
 	
-	//지역별맛집 페이지로 이동
-	@GetMapping(value="/list")
-	public String locationList() {
-		return "location/location";
-	}
-	
 	@GetMapping(value="/aroundPlace")
 	public String aroudPlace() {
 		return "location/aroundPlace";
@@ -50,6 +46,7 @@ public class LocationController {
 		model.addAttribute("list", locationData.getList());
 		model.addAttribute("navi", locationData.getNavi());
 		model.addAttribute("title", locationData.getTitle());
+		
 		return "location/location";
 	}
 	
@@ -66,5 +63,19 @@ public class LocationController {
 		List list = locationService.searchAroundPlace(searchPlace);
 		model.addAttribute("searchList", list);
 		return "location/aroundPlace";
+	}
+	
+	
+	
+	//맛집저장
+	@ResponseBody
+	@GetMapping(value="/savePlace")
+	public int selectSavePlace(String loNo,@SessionAttribute(required = false) Member m, Model model) {
+		int result = 0;
+		if(m != null) {
+			result = locationService.selectSavePlace(Integer.parseInt(loNo),m.memberNo);
+		}
+		System.out.println(result);
+		return result;
 	}
 }

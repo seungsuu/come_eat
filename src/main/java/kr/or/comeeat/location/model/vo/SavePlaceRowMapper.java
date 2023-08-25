@@ -1,4 +1,4 @@
-package kr.or.comeeat.member.model.vo;
+package kr.or.comeeat.location.model.vo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

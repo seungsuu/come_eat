@@ -27,6 +27,28 @@ public class LocationService {
 	@Autowired
 	private LocationDao locationDao;
 	
+	//맛집저장
+	@Transactional
+	public int selectSavePlace(int loNo, int memberNo) {
+		//조회
+		List list = locationDao.selectSavePlace(loNo,memberNo);
+
+		if(list.isEmpty()) {
+			//저장내역이 없으면 insert
+			int result = locationDao.insertSavePlace(loNo,memberNo);
+			if(result>0) {				
+				return 1;
+			}
+		}else {
+			//저장내역이 있으면 delete
+			int result = locationDao.deleteSavePlace(loNo,memberNo);
+			if(result>0) {				
+				return 2;
+			}
+		}
+		return 0;
+	}
+	
 	//검색조회
 	public LocationData searchList(String pageNo, String search) {
 		int num = 6; //출력개수
