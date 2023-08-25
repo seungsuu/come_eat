@@ -46,7 +46,6 @@ public class LocationController {
 		model.addAttribute("list", locationData.getList());
 		model.addAttribute("navi", locationData.getNavi());
 		model.addAttribute("title", locationData.getTitle());
-		
 		return "location/location";
 	}
 	
