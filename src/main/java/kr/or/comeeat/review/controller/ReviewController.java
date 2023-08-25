@@ -30,7 +30,7 @@ public class ReviewController {
 	public String root;
 	
 
-	
+	//식당 상세정보
 	@GetMapping(value="/detailRestaurant")
 	public String detailRestaurant(int loNo,Model model) {
 		detailReviewList drl = reviewService.selectDetailRestaurant(loNo);
@@ -39,6 +39,7 @@ public class ReviewController {
 		return "review/detailRestaurant";
 	}
 	
+	//리뷰쓰기
 	@GetMapping(value="/reviewWriteFrm")
 	public String reviewWriteFrm(int loNo,Model model) {
 		Location l = reviewService.selectOneRestaurant(loNo);
@@ -46,6 +47,7 @@ public class ReviewController {
 		return "review/reviewWrite";
 	}
 	
+	//리뷰 작성 insert
 	@PostMapping(value="/reviewWrite")
 	public String reviewWrite(Review r, MultipartFile reviewFile, Model model) {
 		// 작성자,내용,평점,식당번호 -> Review

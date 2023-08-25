@@ -90,20 +90,20 @@
 							<li>
 								<p class="reviewList_content_link">
 									<span th:text="${rl.reviewDate}"></span>
-									<a href="#">수정</a>
-									<a href="#">삭제</a>
+									<th:block th:if="${session.m != null && rl.reviewWriter == session.m.memberId}">
+										<a th:href="@{/review/reviewUpdateFrm(reviewNo=${rl.reviewNo})}">수정</a>
+										<a href="#">삭제</a>
+									</th:block>
 								</p>
 								<p class="review_detail_content" th:text="${rl.reviewContent}"></p>
 							</li>
 							<li>
-								<div>
-									<img th:src="'/review/'+${rl.reviewFilepath}" style="width:25%">
-								</div>
+								<img th:src="'/review/'+${rl.reviewFilepath}" style="width:90%">
 							</li>
 							<li>
-								<span class="material-icons" th:if="${rl.reviewGrade==5}">sentiment_very_satisfied</span>
-								<span class="material-icons" th:if="${rl.reviewGrade==3}">sentiment_satisfied_alt</span>
-								<span class="material-icons" th:if="${rl.reviewGrade==1}">sentiment_very_dissatisfied</span>
+								<span id="span" class="material-icons" th:if="${rl.reviewGrade==5}">sentiment_very_satisfied</span>
+								<span id="span" class="material-icons" th:if="${rl.reviewGrade==3}">sentiment_satisfied_alt</span>
+								<span id="span" class="material-icons" th:if="${rl.reviewGrade==1}">sentiment_very_dissatisfied</span>
 							</li>
 						</ul>
 					</th:block>
