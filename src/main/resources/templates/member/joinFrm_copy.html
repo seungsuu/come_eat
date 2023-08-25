@@ -57,6 +57,7 @@
             <tr>
                 <td class="join-th">
                     <label for="memberPhone">핸드폰번호</label>
+                    <span> * </span>
                 </td>
                 <td>
                     <input type="text" class="join-input-form" id="memberPhone" name="memberPhone" placeholder="ex)010-0000-0000" required>
@@ -69,14 +70,14 @@
                     <span> * </span>
                 </td>
                 <td class="join-td-end">
-                    <input type="text" class="join-input-form" id="memberEmail1" name="memberEmail1" required>@
-                    <select name="memberEmail2" id="memberEmail2">
+                    <input type="text" class="join-input-form" id="memberEmail1" name="memberEmail1" required> @
+                    <select style="width:200px; height:42px;" name="memberEmail2" id="memberEmail2" >
 	        			<option>naver.com</option>
 	        			<option>daum.net</option>
 	        			<option>gmail.com</option>
 	        			<option>nate.com</option>
     				</select>
-    				<input type="text" class="join-input-form" id="memberEmail" name="memberEmail">
+    				<input type="hidden" class="join-input-form" id="memberEmail" name="memberEmail">
                 </td>
             </tr>  
         </table>
@@ -245,6 +246,7 @@
 	});
     </script>
     <script>
+    	//이메일 값 전달
     	$("#btnConfirm").on("click",function(){
     		console.log("체크");
 	    	const email1 = $("#memberEmail1").val();
@@ -252,8 +254,6 @@
 	    	const emailFull = email1 + "@" + email2;
 	    	console.log(emailFull);
 	    	$("#memberEmail").val(emailFull);
-	    	
-	    	
     	});
     	
     	
