@@ -1,5 +1,7 @@
 package kr.or.comeeat.booking.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,5 +39,16 @@ public class BookingController {
 		}
 		model.addAttribute("loc","/");
 		return "common/msg";
+	}
+	
+	@ResponseBody
+	@GetMapping(value="/booking/bookinginfo")
+	public List bookinginfo(String bookingDate) {
+		System.out.println(bookingDate);
+		System.out.println("컨트롤러 통과1");
+		List list = bookingService.allBookingTime(bookingDate);
+		System.out.println("컨트롤러 통과2");
+		System.out.println(list);
+		return list;
 	}
 }
