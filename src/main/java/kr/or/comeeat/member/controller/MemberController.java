@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import kr.or.comeeat.EmailSender;
 import kr.or.comeeat.booking.model.service.BookingService;
 import kr.or.comeeat.location.model.vo.SavePlace;
 import kr.or.comeeat.member.model.service.MemberService;
@@ -25,12 +26,32 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private BookingService bookingService;
+	@Autowired
+	private EmailSender emailSender;
+	
+	//메일 테스트
+	@GetMapping(value="/emailTest")
+	public String emailTest() {
+		return "member/emailTest";
+	}
+	
+
+	//인증번호 메일 전송
+	//비동기요청일시 @ResponseBody
+	@ResponseBody
+	@PostMapping(value="/auth")
+	public String authMail(String email, Model model) {
+		String authCode = emailSender.authMail(email);
+		return authCode;
+	}
+	
 	
 	//로그인 페이지로 이동
 	@GetMapping(value="login")
 	public String login() {
 		return "member/login";
 	}
+	
 	//로그인
 	@PostMapping(value="/signin")
 	public String signIn(String signId, String signPw, Model model, HttpSession session) {

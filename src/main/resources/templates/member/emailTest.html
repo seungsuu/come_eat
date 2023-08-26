@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/js/jquery-3.6.0.js"></script>
+</head>
+<body>
+	<form action="/member/auth" method="post">
+	<input type="text" id="email" name="email" class="inputForm">
+	<button type="submit" id="sendBtn">이메일 전송</button>
+	</form>
+	<script>
+		$("#sendBtn").on("click",function(){
+			const email = $("#email").val();
+			//const emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			//const check = emailReg.test(emil);
+			//if(check){
+				$.ajax({
+					//url(컨트롤러)
+					url : "/member/auth",
+					data : {email : email},
+					type : "post",
+					success : function(data){
+						console.log(data);
+					}
+				});
+		});
+	
+	</script>
+</body>
+</html>
