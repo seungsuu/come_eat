@@ -4,18 +4,46 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="/js/jquery-3.6.0.js"></script>
+<link rel="stylesheet" href="/css/searchFw.css">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body>
-	<form action="/member/auth" method="post">
-	<input type="text" id="email" name="email" class="inputForm">
-	<button type="submit" id="sendBtn">이메일 전송</button>
-	</form>
+
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+		<div class="content-title">
+			FIND PW
+		</div>
+		<div class=findPw-content>
+		<div> 회원가입시 입력한 이메일 주소를 입력해주세요.</div>
+			<input type="text" id="email" class="inputForm" placeholder="@를 포함하여 입력해주세요." required>
+			<button class="btn" id="sendBtn">인증번호 요청</button>
+		<div id="auth" style="display:none;">
+			<input type="text" class="inputForm" id="authCode" placeholder="인증 번호를 입력해 주세요." required>
+			<button class="btn" id="authBtn">인증번호 확인</button>
+			<span id="timeZone"></span>
+		</div>
+		<div>
+			<span id="errorMsg"></span>
+		</div>
+		<div class="updatePassword" style="display:none;">
+			<div>
+				<input type="password" class="inputForm" id=newPw name="newPw" placeholder="새로운 비밀번호를 입력해주세요." required>		
+			</div>
+			<div>
+				<input type="password" class="inputForm" id="newPwRe" name="newPwRe" placeholder="비밀번호를 다시 한번 입력해주세요." required>
+  				<button class="btn">비밀번호 변경</button>
+  			</div>
+  		</div>
+  		</div>
+  	</div>
 	<script>
+		let authCode = null;
 		$("#sendBtn").on("click",function(){
 			const email = $("#email").val();
-			//const emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-			//const check = emailReg.test(emil);
-			//if(check){
+			const emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			const check = emailReg.test(email);
+			if(check){
 				$.ajax({
 					//url(컨트롤러)
 					url : "/member/auth",
@@ -23,10 +51,58 @@
 					type : "post",
 					success : function(data){
 						console.log(data);
-					}
+						authCode = data;
+						$("#auth").show();
+						authTime();
+						}
 				});
+				}else{
+					alert("올바른 이메일 형식을 입력해주세요.");
+				}
+			});
+		let intervalId = null;
+		function authTime(){
+			$("#timeZone").html("<span id='min'>5</span> : <span id='sec'>00</span>");
+			//1초마다 반복
+			intervalId = window.setInterval(function(){
+				const min = $("#min").text();
+				const sec = $("#sec").text();
+				if(sec == "00"){
+					if(min == "0") {
+						window.clearInterval(intervalId); // interval 함수 종료
+						authCode = null; //인증코드 무효화
+						$("#errorMsg").text("인증 시간이 만료되었습니다.");
+					}else {
+						const newMin = Number(min) - 1;
+						$("#min").text(newMin);
+						$("#sec").text(59);
+					}
+					
+				}else {
+					const newSec = Number(sec) - 1;
+					if(newSec < 10){
+						$("#sec").text("0"+newSec);
+					}else {
+						$("#sec").text(newSec);						
+					}
+				}
+			},100);
+		}
+		$("#authBtn").on("click",function(){
+		if(authCode != null) {
+				const inputCode = $("#authCode").val();
+				if(authCode == inputCode){
+					$("#errorMsg").text("인증완료.");
+					window.clearInterval(intervalId);
+					$("#timeZone").empty();
+					$(".updatePassword").show();
+				}else{
+					$("#errorMsg").text("메일코드를 확인하세요.");
+					
+				} 
+			}
 		});
-	
 	</script>
+	<th:block th:include="common/footer"></th:block>
 </body>
 </html>
