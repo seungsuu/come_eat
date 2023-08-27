@@ -84,6 +84,15 @@ public class MemberService {
 		}
 		return result;
 	}
+	
+	@Transactional
+	public int updateMember(String email, String newPwRe) {
+		System.out.println(email);
+		System.out.println(newPwRe);
+		int result = memberDao.updatePw(email,newPwRe);
+		System.out.println(result);
+		return result;
+	}
 
 }
 	

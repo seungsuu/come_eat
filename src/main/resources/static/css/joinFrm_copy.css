@@ -70,6 +70,7 @@ td{
 #memberEmail2{
     width: 200px;
     height: 42px;
+    border: 1px solid #eee;
 }
 .join-th-end{
     border : none;
@@ -79,7 +80,7 @@ td{
     border : none;
 }
 
-/* 약관동의 */
+
 
 #join_agreementAll{
     background-color: white;
@@ -154,13 +155,6 @@ body{
     width: 500px;
     background-color: #fff;
     padding: 30px;
-}
-.login-modal-top>h2{
-    margin: 0;
-    padding: 20px;
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 20px;
 }
 
 /* 모달 X버튼 */
@@ -258,4 +252,9 @@ body{
     height: 42px;
     margin-left: 5px;
 }
+
+.login-modal-top>*{
+	font-size : 15px;
+}
+
 

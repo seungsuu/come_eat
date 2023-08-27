@@ -89,6 +89,17 @@ public class MemberDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
+
+	//이메일 인증 회원정보수정
+	public int updatePw(String email, String newPwRe) {
+		String query = "update member set member_pw = ? where member_email = ?";
+		System.out.println(email);
+		System.out.println(newPwRe);
+		Object[] params = {email,newPwRe};
+		int result = jdbc.update(query,params);
+		System.out.println(result);
+		return result;
+	}
 	
 
 }

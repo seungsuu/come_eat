@@ -8,6 +8,23 @@
     <script src="/js/jquery-3.6.0.js"></script>
 </head>
 <body>
+<style>
+/* 약관동의 */
+.join-ul>li{
+    background-color: #eee;
+    list-style: none;
+    padding-left: 20px;
+    text-align: left;
+    height: 40px;
+    margin-bottom: 2px;
+    line-height: 40px;
+    font-size: 15px;
+    position: relative;
+}
+/* 모달 */
+
+
+</style>
 	<th:block th:include="common/header"></th:block>
     <div class="content-wrap">
         <div class="content-title">JOIN</div>
@@ -102,7 +119,7 @@
                 </li>
                 <li>
                     <input type="checkbox" id="optionAgreement">
-                    <label for="optionAgreement">개인정보 수집 및 이용안내<span id=option>(선택)</span></label>
+                    <label for="optionAgreement">정보수신동의<span id=option>(선택)</span></label>
                     <button class="modal-open-btn" type="button">내용보기</button>
                 </li>
             </ul>
@@ -116,13 +133,21 @@
             <div class="login-modal">
                 <div class="login-modal-top">
                     <button class="join-modal-close"><span class="material-icons" id="close">close</span></button>
+                    <div class="login-modal-title">
                     <h2>정보 수신동의(선택)</h2>
-                    
+                    </div>
+                    <hr>
+                    <br>
+                    <p> 할인쿠폰 및 혜택, 이벤트 소식 등 come eat 에서 제공하는 유익한 정보를  SMS나 이메일로 받아보실수 있습니다.</p>
+                    <p> 단, 주요정책과 관련된 내용은 수신동의 여부와 관계없이 발송 됩니다.</p>
+                    <br><br><br>
+                    <p><input type="checkbox">	SMS 수신을 동의하십니까?</p>
+                    <p><input type="checkbox"> 이메일 수신을 동의하십니까?</p>
                 </div>
             </div>
         </div>
         <div class="join-modal-wrap-privacy">
-            <div class="login-modal" sytle="overflow-y: scroll; height:500px";>
+            <div class="login-modal">
                 <div class="login-modal-top">
                     <button class="join-modal-close"><span class="material-icons" id="close">close</span></button>
                     <div class="login-modal-title">
@@ -222,11 +247,6 @@
 		if($("#memberPhone").val() == ""){
 			alert('전화번호를 입력하세요');
 			$("#memberPhone").focus();
-			return false;
-		}
-		if($("#memberEmail").val().indexOf('@') == -1 ){      // indexOf 사용
-			alert('이메일 형식이 아닙니다.');
-			$("#memberEmail").select();
 			return false;
 		}
 		if( $('input[type="checkbox"]').is(':checked') == false ){

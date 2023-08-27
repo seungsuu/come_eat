@@ -191,6 +191,17 @@ public class MemberController {
 		}
 		return "common/msg";
 	}
+	//메일인증: 비밀번호 수정
+	@ResponseBody
+	@PostMapping(value="/updatePw")
+	public int updatePw(String email, String newPwRe) {
+		System.out.println(email);
+		System.out.println(newPwRe);
+		int result = memberService.updateMember(email,newPwRe);
+		System.out.println(result);
+		return result;
+	}
+	
 	
 	//회원 탈퇴
 	@GetMapping(value="/delete")
