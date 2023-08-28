@@ -30,6 +30,7 @@ $("#memberPw").on("change",function(){
         comment.eq(1).css("color","red");
         comment.eq(1).css("font-size","12px");
         comment.eq(1).css("font-weight","400");
+        
     }
 });
 //비밀번호 비밀번호 확인 하기
@@ -110,6 +111,7 @@ $("#memberId").on("change",function(){
 						comment.eq(0).css("color","red");
 						comment.eq(0).css("font-size","12px");
 						comment.eq(0).css("font-weight","400");
+					
 					}
 				}
 			});
