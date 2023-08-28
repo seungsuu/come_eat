@@ -23,6 +23,7 @@
     height: 3px;
     background-color: #2F2F2F;
     border: 0;
+    margin-bottom:40px;
 }
 .magazine-storename{
     text-align: center;
@@ -38,5 +39,7 @@
     width: 1200px;
     height: 600px;
 }
-
+.magazine-content{
+	margin-top: 100px;
+}
 
