@@ -12,7 +12,7 @@
 		<div class="review-wrapper content-wrap">
 			<div class="content-title">리뷰 수정하기</div>
 	        <div class="review-editor">
-	            <form action="/review/reviewWrite" method="post" enctype="multipart/form-data">
+	            <form action="/review/reviewUpdate" method="post" enctype="multipart/form-data">
 	                <div class="review-editor-wrap">
 	                    <div class="review-grade-picker">
 	                        <ul class="grade-picker-list">
@@ -49,7 +49,7 @@
 	                    <div class="review-file-upload">
 	                    	<div class="file-upload-btn" style="margin:40px 0;">
 		                        <label for="reviewFile" class="btn">첨부 사진</label>
-		                        <input type="file" name="reviewFile" id="reviewFile" style="display: none;" accept=".jpg,.png,.jpeg,.gif">
+		                        <input type="file" name="updateFile" id="updateFile" style="display: none;" accept=".jpg,.png,.jpeg,.gif">
 	                    	</div>
 	                        <div class="imageThumb">
 								<img id="img-view" width="200px" th:src="${r.reviewFilepath}">

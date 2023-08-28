@@ -10,7 +10,7 @@
 		<div class="content-wrap">
 			<div class="content-title">Magazine 게시판</div>
 				<div class="magazine-input">
-					<a th:if="${session.m != null && session.m.memberLevel == 2}" href="/magazine/magazineWriteFrm" class="btn">글쓰기</a>
+					<a th:if="${session.m != null && session.m.memberLevel == 1}" href="/magazine/magazineWriteFrm" class="btn">글쓰기</a>
 				</div>
 				<div class="magazine-container">
 

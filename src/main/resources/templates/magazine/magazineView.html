@@ -20,11 +20,16 @@
 			<hr class="magazine-hr1 magazinehr">
 			<div class="magazine-storename" th:text="${m.magazineStorename}">양나민 대장과 아이들</div>
 			<hr class="magazine-hr2 magazinehr">
+			<br>
+			<br>
+			<!-- 
 			<div class="magazine-image">
 				<img class="magazine-img">
 			</div>
-			<div class="magazine-content" th:utext="${m.magazineContent}">
-
+			 -->
+			<div class="magazine-content-wrap">
+				<div class="magazine-content" th:utext="${m.magazineContent}">
+				</div>
 			</div>
 			<div th:if="${session.m !=null && session.m.memberNo == m.memberNo}" style="text-align:center; margin: 50px 0 30px 0;">
 				<a class="btn-o magazineViewBtn" th:href="@{/magazine/magazineUpdateFrm(magazineNo=${m.magazineNo})}" style="width:20%;">수정</a>
