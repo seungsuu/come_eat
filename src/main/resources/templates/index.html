@@ -4,22 +4,47 @@
 <meta charset="UTF-8">
 <title>메인페이지</title>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!--슬라이더-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-	<div class="main-slider">
-        <div>
-            <a href="/"></a>
+    <!-- 메인 슬라이더 -->
+    <div class="swiper-main">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <a href="/" style="background-image: url(/img/main/main1.jpg);">
+                    <div class="main-textBox">
+                        <p>런던베이글 뮤지엄 10% 할인</p>
+                        <p>간단설명~~~~~~</p>
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <div class="main-textBox">
+                    <p>런던베이글 뮤지엄 10% 할인</p>
+                    <p>간단설명~~~~~~</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="main-textBox">
+                    <p>런던베이글 뮤지엄 10% 할인</p>
+                    <p>간단설명~~~~~~</p>
+                </div>
+            </div>
         </div>
-        <div>
-            <a href="/"></a>
-        </div>
-        <div>
-            <a href="/"></a>
-        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
+
+    
     <div class="content-wrap">
         <div class="content-title main-title">맛집 BEST</div>
         <di class="main-content-best">
@@ -84,35 +109,102 @@
                 </a>
             </div>
         </di>
+
+        <!-- 매거진 슬라이더 -->
         <div class="content-title main-title clear">매거진</div>
         <di class="main-content-magazine">
-            <div class="magazine-slider">
-                <div>
-                    <a href="/"></a>
+            <div class="swiper-magazine">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <a href="/"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/"></a>
+                    </div>
                 </div>
-                <div>
-                    <a href="/"></a>
-                </div>
-                <div>
-                    <a href="/"></a>
-                </div>
-                <div>
-                    <a href="/"></a>
-                </div>
-                <div>
-                    <a href="/"></a>
-                </div>
-                <div>
-                    <a href="/"></a>
-                </div>
-                <div>
-                    <a href="/"></a>
-                </div>
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </di>
+
+        <!-- 지역별 맛집 -->
         <div class="content-title main-title">지역별 맛집</div>
         <di class="main-content-location">
-            
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
+            <div>
+                <a href="/" style="background-image: url(/html/main1.jpg);">
+                    서울
+                </a>
+            </div>
         </di>
     </div>
     <script src="/js/main.js"></script>
