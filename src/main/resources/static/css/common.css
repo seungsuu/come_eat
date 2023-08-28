@@ -148,6 +148,11 @@ font-family: 'Noto Sans KR', sans-serif;
     overflow: hidden;
     width: 36%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 }
 .board-navi li{
     float: left;
