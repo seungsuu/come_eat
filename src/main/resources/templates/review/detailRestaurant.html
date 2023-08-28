@@ -170,17 +170,17 @@
 									id="date-icon-updown2">arrow_circle_up</span>
 							</div>
 							<div class="booking-time">
-								<label> <input type="radio" name="bookingTime"
+								<label> <input type="radio" name="bookingTime" class="booking-time"
 									id="bookingTime1" value="1"> <span>오후 1시</span>
-								</label> <label> <input type="radio" name="bookingTime"
+								</label> <label> <input type="radio" name="bookingTime" class="booking-time"
 									id="bookingTime2" value="2"> <span>오후 2시</span>
-								</label> <label> <input type="radio" name="bookingTime"
+								</label> <label> <input type="radio" name="bookingTime" class="booking-time"
 									id="bookingTime3" value="3"> <span>오후 3시</span>
-								</label> <label> <input type="radio" name="bookingTime"
+								</label> <label> <input type="radio" name="bookingTime" class="booking-time"
 									id="bookingTime4" value="4"> <span>오후 4시</span>
-								</label> <label> <input type="radio" name="bookingTime"
+								</label> <label> <input type="radio" name="bookingTime" class="booking-time"
 									id="bookingTime5" value="5"> <span>오후 5시</span>
-								</label> <label> <input type="radio" name="bookingTime"
+								</label> <label> <input type="radio" name="bookingTime" class="booking-time"
 									id="bookingTime6" value="6"> <span>오후 6시</span>
 								</label>
 							</div>
@@ -309,7 +309,7 @@
 		//예약막기
 		$("#bookingDate").on("change",function() {
 							$("input[type=radio]").removeAttr("disabled");
-							//$("input[type=radio]").next().css("background-color", "#fff");
+							$("input[type=radio]").next().removeAttr("style");
 							const day = $(this).val();
 							const loTitle = $("#loTitle").val();
 							const bookingTimeInput = [];
@@ -329,8 +329,10 @@
 												const time1 = data[i].bookingTime;
 												for (let j = 0; j < bookingTimeInput.length; j++) {
 													if (bookingTimeInput[j] == data[i].bookingTime) {
-														console.log($("#bookingTime" + (j + 1) + "").val());
 														$("#bookingTime" + (j + 1) + "").attr("disabled",true);
+														$("#bookingTime" + (j + 1) + "").css('background-color','#ccc');
+														$("#bookingTime" + (j + 1) + "").next().css('background-color','#ccc');
+														$("#bookingTime" + (j + 1) + "").next().css('color','#FFF');
 													}
 												}
 
@@ -375,7 +377,7 @@
 
 		let count = 1;
 		$("#plus").on("click", function() {
-			if ($(".bookingTotalnum").val() < 10) {
+			if ($(".bookingTotalnum").val() < 5) {
 				count += 1;
 				$(".bookingTotalnum").val(count);
 			} else {

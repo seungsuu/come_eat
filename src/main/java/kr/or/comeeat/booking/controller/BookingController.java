@@ -27,7 +27,6 @@ public class BookingController {
 	
 	@PostMapping(value="/booking/book")
 	public String book(Booking b, Model model) {
-		System.out.println(b);
 		int result = bookingService.insertBooking(b);
 		if(result>0) {
 			model.addAttribute("title", "예약");

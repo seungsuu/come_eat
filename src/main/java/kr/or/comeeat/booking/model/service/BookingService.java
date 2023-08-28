@@ -24,7 +24,7 @@ public class BookingService {
 
 	public List allBookingTime(String bookingDate, String loTitle) {
 		List list = bookingDao.allBookingTime(bookingDate, loTitle);
-		System.out.println(loTitle);
+		
 		return list;
 	}
 
