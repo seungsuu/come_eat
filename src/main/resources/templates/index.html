@@ -116,25 +116,6 @@
             <div class="swiper-magazine">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div class="swiper-slide">
-                        <a href="/"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/"></a>
-                    </div>
                 </div>
                 <!-- If we need navigation buttons -->
                 <div class="swiper-button-prev"></div>
@@ -197,7 +178,37 @@
             </div>
         </di>
     </div>
-    <script src="/js/main.js"></script>
 	<th:block th:include="common/footer"></th:block>
+	<script>
+	window.onload = function(){
+		const start = 1;
+		const end = 6;
+		$.ajax({
+			url : "/magazine/more",
+			type :"post",
+			data : {start:start,end:end},
+			success : function(data){
+				for(let i=0; i<data.length; i++){
+					const magazine = data[i];
+					const div = $("<div>");
+					div.addClass("swiper-slide");
+                
+					const a = $("<a>")
+					a.attr("href","/magazine/view?magazineNo="+magazine.magazineNo)
+					a.css("background-image","url(/magazine/"+magazine.filepath+")");
+					
+					const title = $("<p>");
+					title.addClass("magazine-info");
+					title.text(magazine.magazineTitle);
+					
+					div.append(a).append(title);
+					
+					$(".swiper-magazine>.swiper-wrapper").append(div);
+				}
+			}
+		});
+	}
+	</script>
+	<script src="/js/main.js"></script>
 </body>
 </html>

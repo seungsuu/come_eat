@@ -49,6 +49,7 @@
     font-weight: 400;
     line-height: 60px;
     color: #fff;
+    transition-duration: 500ms;
 }
 .header-center li>a:hover{
     background-color: white;
@@ -75,6 +76,7 @@
     margin-left: 5px;
     padding: 5px;
     color: #fff;
+    transition-duration: 500ms;
 }
 .header-right li span:hover{
     border-radius: 30px;
