@@ -178,9 +178,9 @@
             </div>
         </di>
     </div>
-	<th:block th:include="common/footer"></th:block>
+    <script src="/js/main.js"></script>
 	<script>
-	window.onload = function(){
+ 	window.onload = function(){
 		const start = 1;
 		const end = 6;
 		$.ajax({
@@ -188,27 +188,48 @@
 			type :"post",
 			data : {start:start,end:end},
 			success : function(data){
+				console.log(data);
 				for(let i=0; i<data.length; i++){
 					const magazine = data[i];
 					const div = $("<div>");
 					div.addClass("swiper-slide");
-                
-					const a = $("<a>")
-					a.attr("href","/magazine/view?magazineNo="+magazine.magazineNo)
-					a.css("background-image","url(/magazine/"+magazine.filepath+")");
+					div.css("background-image","url(/magazine/"+magazine.filepath+")").css("cursor","pointer");
+                	
+					const divBl = $("<div>");
+					divBl.addClass("blind");
 					
 					const title = $("<p>");
 					title.addClass("magazine-info");
 					title.text(magazine.magazineTitle);
 					
-					div.append(a).append(title);
-					
+					div.append(title).append(divBl);
 					$(".swiper-magazine>.swiper-wrapper").append(div);
+					
+					div.on("click", function(){
+						 location.href = "/magazine/view?magazineNo="+magazine.magazineNo;
+					});
+					
 				}
+				const magazineSwiper = new Swiper('.swiper-magazine', {
+				    spaceBetween: 30,
+				    slidesPerView : 2,
+				    centeredSlides: true,
+				    autoplay: {
+				        delay: 1500
+				    },
+				    observer: true,
+				    observeParents: true,
+				    loopAdditionalSlides : 1,
+				    loop: true,
+				    navigation: {
+				        nextEl: '.swiper-button-next',
+				        prevEl: '.swiper-button-prev',
+				    }
+				});
 			}
 		});
 	}
 	</script>
-	<script src="/js/main.js"></script>
+	<th:block th:include="common/footer"></th:block>
 </body>
 </html>

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="/summernote/summernote-lite.js"></script>
+	<script src="/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="/summernote/summernote-lite.css">
     <link rel="stylesheet" href="/css/common.css">
 </head>
 <body>
@@ -15,7 +18,7 @@
 			<tr>
 				<th class="b-color-g" width="20%">제목</th>
 				<td>
-                    <input type="text" name="boardTitle" class="input" value="제목입니다." style="text-align: center;">
+                    <input type="text" name="boardTitle" class="input" placeholder="제목을 입력하세요" style="text-align: center;" required>
                 </td>
 			</tr>
 			<tr>
@@ -31,13 +34,12 @@
             <tr>
                 <th class="b-color-g">작성자</th>
 				<td>
-				    <span>작성자출력</span>
-				    <input type="hidden" name="boardWriter" th:value="${session.m.memberId}">
+				    <input type="text" name="boardWriter" class="input"  style="text-align: center;" th:value="${session.m.memberId}" readonly>
 				</td>
             </tr>
 			<tr>
 				<th colspan="2" class="textarea-td" style="text-align: left;">
-					<textarea name="boardContent" class="input textarea"></textarea>
+					<textarea name="boardContent" class="input textarea boardContent"></textarea>
 				</th>
 			</tr>
 		</table>
@@ -54,5 +56,28 @@
 		</form>
 	</div>
 	<th:block th:include="common/footer"></th:block>
+	<script>
+		$(".boardContent).summernote({
+			  toolbar: [
+				    ['fontname', ['fontname']],
+				    ['fontsize', ['fontsize']],
+				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+				    ['color', ['forecolor','color']],
+				    ['table', ['table']],
+				    ['para', ['ul', 'ol', 'paragraph']],
+				    ['height', ['height']],
+				    ['insert',['picture','link','video']],
+				    ['view', ['fullscreen', 'help']]],
+					fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+					fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+			height: 400,
+			lang : "ko-KR",
+			callbacks :{
+				onImageUpload : function(files){
+					uploadImage(files[0],this);
+				}	
+			}
+		});
+	</script>
 </body>
 </html>

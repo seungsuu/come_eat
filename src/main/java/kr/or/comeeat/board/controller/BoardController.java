@@ -23,4 +23,9 @@ public class BoardController {
 		return "board/boardList";
 	}
 	
+	@GetMapping(value="/writeFrm")
+	public String boardWriteFrm() {
+		return "board/boardWrite";
+	}
+	
 }
