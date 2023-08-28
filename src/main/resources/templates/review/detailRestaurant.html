@@ -140,7 +140,7 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	
-			<div>
+	
 			<div class="modal" style="z-index: 100;">
 				<div class="modal_body">
 					<div class="content-title">예약하기</div>
@@ -268,7 +268,7 @@
 					</form>
 				</div>
 			</div>
-		</div>
+	
 	
 	<script src="/js/bookingFrm.js"></script>
 	<script>
@@ -458,6 +458,13 @@
 		}
 
 		flatpickr("input[type=datetime-local]", config);
+		
+		//모달끄기
+		$(document).mouseup(function (e){
+			if($(".modal").has(e.target).length === 0){
+				$(".modal").fadeOut(500);
+			}
+		});
 	</script>
 </body>
 </html>
