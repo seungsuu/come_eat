@@ -118,22 +118,30 @@
 		</div>
        </form> 
        </div>
-       <div class="mypage-content">
        <!-- 맛집 저장 리스트 -->
-       	<div class="mypage-content-wrap">
-       		<div class="like-img-box">
-       		
-       		</div>
-       		<div class="like-content">
-       		<p>식당이름</p>
-       		<p>식당간단소개</p>
-       		</div>
-       		<div class="like-icon">
-       			
-       		</div>
-       	</div>
-      	</div>
-       </div>
+       <div class="mypage-content-wrap"> 
+			<!--  
+			<div class="mypage-content">
+				<a href="/">
+					<div class="mypage-img-box"></div>
+					<div class="mypage-content-info">
+						<div class="info">
+							<p>맛집제목</p>
+							<p>맛집설명</p>
+							<div class="star">
+								<span class="material-icons-round">grade</span>
+								<span>4.5</span>
+							</div>
+						</div>
+					</div>
+				</a>
+				<button class="save">
+					<span class="material-icons done">favorite</span>
+				</button>
+			</div>
+			-->
+		</div>
+    </div>
 	</div>  
 	<th:block th:include="common/footer"></th:block>
 	
@@ -151,6 +159,44 @@
 		    tabs.eq(0).click();
 		});
 		
+		//페이지 로드되면 저장내역 불러오기
+		window.onload = function(){
+				$.ajax({
+					url : "/location/savePlaceMember",
+					type : "get",
+					success : function(list){
+						if(list.isEmpty()){
+							
+						}else(){							
+							for(let i=0; i<list.size; i++){
+								const like = list[i];
+								
+								const div = $("<div>");
+								div.addClass("mypage-content");
+								const imgDiv = ("<div>")
+								div.addClass("mypage-img-box");
+								const contentinfoDiv = ("<div>");
+								div.addClass("mypage-content-info");
+								const infoDiv = ("<div>");
+								div addClass("info");
+								const titlep = $("<p>");
+								p.text();
+								const content =$("<p>");
+								p.text();
+								const divStar = $("<div>");
+								div.addClass("star");
+								const span = $("<span>");
+								span.addClass("material-icons-round");
+								span.text(4.5);
+								const button =$("<button>");
+								button.addClass("save");
+								span.addClass("material-icons done").text("favorite");
+							}
+						}
+					}
+				});
+			});
+		}
 	
 	</script>
 </body>

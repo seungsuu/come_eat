@@ -412,5 +412,12 @@ public class LocationService {
 	}
 
 
+
+	public List savePlaceMember(int memberNo) {
+		List list = locationDao.savePlaceMember(memberNo);
+		return list;
+	}
+
+
 	
 }

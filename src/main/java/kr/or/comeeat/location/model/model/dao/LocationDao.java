@@ -104,6 +104,12 @@ public class LocationDao {
 		return list;
 	}
 
+	public List savePlaceMember(int memberNo) {
+		String query ="select * from saveplace where member_no =?";
+		List list = jdbc.query(query, savePlaceRowMapper,memberNo);
+		return list;
+	}
+
 
 	
 }
