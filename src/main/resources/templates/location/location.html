@@ -97,6 +97,7 @@
 		const list = [[${list}]];
 		const loCode = list[0].loCode;
 		const title = [[${title}]];
+		
 		if(list.length != 0){				
 			//클릭한 버튼만 색상 변경
 			$(".lo-btn").each(function(index, item){
@@ -105,10 +106,29 @@
 				}
 			})
 			
+			//페이지 로드되면 저장내역 불러오기
+			window.onload = function(){
+				$(".save").each(function(i, item){
+					const loNo = $(".save").eq(i).val();
+					$.ajax({
+						url : "/location/savePlaceSelect",
+						type : "get",
+						data : {loNo:loNo},
+						success : function(data){
+							if(data == 0){
+								$(".save").eq(i).children("span").text("favorite_border");
+							}else{
+								$(".save").eq(i).children("span").text("favorite");
+							}
+						}
+					});
+				});
+			}
+			
 			//저장버튼
 			$(".save").on("click",function(){
 				const loNo = $(this).val();
-				const thisSave = $(this);
+				const save = $(this);
 				$.ajax({
 					url : "/location/savePlace",
 					type : "get",
@@ -119,12 +139,12 @@
 						let icon = "warning";
 						
 						if(data == 1){							
-							$(thisSave).children("span").text("favorite");
+							$(save).children("span").text("favorite");
 							title = "저장완료";
 							msg = "저장이 완료되었습니다";
 							icon = "success";
 						}else if(data == 2){
-							$(thisSave).children("span").text("favorite_border");
+							$(save).children("span").text("favorite_border");
 							title = "저장취소";
 							msg = "저장이 취소되었습니다";
 							icon = "success";
@@ -160,7 +180,8 @@
 				    var clusterer = new kakao.maps.MarkerClusterer({
 				        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
 				        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-				        minLevel: 8 // 클러스터 할 최소 지도 레벨 
+				        minLevel: 8, // 클러스터 할 최소 지도 레벨
+				        disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
 				    });
 					//마커
 					for(let i=0; i<data.length;i++){
@@ -174,10 +195,20 @@
 							clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
 						});
 						// 마커를 지도에 표시합니다.
-						
 						marker.setMap(map);
+						
 					    // 클러스터러에 마커들을 추가합니다
 					    clusterer.addMarkers(marker);
+					    console.log(clusterer);
+					    
+					 	/* // 마커 클러스터러에 클릭이벤트를 등록합니다
+					    kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+					        // 현재 지도 레벨에서 1레벨 확대한 레벨
+					        var level = map.getLevel()-1;
+					        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+					        map.setLevel(level, {anchor: cluster.getCenter()});
+					    } */
+					    
 					    
 					    //마커 클릭이벤트
 						kakao.maps.event.addListener(marker, 'click', function(){
@@ -228,6 +259,7 @@
 				}//success종료
 			});//비동기요청종료
 		}//if문 종료
+		
 		
     </script>
 </body>

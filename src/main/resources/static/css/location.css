@@ -49,6 +49,7 @@
     width: 50%;
     float: left;
     position: relative;
+    transition-duration: 500ms;
 }
 .location-content>a:first-child{
     display: block;
@@ -75,12 +76,14 @@
 .location-content-info>p:first-child{
     font-size: 22px;
     font-weight: 600;
+    transition-duration: 500ms;
 }
 .location-content-info>p:nth-child(2){
 	height: 70px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	font-weight: 400;
 }
 
 /*평점*/

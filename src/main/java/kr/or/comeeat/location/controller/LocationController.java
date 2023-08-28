@@ -64,17 +64,25 @@ public class LocationController {
 		return "location/aroundPlace";
 	}
 	
-	
+	//맛집저장내역 불러오기
+	@ResponseBody
+	@GetMapping(value="/savePlaceSelect")
+	public int savePlaceSelect(String loNo,@SessionAttribute(required = false) Member m) {
+		int result = 0;
+		if(m != null) {
+			result = locationService.savePlaceSelect(Integer.parseInt(loNo),m.memberNo);
+		}
+		return result;
+	}
 	
 	//맛집저장
 	@ResponseBody
 	@GetMapping(value="/savePlace")
-	public int selectSavePlace(String loNo,@SessionAttribute(required = false) Member m, Model model) {
+	public int selectSavePlace(String loNo,@SessionAttribute(required = false) Member m) {
 		int result = 0;
 		if(m != null) {
 			result = locationService.selectSavePlace(Integer.parseInt(loNo),m.memberNo);
 		}
-		System.out.println(result);
 		return result;
 	}
 }

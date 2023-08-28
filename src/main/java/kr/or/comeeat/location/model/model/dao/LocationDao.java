@@ -24,10 +24,14 @@ public class LocationDao {
 	
 	
 	//맛집저장조회
-	public List selectSavePlace(int loNo, int memberNo) {
+	public int selectSavePlace(int loNo, int memberNo) {
+		int result = 0;
 		String query = "SELECT * FROM SAVEPLACE WHERE LO_NO = ? AND MEMBER_NO = ?";
 		List list = jdbc.query(query,savePlaceRowMapper, loNo, memberNo);
-		return list;
+		if(!list.isEmpty()) {
+			result = 1;
+		}
+		return result;
 	}
 	
 	//맛집저장하기
