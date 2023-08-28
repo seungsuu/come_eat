@@ -85,12 +85,10 @@ public class MemberService {
 		return result;
 	}
 	
+	//이메일 인증: 비밀번호 변경
 	@Transactional
-	public int updateMember(String email, String newPwRe) {
-		System.out.println(email);
-		System.out.println(newPwRe);
-		int result = memberDao.updatePw(email,newPwRe);
-		System.out.println(result);
+	public int updateMember(String memberEmail, String newPwRe) {
+		int result = memberDao.updatePw(memberEmail,newPwRe);
 		return result;
 	}
 

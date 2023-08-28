@@ -192,14 +192,20 @@ public class MemberController {
 		return "common/msg";
 	}
 	//메일인증: 비밀번호 수정
-	@ResponseBody
 	@PostMapping(value="/updatePw")
-	public int updatePw(String email, String newPwRe) {
-		System.out.println(email);
-		System.out.println(newPwRe);
-		int result = memberService.updateMember(email,newPwRe);
-		System.out.println(result);
-		return result;
+	public String updatePw(String memberEmail, String newPwRe, Model model) {
+		int result = memberService.updateMember(memberEmail,newPwRe);
+		if(result>0) {
+			model.addAttribute("msg", "비밀번호가 변경되었습니다 다시 로그인해주세요.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/member/login");
+		}else {
+			model.addAttribute("msg", "실패.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/member/login");
+			
+		}
+		return "common/msg";
 	}
 	
 	
