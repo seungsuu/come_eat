@@ -25,8 +25,9 @@ public class BookingController {
 	}
 	
 	
-	@PostMapping(value="booking/book")
+	@PostMapping(value="/booking/book")
 	public String book(Booking b, Model model) {
+		System.out.println(b);
 		int result = bookingService.insertBooking(b);
 		if(result>0) {
 			model.addAttribute("title", "예약");
@@ -43,12 +44,8 @@ public class BookingController {
 	
 	@ResponseBody
 	@GetMapping(value="/booking/bookinginfo")
-	public List bookinginfo(String bookingDate) {
-		System.out.println(bookingDate);
-		
-		List list = bookingService.allBookingTime(bookingDate);
-		
-		System.out.println(list);
+	public List bookinginfo(String bookingDate, String loTitle) {
+		List list = bookingService.allBookingTime(bookingDate, loTitle);
 		return list;
 	}
 }
