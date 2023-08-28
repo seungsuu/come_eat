@@ -47,7 +47,7 @@
                     <!-- 로그인 상태일때 -->
                     <li th:if="${session.m != null}"><a href="/member/logout"><span class="material-icons">logout</span></a></li>
                     <li th:if="${session.m != null && session.m.memberLevel == 1}"><a href="/member/adminMypage"><span class="material-icons">face</span></a></li>
-                    <li th:if="${session.m != null}"><a href="/member/mypage"><span class="material-icons">face</span></a></li>
+                    <li th:if="${session.m != null && session.m.memberLevel == 2}"><a href="/member/mypage"><span class="material-icons">face</span></a></li>
                 </ul>
             </div>
         </div>
