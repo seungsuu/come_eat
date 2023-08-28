@@ -30,13 +30,15 @@
     width: 1200px; 
     display: flex;
     align-items: left;
-    justify-content: left;
+    justify-content: center;
     flex-wrap: wrap;
 }
 .magazine-item {
     position: relative;
     background: #fff;
-    width: 400px; height: 300px;
+    width: 370px; 
+    height: 300px;
+    margin:10px;
     cursor: pointer;
     overflow: hidden;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
