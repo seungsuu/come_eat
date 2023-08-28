@@ -3,3 +3,8 @@ $(".modal-open-btn").click(function(){
 });
 
 
+$(document).mouseup(function (e){
+	if($(".modal").has(e.target).length === 0){
+		$(".modal").fadeOut(500);
+	}
+});

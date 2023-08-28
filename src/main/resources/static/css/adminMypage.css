@@ -73,7 +73,7 @@
 }
 
 /* tab */
-.mypage-tab li{
+.mypage-tab li a{
 	width: calc(33.333% - 3px);
 	height: 50px;
     line-height: 50px;

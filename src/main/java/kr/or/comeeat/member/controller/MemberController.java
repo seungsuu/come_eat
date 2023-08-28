@@ -230,11 +230,21 @@ public class MemberController {
 	@GetMapping(value="/admin")
 		public String admin(Model model) {
 		 List list = memberService.selectAllMember();
-		 //List booking = bookingService.selectAllBooking();
+		 
 		 model.addAttribute("list", list);
 		 //model.addAttribute("b", booking);
 		 return "member/adminMypage";
 	}
+	@GetMapping(value="/adminBook")
+	public String adminBook(Model model) {
+		List booking = bookingService.selectAllBooking();
+		
+		 model.addAttribute("b", booking);
+		 return "member/adminMypage";
+	}
+	
+	
+	
 	@GetMapping(value="/changeLevel")
 	public String changeLevel(int memberNo,int memberLevel, Model model) {
 		int result = memberService.changeLevel(memberNo,memberLevel);

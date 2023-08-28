@@ -12,6 +12,7 @@
 			const index = tabs.index(this);
 			mypagecontent.eq(index).show();
 		});
+
 		$(function(){
 		    tabs.eq(0).click();
 		});	

@@ -10,14 +10,14 @@
 <body>
 	<th:block th:include="common/header"></th:block>
 	<div class="content-wrap">
-		<div class="content-title">MY PAGE <span class="material-icons">admin_panel_settings</span></div>
+		<div class="content-title">ADMIN PAGE <span class="material-icons">admin_panel_settings</span></div>
 			<div class="mypage-tab-wrap">
 				<ul class="mypage-tab">
 					<li>나의정보</li>
 					<li>
 					<a href="/member/admin">회원관리</a>
 					</li>
-					<li>예약내역</li>
+					<li><a href="/member/adminBook">예약내역</a></li>
 				</ul>			
 		<div class="mypage-content">
 			<form action="/member/update" method="post">
@@ -130,7 +130,6 @@
 			</table>
        </div>
        
-       
        <div class="mypage-content">
        	<table class="tbl tbl-hover">
 			<tr class="tr-3">
@@ -143,10 +142,10 @@
 				<th>예약인원</th>
 				<th>환불여부</th>
 			</tr>
-		</table>	
+		
 			
-			<!--
-			<tr class="tr-1" th:each="m : ${list}">
+			
+			<tr class="tr-1" th:each="b : ${b}">
 				<td><input type="checkbox" class="chk2"></td>
 				<td th:text = "${b.bookingNo}"></td>
 				<td th:text = "${b.loTitle}"></td>
@@ -156,7 +155,6 @@
 				<td th:text =  "${b.bookingTotalnum}">명</td>
 				<td th:switch = "${b.bookingPay}">
 					<select th:case="1" class="input-form">
-						
 						<option value="1" selected>결제완료</option>
 						<option value="2" >환불완료</option>
 					</select>
@@ -166,17 +164,17 @@
 					</select>
 				</td>
 				<td>
-					<button class="btn bc5 changePay">등급변경</button>
+					<button class="btn bc5 changePay">환불변경</button>
 			</td>
 			</tr>
 			<tr>
 			<th colspan="9">
-				<button class="changeBtn checkedChangePay">선택회원등급변경</button>
+				<button class="changeBtn checkedChangePay">환불변경</button>
 			</th>
 			</tr>		
 			</table>
        </div> 
-        -->
+        
        
        
        
@@ -186,5 +184,8 @@
     
 	<th:block th:include="common/footer"></th:block>
 	<script src="/js/adminMypage.js"></script>
+	<script>
+		
+	</script>
 </body>
 </html>
