@@ -26,10 +26,7 @@ public class BookingDao {
 
 	public List allBookingTime(String bookingDate, String loTitle) {
 		String query = "select * from booking where booking_date=? and lo_title=?";
-		
 		List list =jdbc.query(query, bookingRowMapper, bookingDate, loTitle);
-		
-		System.out.println(bookingDate);
 		return list;
 	}
 

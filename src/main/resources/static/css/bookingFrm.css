@@ -214,6 +214,11 @@ cursor: pointer;
 	background-color: #ff3700ff;
 	color: #ffffff;
 }
+.booking-time-change input[type="radio"]:checked + span{
+	background-color: #ccc;
+	color: #fff;
+}
+
 
 .booking-info input[type="text"]{
 	text-align:right;
