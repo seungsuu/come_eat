@@ -8,6 +8,7 @@
     height: 600px;
     margin: 0 auto;
     position: relative;
+	padding-top: 60px;
 }
 .swiper-main .swiper-slide>a{
     display: block;
