@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>event게시판 작성</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+		<div class="page-content">
+			<form action="/event/write" method="post" enctype="multipart/form-data">
+				<table class="">
+				<tr class="">
+					<th class="">제목</th>
+					
+				</tr>
+				
+				</table>
+			</form>
+		</div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

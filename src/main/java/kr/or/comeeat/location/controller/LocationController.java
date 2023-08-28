@@ -85,4 +85,11 @@ public class LocationController {
 		}
 		return result;
 	}
+	
+	@ResponseBody
+	@GetMapping(value="/savePlaceMember")
+	public List savePlaceMember(@SessionAttribute(required = false) Member m) {
+		List list = locationService.savePlaceMember(m.memberNo);
+		return list;
+	}
 }

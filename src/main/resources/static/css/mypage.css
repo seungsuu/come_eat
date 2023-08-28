@@ -90,8 +90,57 @@
     background-color: #ff3700ff;
     font-weight: 400;
 }
+
 .mypage-content{
-	display:none;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid #eee;
+}
+.mypage-img-box{
+    float: left;
+    width: 150px;
+    height: 150px;
+    background-color: #eee;
+    float:left;
+    box-sizing: border-box;
 }
 
-
+.info{
+    float:left;
+    box-sizing: border-box;
+    width: calc(100% - 240px);
+    height: 150px;
+    padding-left: 10px;
+    position: relative;
+}
+.info>p:first-child{
+    font-size: 24px;
+    font-weight: 600;
+}
+.info>p:nth-child(2){
+    font-size: 18px;
+    font-weight: 500;
+}
+.star{
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+.save{
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    right: 10px;
+    top: 10px;
+}
+.save>span{
+    font-size: 32px;
+    color: #eee;
+}
+.mypage-content>a::after{
+    content: "";
+    display: block;
+    clear: both;
+}
