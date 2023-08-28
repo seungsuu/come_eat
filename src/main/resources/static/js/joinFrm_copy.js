@@ -111,7 +111,7 @@ $("#memberId").on("change",function(){
 						comment.eq(0).css("color","red");
 						comment.eq(0).css("font-size","12px");
 						comment.eq(0).css("font-weight","400");
-					
+						
 					}
 				}
 			});
