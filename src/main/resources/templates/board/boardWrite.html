@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="/summernote/summernote-lite.js"></script>
-	<script src="/summernote/lang/summernote-ko-KR.js"></script>
-	<link rel="stylesheet" href="/summernote/summernote-lite.css">
+
     <link rel="stylesheet" href="/css/common.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
+	<script src="/summernote/summernote-lite.js"></script>
+	<script src="/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="/summernote/summernote-lite.css">
     <div class="content-wrap">
 		<div class="content-title">커뮤니티</div>
 		<form action="/" method="post" enctype="multipart/form-data">
@@ -57,7 +58,7 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	<script>
-		$(".boardContent).summernote({
+		$(".boardContent").summernote({
 			  toolbar: [
 				    ['fontname', ['fontname']],
 				    ['fontsize', ['fontsize']],
@@ -78,6 +79,7 @@
 				}	
 			}
 		});
+		
 	</script>
 </body>
 </html>
