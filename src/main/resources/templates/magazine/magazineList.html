@@ -25,6 +25,7 @@
 		</div>
 	<th:block th:include="common/footer"></th:block>
 	<script>
+	
 		$("#magazine-more-btn").on("click",function(){
 			const start = $(this).val();
 			const amount = 3;
@@ -89,6 +90,11 @@
 					
 				}
 			});
+		});
+		
+		//시작시 기본3개보임
+		$(document).ready(function(){
+		    $("#magazine-more-btn").trigger('click'); 
 		});
 	</script>
 </body>
