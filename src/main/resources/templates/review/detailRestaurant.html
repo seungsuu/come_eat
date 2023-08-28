@@ -3,9 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>상세페이지</title>
+
+<style>
+.flatpickr-month {
+	background-color: #ff3700ff !important;
+}
+
+.flatpickr-weekdays {
+	background-color: #ff3700ff !important;
+}
+
+.flatpickr-weekday {
+	background-color: #ff3700ff !important;
+}
+
+.flatpickr-day.selected {
+	background-color: #ff3700ff !important;
+}
+</style>
 <link rel="stylesheet" href="/css/detailRestaurant.css">
+<link rel="stylesheet" href="/css/bookingFrm.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e951a9675edffd5bbc4faec7164c3441&libraries=services"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -13,31 +38,30 @@
 		<div class="detail-wrap">
 			<div class="restaurant_title_wrap">
 				<div class="title_header">
-					<h1 th:text="${list.loTitle}"></h1>
-					<span class="material-icons-round">grade</span>
-					<span>4.0</span>
-					<span style=display:none; th:text="${list.loLat}"></span>
-					<span style=display:none; th:text="${list.loLng}"></span>
+					<h1 th:text="${list.loTitle}" class="detail-val"></h1>
+					<span class="material-icons-round">grade</span> <span>4.0</span> <span
+						style="display: none;" th:text="${list.loLat}"></span> <span
+						style="display: none;" th:text="${list.loLng}"></span>
 				</div>
 				<div class="review_icons">
 					<div class="icon1" th:if="${session.m != null}">
-					 <!--  -->
+						<!--  -->
 						<a th:href="@{/review/reviewWriteFrm(loNo=${list.loNo})}">
 							<div class="reviewBtn">
-                                <span class="material-icons">edit_document</span>
-                            </div>
-                            <div>
-                                <span>리뷰쓰기</span>
-                            </div>
+								<span class="material-icons">edit_document</span>
+							</div>
+							<div>
+								<span>리뷰쓰기</span>
+							</div>
 						</a>
 					</div>
 					<div class="icon2">
 						<div class="reviewBtn">
-                            <span class="material-icons">favorite_border</span>
-                        </div>
-                        <div>
-                            <span>저장</span>
-                        </div>
+							<span class="material-icons">favorite_border</span>
+						</div>
+						<div>
+							<span>저장</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -71,11 +95,14 @@
 				<div id="map" class="detailRestaurant_map">지도</div>
 			</div>
 		</div>
+		<!-- 예약 -->
 		<div class="reservationBtn">
-				<a href="booking/bookingFrm" class="btn" th:if="${session.m != null && session.m.memberLevel == 1}">예약하기</a>
-				<!-- 현재 관리자만 예약되게 되있음 -->
 			
+			<button class="modal-open-btn">예약하기</button>
+			<!-- 현재 관리자만 예약되게 되있음 -->
+
 		</div>
+
 		<div class="restaurant_reviewList">
 			<div class="reviewList_title">
 				<h2>리뷰</h2>
@@ -84,26 +111,26 @@
 				<div class="reviewList_content">
 					<th:block th:each="rl : ${reviewList}">
 						<ul class="reviewList_content_check">
-							<li>
-								<span th:text="${rl.reviewWriter}"></span>
-							</li>
+							<li><span th:text="${rl.reviewWriter}"></span></li>
 							<li>
 								<p class="reviewList_content_link">
 									<span th:text="${rl.reviewDate}"></span>
-									<th:block th:if="${session.m != null && rl.reviewWriter == session.m.memberId}">
-										<a th:href="@{/review/reviewUpdateFrm(reviewNo=${rl.reviewNo})}">수정</a>
+									<th:block
+										th:if="${session.m != null && rl.reviewWriter == session.m.memberId}">
+										<a
+											th:href="@{/review/reviewUpdateFrm(reviewNo=${rl.reviewNo})}">수정</a>
 										<a href="#">삭제</a>
 									</th:block>
 								</p>
 								<p class="review_detail_content" th:text="${rl.reviewContent}"></p>
 							</li>
-							<li>
-								<img th:src="'/review/'+${rl.reviewFilepath}" style="width:90%">
-							</li>
-							<li>
-								<span id="span" class="material-icons" th:if="${rl.reviewGrade==5}">sentiment_very_satisfied</span>
-								<span id="span" class="material-icons" th:if="${rl.reviewGrade==3}">sentiment_satisfied_alt</span>
-								<span id="span" class="material-icons" th:if="${rl.reviewGrade==1}">sentiment_very_dissatisfied</span>
+							<li><img th:src="'/review/'+${rl.reviewFilepath}"
+								style="width: 90%"></li>
+							<li><span id="span" class="material-icons"
+								th:if="${rl.reviewGrade==5}">sentiment_very_satisfied</span> <span
+								id="span" class="material-icons" th:if="${rl.reviewGrade==3}">sentiment_satisfied_alt</span>
+								<span id="span" class="material-icons"
+								th:if="${rl.reviewGrade==1}">sentiment_very_dissatisfied</span>
 							</li>
 						</ul>
 					</th:block>
@@ -112,39 +139,323 @@
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
-	<script>
-			
-			const lat = $(".title_header").children().eq(3);
-			const latText = lat.text();
-			//console.log(latText);
-			const lng = $(".title_header").children().eq(4);
-			const lngText = lng.text();
-			//console.log(lngText);
 	
-			var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-			
-			var mapContainer = document.getElementById('map'), 
-			mapOption = {
-				center : new kakao.maps.LatLng(latText,lngText), // 지도의 중심좌표
-				level : 2
-			// 지도의 확대 레벨
-			};
-		
-			// 지도를 생성합니다    
-			var map = new kakao.maps.Map(mapContainer, mapOption);
-			var ps = new kakao.maps.services.Places(); 
-			
-			// 마커가 표시될 위치입니다 
-			var markerPosition  = new kakao.maps.LatLng(latText,lngText); 
-	
-			// 마커를 생성합니다
-			var marker = new kakao.maps.Marker({
-			    position: markerPosition
-			});
-	
-			// 마커가 지도 위에 표시되도록 설정합니다
-			marker.setMap(map);
+			<div>
+			<div class="modal" style="z-index: 100;">
+				<div class="modal_body">
+					<div class="content-title">예약하기</div>
+					<form action="/booking/book" method="post" id="booking-form-date">
+						<div class=booking-form>
+							<div class="date-select-button-up"
+								style="padding-left: 20px; padding-right: 20px;">
+								<span class="material-icons"
+									style="float: left; font-size: 70px;">calendar_month</span> <span
+									style="float: left; font-size: 36px;">날짜 선택</span> <span
+									class="material-icons" style="float: right; font-size: 80px;"
+									id="date-icon-updown1">arrow_circle_up</span>
+							</div>
+							<div class="booking-cal">
+								<input class="form-control" type="datetime-local"
+									id="bookingDate" name="bookingDate" required>
+							</div>
+						</div>
 
+						<div class=booking-form>
+							<div class="time-select-button-up"
+								style="padding-left: 20px; padding-right: 20px;">
+								<span class="material-icons"
+									style="float: left; font-size: 70px;">schedule</span> <span
+									style="float: left; font-size: 36px;">시간 선택</span> <span
+									class="material-icons" style="float: right; font-size: 80px;"
+									id="date-icon-updown2">arrow_circle_up</span>
+							</div>
+							<div class="booking-time">
+								<label> <input type="radio" name="bookingTime"
+									id="bookingTime1" value="1"> <span>오후 1시</span>
+								</label> <label> <input type="radio" name="bookingTime"
+									id="bookingTime2" value="2"> <span>오후 2시</span>
+								</label> <label> <input type="radio" name="bookingTime"
+									id="bookingTime3" value="3"> <span>오후 3시</span>
+								</label> <label> <input type="radio" name="bookingTime"
+									id="bookingTime4" value="4"> <span>오후 4시</span>
+								</label> <label> <input type="radio" name="bookingTime"
+									id="bookingTime5" value="5"> <span>오후 5시</span>
+								</label> <label> <input type="radio" name="bookingTime"
+									id="bookingTime6" value="6"> <span>오후 6시</span>
+								</label>
+							</div>
+						</div>
+
+						
+						<input type="hidden" name="loNo" id="loNo" th:value="${list.loNo}">
+						<input type="hidden" name="loTitle" id="loTitle" th:value="${list.loTitle}">
+
+
+						<div class=booking-form style="overflow: hidden;">
+							<div class="totalnum-select-button-up"
+								style="padding-left: 20px; padding-right: 20px;">
+								<span class="material-icons"
+									style="float: left; font-size: 70px;">people</span> <span
+									style="float: left; font-size: 36px;">인원 선택</span> <span
+									class="material-icons" style="float: right; font-size: 80px;"
+									id="date-icon-updown3">arrow_circle_up</span>
+							</div>
+							<div class="num-select">
+								<div style="float: left; padding-left: 20px;" class="count-div">
+									<span style="font-size: 36px; line-height: 70px">방문하는 인원
+										선택</span>
+								</div>
+								<div style="float: right; padding-right: 20px;"
+									class="count-div">
+									<button type="button" class="count_btn" id="minus">
+										<span class="material-icons">remove_circle_outline</span>
+									</button>
+									<input type="text" value="1" name="bookingTotalnum"
+										class="bookingTotalnum" style="text-align: center;"
+										required="인원을 선택하세요">
+									<button type="button" class="count_btn" id="plus">
+										<span class="material-icons">add_circle_outline</span>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="booking-form">
+							<div class="booking-notice">
+								<p style="color: red; font-weight: 500;">
+									<span class="material-icons"
+										style="color: red; font-size: 50px;">error_outline</span>알립니다
+								</p>
+								<p>주의사항</p>
+								<p>주의사항</p>
+								<p>주의사항</p>
+							</div>
+						</div>
+						<div class="booking-form">
+							<div style="overflow: hidden;">
+								<span style="float: left; font-size: 36px;">예약자 정보</span>
+							</div>
+							<div>
+								<div class="booking-info">
+									<label for="memberName">예약자</label> 
+									<input type="text" id="memberName" name="memberName" th:value="${session.m.memberName}" placeholder>
+									<!-- th:value="${session.m.memberName}" -->
+								</div>
+								<div class="booking-info">
+									<label for="memberPhone">연락처</label> 
+									<input type="text" id="memberPhone" name="memberPhone" th:value="${session.m.memberPhone}" placeholder>
+									<!-- th:value="${session.m.memberPhone}" -->
+								</div>
+								<div class="booking-info">
+									<label for="memberEmail">이메일</label> <input type="text" id="memberEmail" name="memberEmail" th:value="${session.m.memberEmail}" placeholder>
+									<!-- th:value="${session.m.memberEmail}" -->
+								</div>
+								<input type="hidden" name=memberNo
+									th:value="${session.m.memberNo}">
+							</div>
+						</div>
+						<div class="booking-form">
+							<div style="overflow: hidden;">
+								<span style="float: left; font-size: 36px; height: 70px;">예약금</span>
+								<div class="price-form">
+									<input type="text" id="price" value="50" disabled> <span
+										style="font-size: 36px;">원</span>
+								</div>
+							</div>
+						</div>
+						<button type="button" id="payBtn" class="btn"
+							style="width: 300px; height: 50px;">결제 및 예약하기</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	
+	<script src="/js/bookingFrm.js"></script>
+	<script>
+		const lat = $(".title_header").children().eq(3);
+		const latText = lat.text();
+		//console.log(latText);
+		const lng = $(".title_header").children().eq(4);
+		const lngText = lng.text();
+		//console.log(lngText);
+
+		var infowindow = new kakao.maps.InfoWindow({
+			zIndex : 1
+		});
+
+		var mapContainer = document.getElementById('map'), mapOption = {
+			center : new kakao.maps.LatLng(latText, lngText), // 지도의 중심좌표
+			level : 2
+		// 지도의 확대 레벨
+		};
+
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+		var ps = new kakao.maps.services.Places();
+
+		// 마커가 표시될 위치입니다 
+		var markerPosition = new kakao.maps.LatLng(latText, lngText);
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+			position : markerPosition
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+
+		//예약스크립트
+
+		//예약막기
+		$("#bookingDate").on("change",function() {
+							$("input[type=radio]").removeAttr("disabled");
+							//$("input[type=radio]").next().css("background-color", "#fff");
+							const day = $(this).val();
+							const loTitle = $("#loTitle").val();
+							const bookingTimeInput = [];
+							
+							$("input[type=radio]").each(function() {
+								bookingTimeInput.push(this.value);
+							});
+							$.ajax({
+										type : "GET",
+										url : "/booking/bookinginfo",
+										data : {bookingDate : day, loTitle : loTitle
+										},
+										dataType : "json",
+										success : function(data) {
+											
+											for (let i = 0; i < data.length; i++) {
+												const time1 = data[i].bookingTime;
+												for (let j = 0; j < bookingTimeInput.length; j++) {
+													if (bookingTimeInput[j] == data[i].bookingTime) {
+														console.log($("#bookingTime" + (j + 1) + "").val());
+														$("#bookingTime" + (j + 1) + "").attr("disabled",true);
+													}
+												}
+
+											}
+
+										}
+
+									})
+						})
+
+		//슬라이드토글 아이콘
+		$(".date-select-button-up")
+				.on(
+						"click",
+						function() {
+							$('.booking-cal').slideToggle();
+							$('#date-icon-updown1')
+									.text(
+											$('#date-icon-updown1').text() == 'arrow_circle_up' ? "arrow_circle_down"
+													: "arrow_circle_up");
+						});
+		$(".time-select-button-up")
+				.on(
+						"click",
+						function() {
+							$('.booking-time').slideToggle();
+							$('#date-icon-updown2')
+									.text(
+											$('#date-icon-updown2').text() == 'arrow_circle_up' ? "arrow_circle_down"
+													: "arrow_circle_up");
+						});
+		$(".totalnum-select-button-up")
+				.on(
+						"click",
+						function() {
+							$('.num-select').slideToggle();
+							$('#date-icon-updown3')
+									.text(
+											$('#date-icon-updown3').text() == 'arrow_circle_up' ? "arrow_circle_down"
+													: "arrow_circle_up");
+						});
+
+		let count = 1;
+		$("#plus").on("click", function() {
+			if ($(".bookingTotalnum").val() < 10) {
+				count += 1;
+				$(".bookingTotalnum").val(count);
+			} else {
+				alert("최대인원입니다.")
+			}
+		})
+		$("#minus").on("click", function() {
+			if ($(".bookingTotalnum").val() == 1)
+				alert("최소인원입니다")
+			else {
+				count -= 1;
+				$(".bookingTotalnum").val(count);
+			}
+		});
+
+		//결제버튼
+		$("#payBtn").on("click",function() {
+					const price = $("#price").val();
+					const d = new Date();
+					const date = d.getFullYear() + "" + (d.getMonth() + 1) + ""
+							+ d.getDate() + "" + d.getHours() + ""
+							+ d.getMinutes() + "" + d.getSeconds();
+					const buyerName = $("#memberName").val();
+					const buyerPhone = $("#memberPhone").val();
+					const buyerMail = $("#memberEmail").val();
+					
+					IMP.init("imp62057672");
+					IMP.request_pay({
+						pg : "html5_inicis",
+						pay_method : "card",
+						merchant_uid : "상품번호_" + date, //상점에서 관리하는 주문번호
+						name : "comeeat!",
+						amount : price, //결제금액 -> 정상적인 숫자가 들어가야함
+						buyer_name : buyerName,
+						buyer_tel : buyerPhone,
+						buyer_email : buyerMail
+					}, function(rsp) {
+						if (rsp.success) {
+							$("#booking-form-date").submit();
+						} else {
+							alert("결재실패");
+						}
+					});
+				});
+
+		//달력
+		flatpickr.localize(flatpickr.l10ns.ko);
+
+		const today = new Date().setHours(0, 0, 0, 0)
+
+		config = {
+			enableTime : false, // 시간 속성 사용 여부
+			dateFormat : "Y-m-d", // 달력 입력 포맷
+			altInput : true,
+			altFormat : "m월 d일", // 보여지는 입력 포맷
+			dateFormat : "Y-m-d", // 달력 입력 포맷
+			local : 'ko', // 언어 설정
+			minDate : today, // 최소 날짜 설정
+			maxDate : new Date().fp_incr(6),
+			/* 
+			time_24hr: true, // 24시간 사용 여부 (false인 경우 오전, 오후로 설정됨)
+			disable: [ // 해당 날짜 비활성화
+			    function (date) {
+			    // return true to disable
+			    return (date.getDay() === 0 || date.getDay() === 7);
+			}
+			],
+			 */
+			/* 시간따로할예정
+			minuteIncrement: 60, // 분 입력(스크롤 포함)의 단계를 조정한다.
+			minTime: "09:00", // 최소 시간
+			maxTime: "18:00", // 최대 시간
+			defaultHour: "09", // 시간 기본값
+			defaultMinute: "00", // 분 기본값
+			 */
+			inline : true,
+			monthSelectorType : 'static',
+		}
+
+		flatpickr("input[type=datetime-local]", config);
 	</script>
 </body>
 </html>
