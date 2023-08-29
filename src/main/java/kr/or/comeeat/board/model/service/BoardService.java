@@ -121,6 +121,7 @@ public class BoardService {
 	@Transactional
 	public int boardCountUp(int boardNo) {
 		int result = boardDao. boardCountUp(boardNo);
+		return result;
 	}
 
 	@Transactional
@@ -128,3 +129,4 @@ public class BoardService {
 		int result = boardDao.insertComment(bc);
 		return result;
 	}
+}

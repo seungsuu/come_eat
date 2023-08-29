@@ -71,8 +71,9 @@ public class BoardDao {
 	public int boardCountUp(int boardNo) {
 		String query = "update board set board_count=board_count+1 where board_no=?";
 		int result = jdbc.update(query,boardNo);
-
+		return result;
 	}
+	
 	public int insertComment(BoardComment bc) {
 		String query = "insert into board_comment values(board_comment_seq.nextval,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
 		String boardCommentRef = bc.getBoardCommentRef()==0?null:String.valueOf(bc.getBoardCommentRef());
@@ -80,3 +81,4 @@ public class BoardDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
+}
