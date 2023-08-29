@@ -132,7 +132,7 @@
 
 }
 .count_btn span{
-	font-size:36px;
+	font-size:24px;
 	line-hight:70px;
 	display:block;
 }
@@ -140,7 +140,7 @@
 	width:85px;
 	height:70px;
 	border:none;
-	font-size: 36px;		
+	font-size: 24px;		
 }
 .count-div{
 	height:70px;
@@ -157,7 +157,7 @@
 	width: 25%;
 	float: left;
 	line-height:40px;
-	font-size:24px;
+	font-size:16px;
 	text-align:left;
 	font-weight : 700px;
 }
@@ -165,7 +165,7 @@
 	width: 70%;
 	float: right;
 	line-height:40px;
-	font-size:24px;
+	font-size:16px;
 	border:none;
 }
 
@@ -174,10 +174,9 @@
 	width: 70%
 }
 .price-form>input{
-	font-size:36px;
 	text-align:right;
 	width: 80%;
-	text-align:70px;
+	heigth:40px;
 }
 	
 	
@@ -222,6 +221,10 @@ cursor: pointer;
 
 .booking-info input[type="text"]{
 	text-align:right;
+}
+
+.booking-notice-content>p{
+	font-size:16px;
 }
 	
 	

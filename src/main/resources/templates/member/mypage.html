@@ -160,43 +160,9 @@
 		});
 		
 		//페이지 로드되면 저장내역 불러오기
-		window.onload = function(){
-				$.ajax({
-					url : "/location/savePlaceMember",
-					type : "get",
-					success : function(list){
-						if(list.isEmpty()){
-							
-						}else(){							
-							for(let i=0; i<list.size; i++){
-								const like = list[i];
-								
-								const div = $("<div>");
-								div.addClass("mypage-content");
-								const imgDiv = ("<div>")
-								div.addClass("mypage-img-box");
-								const contentinfoDiv = ("<div>");
-								div.addClass("mypage-content-info");
-								const infoDiv = ("<div>");
-								div addClass("info");
-								const titlep = $("<p>");
-								p.text();
-								const content =$("<p>");
-								p.text();
-								const divStar = $("<div>");
-								div.addClass("star");
-								const span = $("<span>");
-								span.addClass("material-icons-round");
-								span.text(4.5);
-								const button =$("<button>");
-								button.addClass("save");
-								span.addClass("material-icons done").text("favorite");
-							}
-						}
-					}
-				});
-			});
-		}
+
+			
+		
 	
 	</script>
 </body>

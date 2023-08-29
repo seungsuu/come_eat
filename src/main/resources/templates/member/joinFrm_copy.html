@@ -224,14 +224,31 @@
 			$("#memberId").focus(); // 이건 그냥 마우스 커서가 여기로 오게 하는것
 			return false;
 		}
+		const idReg = /^[a-zA-z0-9]{4,8}$/;
+		const idValue = $("#memberId").val();
+		const checkId = idReg.test(idValue);
+		if(!checkId){
+			alert("아이디양식을 확인해주세요!")
+			$("#memberId").focus();
+			return false;
+		}
 		if($("#memberPw").val() == ""){
-			alert('비밀번호를 입력하세요');
+			alert("비밀번호를 입력하세요.");
 			$("#memberPw").focus();
 			return false;
 		}
+		
 		if($("#memberPwRe").val() == ""){
 			alert("비밀번호확인을 입력하세요.");
 			$("#memberPwRe").focus();
+			return false;
+		}
+		const pwReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+	    const inputPw = $("#memberPw").val();
+	    const checkPw = pwReg.test(inputPw);
+	    if(!checkPw){
+			alert("비밀번호양식을 확인해주세요!")
+			$("#memberPw").focus();
 			return false;
 		}
 		if($("#memberPw").val() != $("#memberPwRe").val()){
@@ -244,6 +261,16 @@
 			$("#memberName").focus();
 			return false;
 		}
+		
+	    const nameReg = /^[가-힣]{2,}$/;
+	    const nameValue = $("#memberName").val();
+	    const checkName = nameReg.test(nameValue);
+	    if(!checkName){
+			alert("이름은 한글만 입력가능합니다!")
+			$("#memberName").focus();
+			return false;
+		}
+		
 		if($("#memberPhone").val() == ""){
 			alert('전화번호를 입력하세요');
 			$("#memberPhone").focus();
@@ -253,6 +280,8 @@
 			alert('필수동의항목에 체크하셔야 합니다.');
 			return false;
 		}
+		
+	
 		
 		
 		

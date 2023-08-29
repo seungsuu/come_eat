@@ -164,8 +164,10 @@ public class MemberController {
 	}
 	//마이페이지로 이동(관리자)
 	@GetMapping(value="/adminMypage")
-	public String adminMypage() {
+	public String adminMypage(Model model) {
+		//model.addAttribute("select", 0);
 		return "member/adminMypage";
+		
 	}
 	
 	
@@ -227,11 +229,12 @@ public class MemberController {
 	}
 	
 	//전체회원 조회 : admin
-	@GetMapping(value="/admin")
+	@GetMapping(value="/adminMember")
 		public String admin(Model model) {
 		 List list = memberService.selectAllMember();
 		 model.addAttribute("list", list);
-		 return "member/adminMypage";
+		 //model.addAttribute("select", 1);
+		 return "member/adminMember";
 		 
 	}
 	@GetMapping(value="/adminBook")
@@ -239,7 +242,8 @@ public class MemberController {
 		List booking = bookingService.selectAllBooking();
 		
 		 model.addAttribute("b", booking);
-		 return "member/adminMypage";
+		 
+		 return "member/adminBook";
 	}
 	
 	
