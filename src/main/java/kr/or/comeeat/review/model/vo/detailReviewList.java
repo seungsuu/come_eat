@@ -13,5 +13,4 @@ import lombok.NoArgsConstructor;
 public class detailReviewList {
 	private Location l;
 	private List reviewList;
-	
 }
