@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.comeeat.board.model.dao.BoardDao;
 import kr.or.comeeat.board.model.vo.Board;
+import kr.or.comeeat.board.model.vo.BoardComment;
 import kr.or.comeeat.board.model.vo.BoardData;
 import kr.or.comeeat.board.model.vo.BoardFile;
+import kr.or.comeeat.board.model.vo.BoardViewData;
 
 @Service
 public class BoardService {
@@ -144,10 +146,19 @@ public class BoardService {
 	}
 
 	//상세보기
-	public List boardView(int boardNo) {
-		List list = boardDao.boardView(boardNo);
-		return list;
+	public BoardViewData boardView(int boardNo, int memberNo) {
+		int result = boardDao.boardCountUp(boardNo);
+		if(result>0) {
+			Board b = boardDao.boardView(boardNo);
+			List commentList = boardDao.selectCommentList(boardNo,memberNo);
+			List reCommentList = boardDao.selectReCommentList(boardNo, memberNo);
+			BoardViewData bvd = new BoardViewData(b, commentList, reCommentList);
+			return bvd;
+			}else {
+				return null;
+			}
 	}
+	
 
 	//게시글삭제
 	@Transactional
@@ -163,12 +174,44 @@ public class BoardService {
 		return result;
 	}
 
+
 	//조회수추가
 	@Transactional
 	public int boardCountUp(int boardNo) {
-		int result = boardDao. boardCountUp(boardNo);
+		int result = boardDao.boardCountUp(boardNo);
 		return result;
 	}
 
+	@Transactional
+	public int insertCommet(BoardComment bc) {
+		int result = boardDao.insertComment(bc);
+		return result;
+	}
 
+	public Board boardView2(int boardNo) {
+		Board b = boardDao.boardView(boardNo);
+		return b;
+	}
+
+	public int insertCommentLike(int boardCommentNo, int memberNo) {
+		int result = boardDao.insertCommentLike(boardCommentNo, memberNo);
+		int likeCount = boardDao.likeCount(boardCommentNo);
+		return likeCount;
+	}
+
+	public int removeCommentLike(int boardCommentNo, int memberNo) {
+		int result = boardDao.removeCommentLike(boardCommentNo, memberNo);
+		int likeCount = boardDao.likeCount(boardCommentNo);
+		return likeCount;
+	}
+
+	public int updateComment(BoardComment bc) {
+		int result = boardDao.updateComment(bc);
+		return result;
+	}
+
+	public int deleteComment(int boardCommentNo) {
+		int result = boardDao.deleteComment(boardCommentNo);
+		return result;
+	}
 }

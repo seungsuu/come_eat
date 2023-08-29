@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.comeeat.FileUtil;
 import kr.or.comeeat.location.model.vo.Location;
-import kr.or.comeeat.review.model.dao.ReviewDao;
 import kr.or.comeeat.review.model.service.ReviewService;
 import kr.or.comeeat.review.model.vo.Review;
 import kr.or.comeeat.review.model.vo.detailReviewList;

@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import kr.or.comeeat.board.model.vo.Board;
+import kr.or.comeeat.board.model.vo.BoardComment;
+import kr.or.comeeat.board.model.vo.BoardCommentRowMapper;
 import kr.or.comeeat.board.model.vo.BoardFile;
 import kr.or.comeeat.board.model.vo.BoardRowMapper;
 
@@ -16,6 +18,8 @@ public class BoardDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private BoardRowMapper boardRowMapper;
+	@Autowired
+	private BoardCommentRowMapper boardCommentRowMapper;
 	
 	
 	//게시물 조회해오기(10개)
@@ -54,10 +58,10 @@ public class BoardDao {
 	}
 
 	//상세보기
-	public List boardView(int boardNo) {
+	public Board boardView(int boardNo) {
 		String query ="select * from board where board_no=?";
 		List list = jdbc.query(query, boardRowMapper, boardNo);
-		return list;
+		return (Board)list.get(0);
 	}
 
 	//게시글삭제
@@ -75,6 +79,7 @@ public class BoardDao {
 		return result;
 	}
 
+
 	//조회수추가
 	public int boardCountUp(int boardNo) {
 		String query = "update board set board_count=board_count+1 where board_no=?";
@@ -82,4 +87,57 @@ public class BoardDao {
 		return result;
 	}
 	
+	public int insertComment(BoardComment bc) {
+		String query = "insert into board_comment values(board_comment_seq.nextval,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
+		String boardCommentRef = bc.getBoardCommentRef()==0?null:String.valueOf(bc.getBoardCommentRef());
+		Object[] params = {bc.getBoardCommentWriter(),bc.getBoardCommentContent(),bc.getBoardRef(),boardCommentRef};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public List selectCommentList(int boardNo, int memberNo) {
+		String query = "select bc.*,(select count(*) from board_comment_like where board_comment_no=bc.board_comment_no and member_no=?) as is_like,(select count(*) from board_comment_like where board_comment_no=bc.board_comment_no) as like_count from (select * from board_comment where board_ref=? and board_comment_ref is null order by 1)bc";
+		List list = jdbc.query(query, boardCommentRowMapper, memberNo, boardNo);
+		return list;
+	}
+
+	public List selectReCommentList(int boardNo, int memberNo) {
+		String query = "select bc.*,(select count(*) from board_comment_like where board_comment_no=bc.board_comment_no and member_no=?) as is_like,(select count(*) from board_comment_like where board_comment_no=bc.board_comment_no) as like_count from (select * from board_comment where board_ref=? and board_comment_ref is not null order by 1)bc";
+		List list = jdbc.query(query, boardCommentRowMapper, memberNo, boardNo);
+		return list;
+	}
+
+	public int insertCommentLike(int boardCommentNo, int memberNo) {
+		String query = "insert into board_comment_like values(?,?)";
+		Object[] params = {boardCommentNo, memberNo};
+		int result = jdbc.update(query, params);
+		return result;
+	}
+
+	public int likeCount(int boardCommentNo) {
+		String query ="select count(*) from board_comment_like where board_comment_no=?";
+		int likeCount = jdbc.queryForObject(query, Integer.class, boardCommentNo);
+		return likeCount;
+	}
+
+	public int removeCommentLike(int boardCommentNo, int memberNo) {
+		String query = "delete from board_comment_like where board_comment_no=? and member_no=?";
+		Object[] params = {boardCommentNo, memberNo};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public int updateComment(BoardComment bc) {
+		String query="update board_comment set board_comment_content=? where board_comment_no=?";
+		Object[] params = {bc.getBoardCommentContent(),bc.getBoardCommentNo()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public int deleteComment(int boardCommentNo) {
+		String query = "delete from board_comment where board_comment_no=?";
+		Object[] params = {boardCommentNo};
+		int result = jdbc.update(query, params);
+		return result;
+	}
 }

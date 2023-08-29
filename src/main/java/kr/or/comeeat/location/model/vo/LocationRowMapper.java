@@ -23,6 +23,7 @@ public class LocationRowMapper implements RowMapper<Location> {
 		l.setLoThumb(rs.getString("lo_thumb"));
 		l.setLoTime(rs.getString("lo_time"));
 		l.setLoTitle(rs.getString("lo_title"));
+		l.setStarRate(rs.getDouble("star_rate"));
 		return l;
 	}
 

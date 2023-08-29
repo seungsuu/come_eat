@@ -1,0 +1,123 @@
+.input-form {
+  width: 100%;
+  display: block;
+  padding: 0.8rem;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #ccc;
+
+  box-sizing: border-box;
+}
+.input-form:focus {
+  box-shadow: 0 0 0 0.1rem #eee;
+}
+
+textarea.input-form {
+  resize: none;
+  min-height: 300px;
+}
+.like-box{
+	display: flex;
+	align-items:center;
+	flex-direction: row-reverse;
+	}
+.like-box>span:first-child{
+	color : #ff2e63;
+	cursor:pointer;
+}
+
+.posting-comment {
+  display: flex;
+  border-top: 2px solid #ccc;
+  list-style-type: none;
+}
+.posting-comment > li {
+  box-sizing: border-box;
+}
+.posting-comment > li:first-child {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  border-right: 1px solid #ccc;
+}
+.posting-comment.reply > li:first-child {
+  width: 20%;
+}
+.posting-comment > li:first-child .material-icons {
+  font-size: 80px;
+  color: #ccc;
+}
+.posting-comment.reply > li:first-child .material-icons:first-child {
+  font-size: 40px;
+  color: #ccc;
+}
+.posting-comment.reply > li:last-child {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.posting-comment > li:last-child {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+.posting-comment > li:last-child > p {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.posting-comment > li:last-child > .comment-info > span {
+  padding: 0px 10px;
+}
+.posting-comment > li:last-child > .comment-info > span:not(:last-child) {
+  border-right: 2px solid #ccc;
+}
+.posting-comment > li:last-child > .comment-content {
+  padding: 0px 15px;
+}
+.posting-comment > li:last-child > .comment-link {
+  text-align: right;
+}
+.posting-comment > li:last-child > .comment-link > a {
+  margin: 0px 5px;
+}
+.posting-comment > li:last-child > .comment-link > a:hover {
+  text-decoration: underline;
+  
+}
+.inputCommentBox{
+	margin: 50px;
+}
+.inputCommentBox>form>ul{
+	list-style-type: none;
+	display: flex;
+}
+.inputCommentBox>form>ul>li:first-child{
+	width: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.inputCommentBox>form>ul>li:first-child>span {
+	font-size: 80px;
+	color:#ccc;	
+}
+.inputCommentBox>form>ul>li:nth-child(2) {
+	width:75%;
+}
+.inputCommentBox>form>ul>li:nth-child(2)>textarea{
+	height:96px;
+	min-height: 96px;
+}
+.inputCommentBox>form>ul>li:last-child{
+	width: 10%;
+}
+.commentBox{
+	margin:50px;
+}
+.inputRecommentBox{
+	margin : 30px 0px;
+	display: none;
+}  

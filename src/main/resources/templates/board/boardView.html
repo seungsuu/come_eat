@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
+<link rel="stylesheet" href="/css/comment.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -49,38 +50,46 @@
                 </th>
             </tr>
         </table>
-	</div>
-			</table>
+	
+	
+	<!-- 댓글시작 -->
+		
 		<div class="inputCommentBox" th:if="${session.m != null}">
-			<form action="/notice/insertComment" method="post">
+			<form action="/board/insertComment" method="post">
 				<ul>
 					<li>
 						<span class="material-icons">account_box</span>
 					</li>
 					<li>
-						<input type="hidden" name="noticeCommentWriter" th:value="${session.m.memberId}">
-						<input type="hidden" name="noticeRef" th:value="${n.noticeNo}">
-						<textarea name="noticeCommentContent" class="input-form"></textarea>
+						<input type="hidden" name="boardCommentWriter" th:value="${session.m.memberId}">
+						<input type="hidden" name="boardRef" th:value="${b.boardNo}">
+						<textarea name="boardCommentContent" class="input-form"></textarea>
 					</li>
 					<li>
-						<button type="submit" class="btn bc1 bs4">등록</button>
+						<button type="submit" class="btn">등록</button>
 					</li>
 				</ul>
 			</form>
 		</div>
 
 
-	<!-- 댓글시작 -->
+	
 		<div class="commentBox">
 			<th:block th:each="c : ${commentList}">
 				<ul class="posting-comment">
 					<li>
-						<span class="material-icons">account_box</span>
+						<span class="material-icons">pets</span>
 					</li>
 					<li>
 						<p class="comment-info">
 							<span th:text="${c.boardCommentWriter}"></span>
 							<span th:text="${c.boardCommentDate}"></span>
+							<span class="like-box">
+								<span class="material-icons" th:if="${session.m == null}" onclick="loginMsg();">favorite_border</span>
+								<span class="material-icons" th:if="${session.m != null && c.isLike == 1}" th:onclick="removeLike(this,[[${c.boardCommentNo}]],[[${session.m.memberNo}]]);">favorite</span>
+								<span class="material-icons" th:if="${session.m != null && c.isLike == 0}" th:onclick="addLike(this,[[${c.boardCommentNo}]],[[${session.m.memberNo}]]);">favorite_border</span>
+								<span th:text="${c.likeCount}"></span>
+							</span>
 						</p>
 						<p class="comment-content" th:text="${c.boardCommentContent}"></p>
 						<textarea name="boardCommentContent" class="input-form" style="min-height:96px;display:none;" th:text="${c.boardCommentContent}"></textarea>
@@ -101,12 +110,18 @@
 					<ul class="posting-comment reply" th:if="${c.boardCommentNo == rc.boardCommentRef}">
 						<li>
 							<span class="material-icons">subdirectory_arrow_right</span>
-							<span class="material-icons">account_box</span>
+							<span class="material-icons">face_retouching_natural</span>
 						</li>
 						<li>
 							<p class="comment-info">
 								<span th:text="${rc.boardCommentWriter}"></span>
 								<span th:text="${rc.boardCommentDate}"></span>
+								<span class="like-box">
+									<span class="material-icons" th:if="${session.m == null}" onclick="loginMsg();">favorite_border</span>
+									<span class="material-icons" th:if="${session.m != null && rc.isLike == 1}" th:onclick="removeLike(this,[[${rc.boardCommentNo}]],[[${session.m.memberNo}]]);">favorite</span>
+									<span class="material-icons" th:if="${session.m != null && rc.isLike == 0}" th:onclick="addLike(this,[[${rc.boardCommentNo}]],[[${session.m.memberNo}]]);">favorite_border</span>
+									<span th:text="${rc.likeCount}"></span>
+								</span>
 							</p>
 							<p class="comment-content" th:text="${rc.boardCommentContent}"></p>
 							<textarea name="boardCommentContent" class="input-form" style="min-height:96px;display:none;" th:text="${rc.boardCommentContent}"></textarea>
@@ -131,7 +146,7 @@
 							</li>
 							<li>
 								<input type="hidden" name="boardCommentWriter" th:value="${session.m.memberId}">
-								<input type="hidden" name="boardRef" th:value="${n.noticeNo}">
+								<input type="hidden" name="boardRef" th:value="${b.boardNo}">
 								<input type="hidden" name="boardCommentRef" th:value="${c.boardCommentNo}">
 								<textarea name="boardCommentContent" class="input-form"></textarea>
 							</li>
@@ -146,6 +161,7 @@
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
+
 	<script>
 		//게시물 삭제
 		$("[type=button]").on("click",function(){
@@ -154,6 +170,86 @@
 				location.href="/board/delete?boardNo="+boardNo;
 			}
 		});
+		function loginMsg(){
+			alert("로그인 후 이용해 주세요");
+		}
+		function addLike(obj,boardCommentNo,memberNo){
+			const likeBtn = $(obj);
+			$.ajax({
+				url : "/board/addLike",
+				type : "post",
+				data : {boardCommentNo:boardCommentNo, memberNo : memberNo},
+				success : function(data){
+					likeBtn.text("favorite");
+					likeBtn.attr("onclick","removeLike(this,"+boardCommentNo+","+memberNo+")");
+					likeBtn.next().text(data);
+				}
+			})
+		}
+		
+		function removeLike(obj,boardCommentNo, memberNo){
+			const likeBtn = $(obj);
+			$.ajax({
+				url : "/board/removeLike",
+				type : "post",
+				data : {boardCommentNo:boardCommentNo, memberNo:memberNo},
+				success : function(data){
+					likeBtn.text("favorite_border");
+					likeBtn.attr("onclick","addLike(this,"+boardCommentNo+","+memberNo+")");
+					likeBtn.next().text(data);
+				}
+			});
+		}
+		$(".recShow").on("click", function(){
+			//몇번째 답글달기 버튼을 클릭할지 구함
+			const index = $(".recShow").index(this);
+			if($(this).text() =="답글달기"){
+				$(this).text("취소");
+			}else{
+				$(this).text("답글달기");
+			}
+			//대댓글양식중에 해당번째 양식을 화면에 출력
+			$(".inputRecommentBox").eq(index).toggle();
+			$(".inputRecommentBox").eq(index).find("textarea").focus();
+		});
+		//댓글수정
+		function modifyComment(obj,boardCommentNo, boardNo){
+			$(obj).parent().prev().prev().hide();			
+			$(obj).parent().prev().show();
+			$(obj).text("수정완료");
+			$(obj).attr("onclick","modifyComplete(this,"+boardCommentNo+","+boardNo+")");
+			$(obj).next().text("수정취소");
+			$(obj).next().attr("onclick","modifyCancel(this,"+boardCommentNo+","+boardNo+")");
+
+			$(obj).next().next().hide();
+		}
+		//댓글삭제
+		function modifyCancel(obj,noticeCommentNo,noticeNo){
+			$(obj).parent().prev().prev().show();
+			$(obj).parent().prev().hide();
+			$(obj).prev().text("수정");
+			$(obj).prev().attr("onclick","modifyComment(this,"+boardCommentNo+","+boardNo+")");			
+			$(obj).text("삭제");
+			$(obj).attr("onclick","deleteComment(this,"+boardCommentNo+","+boardNo+")");
+			$(obj).next().show();
+		}
+		function modifyComplete(obj,boardCommentNo, boardNo){
+			const form = $("<form style='display:none' action='/board/updateComment' method='post'>");	
+			const commentNoInput = $("<input type='text' name='boardCommentNo'>");
+			commentNoInput.val(boardCommentNo);
+			const boardNoInput = $("<input type='text' name='boardRef'>");
+			boardNoInput.val(boardNo);
+			const textArea=$(obj).parent().prev().clone();
+			form.append(commentNoInput).append(boardNoInput).append(textArea);
+			$("body").append(form);
+			form.submit();
+		}
+		
+		function deleteComment(obj,boardCommentNo,boardNo){
+			if(confirm("댓글을 삭제하시겠습니까?")){
+				location.href="/board/deleteComment?boardCommentNo="+boardCommentNo+"&boardNo="+boardNo;
+			}
+		}
 	</script>
 </body>
 </html>

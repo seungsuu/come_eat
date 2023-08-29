@@ -19,4 +19,5 @@ public class Location {
 	private String loTime;		//운영시간
 	private String loMenu;		//음식카테고리
 	private String loThumb;		//썸네일
+	private double starRate;
 }
