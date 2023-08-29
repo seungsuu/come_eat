@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import kr.or.comeeat.board.model.vo.Board;
+import kr.or.comeeat.board.model.vo.BoardFile;
 import kr.or.comeeat.board.model.vo.BoardRowMapper;
 
 @Component
@@ -29,6 +31,20 @@ public class BoardDao {
 		int totalList = jdbc.queryForObject(query, Integer.class);
 		return totalList;
 	}
-	
+
+	//글쓰기 - board insert
+	public int insertBoard(Board b) {
+		String query = "INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL,?,?,?,?,TO_CHAR(SYSDATE,'YYYY-MM-DD'),DEFAULT)";
+		Object[] params = {b.getBoardType(),b.getBoardWriter(),b.getBoardTitle(),b.getBoardContent()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	//상세보기
+	public List boardView(int boardNo) {
+		String query ="select * from board where board_no=?";
+		List list = jdbc.query(query, boardRowMapper, boardNo);
+		return list;
+	}
 	
 }

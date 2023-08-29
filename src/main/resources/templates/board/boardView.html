@@ -1,62 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/common.css">
+<meta charset="UTF-8">
+<title>커뮤니티</title>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
     <div class="content-wrap">
 		<div class="content-title">커뮤니티</div>
-		<form action="/" method="post" enctype="multipart/form-data">
 		<table class="tbl tbl-border">
 			<tr>
 				<th class="b-color-g" width="20%">제목</th>
 				<td colspan="3">
-                    <input type="text" name="boardTitle" class="input" value="제목입니다." style="text-align: center;">
+                    <input type="text" name="boardTitle" class="input" th:value="${b.boardTitle}" style="text-align: center;" readonly>
                 </td>
 			</tr>
 			<tr>
 				<th class="b-color-g">카테고리</th>
 				<td colspan="3">
-                    <select name="category" class="input select">
-                        <option value="1">맛집추천</option>
-                        <option value="2">맛집비추</option>
-                        <option value="3">기타</option>
-                    </select>
+                    <input type="text" name="boardType" class="input" th:if="${b.boardType}==1" value="맛집추천" style="text-align: center;" readonly>
+                    <input type="text" name="boardType" class="input" th:if="${b.boardType}==2" value="맛집비추" style="text-align: center;" readonly>
+                    <input type="text" name="boardType" class="input" th:if="${b.boardType}==3" value="기타" style="text-align: center;" readonly>
 				</td>
 			</tr>
             <tr>
                 <th class="b-color-g">작성자</th>
 				<td>
-				    <span>작성자출력</span>
-				    <input type="hidden" name="boardWriter" th:value="${session.m.memberId}">
+				    <input type="text" name="boardWriter" class="input" th:value="${b.boardWriter}" style="text-align: center;" readonly>
 				</td>
                 <th class="b-color-g" width="20%">조회수</th>
 				<td>
-				    <span>조회수출력</span>
-				    <input type="hidden" name="boardWriter" th:value="${session.m.memberId}">
+				    <input type="text" name="readCount" class="input" th:value="${b.boardCount}" style="text-align: center;" readonly>
 				</td>
             </tr>
 			<tr>
 				<th colspan="4" class="textarea-td">
-					<textarea name="boardContent" class="input textarea"></textarea>
+					<div class="textarea" th:utext="${b.boardContent}" style="text-align: left; height:100%;"></div>
 				</th>
 			</tr>
 		</table>
-        <table class="tbl tbl-border" style="border-top: none;">
+        <table class="tbl tbl-border" style="border-top: none;" th:if="${session.m != null && session.m.memberId == b.boardWriter}">
             <tr>
                 <th>
-                    <button type="submit" class="btn" style="width: 100%; font-size: 18px; line-height: 40px;">작성취소</button>
+                    <button type="button" class="btn" style="width: 100%; font-size: 18px; line-height: 40px;">삭제하기</button>
                 </th>
                 <th>
-                    <button type="submit" class="btn-o" style="width: 100%; font-size: 18px; line-height: 40px;">작성완료</button>
+                    <a href="/" class="btn-o" style="width: 100%; font-size: 18px; line-height: 40px;">수정하기</a>
                 </th>
             </tr>
         </table>
-		</form>
 	</div>
 	<th:block th:include="common/footer"></th:block>
 </body>

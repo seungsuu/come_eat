@@ -1,13 +1,16 @@
 package kr.or.comeeat.board.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.comeeat.board.model.dao.BoardDao;
 import kr.or.comeeat.board.model.vo.Board;
 import kr.or.comeeat.board.model.vo.BoardData;
+import kr.or.comeeat.board.model.vo.BoardFile;
 
 @Service
 public class BoardService {
@@ -82,5 +85,19 @@ public class BoardService {
 		BoardData boardData = new BoardData(list,pageNavi);
 		
 		return boardData;
+	}
+
+	//글쓰기
+	@Transactional
+	public int insertBoard(Board b) {
+		//baord insert
+		int result = boardDao.insertBoard(b);
+		return result;
+	}
+
+	//상세보기
+	public List boardView(int boardNo) {
+		List list = boardDao.boardView(boardNo);
+		return list;
 	}
 }

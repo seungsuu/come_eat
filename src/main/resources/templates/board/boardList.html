@@ -41,7 +41,7 @@
 				<td th:if="${b.boardType} == 1">맛집추천</td>
 				<td th:if="${b.boardType} == 2">맛집비추</td>
 				<td th:if="${b.boardType} == 3">기타</td>
-                <td><a href="#" th:text="${b.boardTitle}"></a></td>
+                <td><a th:href="@{/board/boardView(boardNo=${b.boardNo})}" th:text="${b.boardTitle}"></a></td>
 				<td th:text="${b.boardWriter}"></td>
 				<td th:text="${b.regDate}"></td>
 				<td th:text="${b.boardCount}"></td>

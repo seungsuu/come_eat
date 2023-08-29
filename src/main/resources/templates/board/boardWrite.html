@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html　xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="/css/common.css">
+<meta charset="UTF-8">
+<title>커뮤니티</title>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -25,7 +22,7 @@
 				<tr>
 					<th class="b-color-g">카테고리</th>
 					<td>
-	                    <select name="category" class="input select">
+	                    <select name="boardType" class="input select">
 	                        <option value="1">맛집추천</option>
 	                        <option value="2">맛집비추</option>
 	                        <option value="3">기타</option>
@@ -40,7 +37,7 @@
 	            </tr>
 				<tr>
 					<th colspan="2" class="textarea-td" style="text-align: left;">
-						<textarea name="boardContent" class="input textarea boardContent"></textarea>
+						<textarea name="boardContent" class="input textarea" id="boardContent"></textarea>
 					</th>
 				</tr>
 			</table>
@@ -58,7 +55,15 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	<script>
-		$(".boardContent").summernote({
+		//취소버튼 클릭 시 리스트 첫페이지로 돌아감
+		$("[type=reset]").on("click",function(){
+			if(confirm("작성을 취소하시겠습니까?")){				
+				location.href="/board/writeReset";
+			}
+		});
+		
+		//썸머노트 적용
+		$("#boardContent").summernote({
 			  toolbar: [
 				    ['fontname', ['fontname']],
 				    ['fontsize', ['fontsize']],
@@ -80,10 +85,22 @@
 			}
 		});
 		
-		$("[type=reset]").on("click",function(){
-			location.href="/board/list?pageNum=1";
-		});
-		
+		//썸머노트 파일 세팅
+		function uploadImage(file,editor){
+			const form = new FormData();
+			form.append("file",file);
+			$.ajax({
+				url : "/board/summerNote",
+				type : "post",
+				data : form,
+				processData : false, //파일전송을위해 문자열 세팅 해제
+				contentType : false, //파일전송을위해 enctype 기본값제거
+				success : function(data){
+					console.log(data);
+					$(editor).summernote("insertImage",data);
+				}
+			});
+		}
 	</script>
 </body>
 </html>
