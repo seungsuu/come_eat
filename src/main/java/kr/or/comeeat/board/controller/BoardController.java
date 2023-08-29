@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.or.comeeat.FileUtil;
 import kr.or.comeeat.board.model.service.BoardService;
 import kr.or.comeeat.board.model.vo.Board;
+import kr.or.comeeat.board.model.vo.BoardComment;
 import kr.or.comeeat.board.model.vo.BoardData;
 import kr.or.comeeat.board.model.vo.BoardFile;
 
@@ -178,6 +179,24 @@ public class BoardController {
 			model.addAttribute("icon", "error");
 		}
 		model.addAttribute("loc","/board/boardView?boardNo="+b.getBoardNo());
+		return "common/msg";
+	}
+	
+	
+	//때앳글
+	@PostMapping(value="/insertComment")
+	public String insertComment(BoardComment bc, Model model) {
+		int result = boardService.insertCommet(bc);
+		if(result>0) {
+			model.addAttribute("title","양나민 World");
+			model.addAttribute("msg","댓글이 등록되었습니다");
+			model.addAttribute("icon","success");
+		}else {
+			model.addAttribute("title","등록실패");
+			model.addAttribute("msg","댓글이 등록실패");
+			model.addAttribute("icon","error");
+		}
+		model.addAttribute("loc","/board/view?boardNo="+bc.getBoardRef());
 		return "common/msg";
 	}
 	

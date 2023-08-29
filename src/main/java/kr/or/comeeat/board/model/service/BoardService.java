@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.comeeat.board.model.dao.BoardDao;
 import kr.or.comeeat.board.model.vo.Board;
+import kr.or.comeeat.board.model.vo.BoardComment;
 import kr.or.comeeat.board.model.vo.BoardData;
 import kr.or.comeeat.board.model.vo.BoardFile;
 
@@ -115,11 +116,15 @@ public class BoardService {
 		return result;
 	}
 
+
 	//조회수추가
 	@Transactional
 	public int boardCountUp(int boardNo) {
 		int result = boardDao. boardCountUp(boardNo);
-		return result;
 	}
 
-}
+	@Transactional
+	public int insertCommet(BoardComment bc) {
+		int result = boardDao.insertComment(bc);
+		return result;
+	}
