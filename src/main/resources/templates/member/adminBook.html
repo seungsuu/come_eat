@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>마이페이지(관리자)</title>
+<link rel="stylesheet" href="/css/adminMypage.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script src="/js/jquery-3.6.0.js"></script>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+		<div class="content-title">
+			ADMIN PAGE <span class="material-icons">admin_panel_settings</span>
+		</div>
+		<div class="mypage-tab-wrap">
+			<ul class="mypage-tab">
+				<li><a href="/member/adminMypage">나의 정보</a></li>
+				<li><a href="/member/adminMember">회원관리</a></li>
+				<li><a href="/member/adminBook" class="admin-btn">예약내역</a></li>
+				
+			</ul>
+			<div>
+				<table class="tbl tbl-hover">
+					<tr class="tr-3">
+						<th>선택</th>
+						<th>예약번호</th>
+						<th>상호명</th>
+						<th>이름</th>
+						<th>예약날짜</th>
+						<th>예약시간</th>
+						<th>예약인원</th>
+						<th>환불여부</th>
+					</tr>
+
+					<tr class="tr-1" th:each="b : ${b}">
+						<td><input type="checkbox" class="chk2"></td>
+						<td th:text="${b.bookingNo}"></td>
+						<td th:text="${b.loTitle}"></td>
+						<td th:text="${b.memberName}"></td>
+						<td th:text="${b.bookingDate}"></td>
+						<td th:text="${b.bookingTime}">시</td>
+						<td th:text="${b.bookingTotalnum}">명</td>
+						<td th:switch="${b.bookingPay}"><select th:case="1"
+							class="input-form">
+								<option value="1" selected>결제완료</option>
+								<option value="2">환불완료</option>
+						</select> <select th:case="2" class="input-form">
+								<option value="1">결제완료</option>
+								<option value="2" selected>환불완료</option>
+						</select></td>
+						<td>
+							<button class="btn bc5 changePay">환불변경</button>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="9">
+							<button class="changeBtn checkedChangePay">환불변경</button>
+						</th>
+					</tr>
+				</table>
+			</div>
+
+
+
+
+
+		</div>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+
+	
+	
+</body>
+</html>

@@ -162,8 +162,8 @@ table.mypage-table{
 	border: none;
 	border-radius: 5px;
 }
-.changeBtn:hover{
-	background-color: #ff3700ff;
+.admin-btn{
+	background-color: #ff3700ff !important; 
 	color : white;
 	border: none;
 	font-weight: 400;
