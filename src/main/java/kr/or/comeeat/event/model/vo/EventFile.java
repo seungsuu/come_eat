@@ -8,12 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 
-public class Event {
+public class EventFile {
+	private int eFileNo;
+	private String eFilePath;
 	private int eventNo;
-	private String eventTitle;
-	private String eventContent;
-	private String regDate;
-	private int readCount;
-	private int memberNo;
-	private String filepath;
 }
