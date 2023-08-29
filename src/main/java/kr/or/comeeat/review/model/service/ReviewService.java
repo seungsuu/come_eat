@@ -30,8 +30,8 @@ public class ReviewService {
 
 	public detailReviewList selectDetailRestaurant(int loNo) {
 		Location l = reviewDao.selectOneRestaurant(loNo);
-		List reviewList = reviewDao.selectReviewList(loNo);
-		detailReviewList drl = new detailReviewList(l, reviewList);
+		int totalCount = reviewDao.totalCount(loNo);
+		detailReviewList drl = new detailReviewList(l, totalCount);
 		return drl;
 	}
 
@@ -51,5 +51,10 @@ public class ReviewService {
 	public int deleteReview(int reviewNo) {
 		int result = reviewDao.deleteReview(reviewNo);
 		return result;
+	}
+
+	public List selectReviewList(int start, int end, int loNo) {
+		List list = reviewDao.selectReviewList(start,end,loNo);
+		return list;
 	}
 }
