@@ -32,6 +32,19 @@ public class BoardDao {
 		return totalList;
 	}
 
+	//게시물 조회해오기(10개) - 카테고리별
+	public List boardListType(int start, int end, int boardType) {
+		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, N.* FROM (SELECT * FROM BOARD WHERE BOARD_TYPE=? ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
+		List list = jdbc.query(query,boardRowMapper,boardType,start,end);
+		return list;
+	}
+	//천제 게시물 수 조회 - 카테고리별
+	public int selectBoardTotalType(int boardType) {
+		String query = "select Count(*) from board where board_type=?";
+		int totalList = jdbc.queryForObject(query, Integer.class, boardType);
+		return totalList;
+	}
+		
 	//글쓰기 - board insert
 	public int insertBoard(Board b) {
 		String query = "INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL,?,?,?,?,TO_CHAR(SYSDATE,'YYYY-MM-DD'),DEFAULT)";

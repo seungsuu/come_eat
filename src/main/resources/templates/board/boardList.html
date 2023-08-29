@@ -15,16 +15,16 @@
 		<a th:if="${session.m != null}" href="/board/writeFrm" class="btn">글쓰기</a>
         <ul class="board-tab">
             <li>
-                <a href="/">전체보기</a>
+                <button class="tab-button">전체보기</button>
             </li>
             <li>
-                <a href="/">맛집추천</a>
+                <button class="tab-button">맛집추천</button>
             </li>
             <li>
-                <a href="/">맛집비추</a>
+                <button class="tab-button">맛집비추</button>
             </li>
             <li>
-                <a href="/">기타</a>
+                <button class="tab-button">기타</button>
             </li>
         </ul>
 		<table class="tbl">
@@ -46,9 +46,59 @@
 				<td th:text="${b.regDate}"></td>
 				<td th:text="${b.boardCount}"></td>
 			</tr>
+			<tr class="hover" th:each="b : ${list1}">
+				<td th:text="${b.boardNo}"></td>
+				<td th:if="${b.boardType} == 1">맛집추천</td>
+				<td th:if="${b.boardType} == 2">맛집비추</td>
+				<td th:if="${b.boardType} == 3">기타</td>
+                <td><a th:href="@{/board/boardView(boardNo=${b.boardNo})}" th:text="${b.boardTitle}"></a></td>
+				<td th:text="${b.boardWriter}"></td>
+				<td th:text="${b.regDate}"></td>
+				<td th:text="${b.boardCount}"></td>
+			</tr>
+			<tr class="hover" th:each="b : ${list2}">
+				<td th:text="${b.boardNo}"></td>
+				<td th:if="${b.boardType} == 1">맛집추천</td>
+				<td th:if="${b.boardType} == 2">맛집비추</td>
+				<td th:if="${b.boardType} == 3">기타</td>
+                <td><a th:href="@{/board/boardView(boardNo=${b.boardNo})}" th:text="${b.boardTitle}"></a></td>
+				<td th:text="${b.boardWriter}"></td>
+				<td th:text="${b.regDate}"></td>
+				<td th:text="${b.boardCount}"></td>
+			</tr>
+			<tr class="hover" th:each="b : ${list3}">
+				<td th:text="${b.boardNo}"></td>
+				<td th:if="${b.boardType} == 1">맛집추천</td>
+				<td th:if="${b.boardType} == 2">맛집비추</td>
+				<td th:if="${b.boardType} == 3">기타</td>
+                <td><a th:href="@{/board/boardView(boardNo=${b.boardNo})}" th:text="${b.boardTitle}"></a></td>
+				<td th:text="${b.boardWriter}"></td>
+				<td th:text="${b.regDate}"></td>
+				<td th:text="${b.boardCount}"></td>
+			</tr>
 		</table>
 		<div class="board-navi" th:utext="${navi}"></div>
+		<div class="board-navi" th:utext="${navi1}"></div>
+		<div class="board-navi" th:utext="${navi2}"></div>
+		<div class="board-navi" th:utext="${navi3}"></div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
+	<script>
+		window.onload = function(){
+			$(".tab-button").each(function(i,index){
+				$(".tab-button").eq(i).on("click",function(){
+					$(".tab-button").removeClass("active-tab");
+					$(this).addClass("active-tab");
+					
+					$(".hover").hide();
+					$(".board-navi").hide();
+					
+					$(".hover").eq(i).show();
+					$(".board-navi").eq(i).show();
+				});
+			})
+			$(".tab-button").eq(0).click();
+		}
+	</script>
 </body>
 </html>
