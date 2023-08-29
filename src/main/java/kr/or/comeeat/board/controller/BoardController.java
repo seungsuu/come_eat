@@ -144,4 +144,23 @@ public class BoardController {
 		model.addAttribute("b", list.get(0));
 		return "board/boardUpdateFrm";
 	}
+	
+	//게시물수정
+	@PostMapping(value="/update")
+	public String boardUpdate(Board b, Model model){
+		int result = boardService.boardUpdate(b);
+		if(result>0) {
+			model.addAttribute("title","수정완료");
+			model.addAttribute("msg","게시글이 수정되었습니다.");
+			model.addAttribute("icon","success");
+		}else {
+			model.addAttribute("tilte", "수정실패");
+			model.addAttribute("msg", "관리자에게 문의하세요");
+			model.addAttribute("icon", "error");
+			
+		}
+		model.addAttribute("loc","/board/boardView?boardNo="+b.getBoardNo());
+		return "common/msg";
+	}
+	
 }

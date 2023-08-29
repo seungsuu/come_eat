@@ -108,4 +108,11 @@ public class BoardService {
 		return result;
 	}
 
+	//게시글 수정
+	@Transactional
+	public int boardUpdate(Board b) {
+		int result = boardDao.boardUpdate(b);
+		return result;
+	}
+
 }
