@@ -100,4 +100,12 @@ public class BoardService {
 		List list = boardDao.boardView(boardNo);
 		return list;
 	}
+
+	//게시글삭제
+	@Transactional
+	public int deleteBoard(int boardNo) {
+		int result = boardDao.deleteNotice(boardNo);
+		return result;
+	}
+
 }

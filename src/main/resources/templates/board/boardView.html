@@ -42,14 +42,23 @@
         <table class="tbl tbl-border" style="border-top: none;" th:if="${session.m != null && session.m.memberId == b.boardWriter}">
             <tr>
                 <th>
-                    <button type="button" class="btn" style="width: 100%; font-size: 18px; line-height: 40px;">삭제하기</button>
+                    <button type="button" class="btn" style="width: 100%; font-size: 18px; line-height: 40px;" th:value="${b.boardNo}">삭제하기</button>
                 </th>
                 <th>
-                    <a href="/" class="btn-o" style="width: 100%; font-size: 18px; line-height: 40px;">수정하기</a>
+                    <a th:href="@{/board/updateFrm(boardNo=${b.boardNo})}" class="btn-o" style="width: 100%; font-size: 18px; line-height: 40px;">수정하기</a>
                 </th>
             </tr>
         </table>
 	</div>
 	<th:block th:include="common/footer"></th:block>
+	<script>
+		//게시물 삭제
+		$("[type=button]").on("click",function(){
+			const boardNo = $(this).val();
+			if(confirm("게시물을 삭제하시겠습니까?")){				
+				location.href="/board/delete?boardNo="+boardNo;
+			}
+		});
+	</script>
 </body>
 </html>

@@ -56,6 +56,16 @@ public class BoardController {
 		return "common/msg";
 	}
 	
+	//수정 취소
+	@GetMapping(value="/updateReset")
+	public String updateReset(int boardNo, Model model) {
+		model.addAttribute("title", "수정취소");
+		model.addAttribute("msg", "수정이 취소되었습니다");
+		model.addAttribute("icon", "info");
+		model.addAttribute("loc", "/board/boardView?boardNo="+boardNo);
+		return "common/msg";
+	}
+	
 	//글쓰기
 	@PostMapping(value="/write")
 	public String boardWrite(Board b, Model model) {
@@ -103,4 +113,35 @@ public class BoardController {
 		return "board/boardView";
 	}
 	
+	//게시물삭제
+	@GetMapping(value="/delete")
+	public String deleteBoard(int boardNo,Model model){
+		int result = boardService.deleteBoard(boardNo);
+		if(result>0) {
+			/*String savepath = root+"board/";
+			for(Object obj : list) {
+				NoticeFile file = (NoticeFile)obj;
+				File delFile = new File(savepath+file.getFilepath());
+				delFile.delete();
+			}*/
+			model.addAttribute("title","삭제완료");
+			model.addAttribute("msg", "게시글이 삭제되었습니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/board/list?pageNum=1");
+		}else {
+			model.addAttribute("title","삭제실패");
+			model.addAttribute("msg", "관리자에게 문의하세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/board/boardView?boardNo="+boardNo);
+		}
+		return "common/msg";
+	}
+	
+	//게시물 수정 폼으로 이동
+	@GetMapping(value="updateFrm")
+	public String boardUpdateFrm(int boardNo, Model model){
+		List list = boardService.boardView(boardNo);
+		model.addAttribute("b", list.get(0));
+		return "board/boardUpdateFrm";
+	}
 }

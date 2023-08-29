@@ -46,5 +46,12 @@ public class BoardDao {
 		List list = jdbc.query(query, boardRowMapper, boardNo);
 		return list;
 	}
+
+	//게시글삭제
+	public int deleteNotice(int boardNo) {
+		String query = "delete from board where board_no=?";
+		int result = jdbc.update(query,boardNo);
+		return result;
+	}
 	
 }
