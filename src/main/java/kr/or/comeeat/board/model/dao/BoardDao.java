@@ -61,5 +61,12 @@ public class BoardDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
+
+	//조회수추가
+	public int boardCountUp(int boardNo) {
+		String query = "update board set board_count=board_count+1 where board_no=?";
+		int result = jdbc.update(query,boardNo);
+		return result;
+	}
 	
 }

@@ -115,4 +115,11 @@ public class BoardService {
 		return result;
 	}
 
+	//조회수추가
+	@Transactional
+	public int boardCountUp(int boardNo) {
+		int result = boardDao. boardCountUp(boardNo);
+		return result;
+	}
+
 }

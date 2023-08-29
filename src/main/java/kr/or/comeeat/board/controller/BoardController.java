@@ -109,8 +109,27 @@ public class BoardController {
 	@GetMapping(value="/boardView")
 	public String boardView(int boardNo, Model model){
 		List list = boardService.boardView(boardNo);
-		model.addAttribute("b",list.get(0));
-		return "board/boardView";
+		if(list!=null){
+			Board b = (Board)list.get(0);
+			int result = boardService.boardCountUp(b.getBoardNo());
+			if(result>0){
+				b.setBoardCount(b.getBoardCount()+1);
+				model.addAttribute("b",b);
+				return "board/boardView";
+			}else{
+				model.addAttribute("title", "조회실패");
+				model.addAttribute("msg", "관리자에게 문의하세요");
+				model.addAttribute("icon", "error");
+				model.addAttribute("loc", "/board/list?pageNum=1");
+				return "common/msg";
+			}
+		}else{
+			model.addAttribute("title", "조회실패");
+			model.addAttribute("msg", "게시물이 삭제되었습니다");
+			model.addAttribute("icon", "info");
+			model.addAttribute("loc", "/board/list?pageNum=1");
+			return "common/msg";
+		}
 	}
 	
 	//게시물삭제
@@ -157,7 +176,6 @@ public class BoardController {
 			model.addAttribute("tilte", "수정실패");
 			model.addAttribute("msg", "관리자에게 문의하세요");
 			model.addAttribute("icon", "error");
-			
 		}
 		model.addAttribute("loc","/board/boardView?boardNo="+b.getBoardNo());
 		return "common/msg";
