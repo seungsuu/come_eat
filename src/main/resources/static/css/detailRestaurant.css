@@ -8,6 +8,24 @@
 }
 .title_header{
     float: left;
+    overflow: hidden;
+}
+.title_header>h1{
+	float:left;
+}
+/*평점*/
+.star{
+	float:left;
+	display: flex;
+	align-items:center;
+}
+.star>span:first-child{
+    font-size: 45px;
+}
+.star>span{
+    color: #ff3700ff;
+    font-size: 40px;
+    font-weight: 500;
 }
 .title_header>h1{
     font-size: 40px;

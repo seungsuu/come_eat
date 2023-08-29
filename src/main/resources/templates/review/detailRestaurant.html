@@ -57,10 +57,12 @@
 			<div class="restaurant_title_wrap">
 				<div class="title_header">
 					<h1 th:text="${list.loTitle}" class="detail-val"></h1>
-					<span class="material-icons-round">grade</span> 
-					<span th:text="${list.starRate}"></span> 
-					<span style="display: none;" th:text="${list.loLat}"></span> 
-					<span style="display: none;" th:text="${list.loLng}"></span>
+					<div class="star">
+						<span class="material-icons-round">grade</span> 
+						<span th:text="${list.starRate}"></span> 
+					</div>
+					<span class="loLat" style="display: none;" th:text="${list.loLat}"></span> 
+					<span class="loLng" style="display: none;" th:text="${list.loLng}"></span>
 				</div>
 				<div class="review_icons">
 					<div class="icon1" th:if="${session.m != null}">
@@ -352,11 +354,11 @@
 		});
 		
 		//지도
-		const lat = $(".title_header").children().eq(3);
-		const latText = lat.text();
+		//const lat = $(".loLat");
+		const latText = $(".loLat").text();
 		//console.log(latText);
-		const lng = $(".title_header").children().eq(4);
-		const lngText = lng.text();
+		//const lng = $(".title_header").children().eq(4);
+		const lngText = $(".loLng").text();
 		//console.log(lngText);
 
 		var infowindow = new kakao.maps.InfoWindow({

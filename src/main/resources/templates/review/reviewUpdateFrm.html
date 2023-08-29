@@ -12,7 +12,7 @@
 		<div class="review-wrapper content-wrap">
 			<div class="content-title">리뷰 수정하기</div>
 	        <div class="review-editor">
-	            <form action="/review/reviewUpdate" method="post" enctype="multipart/form-data">
+	            <form action="/review/reviewUpdate" class="reviewUpdateFrm" method="post" enctype="multipart/form-data">
 	                <div class="review-editor-wrap">
 	                    <div class="review-grade-picker">
 	                        <ul class="grade-picker-list">
@@ -49,12 +49,12 @@
 	                    <div class="review-file-upload">
 	                    	<div class="file-upload-btn" style="margin:40px 0;">
 		                        <label for="updateFile" class="btn">첨부 사진</label>
-		                        <input type="file" name="updateFile" id="updateFile" accept=".jpg,.png,.jpeg,.gif" th:value="${r.reviewFilepath}">
-		                        <!--style="display: none;"   -->
+		                        <input type="file" name="updateFile" id="updateFile" style="display:none;" accept=".jpg,.png,.jpeg,.gif" th:value="${r.reviewFilepath}">
+		                       
 	                    	</div>
 	                        <div class="imageThumb">
 								<img id="img-view" width="200px" th:src="${r.reviewFilepath}">
-								<span class="material-icons" th:onclick="deleteFile(this,[[${r.reviewFilepath}]])">remove_circle</span>
+								<span class="material-icons" style="cursor:pointer" th:onclick="deleteFile()">remove_circle</span>
 	                        </div>
 	                    </div>
 	                </div>
@@ -83,8 +83,13 @@
 			}
 		});
 		
-		//파일 삭제
-		
+		//썸네일 삭제
+		function deleteFile(){
+			if(confirm("파일을 삭제하시겠습니까?")){
+				$("#img-view").removeAttr("src");
+				$("#img-view").next().hide();
+			}
+		}
 		
 		//아이콘 색 변경	
 		const li = $(".grade-picker-item");
@@ -111,7 +116,7 @@
 				alert("최대 작성은 4000자 입니다.");
 			}
 		});
-		/*
+		
 		//아이콘 꼭 눌러야함..
 		$(".submitBtn").on("click",function(){
 			if(!($("input[type='radio']:checked").is(":checked"))){
@@ -119,7 +124,7 @@
 				return false;
 			}
 		});
-		*/
+		
 	</script>
 </body>
 </html>
