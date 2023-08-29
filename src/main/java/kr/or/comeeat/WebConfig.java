@@ -17,5 +17,9 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		registry.addResourceHandler("/editor/**").addResourceLocations("file:///C:/Temp/upload/editor/");
 		registry.addResourceHandler("/location/**").addResourceLocations("classpath:/static/img/location/");
+		
+		registry.addResourceHandler("/event/**")
+		.addResourceLocations("file:///C:Temp/upload/event/");
+		
 	}
 }

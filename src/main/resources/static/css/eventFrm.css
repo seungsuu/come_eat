@@ -1,0 +1,39 @@
+.tbl{
+	width: 100%;
+	border: 1px solid #eee;
+}
+.tbl th,
+.tbl td {
+	padding: 1rem;
+	text-align: center;
+}
+.td-2{
+	width: 20%;
+	height: 30px;
+	background-color:  #eee;
+}
+
+.input-form{
+	width: 100%;
+	border: 1px solid #eee;
+}
+.writeBtn{
+	border: none;
+	background-color:#ff3700ff;
+	border-radius:5px;
+	width:95%;
+	height: 50px;
+	color: white;
+	font-weight: 400;
+}
+
+.td-3{
+	background-color: #eee;
+}
+textarea {
+	resize:none;
+	height: 300px;
+}
+.td-4{
+	width:20%;
+}
