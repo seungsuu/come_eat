@@ -112,7 +112,7 @@
 .reviewList_title{
     padding: 30px;
 }
-.reviewList_title>h2{
+.reviewList_title>span{
 	font-size:36px;
 }
 
@@ -160,4 +160,25 @@
 }
 .review_detail_content{
     padding-top: 20px;
+}
+
+/*더보기 버튼*/
+.reviewList_moreBtn{
+	text-align:center;
+}
+.moreBtn{
+	border:none;
+	width:500px;
+	height:80px;
+	font-size:30px;
+	background-color:transparent;
+	cursor: pointer;
+}
+.moreBtn:hover{
+	font-weight:500;
+	color:#ff3700ff;
+}
+.moreBtn:hover>span{
+	font-weight:500;
+	color:#ff3700ff;
 }
