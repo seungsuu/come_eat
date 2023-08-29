@@ -3,189 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지(관리자)</title>
-<link rel="stylesheet" href="/css/adminMypage.css"> 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+<link rel="stylesheet" href="/css/adminMypage.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 <script src="/js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
 	<div class="content-wrap">
-		<div class="content-title">ADMIN PAGE <span class="material-icons">admin_panel_settings</span></div>
-			<div class="mypage-tab-wrap">
-				<ul class="mypage-tab">
-					<li>나의정보</li>
-					<li>
-					<a href="/member/admin">회원관리</a>
-					</li>
-					<li><a href="/member/adminBook">예약내역</a></li>
-				</ul>			
-		<div class="mypage-content">
-			<form action="/member/update" method="post">
-        	<table class="mypage-table">
-        	<tr>
-        		<th class="first">
-                    <label for="memberLevel">회원등급</label>
-                </th>
-                <td class="first">
-                    <th:block th:switch="${session.m.memberLevel}">
-						<input th:case="1" type="text" name="memberLevel" id="memberLevel" class="mypage-input-form" th:value="관리자" disabled>
-						<input th:case="2" type="text" name="memberLevel" id="memberLevel" class="mypage-input-form" th:value="일반회원" disabled>
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    <label for="memberId">아이디</label>
-                </th>
-                <td>
-                    <input type="text" class="mypage-input-form " id="memberId" name="memberId" th:value="${session.m.memberId}" readonly>
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    <label for="memberPw">비밀번호</label>
-                </th>
-                <td>
-                    <input type="password" class="mypage-input-form hover" id="memberPw" name="memberPw" th:value="${session.m.memberPw}">
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    <label for="memberName">이름</label>
-                </th>
-                <td>
-                    <input type="text" class="mypage-input-form hover" id="memberName" name="memberName" th:value="${session.m.memberName}">
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    <label for="memberEmail">이메일</label>
-                </th>
-                <td class="mypage-td">
-                    <input type="text" class="mypage-input-form hover" id="memberEmail" name="memberEmail" th:value="${session.m.memberEmail}">
-                </td>
-            </tr>
-            <tr>  
-                <th>
-                    <label for="memberPhone">핸드폰번호</label>
-                </th>
-                <td>
-                    <input type="text" class="mypage-input-form hover" id="memberPhone" name="memberPhone" th:value="${session.m.memberPhone}">         
-                </td>
-            </tr>
-            <tr>  
-                <th id="bottom">
-                    <label for="enrollDate">가입일</label>
-                </th>
-                <td id="bottom">
-                    <input type="text" class="mypage-input-form hover" id="enrollDate" name="enrollDate" th:value="${session.m.enrollDate}" disabled>         
-                </td>
-            </tr>
-        </table>
- 		<div class="btn-wrap">
-			<button type="submit" class="btn">정보수정</button>
+		<div class="content-title">
+			ADMIN PAGE <span class="material-icons">admin_panel_settings</span>
 		</div>
-       </form> 
-       </div>
-       <div class="mypage-content">
-       	<table class="tbl tbl-hover">
-			<tr class="tr-3">
-				<th>선택</th>
-				<th>회원번호</th>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>이메일</th>
-				<th>핸드폰번호</th>
-				<th>가입일</th>
-				<th>회원등급</th>
-				<th>등급변경</th>
-			</tr>
-			<tr class="tr-1" th:each="m : ${list}">
-			<td><input type="checkbox" class="chk"></td>
-			<td th:text = "${m.memberNo}"></td>
-			<td th:text = "${m.memberId}"></td>
-			<td th:text = "${m.memberName}"></td>
-			<td th:text = "${m.memberEmail}"></td>
-			<td th:text = "${m.memberPhone}"></td>
-			<td th:text = "${m.enrollDate}"></td>
-			<td th:switch = "${m.memberLevel}">
-				<select th:case="1" class="input-form">
-					<!-- 데이터를 주고받을땐  option의 value값으로 -->
-					<option value="1" selected>관리자</option>
-					<option value="2" >일반회원</option>
-				</select>
-				<select th:case="2" class="input-form">
-					<option value="1" >관리자</option>
-					<option value="2" selected>일반회원</option>
-				</select>
-			</td>
-			<td>
-				<button class="btn bc5 changeLevel">등급변경</button>
-			</td>
-			</tr>
-			<tr>
-			<th colspan="9">
-				<button class="changeBtn checkedChangeLevel">선택회원등급변경</button>
-			</th>
-			</tr>		
-			</table>
-       </div>
-       
-       <div class="mypage-content">
-       	<table class="tbl tbl-hover">
-			<tr class="tr-3">
-				<th>선택</th>
-				<th>예약번호</th>
-				<th>상호명</th>
-				<th>이름</th>
-				<th>예약날짜</th>
-				<th>예약시간</th>
-				<th>예약인원</th>
-				<th>환불여부</th>
-			</tr>
-		
-			
-			
-			<tr class="tr-1" th:each="b : ${b}">
-				<td><input type="checkbox" class="chk2"></td>
-				<td th:text = "${b.bookingNo}"></td>
-				<td th:text = "${b.loTitle}"></td>
-				<td th:text = "${b.memberName}"></td>
-				<td th:text = "${b.bookingDate}"></td>
-				<td th:text =  "${b.bookingTime}">시</td>
-				<td th:text =  "${b.bookingTotalnum}">명</td>
-				<td th:switch = "${b.bookingPay}">
-					<select th:case="1" class="input-form">
-						<option value="1" selected>결제완료</option>
-						<option value="2" >환불완료</option>
-					</select>
-					<select th:case="2" class="input-form">
-						<option value="1" >결제완료</option>
-						<option value="2" selected>환불완료</option>
-					</select>
-				</td>
-				<td>
-					<button class="btn bc5 changePay">환불변경</button>
-			</td>
-			</tr>
-			<tr>
-			<th colspan="9">
-				<button class="changeBtn checkedChangePay">환불변경</button>
-			</th>
-			</tr>		
-			</table>
-       </div> 
-        
-       
-       
-       
-       
+		<div class="mypage-tab-wrap">
+			<ul class="mypage-tab">
+				<li><a href="#">나의 정보</a></li>
+				<li><a href="/member/admin">회원관리</a></li>
+				<li><a href="/member/adminBook">예약내역</a></li>
+			</ul>
+			<div class="mypage-content">
+				<form action="/member/update" method="post">
+					<table class="mypage-table">
+						<tr>
+							<th class="first"><label for="memberLevel">회원등급</label></th>
+							<td class="first"><th:block
+									th:switch="${session.m.memberLevel}">
+									<input th:case="1" type="text" name="memberLevel"
+										id="memberLevel" class="mypage-input-form" th:value="관리자"
+										disabled>
+									<input th:case="2" type="text" name="memberLevel"
+										id="memberLevel" class="mypage-input-form" th:value="일반회원"
+										disabled></td>
+						</tr>
+						<tr>
+							<th><label for="memberId">아이디</label></th>
+							<td><input type="text" class="mypage-input-form "
+								id="memberId" name="memberId" th:value="${session.m.memberId}"
+								readonly></td>
+						</tr>
+						<tr>
+							<th><label for="memberPw">비밀번호</label></th>
+							<td><input type="password" class="mypage-input-form hover"
+								id="memberPw" name="memberPw" th:value="${session.m.memberPw}">
+							</td>
+						</tr>
+						<tr>
+							<th><label for="memberName">이름</label></th>
+							<td><input type="text" class="mypage-input-form hover"
+								id="memberName" name="memberName"
+								th:value="${session.m.memberName}"></td>
+						</tr>
+						<tr>
+							<th><label for="memberEmail">이메일</label></th>
+							<td class="mypage-td"><input type="text"
+								class="mypage-input-form hover" id="memberEmail"
+								name="memberEmail" th:value="${session.m.memberEmail}">
+							</td>
+						</tr>
+						<tr>
+							<th><label for="memberPhone">핸드폰번호</label></th>
+							<td><input type="text" class="mypage-input-form hover"
+								id="memberPhone" name="memberPhone"
+								th:value="${session.m.memberPhone}"></td>
+						</tr>
+						<tr>
+							<th id="bottom"><label for="enrollDate">가입일</label></th>
+							<td id="bottom"><input type="text"
+								class="mypage-input-form hover" id="enrollDate"
+								name="enrollDate" th:value="${session.m.enrollDate}" disabled>
+							</td>
+						</tr>
+					</table>
+					<div class="btn-wrap">
+						<button type="submit" class="btn">정보수정</button>
+					</div>
+				</form>
+			</div>
+			<div class="mypage-content">
+				<table class="tbl tbl-hover">
+					<tr class="tr-3">
+						<th>선택</th>
+						<th>회원번호</th>
+						<th>아이디</th>
+						<th>이름</th>
+						<th>이메일</th>
+						<th>핸드폰번호</th>
+						<th>가입일</th>
+						<th>회원등급</th>
+						<th>등급변경</th>
+					</tr>
+					<tr class="tr-1" th:each="m : ${list}">
+						<td><input type="checkbox" class="chk"></td>
+						<td th:text="${m.memberNo}"></td>
+						<td th:text="${m.memberId}"></td>
+						<td th:text="${m.memberName}"></td>
+						<td th:text="${m.memberEmail}"></td>
+						<td th:text="${m.memberPhone}"></td>
+						<td th:text="${m.enrollDate}"></td>
+						<td th:switch="${m.memberLevel}"><select th:case="1"
+							class="input-form">
+								<!-- 데이터를 주고받을땐  option의 value값으로 -->
+								<option value="1" selected>관리자</option>
+								<option value="2">일반회원</option>
+						</select> <select th:case="2" class="input-form">
+								<option value="1">관리자</option>
+								<option value="2" selected>일반회원</option>
+						</select></td>
+						<td>
+							<button class="btn bc5 changeLevel">등급변경</button>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="9">
+							<button class="changeBtn checkedChangeLevel">선택회원등급변경</button>
+						</th>
+					</tr>
+				</table>
+			</div>
+
+			<div class="mypage-content">
+				<table class="tbl tbl-hover">
+					<tr class="tr-3">
+						<th>선택</th>
+						<th>예약번호</th>
+						<th>상호명</th>
+						<th>이름</th>
+						<th>예약날짜</th>
+						<th>예약시간</th>
+						<th>예약인원</th>
+						<th>환불여부</th>
+					</tr>
+
+
+
+					<tr class="tr-1" th:each="b : ${b}">
+						<td><input type="checkbox" class="chk2"></td>
+						<td th:text="${b.bookingNo}"></td>
+						<td th:text="${b.loTitle}"></td>
+						<td th:text="${b.memberName}"></td>
+						<td th:text="${b.bookingDate}"></td>
+						<td th:text="${b.bookingTime}">시</td>
+						<td th:text="${b.bookingTotalnum}">명</td>
+						<td th:switch="${b.bookingPay}"><select th:case="1"
+							class="input-form">
+								<option value="1" selected>결제완료</option>
+								<option value="2">환불완료</option>
+						</select> <select th:case="2" class="input-form">
+								<option value="1">결제완료</option>
+								<option value="2" selected>환불완료</option>
+						</select></td>
+						<td>
+							<button class="btn bc5 changePay">환불변경</button>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="9">
+							<button class="changeBtn checkedChangePay">환불변경</button>
+						</th>
+					</tr>
+				</table>
+			</div>
+
+
+
+
+
+		</div>
 	</div>
-    </div>  
-    
 	<th:block th:include="common/footer"></th:block>
+
 	<script src="/js/adminMypage.js"></script>
-	<script>
-		
-	</script>
+
 </body>
 </html>

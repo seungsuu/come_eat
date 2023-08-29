@@ -73,6 +73,28 @@
 }
 
 /* tab */
+
+
+.mypage-tab>li>a {
+	width: calc(33.333% - 3px);
+	height: 50px;
+    line-height: 50px;
+	float:left;
+	text-align: center;
+	background-color: #eee;
+	cursor: pointer;
+	margin-bottom: 30px;
+	border-radius: 5px;
+	margin-right: 3px; 
+}
+.mypage-tab>li>a.active-tab{
+    color: white;
+    background-color: #ff3700ff;
+    font-weight: 400;
+    width: calc(33.333% - 3px);
+}
+
+/*
 .mypage-tab li a{
 	width: calc(33.333% - 3px);
 	height: 50px;
@@ -86,6 +108,7 @@
 	margin-right: 3px; 
 }
 .mypage-tab li.active-tab{
+	
     color: white;
     background-color: #ff3700ff;
     font-weight: 400;
@@ -95,6 +118,7 @@
     background-color: #ff3700ff;
     font-weight: 400;
 }
+*/
 .mypage-content{
 	display:none;
 }

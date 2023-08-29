@@ -230,10 +230,9 @@ public class MemberController {
 	@GetMapping(value="/admin")
 		public String admin(Model model) {
 		 List list = memberService.selectAllMember();
-		 
 		 model.addAttribute("list", list);
-		 //model.addAttribute("b", booking);
 		 return "member/adminMypage";
+		 
 	}
 	@GetMapping(value="/adminBook")
 	public String adminBook(Model model) {
