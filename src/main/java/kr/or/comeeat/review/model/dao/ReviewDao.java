@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.comeeat.location.model.vo.Location;
 import kr.or.comeeat.location.model.vo.LocationRowMapper;
@@ -43,6 +44,20 @@ public class ReviewDao {
 		String query = "select * from review where review_no=?";
 		List list = jdbc.query(query, reviewRowMapper,reviewNo);
 		return (Review)list.get(0);
+	}
+
+	public int updateReview(Review r) {
+		String query = "update review set review_content=?, review_grade=?, review_filepath=? where review_no=?";
+		Object[] params = {r.getReviewContent(),r.getReviewGrade(),r.getReviewFilepath(),r.getReviewNo()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public int deleteReview(int reviewNo) {
+		String query = "delete from review where review_no=?";
+		Object[] params = {reviewNo};
+		int result = jdbc.update(query,params);
+		return result;
 	}
 
 }
