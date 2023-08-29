@@ -1,22 +1,15 @@
-
-		const tabs = $(".mypage-tab>li");
-		tabs.on("click",function(){
-			tabs.removeClass("active-tab");
-			tabs.children().removeClass("active-tab");
-			$(this).addClass("active-tab");
-			if($(this).children().is("a")){
-				$(this).children().addClass("active-tab");
-			}
-			const mypagecontent = $(".mypage-content");
-			mypagecontent.hide();
-			const index = tabs.index(this);
-			mypagecontent.eq(index).show();
-		});
-
-		$(function(){
-		    tabs.eq(0).click();
-		});	
-		
+	const tabscon = $(".mypage-tab>li");
+	tabscon.on("click",function(){
+		tabscon.removeClass("active-tab");
+		$(this).addClass("active-tab");
+		const mypagecontent = $(".mypage-content");
+		mypagecontent.hide();
+		const index = tabs.index(this);
+		mypagecontent.eq(index).show();
+	});
+	$(function(){
+	    tabs.eq(0).click();
+	});
 		
 		$(".checkedChangeLevel").on("click",function(){
 			//체크된 체크박스 가져옴

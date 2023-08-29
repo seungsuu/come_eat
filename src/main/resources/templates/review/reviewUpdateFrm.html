@@ -48,14 +48,18 @@
 	                <div class="review-file-wrapper">
 	                    <div class="review-file-upload">
 	                    	<div class="file-upload-btn" style="margin:40px 0;">
-		                        <label for="reviewFile" class="btn">첨부 사진</label>
-		                        <input type="file" name="updateFile" id="updateFile" style="display: none;" accept=".jpg,.png,.jpeg,.gif">
+		                        <label for="updateFile" class="btn">첨부 사진</label>
+		                        <input type="file" name="updateFile" id="updateFile" accept=".jpg,.png,.jpeg,.gif" th:value="${r.reviewFilepath}">
+		                        <!--style="display: none;"   -->
 	                    	</div>
 	                        <div class="imageThumb">
 								<img id="img-view" width="200px" th:src="${r.reviewFilepath}">
+								<span class="material-icons" th:onclick="deleteFile(this,[[${r.reviewFilepath}]])">remove_circle</span>
 	                        </div>
 	                    </div>
 	                </div>
+	                <input type="hidden" name="reviewNo" th:value="${r.reviewNo}">
+	                <input type="hidden" name="loNo" th:value="${r.loNo}">
 	                <div class="review-btn">
 	                    <button type="button" name="cancelBtn" class="btn cancelBtn" onclick="history.back()">취소</button>
 	                    <button type="submit" class="btn-o submitBtn">리뷰 등록</button>
@@ -67,7 +71,7 @@
 	<th:block th:include="common/footer"></th:block>
 	<script>
 		//썸네일 미리보기
-		$("[name=reviewFile]").on("change",function(){
+		$("[name=updateFile]").on("change",function(){
 			if(this.files.length != 0 && this.files[0] != 0){
 				const reader = new FileReader();
 				reader.readAsDataURL(this.files[0]);
@@ -78,6 +82,9 @@
 				$("#img-view").attr("src","");
 			}
 		});
+		
+		//파일 삭제
+		
 		
 		//아이콘 색 변경	
 		const li = $(".grade-picker-item");
@@ -104,14 +111,15 @@
 				alert("최대 작성은 4000자 입니다.");
 			}
 		});
-		
+		/*
 		//아이콘 꼭 눌러야함..
 		$(".submitBtn").on("click",function(){
 			if(!($("input[type='radio']:checked").is(":checked"))){
 				alert("평점을 눌러주세요");
+				return false;
 			}
 		});
-		
+		*/
 	</script>
 </body>
 </html>
