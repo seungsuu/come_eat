@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>마이페이지(관리자)</title>
+<link rel="stylesheet" href="/css/adminMypage.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script src="/js/jquery-3.6.0.js"></script>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+		<div class="content-title">
+			ADMIN PAGE <span class="material-icons">admin_panel_settings</span>
+		</div>
+		<div class="mypage-tab-wrap">
+			<ul class="mypage-tab">
+				<li><a href="/member/adminMypage">나의 정보</a></li>
+				<li><a href="/member/adminMember" class="admin-btn">회원관리</a></li>
+				<li><a href="/member/adminBook">예약내역</a></li>
+			</ul>
+			<div>
+				<table class="tbl tbl-hover">
+					<tr class="tr-3">
+						<th>선택</th>
+						<th>회원번호</th>
+						<th>아이디</th>
+						<th>이름</th>
+						<th>이메일</th>
+						<th>핸드폰번호</th>
+						<th>가입일</th>
+						<th>회원등급</th>
+						<th>등급변경</th>
+					</tr>
+					<tr class="tr-1" th:each="m : ${list}">
+						<td><input type="checkbox" class="chk"></td>
+						<td th:text="${m.memberNo}"></td>
+						<td th:text="${m.memberId}"></td>
+						<td th:text="${m.memberName}"></td>
+						<td th:text="${m.memberEmail}"></td>
+						<td th:text="${m.memberPhone}"></td>
+						<td th:text="${m.enrollDate}"></td>
+						<td th:switch="${m.memberLevel}"><select th:case="1"
+							class="input-form">
+								<!-- 데이터를 주고받을땐  option의 value값으로 -->
+								<option value="1" selected>관리자</option>
+								<option value="2">일반회원</option>
+						</select> <select th:case="2" class="input-form">
+								<option value="1">관리자</option>
+								<option value="2" selected>일반회원</option>
+						</select></td>
+						<td>
+							<button class="btn bc5 changeLevel">등급변경</button>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="9">
+							<button class="changeBtn checkedChangeLevel">선택회원등급변경</button>
+						</th>
+					</tr>
+				</table>
+			</div>
+
+
+
+
+
+
+		</div>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+
+
+
+</body>
+</html>
