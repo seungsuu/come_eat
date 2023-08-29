@@ -5,7 +5,23 @@
 <title>내주변 식당 찾기</title>
 <link rel="stylesheet" href="/css/aroundPlace.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+<style>
+		.swal-modal{
+			border-radius: 5px;
+		}
+		.swal-button 
+		{
+			background-color: #ddd;
+			font-size: 18px;
+			fonr-weight: 400;
+		}
+		.swal-button:not([disabled]):hover{
+			background-color: #ff3700ff;
+		}
+		.swal-footer{
+			text-align: center;
+		}
+</style>
 	
 </head>
 <body>
@@ -30,18 +46,21 @@
 					<th:block th:each="searchList : ${searchList}">
 						<li class="aroundPlace-list">
 							<a th:href="@{/review/detailRestaurant(loNo=${searchList.loNo})}">
-								<div class="imgBox">
-									<img th:if="${searchList.loCode != 'SEOUL'}" th:src="${searchList.loThumb}">
-									<img th:if="${searchList.loCode == 'SEOUL'}" th:src="'/location/'+${searchList.loThumb}" style=height:250px;>
-								</div>
+								<div class="location-img-box" th:style="'background-image:url(' + ${searchList.loThumb} + ');'">
+	                    		</div>
 								<div class="img-content">
-									<span class="material-icons-round">grade</span> 
-									<span>평점</span>
+									<div class="star">
+	                            		<span class="material-icons-round">grade</span>
+	                            		<span>4.5</span>
+	                        		</div>
 									<h2 th:text="${searchList.loTitle}"></h2>
 									<div th:text="${searchList.loAddr}"></div>
 									<div th:text="${searchList.loMenu}"></div>
 								</div>
 							</a>
+							<button class="save" th:value="${searchList.loNo}">
+	                			<span class="material-icons done">favorite_border</span>
+	               			 </button>
 						</li>
 					</th:block>				
 				</ul>
@@ -50,7 +69,65 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e951a9675edffd5bbc4faec7164c3441&libraries=services"></script>
+	<script src="/js/sweetalert.min.js"></script>
 	<script th:inline="javascript">
+		
+		const list = [[${searchList}]];
+		
+		
+		//페이지 로드되면 저장내역 불러오기
+		window.onload = function(){
+			$(".save").each(function(i, item){
+				const loNo = $(".save").eq(i).val();
+				$.ajax({
+					url : "/location/savePlaceSelect",
+					type : "get",
+					data : {loNo:loNo},
+					success : function(data){
+						if(data == 0){
+							$(".save").eq(i).children("span").text("favorite_border");
+						}else{
+							$(".save").eq(i).children("span").text("favorite");
+						}
+					}
+				});
+			});
+		}
+		
+		//저장버튼
+		$(".save").on("click",function(){
+			const loNo = $(this).val();
+			const save = $(this);
+			$.ajax({
+				url : "/location/savePlace",
+				type : "get",
+				data : {loNo:loNo},
+				success : function(data){
+					let title = "로그인 필요";
+					let msg = "로그인이 필요한 기능입니다";
+					let icon = "warning";
+					
+					if(data == 1){							
+						$(save).children("span").text("favorite");
+						title = "저장완료";
+						msg = "저장이 완료되었습니다";
+						icon = "success";
+					}else if(data == 2){
+						$(save).children("span").text("favorite_border");
+						title = "저장취소";
+						msg = "저장이 취소되었습니다";
+						icon = "success";
+					}
+					//모달띄우기
+					swal({
+						title : title,
+						text : msg,
+						icon : icon
+					})
+				}
+			});
+		});
+	
 	
 		//키워드 없으면 알림보내기
 		const searchForm = $(".aroundPlace-title>form");
