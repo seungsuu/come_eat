@@ -51,7 +51,7 @@
 								<div class="img-content">
 									<div class="star">
 	                            		<span class="material-icons-round">grade</span>
-	                            		<span>4.5</span>
+	                            		<span th:text="${searchList.starRate}"></span>
 	                        		</div>
 									<h2 th:text="${searchList.loTitle}"></h2>
 									<div th:text="${searchList.loAddr}"></div>
@@ -72,9 +72,7 @@
 	<script src="/js/sweetalert.min.js"></script>
 	<script th:inline="javascript">
 		
-		const list = [[${searchList}]];
-		
-		
+
 		//페이지 로드되면 저장내역 불러오기
 		window.onload = function(){
 			$(".save").each(function(i, item){
@@ -159,7 +157,7 @@
 			const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 			const options = { //지도를 생성할 때 필요한 기본 옵션
 				center: new kakao.maps.LatLng(data[0].loLat, data[0].loLng), //지도의 중심좌표.
-				level: 7 //지도의 레벨(확대, 축소 정도)
+				level: 8 //지도의 레벨(확대, 축소 정도)
 			};
 			const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 			

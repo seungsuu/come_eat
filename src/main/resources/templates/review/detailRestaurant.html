@@ -20,6 +20,24 @@
 .flatpickr-day.selected {
 	background-color: #ff3700ff !important;
 }
+
+.swal-modal {
+	border-radius: 5px;
+}
+
+.swal-button {
+	background-color: #ddd;
+	font-size: 18px;
+	fonr-weight: 400;
+}
+
+.swal-button:not([disabled]):hover {
+	background-color: #ff3700ff;
+}
+
+.swal-footer {
+	text-align: center;
+}
 </style>
 <link rel="stylesheet" href="/css/detailRestaurant.css">
 <link rel="stylesheet" href="/css/bookingFrm.css">
@@ -39,9 +57,10 @@
 			<div class="restaurant_title_wrap">
 				<div class="title_header">
 					<h1 th:text="${list.loTitle}" class="detail-val"></h1>
-					<span class="material-icons-round">grade</span> <span>4.0</span> <span
-						style="display: none;" th:text="${list.loLat}"></span> <span
-						style="display: none;" th:text="${list.loLng}"></span>
+					<span class="material-icons-round">grade</span> 
+					<span th:text="${list.starRate}"></span> 
+					<span style="display: none;" th:text="${list.loLat}"></span> 
+					<span style="display: none;" th:text="${list.loLng}"></span>
 				</div>
 				<div class="review_icons">
 					<div class="icon1" th:if="${session.m != null}">
@@ -56,9 +75,9 @@
 						</a>
 					</div>
 					<div class="icon2">
-						<div class="reviewBtn">
-							<span class="material-icons">favorite_border</span>
-						</div>
+						<button class="save" th:value="${list.loNo}">
+	                		<span class="material-icons done">favorite_border</span>
+	               		</button>
 						<div>
 							<span>저장</span>
 						</div>
@@ -268,7 +287,68 @@
 	
 	
 	<script src="/js/bookingFrm.js"></script>
+	<script src="/js/sweetalert.min.js"></script>
 	<script>
+
+		//페이지 로드되면 저장내역 불러오기
+		window.onload = function() {
+			$(".save").each(
+					function(i, item) {
+						const loNo = $(".save").eq(i).val();
+						$.ajax({
+							url : "/location/savePlaceSelect",
+							type : "get",
+							data : {
+								loNo : loNo
+							},
+							success : function(data) {
+								if (data == 0) {
+									$(".save").eq(i).children("span").text(
+											"favorite_border");
+								} else {
+									$(".save").eq(i).children("span").text(
+											"favorite");
+								}
+							}
+						});
+					});
+				}
+
+		//저장버튼
+		$(".save").on("click",function(){
+			const loNo = $(this).val();
+			const save = $(this);
+			$.ajax({
+				url : "/location/savePlace",
+				type : "get",
+				data : {loNo:loNo},
+				success : function(data){
+					let title = "로그인 필요";
+					let msg = "로그인이 필요한 기능입니다";
+					let icon = "warning";
+					
+					if(data == 1){							
+						$(save).children("span").text("favorite");
+						title = "저장완료";
+						msg = "저장이 완료되었습니다";
+						icon = "success";
+					}else if(data == 2){
+						$(save).children("span").text("favorite_border");
+						title = "저장취소";
+						msg = "저장이 취소되었습니다";
+						icon = "success";
+					}
+					//모달띄우기
+					swal({
+						title : title,
+						text : msg,
+						icon : icon
+					})
+				}
+			});
+		});
+		
+		//지도
 		const lat = $(".title_header").children().eq(3);
 		const latText = lat.text();
 		//console.log(latText);
@@ -310,26 +390,53 @@
 							const day = $(this).val();
 							const loTitle = $("#loTitle").val();
 							const bookingTimeInput = [];
-							
+
 							$("input[type=radio]").each(function() {
 								bookingTimeInput.push(this.value);
 							});
 							$.ajax({
 										type : "GET",
 										url : "/booking/bookinginfo",
-										data : {bookingDate : day, loTitle : loTitle
+										data : {
+											bookingDate : day,
+											loTitle : loTitle
 										},
 										dataType : "json",
 										success : function(data) {
-											
+
 											for (let i = 0; i < data.length; i++) {
 												const time1 = data[i].bookingTime;
 												for (let j = 0; j < bookingTimeInput.length; j++) {
 													if (bookingTimeInput[j] == data[i].bookingTime) {
-														$("#bookingTime" + (j + 1) + "").attr("disabled",true);
-														$("#bookingTime" + (j + 1) + "").css('background-color','#ccc');
-														$("#bookingTime" + (j + 1) + "").next().css('background-color','#ccc');
-														$("#bookingTime" + (j + 1) + "").next().css('color','#FFF');
+														$(
+																"#bookingTime"
+																		+ (j + 1)
+																		+ "")
+																.attr(
+																		"disabled",
+																		true);
+														$(
+																"#bookingTime"
+																		+ (j + 1)
+																		+ "")
+																.css(
+																		'background-color',
+																		'#ccc');
+														$(
+																"#bookingTime"
+																		+ (j + 1)
+																		+ "")
+																.next()
+																.css(
+																		'background-color',
+																		'#ccc');
+														$(
+																"#bookingTime"
+																		+ (j + 1)
+																		+ "")
+																.next()
+																.css('color',
+																		'#FFF');
 													}
 												}
 
@@ -361,10 +468,7 @@
 											$('#date-icon-updown2').text() == 'arrow_circle_up' ? "arrow_circle_down"
 													: "arrow_circle_up");
 						});
-		$(".totalnum-select-button-up")
-				.on(
-						"click",
-						function() {
+		$(".totalnum-select-button-up").on("click",function() {
 							$('.num-select').slideToggle();
 							$('#date-icon-updown3')
 									.text(
@@ -391,7 +495,9 @@
 		});
 
 		//결제버튼
-		$("#payBtn").on("click",function() {
+		$("#payBtn").on(
+				"click",
+				function() {
 					const price = $("#price").val();
 					const d = new Date();
 					const date = d.getFullYear() + "" + (d.getMonth() + 1) + ""
@@ -400,7 +506,7 @@
 					const buyerName = $("#memberName").val();
 					const buyerPhone = $("#memberPhone").val();
 					const buyerMail = $("#memberEmail").val();
-					
+
 					IMP.init("imp62057672");
 					IMP.request_pay({
 						pg : "html5_inicis",
@@ -455,10 +561,10 @@
 		}
 
 		flatpickr("input[type=datetime-local]", config);
-		
+
 		//모달끄기
-		$(document).mouseup(function (e){
-			if($(".modal").has(e.target).length === 0){
+		$(document).mouseup(function(e) {
+			if ($(".modal").has(e.target).length === 0) {
 				$(".modal").fadeOut(500);
 			}
 		});

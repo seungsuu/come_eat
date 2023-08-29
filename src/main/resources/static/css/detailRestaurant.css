@@ -34,6 +34,19 @@
 	color:#ff3700ff;
 	font-weight:600;
 }
+
+.save{
+	cursor: pointer;
+	background: transparent;
+	border: none;
+}
+.save>.material-icons{
+	font-size: 40px;
+}
+.icon2:hover>button>span{
+	color:#ff3700ff;
+	font-weight:500;
+}
 .icon2:hover>div>span{
 	color:#ff3700ff;
 	font-weight:500;

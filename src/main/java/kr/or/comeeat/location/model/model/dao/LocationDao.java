@@ -50,7 +50,7 @@ public class LocationDao {
 		
 	//검색조회
 	public List searchList(String search, int end, int start) {
-		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE (LO_ADDR LIKE ?) OR (LO_TITLE LIKE ?) OR  (LO_INFO LIKE ?) OR (LO_MENU LIKE ?) ) L) WHERE RNUM BETWEEN ? AND ?";
+		String query = "SELECT l.*,round((select avg(review_grade) from review r where r.lo_no=l.lo_no),1) star_rate FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE (LO_ADDR LIKE ?) OR (LO_TITLE LIKE ?) OR  (LO_INFO LIKE ?) OR (LO_MENU LIKE ?) ) L) L WHERE RNUM BETWEEN ? AND ?";
 		Object[] params = {"%"+search+"%","%"+search+"%","%"+search+"%","%"+search+"%",start,end};
 		List bList = jdbc.query(query, locationRowMapper,params);
 		return bList;
@@ -77,7 +77,7 @@ public class LocationDao {
 
 	//맛집 가져오기
 	public List locationSelect(String loCode, int end, int start) {
-		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE LO_CODE=?) L) WHERE RNUM BETWEEN ? AND ? ";
+		String query = "SELECT l.*,round((select avg(review_grade) from review r where r.lo_no=l.lo_no),1) star_rate FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE LO_CODE=?) L) L WHERE RNUM BETWEEN ? AND ?";
 		Object[] params = {loCode,start,end};
 		List bList = jdbc.query(query, locationRowMapper,params);
 		return bList;
@@ -92,14 +92,15 @@ public class LocationDao {
 
 	//지도위치 전체출력
 	public List locationMap(String loCode) {
-		String query = "SELECT * FROM LOCATION WHERE LO_CODE=?";
+		String query = "SELECT l.*,round((select avg(review_grade) from review r where r.lo_no=l.lo_no),1) star_rate FROM LOCATION L WHERE LO_CODE=?";
 		List list = jdbc.query(query, locationRowMapper,loCode);
 		return list;
 	}
 
 
 	public List searchAroundPlace(String searchPlace) {
-		String query = "select * from location where lo_addr like '%' || ? || '%'";
+		//select l.*,round((select avg(review_grade) from review r where r.lo_no=l.lo_no),1) star_rate from location l where lo_addr like '%서울%'
+		String query = "select l.*,round((select avg(review_grade) from review r where r.lo_no=l.lo_no),1) star_rate from location l where lo_addr like '%' || ? || '%'";
 		List list = jdbc.query(query, locationRowMapper,searchPlace);
 		return list;
 	}
