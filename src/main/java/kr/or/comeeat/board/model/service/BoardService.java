@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.comeeat.board.model.dao.BoardDao;
 import kr.or.comeeat.board.model.vo.Board;
+import kr.or.comeeat.board.model.vo.BoardComment;
 import kr.or.comeeat.board.model.vo.BoardData;
 import kr.or.comeeat.board.model.vo.BoardFile;
 
@@ -112,6 +113,12 @@ public class BoardService {
 	@Transactional
 	public int boardUpdate(Board b) {
 		int result = boardDao.boardUpdate(b);
+		return result;
+	}
+
+	@Transactional
+	public int insertCommet(BoardComment bc) {
+		int result = boardDao.insertComment(bc);
 		return result;
 	}
 

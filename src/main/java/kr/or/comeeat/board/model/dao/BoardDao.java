@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import kr.or.comeeat.board.model.vo.Board;
+import kr.or.comeeat.board.model.vo.BoardComment;
+import kr.or.comeeat.board.model.vo.BoardCommentRowMapper;
 import kr.or.comeeat.board.model.vo.BoardFile;
 import kr.or.comeeat.board.model.vo.BoardRowMapper;
 
@@ -16,6 +18,8 @@ public class BoardDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private BoardRowMapper boardRowMapper;
+	@Autowired
+	private BoardCommentRowMapper boardCommentRowMapper;
 	
 	
 	//게시물 조회해오기(10개)
@@ -58,6 +62,14 @@ public class BoardDao {
 	public int boardUpdate(Board b) {
 		String query = "update board set board_title=?, board_content=? where board_no=?";
 		Object[] params = {b.getBoardTitle(),b.getBoardContent(),b.getBoardNo()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public int insertComment(BoardComment bc) {
+		String query = "insert into board_comment values(board_comment_seq.nextval,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
+		String boardCommentRef = bc.getBoardCommentRef()==0?null:String.valueOf(bc.getBoardCommentRef());
+		Object[] params = {bc.getBoardCommentWriter(),bc.getBoardCommentContent(),bc.getBoardRef(),boardCommentRef};
 		int result = jdbc.update(query,params);
 		return result;
 	}

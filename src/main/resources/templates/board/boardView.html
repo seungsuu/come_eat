@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
+<link rel="stylesheet" href="/css/comment.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -49,28 +50,30 @@
                 </th>
             </tr>
         </table>
-	</div>
-			</table>
+	
+	
+	<!-- 댓글시작 -->
+		
 		<div class="inputCommentBox" th:if="${session.m != null}">
-			<form action="/notice/insertComment" method="post">
+			<form action="/board/insertComment" method="post">
 				<ul>
 					<li>
 						<span class="material-icons">account_box</span>
 					</li>
 					<li>
-						<input type="hidden" name="noticeCommentWriter" th:value="${session.m.memberId}">
-						<input type="hidden" name="noticeRef" th:value="${n.noticeNo}">
-						<textarea name="noticeCommentContent" class="input-form"></textarea>
+						<input type="hidden" name="boardCommentWriter" th:value="${session.m.memberId}">
+						<input type="hidden" name="boardRef" th:value="${b.boardNo}">
+						<textarea name="boardCommentContent" class="input-form"></textarea>
 					</li>
 					<li>
-						<button type="submit" class="btn bc1 bs4">등록</button>
+						<button type="submit" class="btn">등록</button>
 					</li>
 				</ul>
 			</form>
 		</div>
 
 
-	<!-- 댓글시작 -->
+	
 		<div class="commentBox">
 			<th:block th:each="c : ${commentList}">
 				<ul class="posting-comment">
@@ -131,7 +134,7 @@
 							</li>
 							<li>
 								<input type="hidden" name="boardCommentWriter" th:value="${session.m.memberId}">
-								<input type="hidden" name="boardRef" th:value="${n.noticeNo}">
+								<input type="hidden" name="boardRef" th:value="${b.boardNo}">
 								<input type="hidden" name="boardCommentRef" th:value="${c.boardCommentNo}">
 								<textarea name="boardCommentContent" class="input-form"></textarea>
 							</li>
@@ -146,6 +149,9 @@
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
+	<style>
+
+	</style>
 	<script>
 		//게시물 삭제
 		$("[type=button]").on("click",function(){

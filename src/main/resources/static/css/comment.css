@@ -1,0 +1,41 @@
+/*댓글*/
+	.inputCommentBox{
+	margin: 50px;
+	}
+	.inputCommentBox>form>ul{
+		list-style-type: none;
+		display: flex;
+	}
+	.inputCommentBox>form>ul>li:first-child{
+		width: 15%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.inputCommentBox>form>ul>li:first-child>span {
+		font-size: 80px;
+		color:#ccc;	
+	}
+	.inputCommentBox>form>ul>li:nth-child(2) {
+		width:75%;
+	}
+	.inputCommentBox>form>ul>li:nth-child(2)>textarea{
+		height:96px;
+		min-height: 96px;
+	}
+	.inputCommentBox>form>ul>li:last-child{
+		width: 10%;
+	}
+		.comment-info{
+			display: flex;
+		}
+		.input-form {
+		  width: 100%;
+		  display: block;
+		  padding: 0.8rem;
+		  background-color: #fff;
+		  outline: none;
+		  border: 1px solid #ccc;
+		
+		  box-sizing: border-box;
+		}
