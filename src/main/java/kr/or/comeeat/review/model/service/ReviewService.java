@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.comeeat.location.model.vo.Location;
 import kr.or.comeeat.review.model.dao.ReviewDao;
@@ -38,5 +39,18 @@ public class ReviewService {
 	public Review selectOneReview(int reviewNo) {
 		Review r = reviewDao.selectOneReview(reviewNo);
 		return r;
+	}
+
+	@Transactional
+	public int updateReview(Review r) {
+		int result = reviewDao.updateReview(r);
+		return result;
+	}
+
+	
+	@Transactional
+	public int deleteReview(int reviewNo) {
+		int result = reviewDao.deleteReview(reviewNo);
+		return result;
 	}
 }
