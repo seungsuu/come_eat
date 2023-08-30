@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.or.comeeat.FileUtil;
 import kr.or.comeeat.event.model.service.EventService;
 import kr.or.comeeat.event.model.vo.Event;
+import kr.or.comeeat.magazine.model.vo.Magazine;
 
 @Controller
 @RequestMapping("/event")
@@ -80,12 +81,22 @@ public class EventController {
 		List eventList = eventService.selectEventList(start,end);
 		return eventList;
 	}
-	//event 게시판 상세 클릭시
-	@GetMapping(value="/view")
-	public String view() {
-		return "event/eventUpdateForm";
-	}
 	
+	//게시판 상세보기
+		@GetMapping(value = "/view")
+		public String eventView(int eventNo, Model model) {
+			Event e = eventService.selectOneEvent(eventNo);
+			model.addAttribute("e", e);
+			return "event/eventView";
+		}
+	
+	//게시글 수정게시판으로 이동
+	@GetMapping(value="/updateFrm")
+	public String updateFrm(int eventNo,Model model) {
+		Event e = eventService.selectOneEvent(eventNo);
+		model.addAttribute("e", e);
+		return "event/eventUpdateFrm";
+	}
 }
 	
 	

@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import kr.or.comeeat.event.model.dao.EventDao;
 import kr.or.comeeat.event.model.vo.Event;
+import kr.or.comeeat.magazine.model.vo.Magazine;
 
 @Service
 public class EventService {
@@ -29,5 +32,12 @@ public class EventService {
 	public List selectEventList(int start, int end) {
 		List eventList = eventDao.selectEventList(start,end);
 		return eventList;
+	}
+	
+	//게시판 상세보기
+	public Event selectOneEvent(int eventNo) {
+		Event e = new Event();
+		e = eventDao.selectOneEvent(eventNo);
+		return e;
 	}
 }

@@ -7,7 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.comeeat.event.model.vo.Event;
+import kr.or.comeeat.event.model.vo.EventFileRowMapper;
 import kr.or.comeeat.event.model.vo.EventRowMapper;
+import kr.or.comeeat.magazine.model.vo.Magazine;
 
 @Repository
 public class EventDao {
@@ -15,6 +17,10 @@ public class EventDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private EventRowMapper eventRowMapper;
+	@Autowired
+	private EventFileRowMapper eventFileRowMapper;
+	
+	
 	public int totalCount() {
 		String query = "select count(*) from event";
 		int totalCount = jdbc.queryForObject(query, Integer.class);
@@ -31,5 +37,13 @@ public class EventDao {
 		List eventList = jdbc.query(query, eventRowMapper, start, end);
 		return eventList;
 	}
+	
+	//게시판 상세보기
+	public Event selectOneEvent(int eventNo) {
+		String query = "select * from event where event_no=?";
+		List list = jdbc.query(query, eventRowMapper, eventNo);
+		return (Event)list.get(0);
+	}
+	
 
 }
