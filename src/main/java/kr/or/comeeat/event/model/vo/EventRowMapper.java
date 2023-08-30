@@ -16,7 +16,7 @@ public class EventRowMapper implements RowMapper<Event> {
 		e.setEventSubtitle("event_subtitle");
 		e.setFilepath(rs.getString("filepath"));
 		e.setMemberNo(rs.getInt("member_no"));
-		e.setReadCount(rs.getInt("read_count"));
+		e.setEventDate(rs.getString("event_date"));
 		e.setRegDate(rs.getString("reg_date"));
 		e.setEventContent(rs.getNString("event_content"));
 		e.setEventTitle(rs.getNString("event_title"));
