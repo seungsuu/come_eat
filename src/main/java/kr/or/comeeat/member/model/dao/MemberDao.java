@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.comeeat.location.model.vo.LocationRowMapper;
 import kr.or.comeeat.location.model.vo.SavePlaceRowMapper;
 import kr.or.comeeat.member.model.vo.Member;
 import kr.or.comeeat.member.model.vo.MemberRowMapper;
@@ -16,6 +17,7 @@ public class MemberDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private MemberRowMapper memberRowMapper;
+	
 	
 	public Member selectOneMember(String signId, String signPw) {
 		String query = "select * from member where member_id=? and member_pw=?";
@@ -97,6 +99,5 @@ public class MemberDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
-	
 
 }

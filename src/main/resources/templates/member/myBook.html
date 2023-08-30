@@ -17,7 +17,7 @@
 		<div class="mypage-tab-wrap">
 				<ul class="mypage-tab">
 					<li><a href="/member/mypage">회원정보</a></li>
-					<li><a>맛집저장</a></li>
+					<li><a th:href="@{/location/mySavePlace(memberNo=${session.m.memberNo})}">맛집저장</a></li>
 					<li><a th:href="@{/member/mybook(memberNo=${session.m.memberNo})}" class="admin-btn">예약내역</a></li>
 				</ul>		
 			<div>

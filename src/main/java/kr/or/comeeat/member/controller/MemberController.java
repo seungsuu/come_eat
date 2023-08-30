@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import kr.or.comeeat.EmailSender;
 import kr.or.comeeat.booking.model.service.BookingService;
 import kr.or.comeeat.booking.model.vo.Booking;
+import kr.or.comeeat.location.model.model.sevice.LocationService;
 import kr.or.comeeat.location.model.vo.SavePlace;
 import kr.or.comeeat.member.model.service.MemberService;
 import kr.or.comeeat.member.model.vo.Member;
@@ -29,6 +30,7 @@ public class MemberController {
 	private BookingService bookingService;
 	@Autowired
 	private EmailSender emailSender;
+
 	
 	//메일 테스트
 	@GetMapping(value="/emailTest")

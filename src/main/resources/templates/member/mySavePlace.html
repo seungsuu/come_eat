@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>나의 맛집저장 내역</title>
+<link rel="stylesheet" href="/css/mySavePlace.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script src="/js/jquery-3.6.0.js"></script>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+		<div class="content-title">
+			MY SAVE PLACE
+			<span class="material-icons">book</span>
+		</div>
+		<div class="mypage-tab-wrap">
+			<ul class="mypage-tab">
+				<li><a href="/member/mypage" class="admin-btn">나의 정보</a></li>
+				<li><a th:href="@{/location/mySavePlace(memberNo=${session.m.memberNo})}" class="active-tab">맛집저장</a></li>
+				<li><a th:href="@{/member/mybook(memberNo=${session.m.memberNo})}">예약내역</a></li>	
+			</ul>	
+		</div>
+		<div class="space"></div>
+		<th:block th:each="list : ${list}">
+			<div class="mypage-content">
+				<a th:href="@{/review/detailRestaurant(loNo=${list.loNo})}" class="save-place">
+					<div class="mypage-img-box">
+						<img th:src="${list.loThumb}" style="width:300px; height:230px;">
+					</div>
+					<div class="mypage-content-info">
+						<div class="info">
+							<p th:text="${list.loTitle}"></p>
+							<div class="star">
+								<span class="material-icons-round">grade</span> 
+								<span th:text="${list.starRate}"></span>
+							</div>
+							<p th:text="${list.loAddr}"></p>
+							<p th:text="${list.loTel}"></p>
+						</div>
+					</div>
+				</a>
+				<button class="save">
+					<span class="material-icons done">favorite</span>
+				</button>
+			</div>
+		</th:block>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+	<script>
+	//저장버튼
+		$(".save").on("click",function(){
+			const loNo = $(this).val();
+			const save = $(this);
+			$.ajax({
+				url : "/location/savePlace",
+				type : "get",
+				data : {loNo:loNo},
+				success : function(data){
+					let title = "로그인 필요";
+					let msg = "로그인이 필요한 기능입니다";
+					let icon = "warning";
+					
+					if(data == 1){							
+						$(save).children("span").text("favorite");
+						title = "저장완료";
+						msg = "저장이 완료되었습니다";
+						icon = "success";
+					}else if(data == 2){
+						$(save).children("span").text("favorite_border");
+						title = "저장취소";
+						msg = "저장이 취소되었습니다";
+						icon = "success";
+					}
+					//모달띄우기
+					swal({
+						title : title,
+						text : msg,
+						icon : icon
+					})
+				}
+			});
+		});
+	</script>
+</body>
+</html>
