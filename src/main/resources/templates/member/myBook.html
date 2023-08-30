@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html 　xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>나의예약내역</title>
+<link rel="stylesheet" href="/css/adminMypage.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script src="/js/jquery-3.6.0.js"></script>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="content-wrap">
+		<div class="content-title">
+			MY PAGE <span class="material-icons">book_online</span>
+		</div>
+		<div class="mypage-tab-wrap">
+				<ul class="mypage-tab">
+					<li><a href="/member/mypage">회원정보</a></li>
+					<li><a>맛집저장</a></li>
+					<li><a th:href="@{/member/mybook(memberNo=${session.m.memberNo})}" class="admin-btn">예약내역</a></li>
+				</ul>		
+			<div>
+				<form action="/member/deleteBooking" method="get">
+				<table class="tbl tbl-hover">
+				
+					<tr class="tr-3">
+						
+						<th>예약번호</th>
+						<th>상호명</th>
+						<th>이름</th>
+						<th>예약날짜</th>
+						<th>예약시간</th>
+						<th>예약인원</th>
+						<th>삭제</th>
+					</tr>
+				
+					<tr class="tr-1" th:each="b : ${b}">
+						
+						<td th:text="${b.bookingNo}" class="bookingNo"></td>
+						<td th:text="${b.loTitle}" class="loTitle"></td>
+						<td th:text="${b.memberName}" class="memberName"></td>
+						<td th:text="${b.bookingDate}" class="bookingDate"></td>
+						<td th:text="${b.bookingTime}" class="bookingTime"><span>시</span></td>
+						<td th:text="${b.bookingTotalnum}" class="bookingTotalnum">명</td>
+						<td>
+							<button type="button" class="btn deleteDo">예약취소</button>
+						</td>
+						
+					</tr>
+					
+				</table>
+				</form>		
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<th:block th:include="common/footer"></th:block>
+	<script>
+	
+	$(".deleteDo").on("click",function(){
+		const bookingNo = $(this).parent().parent().children().eq(0).text();
+		const loTitle = $(this).parent().parent().children().eq(1).text();
+		const memberName = $(this).parent().parent().children().eq(2).text();
+		const bookingDate = $(this).parent().parent().children().eq(3).text();
+		const bookingTime = $(this).parent().parent().children().eq(4).text();
+		const bookingTotalnum =$(this).parent().parent().children().eq(5).text();
+		location.href= "/member/deleteBooking?bookingNo="+bookingNo+"&loTitle="+loTitle+"&memberName="+memberName
+				+"&bookingDate="+bookingDate+"&bookingTime="+bookingTime+"&bookingTotalnum="+bookingTotalnum;
+				
+		
+	});
+	
+	</script>
+</body>
+</html>
