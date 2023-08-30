@@ -21,6 +21,7 @@ public class EventService {
 	
 	@Transactional
 	public int insertEvent(Event e) {
+		System.out.println("dao 가기전 서비스");
 		int result = eventDao.insertEvent(e);
 		return result;
 	}
