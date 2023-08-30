@@ -62,38 +62,39 @@
 						
 						const event = data[i];
 						
-						const div = $("<div>");
-						div.addClass("posting-item");
-
+						const eventItemDiv = $("<div>");
+						eventItemDiv.addClass("event-item");
+						
 						const img = $("<img>");
-						img.attr("src","/event/"+event.filepath); //이미지 경로설정
-						//<img src="파일경로">
+						img.addClass("event-img");
+						img.attr("src","/event/"+event.filepath);
 						
-						const title = $("<h3>");
-						title.addClass("title");
-						title.text(event.eventTitle);
+						const eventInfoDiv = $("<div>");
+						eventInfoDiv.addClass("event-info");
 						
-						const content = $("<p>");
-						content.addClass("content");
-						content.text(event.eventContent);
-						//<p>글내용</p>
+						const dateP = $("<p>");
+						dateP.text(event.eventDate);
 						
-						div.append(img);
-						div.append(title);
-						div.append(content);
+						const titleP = $("<p>");
+						titleP.text(event.eventTitle);
 						
-						$(".event-wrap").append(div);
+						const subtitleP = $("<p>");
+						subtitleP.text(event.eventSubTitle);
 						
-						/*
-						<div class="event-wrap">
-							<div class="posting-item">
-								<img src="/img/스시.jpg">
-					            <p class="content">내용입력</p>
-						    </div>
-                        </div>
-						*/
+						eventInfoDiv.append(dateP);
+						eventInfoDiv.append(titleP);
+						eventInfoDiv.append(subtitleP);
 						
+						const closeDiv = $("<div>");
+						closeDiv.addClass("close");
+						closeDiv.text("종료된 이벤트 입니다");
 						
+						eventItemDiv.append(img);
+						eventItemDiv.append(eventInfoDiv);
+						eventInfoDiv.append(closeDiv);
+						
+						$(".event-wrap").append(eventItemDiv);
+
 					}
 					//새로읽어온 사진을 추가 완료한 시점
 					//->더보기를 한번더 눌렀을때 읽어온 이후값을 조회하기 위한 준비작업
