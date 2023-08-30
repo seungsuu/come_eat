@@ -54,6 +54,7 @@
 	                    	</div>
 	                        <div class="imageThumb">
 								<img id="img-view" width="200px" th:src="${r.reviewFilepath}">
+								<th:block th:if="${r.reviewFilepath != null}">
 								<span class="material-icons" style="cursor:pointer" th:onclick="deleteFile()">remove_circle</span>
 	                        </div>
 	                    </div>
@@ -69,7 +70,22 @@
     	</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
-	<script>
+	<script th:inline="javascript">
+	
+	/*
+		const grade = [[${r.reviewGrade}]];
+		window.onload = function(){
+			li.find("span").removeAttr("id","active-tab");
+			if(grade == 5){
+				li.find("span").attr("id","active-tab");
+			}else if(grade == 3){
+				li.find("span").attr("id","active-tab");
+			}else if(grade == 1){
+				li.find("span").attr("id","active-tab");
+			}
+		}
+	*/
+	
 		//썸네일 미리보기
 		$("[name=updateFile]").on("change",function(){
 			if(this.files.length != 0 && this.files[0] != 0){
@@ -88,7 +104,7 @@
 			if(confirm("파일을 삭제하시겠습니까?")){
 				$("#img-view").removeAttr("src");
 				$("#img-view").next().hide();
-				$("[name=reviewFile]").val("");
+				$("[name=updateFile]").val("");
 			}
 		}
 		
@@ -117,6 +133,28 @@
 				alert("최대 작성은 4000자 입니다.");
 			}
 		});
+		
+		
+		//리뷰 수정하면 글자수 남아있게 하고 평점 남아있게 만들기
+		window.onload = function(){
+			$(".change-tl").text($(".review-content").val().length);
+			
+			const grade = [[${r.reviewGrade}]];
+			const lis = $(".grade-picker-list").children();
+			//console.log($("[name='reviewGrade']:checked").val());
+			//console.log(lis.eq(0));
+			if(grade == 5){
+				lis.eq(0).find("span").attr("id","active-tab");
+				$("#grade1").prop("checked",true);
+			}else if(grade == 3){
+				lis.eq(1).find("span").attr("id","active-tab");
+				$("#grade2").prop("checked",true);
+			}else if(grade == 1){
+				lis.eq(2).find("span").attr("id","active-tab");
+				$("#grade3").prop("checked",true);
+			}
+			
+		}
 		
 		//아이콘 꼭 눌러야함..
 		$(".submitBtn").on("click",function(){
