@@ -76,4 +76,9 @@ public class BookingService {
 		}
 		return result;
 	}
+
+	public List bookingTime(int loNo, int memberNo) {
+		List list = bookingDao.bookingTime(loNo,memberNo);
+		return list;
+	}
 }

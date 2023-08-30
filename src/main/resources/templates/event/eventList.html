@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>event 게시판</title>
+ <link rel="stylesheet" href="/css/eventList.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -13,6 +14,19 @@
 		<a th:if = "${session.m != null && session.m.memberLevel == 1}" href="/event/eventFrm" class="btn">글쓰기</a>
 		<!-- 게시물 들어갈 공간 -->
 		<div class="event-wrap">
+			<!-- 
+			<div class="event-item">
+                <img class="event-img">
+                <div class="event-info">
+                    <p>이벤트기간</p>
+                    <p>이벤트제목</p>
+                    <p>이벤트소제목</p>
+                </div>
+                <div class="close">
+                  	  종료된이벤트입니다
+                </div>
+            </div>
+             -->
 		</div>
 		<!-- 
 			toalCount : 게시물 총 숫자 

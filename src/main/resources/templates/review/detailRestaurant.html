@@ -67,14 +67,16 @@
 				<div class="review_icons">
 					<div class="icon1" th:if="${session.m != null}">
 						<!--  -->
-						<a th:href="@{/review/reviewWriteFrm(loNo=${list.loNo})}">
+						
+						<button class="review-btn" th:href="@{/review/reviewWriteFrm(loNo=${list.loNo})}">
+						
 							<div class="reviewBtn">
 								<span class="material-icons">edit_document</span>
 							</div>
 							<div>
 								<span>리뷰쓰기</span>
 							</div>
-						</a>
+						</button>
 					</div>
 					<div class="icon2">
 						<button class="save" th:value="${list.loNo}">
@@ -258,7 +260,7 @@
 									<!-- th:value="${session.m.memberEmail}" -->
 								</div>
 								<input type="hidden" name=memberNo th:if="${session.m != null}"
-									th:value="${session.m.memberNo}">
+									th:value="${session.m.memberNo}" id="memberNo">
 							</div>
 						</div>
 						<div class="booking-form">
@@ -280,7 +282,32 @@
 	<script src="/js/bookingFrm.js"></script>
 	<script src="/js/sweetalert.min.js"></script>
 	<script th:inline="javascript">
-
+		
+		//리뷰막기
+		$(".review-btn").on("click",function(){
+			var Now = new Date(); // 현재 날짜 및 시간
+			const memberNo = $("#memberNo").val(); 
+			const loNo = [[${list.loNo}]];
+			$.ajax({
+				type : "get",
+				url : "/booking/bookingTime",
+				data : {memberNo : memberNo, loNo : loNo},
+				success : function(data) {
+					var bookDay = new Date(data[0].bookingDate);
+					if(Now > bookDay){
+						location.href= "/review/reviewWriteFrm?loNo="+loNo;
+					}else{
+						alert("양나민한테 문의하세요");
+					}
+					
+				},
+				error :
+					alert("양나민한테 문의하세요")
+			})
+			
+		})
+		     
+		
 
 		//리뷰 리스트 불러오기
 		$("#moreBtn").on("click",function(){
@@ -295,7 +322,6 @@
 				data : {start:start,end:end,loNo:loNo},
 				type : "get",
 				success : function(data){
-					console.log("test");
 					for(let i=0;i<data.length;i++){
 						const review = data[i];
 						const ul = $("<ul>");
@@ -498,77 +524,35 @@
 										},
 										dataType : "json",
 										success : function(data) {
-
 											for (let i = 0; i < data.length; i++) {
 												const time1 = data[i].bookingTime;
 												for (let j = 0; j < bookingTimeInput.length; j++) {
 													if (bookingTimeInput[j] == data[i].bookingTime) {
-														$(
-																"#bookingTime"
-																		+ (j + 1)
-																		+ "")
-																.attr(
-																		"disabled",
-																		true);
-														$(
-																"#bookingTime"
-																		+ (j + 1)
-																		+ "")
-																.css(
-																		'background-color',
-																		'#ccc');
-														$(
-																"#bookingTime"
-																		+ (j + 1)
-																		+ "")
-																.next()
-																.css(
-																		'background-color',
-																		'#ccc');
-														$(
-																"#bookingTime"
-																		+ (j + 1)
-																		+ "")
-																.next()
-																.css('color',
-																		'#FFF');
+														$("#bookingTime"+ (j + 1)+ "").attr("disabled",true);
+														$("#bookingTime"+ (j + 1)+ "").css('background-color','#ccc');
+														$("#bookingTime"+ (j + 1)+ "").next().css('background-color','#ccc');
+														$("#bookingTime"+ (j + 1)+ "").next().css('color','#FFF');
 													}
 												}
-
 											}
-
 										}
-
 									})
 						})
 
 		//슬라이드토글 아이콘
-		$(".date-select-button-up")
-				.on(
-						"click",
-						function() {
+		$(".date-select-button-up").on("click",function() {
 							$('.booking-cal').slideToggle();
-							$('#date-icon-updown1')
-									.text(
-											$('#date-icon-updown1').text() == 'arrow_circle_up' ? "arrow_circle_down"
-													: "arrow_circle_up");
+							$('#date-icon-updown1').text(
+							$('#date-icon-updown1').text() == 'arrow_circle_up' ? "arrow_circle_down" : "arrow_circle_up");
 						});
 		$(".time-select-button-up")
-				.on(
-						"click",
-						function() {
+				.on("click",function() {
 							$('.booking-time').slideToggle();
-							$('#date-icon-updown2')
-									.text(
-											$('#date-icon-updown2').text() == 'arrow_circle_up' ? "arrow_circle_down"
-													: "arrow_circle_up");
+							$('#date-icon-updown2').text($('#date-icon-updown2').text() == 'arrow_circle_up' ? "arrow_circle_down": "arrow_circle_up");
 						});
 		$(".totalnum-select-button-up").on("click",function() {
 							$('.num-select').slideToggle();
-							$('#date-icon-updown3')
-									.text(
-											$('#date-icon-updown3').text() == 'arrow_circle_up' ? "arrow_circle_down"
-													: "arrow_circle_up");
+							$('#date-icon-updown3').text($('#date-icon-updown3').text() == 'arrow_circle_up' ? "arrow_circle_down" : "arrow_circle_up");
 						});
 
 		let count = 1;

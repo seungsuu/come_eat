@@ -93,22 +93,22 @@
 		<div class="board-navi" th:utext="${navi3}"></div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
-	<script>
+	<script >
+		const type = [[${type}]];
 		window.onload = function(){
+			$(".tab-button").css("cursor","pointer");
 			$(".tab-button").each(function(i,index){
 				$(".tab-button").eq(i).on("click",function(){
-					$(".tab-button").removeClass("active-tab");
-					$(this).addClass("active-tab");
 					
-					$(".tbl>tbody").hide();
-					$(".board-navi").hide();
-					
-					$(".tbl>tbody").eq(i).show();
-					$(".board-navi").eq(i).show();
+					if(i !== type){
+						
+						location.href="/board/list?pageNum=1&type="+i;
+					}
 				});
 			})
-			$(".tab-button").css("cursor","pointer");
-			$(".tab-button").eq(0).click();
+			$(".tab-button").eq(type).addClass("active-tab");
+			$(".tbl>tbody").eq(type).show();
+			$(".board-navi").eq(type).show();
 		}
 	</script>
 </body>
