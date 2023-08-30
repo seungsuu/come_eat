@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>event 게시판</title>
+<link rel="stylesheet" href="/css/eventList.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -10,7 +12,9 @@
 		<!-- totalCount: controller 에서 보내준 리턴값 --> 
 		<div class="content-title">EVENT</div>
 		<!-- 로그인 and 관리자만 글쓰기 -->
-		<a th:if = "${session.m != null && session.m.memberLevel == 1}" href="/event/eventFrm" class="btn">글쓰기</a>
+		<div class="a-wrap">
+			<a th:if = "${session.m != null && session.m.memberLevel == 1}" href="/event/eventFrm" class="btn">글쓰기</a>
+		</div>
 		<!-- 게시물 들어갈 공간 -->
 		<div class="event-wrap">
 		</div>
@@ -19,11 +23,13 @@
 			currentCount : 현재 게시물을 몇개 봤는지
 			value : 다음 더보기 할때 시작 번호
 		 -->
+		<div class="moreBtn-wrap">
 		<button class="" id="moreBtn"
 		 	th:totalCount="${totalCount}"
 			currentCount = "0"
 			value="1"
 		>MORE</button>
+		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	
@@ -43,49 +49,39 @@
 					for(let i=0; i<data.length; i++) {
 						
 						const event = data[i];
+						
 						const div = $("<div>");
 						div.addClass("posting-item");
-						
-						const imgDiv = $("<div>");
-						imgDiv.addClass("posting-img");
-						
+
 						const img = $("<img>");
 						img.attr("src","/event/"+event.filepath); //이미지 경로설정
 						//<img src="파일경로">
 						
-						imgDiv.append(img);
-						/*
-						<div class="posting-img">
-							<img src="파일경로">
-						</div>
-						*/
-						
-						const contentDiv = $("<div>");
-						contentDiv.addClass("posting-content");
+						const title = $("<h3>");
+						title.addClass("title");
+						title.text(event.eventTitle);
 						
 						const content = $("<p>");
+						content.addClass("content");
 						content.text(event.eventContent);
 						//<p>글내용</p>
 						
-						contentDiv.append(content);
+						div.append(img);
+						div.append(title);
+						div.append(content);
+						
+						$(".event-wrap").append(div);
+						
 						/*
-						<div class="posting-content">
-							<p>글제목</p>
-						</div>
+						<div class="event-wrap">
+							<div class="posting-item">
+								<img src="/img/스시.jpg">
+					            <p class="content">내용입력</p>
+						    </div>
+                        </div>
 						*/
 						
-						div.append(imgDiv).append(contentDiv);
-						/*
-						<div class="posting-item">
-							<div class="posting-img">
-								<img src="파일경로">
-							</div>
-							<div class="posting-content">
-								<p>글제목</p>
-							</div>
-						</div>
-						*/
-						$(".event-wrap").append(div);
+						
 					}
 					//새로읽어온 사진을 추가 완료한 시점
 					//->더보기를 한번더 눌렀을때 읽어온 이후값을 조회하기 위한 준비작업

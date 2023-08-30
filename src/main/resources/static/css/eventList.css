@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+
+
+
+
+
+.event-wrap{
+    width: 1200px;
+}
+
+.posting-item{
+    overflow: hidden;
+}
+.posting-item>img{
+    float:left;
+    width: 60%;
+    height: 200px;
+}
+.posting-item p {
+    float: left;
+}
+.posting-item{
+	margin-bottom : 20px;
+}
+/*글쓰기 버튼*/
+.a-wrap{
+	text-align:right;
+}
+
+.event-wrap{
+	margin-top: 30px;
+}
+
+/*더보기 버튼*/
+.moreBtn-wrap{
+	margin-top : 50px;
+	text-align: center;
+}
+#moreBtn{
+	background-color: #eee;
+	border: none;
+	cursor: pointer;
+	text-align: center;
+	width: 400px;
+	border-radius : 5px;
+	height: 50px;
+}
+#moreBtn:hover{
+	background-color: #ff3700ff;
+    color: #fff;
+    font-weight: 400;
+}
