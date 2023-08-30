@@ -48,9 +48,14 @@
 .reviewBtn>span{
     font-size: 40px;
 }
-.icon1>a:hover>div>span{
+.icon1>button:hover>div>span{
 	color:#ff3700ff;
 	font-weight:600;
+}
+.icon1>button{
+	background-color: transparent;
+    cursor: pointer;
+    border:none;
 }
 
 .save{
