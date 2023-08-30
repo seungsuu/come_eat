@@ -112,7 +112,7 @@
 .reviewList_title{
     padding: 30px;
 }
-.reviewList_title>h2{
+.reviewList_title>span{
 	font-size:36px;
 }
 
@@ -121,7 +121,7 @@
 }
 .reviewList_content_check{
     overflow: hidden;
-    margin: 50px 0;
+    margin: 30px 0;
     padding-bottom: 30px;
     border-bottom: 1px solid #eee;
 }
@@ -141,13 +141,18 @@
 .reviewList_content_check>li:nth-child(2){
     width: 50%;
 }
-.reviewList_content_check>li:nth-child(2)>p>span{
-	font-weight: 500;
+.changeA>a:hover{
+	font-weight:500;
+	color:#ff3700ff;
 }
 
 .reviewList_content_check>li:nth-child(3){
     width: 20%;
     text-align: right;
+}
+.review_detail_content{
+	font-size: 20px;
+	font-weight:500;
 }
 
 .reviewList_content_check>li:last-child{
@@ -160,4 +165,25 @@
 }
 .review_detail_content{
     padding-top: 20px;
+}
+
+/*더보기 버튼*/
+.reviewList_moreBtn{
+	text-align:center;
+}
+#moreBtn{
+	border:none;
+	width:500px;
+	height:80px;
+	font-size:30px;
+	background-color:transparent;
+	cursor: pointer;
+}
+#moreBtn:hover{
+	font-weight:500;
+	color:#ff3700ff;
+}
+#moreBtn:hover>span{
+	font-weight:500;
+	color:#ff3700ff;
 }

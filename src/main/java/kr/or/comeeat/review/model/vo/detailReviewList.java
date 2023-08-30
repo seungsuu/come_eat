@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class detailReviewList {
 	private Location l;
-	private List reviewList;
+	private int totalCount;
 }

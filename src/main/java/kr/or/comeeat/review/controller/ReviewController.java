@@ -11,10 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.comeeat.FileUtil;
 import kr.or.comeeat.location.model.vo.Location;
+import kr.or.comeeat.review.model.dao.ReviewDao;
 import kr.or.comeeat.review.model.service.ReviewService;
 import kr.or.comeeat.review.model.vo.Review;
 import kr.or.comeeat.review.model.vo.detailReviewList;
@@ -34,9 +36,18 @@ public class ReviewController {
 	public String detailRestaurant(int loNo, Model model) {
 		detailReviewList drl = reviewService.selectDetailRestaurant(loNo);
 		model.addAttribute("list", drl.getL());
-		model.addAttribute("reviewList", drl.getReviewList());
+		model.addAttribute("totalCount", drl.getTotalCount());
 		return "review/detailRestaurant";
 	}
+	
+	// 리뷰 리스트 가져오기 ajax
+	@ResponseBody
+	@GetMapping(value="/reviewList")
+	public List reviewList(int start, int end,int loNo) {
+		List reviewList = reviewService.selectReviewList(start,end,loNo);
+		return reviewList;
+	}
+	
 
 	// 리뷰쓰기
 	@GetMapping(value = "/reviewWriteFrm")
