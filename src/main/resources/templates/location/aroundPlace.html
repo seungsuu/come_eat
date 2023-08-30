@@ -62,8 +62,11 @@
 	                			<span class="material-icons done">favorite_border</span>
 	               			 </button>
 						</li>
-					</th:block>				
+					</th:block>
 				</ul>
+				<div th:if="${searchList.isEmpty()}" class="content-title box">
+					일치하는 검색 결과가 없습니다.
+				</div>
 			</div>
 		</div>
 	</div>

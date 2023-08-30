@@ -106,4 +106,15 @@ public class LocationController {
 		List list = locationService.reviewBest(8, 1);
 		return list;
 	}
+	
+	// 맛집저장 불러오기
+	@GetMapping(value = "/mySavePlace")
+	public String selectMySavePlace(int memberNo, Model model) {
+		// 맛집 저장 누르면 필요한 값들
+		// 1. 맛집 상호명 / 2. 맛집 위치 / 3. 맛집 번호
+		List list = locationService.selectMySavePlace(memberNo);
+		model.addAttribute("list", list);
+		return "member/mySavePlace";
+	}
+	
 }
