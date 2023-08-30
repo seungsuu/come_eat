@@ -419,5 +419,13 @@ public class LocationService {
 	}
 
 
+
+	//마이페이지에 필요한 맛집 저장 내역 불러오기
+	public List selectMySavePlace(int memberNo) {
+		List list = locationDao.selectMySavePlace(memberNo);
+		return list;
+	}
+
+
 	
 }
