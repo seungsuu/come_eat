@@ -144,5 +144,10 @@ public class LocationDao {
 		return result;
 	}
 
-	
+	//마이페이지 맛집 저장 필요한 정보 불러오기
+	public List selectMySavePlace(int memberNo) {
+		String query = "select l.*,round((select avg(review_grade) from review r where r.lo_no=l.lo_no),1) star_rate from location l where lo_no in (select lo_no from saveplace where member_no=?)";
+		List list = jdbc.query(query, locationRowMapper,memberNo);
+		return list;
+	}
 }

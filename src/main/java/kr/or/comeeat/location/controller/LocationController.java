@@ -2,7 +2,6 @@ package kr.or.comeeat.location.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,23 +16,22 @@ import kr.or.comeeat.location.model.vo.LocationData;
 import kr.or.comeeat.member.model.vo.Member;
 
 @Controller
-@RequestMapping(value="/location")
+@RequestMapping(value = "/location")
 public class LocationController {
 	@Autowired
 	private LocationService locationService;
-	
-	
-	//검색
-	@GetMapping(value="/search")
-	public String searchList(String pageNo,String search,Model model) {
-		LocationData locationData = locationService.searchList(pageNo,search);
+
+	// 검색
+	@GetMapping(value = "/search")
+	public String searchList(String pageNo, String search, Model model) {
+		LocationData locationData = locationService.searchList(pageNo, search);
 		model.addAttribute("list", locationData.getList());
 		model.addAttribute("navi", locationData.getNavi());
 		model.addAttribute("title", locationData.getTitle());
 		return "search/searchList";
 	}
-	
-	@GetMapping(value="/aroundPlace")
+
+	@GetMapping(value = "/aroundPlace")
 	public String aroudPlace() {
 		return "location/aroundPlace";
 	}
@@ -56,46 +54,46 @@ public class LocationController {
 			return "common/msg";
 		}
 	}
-	
-	//지도전체출력
+
+	// 지도전체출력
 	@ResponseBody
-	@GetMapping(value="/map")
+	@GetMapping(value = "/map")
 	public List locationMap(String loCode) {
 		List list = locationService.locationMap(loCode);
 		return list;
 	}
-	
-	@GetMapping(value="/searchAroundPlace")
+
+	@GetMapping(value = "/searchAroundPlace")
 	public String searchAroundPlace(String searchPlace, Model model) {
 		List list = locationService.searchAroundPlace(searchPlace);
 		model.addAttribute("searchList", list);
 		return "location/aroundPlace";
 	}
-	
-	//맛집저장내역 불러오기
+
+	// 맛집저장내역 불러오기
 	@ResponseBody
-	@GetMapping(value="/savePlaceSelect")
-	public int savePlaceSelect(String loNo,@SessionAttribute(required = false) Member m) {
+	@GetMapping(value = "/savePlaceSelect")
+	public int savePlaceSelect(String loNo, @SessionAttribute(required = false) Member m) {
 		int result = 0;
-		if(m != null) {
-			result = locationService.savePlaceSelect(Integer.parseInt(loNo),m.memberNo);
+		if (m != null) {
+			result = locationService.savePlaceSelect(Integer.parseInt(loNo), m.memberNo);
 		}
 		return result;
 	}
-	
-	//맛집저장
+
+	// 맛집저장
 	@ResponseBody
-	@GetMapping(value="/savePlace")
-	public int selectSavePlace(String loNo,@SessionAttribute(required = false) Member m) {
+	@GetMapping(value = "/savePlace")
+	public int selectSavePlace(String loNo, @SessionAttribute(required = false) Member m) {
 		int result = 0;
-		if(m != null) {
-			result = locationService.selectSavePlace(Integer.parseInt(loNo),m.memberNo);
+		if (m != null) {
+			result = locationService.selectSavePlace(Integer.parseInt(loNo), m.memberNo);
 		}
 		return result;
 	}
-	
+
 	@ResponseBody
-	@GetMapping(value="/savePlaceMember")
+	@GetMapping(value = "/savePlaceMember")
 	public List savePlaceMember(@SessionAttribute(required = false) Member m) {
 		List list = locationService.savePlaceMember(m.memberNo);
 		return list;

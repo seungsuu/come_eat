@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>마이페이지(관리자)</title>
+<title>마이페이지</title>
 <link rel="stylesheet" href="/css/adminMypage.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -12,14 +12,15 @@
 	<th:block th:include="common/header"></th:block>
 	<div class="content-wrap">
 		<div class="content-title">
-			ADMIN PAGE <span class="material-icons">admin_panel_settings</span>
+			MY PAGE <span class="material-icons">admin_panel_settings</span>
 		</div>
 		<div class="mypage-tab-wrap">
 			<ul class="mypage-tab">
 				<li><a href="/member/mypage" class="admin-btn">나의 정보</a></li>
-				<li><a href="#">맛집저장</a></li>
+				<li><a th:href="@{/location/mySavePlace(memberNo=${session.m.memberNo})}">맛집저장</a></li>
 				<li><a th:href="@{/member/mybook(memberNo=${session.m.memberNo})}">예약내역</a></li>	
-			</ul>		
+			</ul>	
+		</div>	
 		<div class="mypage-content">
 			<form action="/member/update" method="post">
         	<table class="mypage-table">
@@ -88,29 +89,6 @@
 		</div>
        </form> 
        </div>
-       <!-- 맛집 저장 리스트 -->
-       <div class="mypage-content-wrap"> 
-			<!--  
-			<div class="mypage-content">
-				<a href="/">
-					<div class="mypage-img-box"></div>
-					<div class="mypage-content-info">
-						<div class="info">
-							<p>맛집제목</p>
-							<p>맛집설명</p>
-							<div class="star">
-								<span class="material-icons-round">grade</span>
-								<span>4.5</span>
-							</div>
-						</div>
-					</div>
-				</a>
-				<button class="save">
-					<span class="material-icons done">favorite</span>
-				</button>
-			</div>
-			-->
-		</div>
     </div>
 	</div>  
 	<th:block th:include="common/footer"></th:block>
@@ -129,47 +107,6 @@
 		    tabs.eq(0).click();
 		});
 		
-		//페이지 로드되면 저장내역 불러오기
-		const mypageContentDiv = $("<div>");
-		mypageContentDiv.addClass("mypage-content");
-		//<div class="mypage-content"></div>
-		
-		const imgDiv = $("<div>");
-		imgDiv.addClass("mypage-img-box");
-		//<div class="mypage-img-box"></div>
-		
-		const contentInfo = $("<div>");
-		contentInfo.addClass("mypage-content-info");
-		//<div class="mypage-content-info"></div>
-		
-		const titleP = $("<p>");	
-		p.text("맛집제목");
-		
-		const contentP = $("<p>");
-		p.text("맛집설명");
-		
-		
-		const starDiv = $("<div>");
-		starDiv.addClass("star");
-		//<div class="star"></div>
-		
-		const iconSpan = $("<span>");
-		iconSpan.addClass("material-icons-round");
-		//<span class="material-icons-round">
-		iconSpan.text("grade");
-		//<span class="material-icons-round">grade</span>
-		
-		const span = $("<span>");
-		span.text("4.5");
-		//<span>4.5</span>
-		
-		
-		
-		
-
-			
-		
-	
 	</script>
 </body>
 </html>

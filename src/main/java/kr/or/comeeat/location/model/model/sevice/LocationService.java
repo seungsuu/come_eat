@@ -454,13 +454,10 @@ public class LocationService {
 		return list;
 	}
 
-
 	//베스트맛집조회
 	public List reviewBest(int end,int start) {
 		List list = locationDao.reviewBest(end,start);
 		return list;
 	}
-
-
 	
 }
