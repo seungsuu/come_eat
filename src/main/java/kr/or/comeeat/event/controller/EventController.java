@@ -46,7 +46,7 @@ public class EventController {
 		//제목,작성자,내용-> Event e / 첨부파일 -> multipartfile imgagefile에 
 		public String write(Event e, MultipartFile imageFile, Model model) {
 		//저장 경로 지정
-		String savepath = root + "event/";
+		String savepath = root + "event/";  
 		//중복 파일명 체크
 		String filepath = fileUtil.getFilepath(savepath, imageFile.getOriginalFilename());
 		//event객체에 셋팅
@@ -80,6 +80,12 @@ public class EventController {
 		List eventList = eventService.selectEventList(start,end);
 		return eventList;
 	}
+	//event 게시판 상세 클릭시
+	@GetMapping(value="/view")
+	public String view() {
+		return "event/eventUpdateForm";
+	}
+	
 }
 	
 	

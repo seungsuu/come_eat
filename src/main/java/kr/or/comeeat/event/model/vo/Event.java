@@ -13,7 +13,9 @@ public class Event {
 	private String eventTitle;
 	private String eventContent;
 	private String regDate;
-	private int readCount;
 	private int memberNo;
 	private String filepath;
+	private int close;
+	private String eventSubtitle;
+	private String eventDate;
 }
