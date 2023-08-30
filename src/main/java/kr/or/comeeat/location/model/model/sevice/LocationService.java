@@ -33,17 +33,36 @@ public class LocationService {
 		int end = num * Integer.parseInt(pageNo);//끝번호
 		int start = end - num + 1;//시작번호
 		
+		//title
 		String searchRE = search;
-		
-		if(search.contains("맛집")) {			
-			search = search.replaceAll("맛집", "");
-		}
 		//DB select
-		List list = locationDao.searchList(search,end,start);
+		List list = null;
+		//총 게시물 수 조회(네비)
+		int total = 0;
 		
-		//네비게이션
-		//총 게시물 수 조회
-		int total = locationDao.searchTotal(search);
+		search = search.replaceAll("신상", "");
+		search = search.replaceAll("신규", "");
+		if(search.contains("맛집")) {			
+			if(!search.replaceAll("맛집", "").equals("")) {
+				search = search.replaceAll("맛집", "");
+				if(!search.replaceAll("인기", "").equals("")) {	
+					search = search.replaceAll("인기", "");
+					list = locationDao.searchList(search,end,start);
+					total = locationDao.searchTotal(search);
+				}else {
+					list = locationDao.reviewBest(end,start);
+					total = locationDao.searchTotalBest();
+				}
+			}else{				
+				list = locationDao.searchListAll(search,end,start);
+				total = locationDao.searchTotalAll();
+			}
+		}else {
+			list = locationDao.searchList(search,end,start);
+			total = locationDao.searchTotal(search);
+		}
+		
+		search = searchRE;
 		
 		//총 페이지 수
 		int totalPage = total%num == 0 ? total/num : total/num+1;
@@ -96,8 +115,7 @@ public class LocationService {
 			}
 			pageNavi += "</ul>";
 		}
-
-		search = searchRE;
+		
 		//리스트+네비 data 묶기
 		LocationData locationData = new LocationData(list, pageNavi,search);
 		
@@ -415,6 +433,13 @@ public class LocationService {
 
 	public List savePlaceMember(int memberNo) {
 		List list = locationDao.savePlaceMember(memberNo);
+		return list;
+	}
+
+
+	//베스트맛집조회
+	public List reviewBest(int end,int start) {
+		List list = locationDao.reviewBest(end,start);
 		return list;
 	}
 

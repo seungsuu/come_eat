@@ -92,4 +92,12 @@ public class LocationController {
 		List list = locationService.savePlaceMember(m.memberNo);
 		return list;
 	}
+	
+	//베스트리뷰
+	@ResponseBody
+	@GetMapping(value="/best")
+	public List reviewBest() {
+		List list = locationService.reviewBest(8, 1);
+		return list;
+	}
 }

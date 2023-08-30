@@ -28,6 +28,7 @@
             </li>
         </ul>
 		<table class="tbl">
+			<thead>
 			<tr class="b-color-g">
 				<th style="width:8%">번호</th>
                 <th style="width:12%">카테고리</th>
@@ -36,6 +37,8 @@
 				<th style="width:17%">작성일</th>
 				<th style="width:8%">조회수</th>
 			</tr>
+			</thead>
+			<tbody>
 			<tr class="hover" th:each="b : ${list}">
 				<td th:text="${b.boardNo}"></td>
 				<td th:if="${b.boardType} == 1">맛집추천</td>
@@ -46,6 +49,8 @@
 				<td th:text="${b.regDate}"></td>
 				<td th:text="${b.boardCount}"></td>
 			</tr>
+			</tbody>
+			<tbody>
 			<tr class="hover" th:each="b : ${list1}">
 				<td th:text="${b.boardNo}"></td>
 				<td th:if="${b.boardType} == 1">맛집추천</td>
@@ -56,6 +61,8 @@
 				<td th:text="${b.regDate}"></td>
 				<td th:text="${b.boardCount}"></td>
 			</tr>
+			</tbody>
+			<tbody>
 			<tr class="hover" th:each="b : ${list2}">
 				<td th:text="${b.boardNo}"></td>
 				<td th:if="${b.boardType} == 1">맛집추천</td>
@@ -66,6 +73,8 @@
 				<td th:text="${b.regDate}"></td>
 				<td th:text="${b.boardCount}"></td>
 			</tr>
+			</tbody>
+			<tbody>
 			<tr class="hover" th:each="b : ${list3}">
 				<td th:text="${b.boardNo}"></td>
 				<td th:if="${b.boardType} == 1">맛집추천</td>
@@ -76,6 +85,7 @@
 				<td th:text="${b.regDate}"></td>
 				<td th:text="${b.boardCount}"></td>
 			</tr>
+			</tbody>
 		</table>
 		<div class="board-navi" th:utext="${navi}"></div>
 		<div class="board-navi" th:utext="${navi1}"></div>
@@ -83,21 +93,22 @@
 		<div class="board-navi" th:utext="${navi3}"></div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
-	<script>
+	<script >
+		const type = [[${type}]];
 		window.onload = function(){
+			$(".tab-button").css("cursor","pointer");
 			$(".tab-button").each(function(i,index){
 				$(".tab-button").eq(i).on("click",function(){
-					$(".tab-button").removeClass("active-tab");
-					$(this).addClass("active-tab");
 					
-					$(".hover").hide();
-					$(".board-navi").hide();
-					
-					$(".hover").eq(i).show();
-					$(".board-navi").eq(i).show();
+					if(i !== type){
+						
+						location.href="/board/list?pageNum=1&type="+i;
+					}
 				});
 			})
-			$(".tab-button").eq(0).click();
+			$(".tab-button").eq(type).addClass("active-tab");
+			$(".tbl>tbody").eq(type).show();
+			$(".board-navi").eq(type).show();
 		}
 	</script>
 </body>

@@ -19,3 +19,6 @@
     color: #fff;
     font-weight: 400;
 }
+.tbl>tbody, .board-navi{
+	display:none;
+}

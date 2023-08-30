@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.comeeat.EmailSender;
 import kr.or.comeeat.booking.model.service.BookingService;
+import kr.or.comeeat.booking.model.vo.Booking;
 import kr.or.comeeat.location.model.vo.SavePlace;
 import kr.or.comeeat.member.model.service.MemberService;
 import kr.or.comeeat.member.model.vo.Member;
@@ -245,7 +246,13 @@ public class MemberController {
 		 
 		 return "member/adminBook";
 	}
-	
+	@GetMapping(value="/mybook")
+	public String myBook(int memberNo, Model model) {
+		
+		List booking = bookingService.myBookInfo(memberNo);
+		model.addAttribute("b", booking);
+		return "member/myBook";
+	}
 	
 	
 	@GetMapping(value="/changeLevel")
@@ -278,26 +285,53 @@ public class MemberController {
 	public String checkedPayNo(String no, String level, Model model) {
 		boolean result = bookingService.checkedPayNo(no,level);
 		if(result) {
-			return "redirect:/member/adminBook";	
+			model.addAttribute("title", "환불완료!");
+			model.addAttribute("msg", "환불되었습니다.");
+			model.addAttribute("icon", "success");
+			
 		}else {
-			model.addAttribute("msg", "결제상태 변경에 실패했습니다.");
+			model.addAttribute("title", "환불실패!");
+			model.addAttribute("msg", "결제사의 문의하세.");
 			model.addAttribute("icon","error");
-			model.addAttribute("loc","member/adminBook");
-			return "common/msg";
 		}
+		model.addAttribute("loc","/member/adminBook");
+		return "common/msg";
 	}
 	
 	@GetMapping(value="/changePayNo")
 	public String changePayNo(int delBookingNo ,int bookingPay, Model model) {
 		int result = bookingService.changeDelLevel(delBookingNo,bookingPay);
 		if(result>0) {
-			return "redirect:/member/adminBook";
+			model.addAttribute("title", "환불완료!");
+			model.addAttribute("msg", "환불되었습니다.");
+			model.addAttribute("icon", "success");
+			
 		}else {
-			model.addAttribute("msg", "결제상태 변경에 실패했습니다.");
+			model.addAttribute("title", "환불실패!");
+			model.addAttribute("msg", "결제사의 문의하세.");
 			model.addAttribute("icon","error");
-			model.addAttribute("loc","member/adminBook");
-			return "common/msg";
 		}
+		model.addAttribute("loc","/member/adminBook");
+		return "common/msg";
+		
+	}
+	
+	@GetMapping(value="/deleteBooking")
+	public String deleteBooking(int bookingNo,int bookingTime,String bookingDate,int bookingTotalnum,String memberName,String loTitle, Model model) {
+		
+		int result = bookingService.deleteBooking(bookingNo,bookingTime,bookingDate,bookingTotalnum,memberName,loTitle);
+		if(result>0) {
+			model.addAttribute("title", "취소완료!");
+			model.addAttribute("msg", "환불은 추후 천천히됩니다");
+			model.addAttribute("icon", "success");
+			return "redirect:/member/myBook";
+		}else {
+			model.addAttribute("title", "취소실패!");
+			model.addAttribute("msg", "이돈은 제껍니다.");
+			model.addAttribute("icon","error");
+		}
+		model.addAttribute("loc", "/member/mypage");
+		return "common/msg";
 	}
 	
 }
