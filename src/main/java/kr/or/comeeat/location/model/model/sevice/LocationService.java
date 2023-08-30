@@ -39,13 +39,31 @@ public class LocationService {
 		List list = null;
 		//총 게시물 수 조회(네비)
 		int total = 0;
-		
 		search = search.replaceAll("신상", "");
 		search = search.replaceAll("신규", "");
+		
+		
 		if(search.contains("맛집")) {			
 			if(!search.replaceAll("맛집", "").equals("")) {
 				search = search.replaceAll("맛집", "");
-				if(!search.replaceAll("인기", "").equals("")) {	
+				if(search.contains("서울")||search.contains("부산")||search.contains("전주")) {
+					String loCode = "";
+					if(search.contains("서울")) {
+						loCode = "SEOUL";
+					}else if(search.contains("부산")) {
+						loCode = "BUSAN";
+					}else if(search.contains("전주")) {
+						loCode = "JEONNAM";
+					}
+					
+					if(!search.replaceAll("서울", "").equals("")||!search.replaceAll("서울", "").equals("")||!search.replaceAll("서울", "").equals("")) {
+						list = locationDao.searchList(search,end,start);
+						total = locationDao.searchTotal(search);
+					}else {						
+						list = locationDao.locationSelect(loCode,end,start);
+						total = locationDao.selectTotal(search);
+					}
+				}else if(!search.replaceAll("인기", "").equals("")) {	
 					search = search.replaceAll("인기", "");
 					list = locationDao.searchList(search,end,start);
 					total = locationDao.searchTotal(search);
