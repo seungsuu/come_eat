@@ -259,19 +259,19 @@
 							<div>
 								<div class="booking-info">
 									<label for="memberName">예약자</label> 
-									<input type="text" id="memberName" name="memberName" th:value="${session.m.memberName}" placeholder>
+									<input type="text" id="memberName" name="memberName" th:if="${session.m != null}" th:value="${session.m.memberName}"  placeholder>
 									<!-- th:value="${session.m.memberName}" -->
 								</div>
 								<div class="booking-info">
 									<label for="memberPhone">연락처</label> 
-									<input type="text" id="memberPhone" name="memberPhone" th:value="${session.m.memberPhone}" placeholder>
+									<input type="text" id="memberPhone" name="memberPhone" th:if="${session.m != null}" th:value="${session.m.memberPhone}" placeholder>
 									<!-- th:value="${session.m.memberPhone}" -->
 								</div>
 								<div class="booking-info">
-									<label for="memberEmail">이메일</label> <input type="text" id="memberEmail" name="memberEmail" th:value="${session.m.memberEmail}" placeholder>
+									<label for="memberEmail">이메일</label> <input type="text" id="memberEmail" name="memberEmail" th:if="${session.m != null}" th:value="${session.m.memberEmail}" placeholder>
 									<!-- th:value="${session.m.memberEmail}" -->
 								</div>
-								<input type="hidden" name=memberNo
+								<input type="hidden" name=memberNo th:if="${session.m != null}"
 									th:value="${session.m.memberNo}">
 							</div>
 						</div>
