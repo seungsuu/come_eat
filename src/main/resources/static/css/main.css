@@ -68,15 +68,14 @@
     padding: 10px;
     box-sizing: border-box;
 }
-.best-box>a{
-    display: block;
-    position: relative;
-}
 .img-box{
-    display: block;
     width: 100%;
     height: 280px;
     background-color: #eee;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 .info-box{
     position: absolute;
@@ -115,8 +114,6 @@
     height: 400px;
     overflow: hidden;
 	position: relative;
-}
-.swiper-wrapper{
 }
 .swiper-magazine .swiper-slide{
     transform: scale(0.9);
@@ -176,4 +173,12 @@
     font-size: 36px;
     font-weight: 600;
     color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition-duration: 500ms;
+}
+.main-content-location>div>a:hover{
+	transform: scale(1.1);
+	color: #ff3700ff;
 }

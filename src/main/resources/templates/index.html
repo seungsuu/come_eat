@@ -48,66 +48,7 @@
     <div class="content-wrap">
         <div class="content-title main-title">맛집 BEST</div>
         <di class="main-content-best">
-            <div class="best-box">
-                <a href="/">
-                    <div class="img-box"></div>
-                    <div class="info-box">
-                        <span>식당이름</span>
-                        <div>
-                            <span class="material-icons">grade</span>
-                            <span>3.5</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="best-box">
-                <a href="/">
-                    <div class="img-box"></div>
-                    <div class="info-box">
-                        <span>식당이름</span>
-                        <div>
-                            <span class="material-icons">grade</span>
-                            <span>3.5</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="best-box">
-                <a href="/">
-                    <div class="img-box"></div>
-                    <div class="info-box">
-                        <span>식당이름</span>
-                        <div>
-                            <span class="material-icons">grade</span>
-                            <span>3.5</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="best-box">
-                <a href="/">
-                    <div class="img-box"></div>
-                    <div class="info-box">
-                        <span>식당이름</span>
-                        <div>
-                            <span class="material-icons">grade</span>
-                            <span>3.5</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="best-box">
-                <a href="/">
-                    <div class="img-box"></div>
-                    <div class="info-box">
-                        <span>식당이름</span>
-                        <div>
-                            <span class="material-icons">grade</span>
-                            <span>3.5</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            
         </di>
 
         <!-- 매거진 슬라이더 -->
@@ -127,52 +68,52 @@
         <div class="content-title main-title">지역별 맛집</div>
         <di class="main-content-location">
             <div>
-                <a href="/" style="background-color:#eee">
+                <a href="/location/aroundPlace" style="background-color:#eee">
                     내주변
                 </a>
             </div>
             <div>
-                <a href="/" style="background-image: url(/img/main/main1.jpg);">
+                <a href="/location/foodList?pageNo=1&lo=su" style="background-image: url(/img/main/su.jpg);">
                     서울
                 </a>
             </div>
             <div>
                 <a href="/" style="background-image: url(/img/main/main1.jpg);">
-                    서울
+                    경기도
                 </a>
             </div>
             <div>
                 <a href="/" style="background-image: url(/img/main/main1.jpg);">
-                    서울
+                    인천
+                </a>
+            </div>
+            <div>
+                <a href="/location/foodList?pageNo=1&lo=bs" style="background-image: url(/img/main/main1.jpg);">
+                    부산
                 </a>
             </div>
             <div>
                 <a href="/" style="background-image: url(/img/main/main1.jpg);">
-                    서울
+                    대구
                 </a>
             </div>
             <div>
                 <a href="/" style="background-image: url(/img/main/main1.jpg);">
-                    서울
+                    김해
                 </a>
             </div>
             <div>
                 <a href="/" style="background-image: url(/img/main/main1.jpg);">
-                    서울
+                    전주
                 </a>
             </div>
             <div>
-                <a href="/" style="background-image: url(/img/main/main1.jpg);">
-                    서울
+                <a href="/location/foodList?pageNo=1&lo=jn" style="background-image: url(/img/main/main1.jpg);">
+                    전남
                 </a>
             </div>
             <div>
-                <a href="/" style="background-image: url(/img/main/main1.jpg);">
-                    서울
-                </a>
-            </div>
-            <div>
-                <a href="/" style="background-color:#eee">
+                <a href="/location/foodList?pageNo=1&lo=su" style="background-color:#eee">
                    더보기
                 </a>
             </div>
@@ -181,6 +122,8 @@
     <script src="/js/main.js"></script>
 	<script>
  	window.onload = function(){
+ 		
+ 		//매거진
 		const start = 1;
 		const end = 6;
 		$.ajax({
@@ -188,7 +131,6 @@
 			type :"post",
 			data : {start:start,end:end},
 			success : function(data){
-				console.log(data);
 				for(let i=0; i<data.length; i++){
 					const magazine = data[i];
 					const div = $("<div>");
@@ -210,6 +152,7 @@
 					});
 					
 				}
+				//슬라이더
 				const magazineSwiper = new Swiper('.swiper-magazine', {
 				    spaceBetween: 30,
 				    slidesPerView : 2,
@@ -225,9 +168,54 @@
 				        nextEl: '.swiper-button-next',
 				        prevEl: '.swiper-button-prev',
 				    }
-				});
+				});//슬라이더끝
 			}
-		});
+		});//매거진끝
+		
+		//인기맛집
+		$.ajax({
+			url : "/location/best",
+			type :"get",
+			success : function(data){
+				for(let i=0; i<data.length; i++){
+					const location = data[i];
+					const div = $("<div>");
+					div.addClass("best-box");
+					
+					const img = $("<div>");
+					img.addClass("img-box").css("cursor","pointer");
+					
+					if(location.loThumb.indexOf("http") == -1 ){
+						img.css("background-image","url(/img/location/"+location.loThumb+")");
+					}else{
+						img.css("background-image","url("+location.loThumb+")");
+					}
+                	
+					const info = $("<div>");
+					info.addClass("info-box");
+					
+					const title = $("<span>");
+					title.text(location.loTitle);
+					
+					const grade = $("<div>");
+					const star = $("<span>");
+					star.addClass("material-icons").text("grade");
+					const span = $("<span>");
+					span.text(location.starRate);
+					grade.append(star).append(span);
+					info.append(title).append(grade);
+					img.append(info);
+					div.append(img);
+					
+					$(".main-content-best").append(div);
+					
+					img.on("click", function(){
+						 location.href = "/review/detailRestaurant?loNo="+location.loNo;
+					});
+				}//for문종료
+			}
+		});//인기맛집끝
+		
 	}
 	</script>
 	<th:block th:include="common/footer"></th:block>
