@@ -80,6 +80,12 @@ public class EventController {
 		List eventList = eventService.selectEventList(start,end);
 		return eventList;
 	}
+	//event 게시판 상세 클릭시
+	@GetMapping(value="/view")
+	public String view() {
+		return "event/eventUpdateForm";
+	}
+	
 }
 	
 	
