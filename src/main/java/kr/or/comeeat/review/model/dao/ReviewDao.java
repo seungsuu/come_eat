@@ -37,9 +37,9 @@ public class ReviewDao {
 	}
 
 	//리뷰 리스트 가져오기
-	public List selectReviewList(int loNo) {
-		String query = "select * from review where lo_no=? order by 1 desc";
-		List list = jdbc.query(query, reviewRowMapper,loNo);
+	public List selectReviewList(int start, int end, int loNo ) {
+		String query = "select * from(select rownum as rum, r.* from(select * from review where lo_no=? order by 1 desc )r) where rum between ? and ?";
+		List list = jdbc.query(query, reviewRowMapper,loNo,start,end);
 		return list;
 	}
 	
@@ -64,6 +64,13 @@ public class ReviewDao {
 		Object[] params = {reviewNo};
 		int result = jdbc.update(query,params);
 		return result;
+	}
+
+	//ajax에 필요한 카운트 가져오기
+	public int totalCount(int loNo) {
+		String query = "select count(*) from review where lo_no=?";
+		List list = jdbc.query(query, reviewRowMapper,loNo);
+		return (int)list.get(0);
 	}
 
 }

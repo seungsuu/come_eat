@@ -126,7 +126,7 @@
 
 		<div class="restaurant_reviewList">
 			<div class="reviewList_title">
-				<h2>리뷰</h2>
+				<span>리뷰</span>
 			</div>
 			<div class="reviewList_content_wrapper">
 				<div class="reviewList_content">
@@ -152,6 +152,13 @@
 							</li>
 						</ul>
 					</th:block>
+					<div class=reviewList_moreBtn>
+						<button type="button" class="moreBtn" value="1" th:totalCount="${totalCount}" currentCount="0">
+							<span class="material-icons">expand_more</span>
+							더보기
+						 	<span class="material-icons">expand_more</span>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -293,8 +300,26 @@
 	
 	<script src="/js/bookingFrm.js"></script>
 	<script src="/js/sweetalert.min.js"></script>
-	<script>
+	<script th:inline="javascript">
 
+		//리뷰 리스트 불러오기
+		$(".moreBtn").on("click",function(){
+			const start = $(this).val();
+			const loNo = [[${list.loNo}]];
+			const amount = 5;
+			const end = Number(start)+amount-1;
+			$.ajax({
+				url : "/review/reviewList",
+				data : {start:start,end:end,loNo:loNo},
+				type : "get",
+				success : function(data){
+					
+				}
+			});
+		});
+	
+	
+	
 		//페이지 로드되면 저장내역 불러오기
 		window.onload = function() {
 			$(".save").each(

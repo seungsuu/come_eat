@@ -41,6 +41,19 @@ public class BoardController {
 		BoardData boardData = boardService.boardList(pageNum);
 		model.addAttribute("list", boardData.getList());
 		model.addAttribute("navi", boardData.getNavi());
+		//카테고리1
+		BoardData type1 = boardService.boardListType(pageNum,1);
+		model.addAttribute("list1", type1.getList());
+		model.addAttribute("navi1", type1.getNavi());
+		//카테고리2
+		BoardData type2 = boardService.boardListType(pageNum,2);
+		model.addAttribute("list2", type2.getList());
+		model.addAttribute("navi2", type2.getNavi());
+		//카테고리3
+		BoardData type3 = boardService.boardListType(pageNum,3);
+		model.addAttribute("list3", type3.getList());
+		model.addAttribute("navi3", type3.getNavi());
+		
 		return "board/boardList";
 	}
 

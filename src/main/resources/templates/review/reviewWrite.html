@@ -57,6 +57,7 @@
 	                    	</div>
 	                        <div class="imageThumb">
 								<img id="img-view" width="200px">
+								<span class="material-icons" style="cursor:pointer; display:none;" th:onclick="deleteFile()">remove_circle</span>
 	                        </div>
 	                    </div>
 	                </div>
@@ -80,11 +81,22 @@
 				reader.readAsDataURL(this.files[0]);
 				reader.onload = function(e){
 					$("#img-view").attr("src",e.target.result);
+					$("#img-view").next().css("display","inline-block");
 				}
 			}else{
 				$("#img-view").attr("src","");
 			}
 		});
+		
+		//썸네일 삭제
+		function deleteFile(){
+			if(confirm("파일을 삭제하시겠습니까?")){
+				$("#img-view").removeAttr("src");
+				$("#img-view").next().hide();
+				$("[name=reviewFile]").val("");
+			}
+		}
+	
 	
 		//아이콘 색 변경	
 		const li = $(".grade-picker-item");
