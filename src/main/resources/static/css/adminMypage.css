@@ -66,6 +66,7 @@
     box-sizing: border-box;
     border: none;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .mypage-tab>ul{
@@ -144,7 +145,10 @@ table.mypage-table{
 	    border-bottom: 1px solid #eee;
 	}
 	.mypage-input-form{
+		box-sizing: border-box;
+		padding-left: 20px;
 	    width: 60%;
+	    height:100%;
 	    border: 1px solid #eee;
 	}
 	.hover:focus{
