@@ -16,4 +16,6 @@ public class Event {
 	private int readCount;
 	private int memberNo;
 	private String filepath;
+	private int close;
+	private String eventSubtitle;
 }
