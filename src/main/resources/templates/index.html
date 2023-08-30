@@ -178,24 +178,24 @@
 			type :"get",
 			success : function(data){
 				for(let i=0; i<data.length; i++){
-					const location = data[i];
+					const lo = data[i];
 					const div = $("<div>");
 					div.addClass("best-box");
 					
 					const img = $("<div>");
 					img.addClass("img-box").css("cursor","pointer");
 					
-					if(location.loThumb.indexOf("http") == -1 ){
-						img.css("background-image","url(/img/location/"+location.loThumb+")");
+					if(lo.loThumb.indexOf("http") == -1 ){
+						img.css("background-image","url(/img/location/"+lo.loThumb+")");
 					}else{
-						img.css("background-image","url("+location.loThumb+")");
+						img.css("background-image","url("+lo.loThumb+")");
 					}
                 	
 					const info = $("<div>");
 					info.addClass("info-box");
 					
 					const title = $("<span>");
-					title.text(location.loTitle);
+					title.text(lo.loTitle);
 					
 					const grade = $("<div>");
 					const star = $("<span>");
@@ -210,7 +210,7 @@
 					$(".main-content-best").append(div);
 					
 					img.on("click", function(){
-						 location.href = "/review/detailRestaurant?loNo="+location.loNo;
+						 location.href = "/review/detailRestaurant?loNo="+lo.loNo;
 					});
 				}//for문종료
 			}

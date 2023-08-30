@@ -61,7 +61,7 @@ public class LocationDao {
 
 	//맛집 가져오기
 	public List locationSelect(String loCode, int end, int start) {
-		String query = "SELECT l.*,round((select avg(review_grade) from review r where r.lo_no=l.lo_no),1) star_rate FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE LO_CODE=?) L) L WHERE RNUM BETWEEN ? AND ?";
+		String query = "SELECT l.*,round((select avg(review_grade) from review r where r.lo_no=l.lo_no),1) star_rate FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE LO_CODE=? ORDER BY LO_NO DESC) L) L WHERE RNUM BETWEEN ? AND ?";
 		Object[] params = {loCode,start,end};
 		List bList = jdbc.query(query, locationRowMapper,params);
 		return bList;
@@ -143,4 +143,6 @@ public class LocationDao {
 		int result = jdbc.queryForObject(query,Integer.class);
 		return result;
 	}
+
+	
 }

@@ -41,12 +41,20 @@ public class LocationController {
 	//전체맛집
 	@GetMapping(value="/foodList")
 	public String busan(String pageNo,String lo, Model model) {
-
-		LocationData locationData = locationService.foodList(pageNo,lo);
-		model.addAttribute("list", locationData.getList());
-		model.addAttribute("navi", locationData.getNavi());
-		model.addAttribute("title", locationData.getTitle());
-		return "location/location";
+		if(lo.equals("su")||lo.equals("bs")||lo.equals("jn")) {
+			LocationData locationData = locationService.foodList(pageNo,lo);
+			model.addAttribute("list", locationData.getList());
+			model.addAttribute("navi", locationData.getNavi());
+			model.addAttribute("title", locationData.getTitle());
+			return "location/location";
+		}else {
+			//공공데이터 없는거..준비중
+			model.addAttribute("title", "coming soon!");
+			model.addAttribute("msg", "데이터 준비중인 지역입니다.");
+			model.addAttribute("icon", "info");
+			model.addAttribute("loc", "/location/foodList?pageNo=1&lo=su");
+			return "common/msg";
+		}
 	}
 	
 	//지도전체출력
