@@ -239,7 +239,7 @@ public class MemberController {
 	}
 	@GetMapping(value="/adminBook")
 	public String adminBook(Model model) {
-		List booking = bookingService.selectAllBooking();
+		List booking = bookingService.delSelectAllBooking();
 		
 		 model.addAttribute("b", booking);
 		 
@@ -252,11 +252,11 @@ public class MemberController {
 	public String changeLevel(int memberNo,int memberLevel, Model model) {
 		int result = memberService.changeLevel(memberNo,memberLevel);
 		if(result>0) {
-			return "redirect:/member/admin";
+			return "redirect:/member/adminMember";
 		}else {
 			model.addAttribute("msg", "등급 변경에 실패했습니다.");
 			model.addAttribute("icon","error");
-			model.addAttribute("loc","member/admin");
+			model.addAttribute("loc","member/adminMember");
 			return "common/msg";
 		}
 	}
@@ -265,15 +265,40 @@ public class MemberController {
 	public String checkedLevel(String no, String level, Model model) {
 		boolean result = memberService.checkedChangeLevel(no,level);
 		if(result) {
-			return "redirect:/member/admin";	
+			return "redirect:/member/adminMember";	
 		}else {
 			model.addAttribute("msg", "등급변경에 실패했습니다.");
 			model.addAttribute("icon","error");
-			model.addAttribute("loc","member/admin");
+			model.addAttribute("loc","member/adminMember");
 			return "common/msg";
 		}
 	}
-
+	
+	@GetMapping(value="/checkedPayNo")
+	public String checkedPayNo(String no, String level, Model model) {
+		boolean result = bookingService.checkedPayNo(no,level);
+		if(result) {
+			return "redirect:/member/adminBook";	
+		}else {
+			model.addAttribute("msg", "결제상태 변경에 실패했습니다.");
+			model.addAttribute("icon","error");
+			model.addAttribute("loc","member/adminBook");
+			return "common/msg";
+		}
+	}
+	
+	@GetMapping(value="/changePayNo")
+	public String changePayNo(int delBookingNo ,int bookingPay, Model model) {
+		int result = bookingService.changeDelLevel(delBookingNo,bookingPay);
+		if(result>0) {
+			return "redirect:/member/adminBook";
+		}else {
+			model.addAttribute("msg", "결제상태 변경에 실패했습니다.");
+			model.addAttribute("icon","error");
+			model.addAttribute("loc","member/adminBook");
+			return "common/msg";
+		}
+	}
 	
 }
 	

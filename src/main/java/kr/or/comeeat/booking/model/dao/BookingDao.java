@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.comeeat.booking.model.vo.Booking;
 import kr.or.comeeat.booking.model.vo.BookingRowMapper;
+import kr.or.comeeat.booking.model.vo.DelBookingRowMapper;
 
 @Repository
 public class BookingDao {
@@ -15,6 +16,8 @@ public class BookingDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private BookingRowMapper bookingRowMapper;
+	@Autowired
+	private DelBookingRowMapper delbookingRowMapper;
 
 	public int insertBooking(Booking b) {
 		String query = "insert into booking values(booking_seq.nextval,?,?,?,?,?,?,?,1)";
@@ -35,6 +38,31 @@ public class BookingDao {
 		String query = "select * from booking";
 		List Booking =jdbc.query(query, bookingRowMapper);
 		return Booking;
+	}
+
+
+	public List delSelectAllBooking() {
+		String query = "select * from del_booking";
+		
+		List Booking =jdbc.query(query, delbookingRowMapper);
+		return Booking;
+	}
+
+
+	public int ChangeDelPay(int delBookingNo, int bookingPay) {
+		String query = "update del_booking set booking_pay = ? where del_booking_no = ?";
+		System.out.println("dao통과1");
+		Object[] params = {bookingPay,delBookingNo};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+
+	public int changeDelLevel(int delBookingNo, int bookingPay) {
+		String query = "update del_booking set booking_pay = ? where del_booking_no = ?";
+		Object[] params = {bookingPay,delBookingNo};
+		int result = jdbc.update(query,params);
+		return result;
 	}
 
 

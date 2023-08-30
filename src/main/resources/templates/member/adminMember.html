@@ -41,22 +41,24 @@
 						<td th:text="${m.memberEmail}"></td>
 						<td th:text="${m.memberPhone}"></td>
 						<td th:text="${m.enrollDate}"></td>
-						<td th:switch="${m.memberLevel}"><select th:case="1"
-							class="input-form">
+						<td th:switch="${m.memberLevel}">
+							<select th:case="1" class="input-form">
 								<!-- 데이터를 주고받을땐  option의 value값으로 -->
 								<option value="1" selected>관리자</option>
 								<option value="2">일반회원</option>
-						</select> <select th:case="2" class="input-form">
+							</select>
+							<select th:case="2" class="input-form">
 								<option value="1">관리자</option>
 								<option value="2" selected>일반회원</option>
-						</select></td>
+							</select>
+						</td>
 						<td>
 							<button class="btn bc5 changeLevel">등급변경</button>
 						</td>
 					</tr>
 					<tr>
 						<th colspan="9">
-							<button class="changeBtn checkedChangeLevel">선택회원등급변경</button>
+							<button class="btn checkedChangeLevel" style="width:100%;">선택회원등급변경</button>
 						</th>
 					</tr>
 				</table>
@@ -70,8 +72,36 @@
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
-
-
-
+	<script>
+			//선택회원등급변경 버튼
+			$(".checkedChangeLevel").on("click",function(){
+				//체크된 체크박스
+				const check = $(".chk:checked");
+				//체크 x -> 함수 종료
+				if(check.length == 0){
+					return; 
+				}
+				//체크된 회원 번호 
+				const no = new Array();
+				//체크된 회원 등급 저장 
+				const level = new Array();
+				
+				check.each(function(index,item){
+					const memberNo = $(item).parent().next().text();
+					const memberLevel = $(item).parent().parent().find("select").val();
+					no.push(memberNo);
+					level.push(memberLevel);
+				});
+				location.href="/member/checkedChangeLevel?no="+no.join("/")+"&level="+level.join("/");
+			});
+			
+		
+			$(".changeLevel").on("click",function(){
+				const memberLevel = $(this).parent().prev().children().val();
+				const memberNo = $(this).parent().parent().children().eq(1).text();
+				//text <><>사이의 값
+				location.href= "/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+			});
+		</script>
 </body>
 </html>
