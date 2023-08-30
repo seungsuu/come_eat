@@ -53,7 +53,7 @@ public class LocationController {
 			model.addAttribute("loc", "/location/foodList?pageNo=1&lo=su");
 			return "common/msg";
 		}
-
+	}
 
 	// 지도전체출력
 	@ResponseBody
