@@ -2,54 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>MY PAGE</title>
-	<link rel="stylesheet" href="/css/mypage.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+<title>마이페이지(관리자)</title>
+<link rel="stylesheet" href="/css/adminMypage.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script src="/js/jquery-3.6.0.js"></script>
 </head>
 <body>
-	<style>
-	table.mypage-table{
-    border-collapse: collapse;
-    width: 100%;
-    margin: 0 auto;
-	}
-	table.mypage-table th,td{
-	    height: 40px;
-	}
-	th {
-	    width: 30%;
-	    text-align: left;
-	    padding-left: 30px;
-	}
-	.first{
-	    border-top: 1px solid #eee;
-	}
-	#bottom{
-	    border-bottom: 1px solid #eee;
-	}
-	.mypage-input-form{
-	    width: 60%;
-	    border: 1px solid #eee;
-	}
-	.hover:focus{
-	border-color: #ff3700ff;
-	outline :none;
-	}
-	.btn-wrap{
-	text-align:center;
-	margin: 60px 0 60px 0;
-	}
-	</style>
-
 	<th:block th:include="common/header"></th:block>
 	<div class="content-wrap">
-		<div class="content-title">MY PAGE</div>
-			<div class="mypage-tab-wrap">
-				<ul class="mypage-tab">
-					<li>회원정보</li>
-					<li>맛집저장</li>
-					<li>예약내역</li>
-				</ul>			
+		<div class="content-title">
+			ADMIN PAGE <span class="material-icons">admin_panel_settings</span>
+		</div>
+		<div class="mypage-tab-wrap">
+			<ul class="mypage-tab">
+				<li><a href="/member/mypage" class="admin-btn">나의 정보</a></li>
+				<li><a href="#">맛집저장</a></li>
+				<li><a th:href="@{/member/mybook(memberNo=${session.m.memberNo})}">예약내역</a></li>	
+			</ul>		
 		<div class="mypage-content">
 			<form action="/member/update" method="post">
         	<table class="mypage-table">
