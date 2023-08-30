@@ -25,7 +25,7 @@
 				<table class="tbl tbl-hover">
 					<tr class="tr-3">
 						<th>선택</th>
-						<th>예약번호</th>
+						<th>취소번호</th>
 						<th>상호명</th>
 						<th>이름</th>
 						<th>예약날짜</th>
@@ -36,7 +36,7 @@
 
 					<tr class="tr-1" th:each="b : ${b}">
 						<td><input type="checkbox" class="chk2"></td>
-						<td th:text="${b.bookingNo}"></td>
+						<td th:text="${b.delBookingNo}"></td>
 						<td th:text="${b.loTitle}"></td>
 						<td th:text="${b.memberName}"></td>
 						<td th:text="${b.bookingDate}"></td>
@@ -44,19 +44,19 @@
 						<td th:text="${b.bookingTotalnum}">명</td>
 						<td th:switch="${b.bookingPay}"><select th:case="1"
 							class="input-form">
-								<option value="1" selected>결제완료</option>
+								<option value="1" selected>환불미완료</option>
 								<option value="2">환불완료</option>
 						</select> <select th:case="2" class="input-form">
-								<option value="1">결제완료</option>
+								<option value="1">환불미완료</option>
 								<option value="2" selected>환불완료</option>
 						</select></td>
 						<td>
-							<button class="btn bc5 changePay">환불변경</button>
+							<button class="btn bc5 changeLevel">환불변경</button>
 						</td>
 					</tr>
 					<tr>
 						<th colspan="9">
-							<button class="changeBtn checkedChangePay">환불변경</button>
+							<button class="btn checkedChangeLevel" style="width:100%;">환불변경</button>
 						</th>
 					</tr>
 				</table>
@@ -69,8 +69,32 @@
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
-
+<script>
+			//여러개 변경
+			$(".checkedChangeLevel").on("click",function(){
+				const check = $(".chk2:checked");
+				if(check.length == 0){
+					return; 
+				}
+				const no = new Array();
+				const level = new Array();
+				check.each(function(index,item){
+					const delBookingNo = $(item).parent().next().text();
+					const bookingPay = $(item).parent().parent().find("select").val();
+					no.push(delBookingNo);
+					level.push(bookingPay);
+				});
+				location.href="/member/checkedPayNo?no="+no.join("/")+"&level="+level.join("/");
+			});
+			
+		
+			$(".changeLevel").on("click",function(){
+				const bookingPay = $(this).parent().prev().children().val();
+				const delBookingNo = $(this).parent().parent().children().eq(1).text();
+				//text <><>사이의 값
+				location.href= "/member/changePayNo?delBookingNo="+delBookingNo+"&bookingPay="+bookingPay;
+			});
 	
-	
+</script>
 </body>
 </html>

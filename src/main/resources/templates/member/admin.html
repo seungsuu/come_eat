@@ -46,36 +46,6 @@
 		</div>
 		<th:block th:include="common/footer"></th:block>
 		
-		<script>
-			//선택회원등급변경 버튼
-			$(".checkedChangeLevel"),on("click",function(){
-				//체크된 체크박스
-				const check = $(".chk:checked");
-				//체크 x -> 함수 종료
-				if(check.length == 0){
-					return; 
-				}
-				//체크된 회원 번호 
-				const no = new Array();
-				//체크된 회원 등급 저장 
-				const level = new Array();
-				
-				check.each(function(index,item){
-					const memberNo = $(item).parent().next().text();
-					const memberLevel = $(item).parent().parent().find("select").val();
-					no.push(memberNo);
-					level.push(memberLevel);
-				});
-				location.href="/member/checkedChangeLevel?no="+no.join("/")+"&level="+level.join("/");
-			});
-			
-		
-			$(".changeLevel").on("click",function(){
-				const memberLevel = $(this).parent().prev().children().val();
-				const memberNo = $(this).parent().parent().children().eq(1).text();
-				//text <><>사이의 값
-				location.href= "/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
-			});
-		</script>
+
 </body>
 </html>
