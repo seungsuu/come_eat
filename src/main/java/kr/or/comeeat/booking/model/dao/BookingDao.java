@@ -93,4 +93,11 @@ public class BookingDao {
 		int result =jdbc.update(query,params);
 		return result;
 		}
+
+
+	public List bookingTime(int loNo, int memberNo) {
+		String query = "select * from booking where member_no=? and lo_No=?";
+		List list = jdbc.query(query,bookingRowMapper, memberNo, loNo);
+		return list;
+	}
 }

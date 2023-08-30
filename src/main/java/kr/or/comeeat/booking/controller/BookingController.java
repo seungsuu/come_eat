@@ -47,4 +47,15 @@ public class BookingController {
 		List list = bookingService.allBookingTime(bookingDate, loTitle);
 		return list;
 	}
+	
+	@ResponseBody
+	@GetMapping(value="/booking/bookingTime")
+	public List bookingTime(int loNo, int memberNo) {
+		List list = bookingService.bookingTime(loNo, memberNo);
+		return list;
+	}
+	
+	
+	
+	
 }
