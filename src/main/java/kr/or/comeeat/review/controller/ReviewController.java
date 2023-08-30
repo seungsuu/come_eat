@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.comeeat.FileUtil;
@@ -39,7 +40,8 @@ public class ReviewController {
 		return "review/detailRestaurant";
 	}
 	
-	// 리뷰 리스트 가져오기
+	// 리뷰 리스트 가져오기 ajax
+	@ResponseBody
 	@GetMapping(value="/reviewList")
 	public List reviewList(int start, int end,int loNo) {
 		List reviewList = reviewService.selectReviewList(start,end,loNo);

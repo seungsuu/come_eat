@@ -130,35 +130,14 @@
 			</div>
 			<div class="reviewList_content_wrapper">
 				<div class="reviewList_content">
-					<th:block th:each="rl : ${reviewList}">
-						<ul class="reviewList_content_check">
-							<li><span th:text="${rl.reviewWriter}"></span></li>
-							<li>
-								<p class="reviewList_content_link">
-									<span th:text="${rl.reviewDate}"></span>
-									<th:block
-										th:if="${session.m != null && rl.reviewWriter == session.m.memberId}">
-										<a th:href="@{/review/reviewUpdateFrm(reviewNo=${rl.reviewNo})}">수정</a>
-										<a th:href="@{/review/deleteReview(reviewNo=${rl.reviewNo},loNo=${rl.loNo})}">삭제</a>
-									</th:block>
-								</p>
-								<p class="review_detail_content" th:text="${rl.reviewContent}"></p>
-							</li>
-							<li><img th:if="${rl.reviewFilepath != null}" th:src="'/review/'+${rl.reviewFilepath}" style="width: 90%"></li>
-							<li>
-								<span id="span" class="material-icons" th:if="${rl.reviewGrade==5}">sentiment_very_satisfied</span> 
-								<span id="span" class="material-icons" th:if="${rl.reviewGrade==3}">sentiment_satisfied_alt</span>
-								<span id="span" class="material-icons" th:if="${rl.reviewGrade==1}">sentiment_very_dissatisfied</span>
-							</li>
-						</ul>
-					</th:block>
-					<div class=reviewList_moreBtn>
-						<button type="button" class="moreBtn" value="1" th:totalCount="${totalCount}" currentCount="0">
-							<span class="material-icons">expand_more</span>
-							더보기
-						 	<span class="material-icons">expand_more</span>
-						</button>
-					</div>
+					
+				</div>
+				<div class=reviewList_moreBtn>
+					<button type="button" id="moreBtn" value="1" th:totalCount="${totalCount}" currentCount="0">
+						<span class="material-icons">expand_more</span>
+						더보기
+						 <span class="material-icons">expand_more</span>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -302,21 +281,105 @@
 	<script src="/js/sweetalert.min.js"></script>
 	<script th:inline="javascript">
 
+
 		//리뷰 리스트 불러오기
-		$(".moreBtn").on("click",function(){
+		$("#moreBtn").on("click",function(){
+			//const memberId = null;
 			const start = $(this).val();
 			const loNo = [[${list.loNo}]];
-			const amount = 5;
+			const amount = 3;
 			const end = Number(start)+amount-1;
+			console.log("test");
 			$.ajax({
 				url : "/review/reviewList",
 				data : {start:start,end:end,loNo:loNo},
 				type : "get",
 				success : function(data){
+					console.log("test");
+					for(let i=0;i<data.length;i++){
+						const review = data[i];
+						const ul = $("<ul>");
+						ul.addClass("reviewList_content_check");
+						
+						const li1 = $("<li>");
+						const span1 = $("<span>");
+						span1.text(review.reviewWriter);
+						li1.append(span1);
+						
+						const li2 = $("<li>");
+						const p1 = $("<p>");
+						p1.addClass("reviewList_content_link");
+						const span2 = $("<span>");
+						span2.text(review.reviewDate);
+						
+	
+						const div = $("<div>");
+						
+						[# th:if="${session.m != null}"]
+						const memberId = [[${session.m.memberId}]];
+						if(memberId == review.reviewWriter){
+							const a1 = $("<a>");
+							a1.attr("href","@{/review/reviewUpdateFrm(reviewNo=${"+review.reviewNo+"})}");
+							a1.text("수정");
+							const a2 = $("<a>");
+							a2.attr("href","@{/review/deleteReview(reviewNo=${"+review.reviewNo+"},loNo=${"+review.loNo+"})}");
+							a2.text("삭제");
+							div.append(a1).append(a2);
+						}
+						[/]
+						
+						const p2 = $("<p>");
+						p2.addClass("review_detail_content").text(review.reviewContent);
+						
+						
+						li2.append(p1).append(span2).append(div).append(p2);
+						
+						const li3 = $("<li>");
+						const img = $("<img>");
+						if(review.reviewFilepath != null){
+							img.attr("src","'/review/'+${"+review.reviewFilepath+"}");
+							img.css("width","90%");
+						}
+						li3.append(img);
+						
+						const li4 = $("<li>");
+						const span3 = $("<span>");
+						span3.attr("id","span").addClass("material-icons");
+						const span4 = $("<span>");
+						span4.attr("id","span").addClass("material-icons");
+						const span5 = $("<span>");
+						span5.attr("id","span").addClass("material-icons");
+						if(review.reviewGrade == 5){
+							span3.text("sentiment_very_satisfied");
+						}else if(review.reviewGrade == 3){
+							span4.text("sentiment_satisfied_alt");
+						}else if(review.reviewGrade == 1){
+							span5.text("sentiment_very_dissatisfied");
+						}
+						
+						li4.append(span3).append(span4).append(span5);
+						
+						ul.append(li1).append(li2).append(li3).append(li4);
+						
+						$(".reviewList_content").append(ul);
+					}
 					
+					const currentValue = Number($("#moreBtn").val());
+					$("#moreBtn").val(currentValue+amount);
+					
+					const currentCount = Number($("#moreBtn").attr("currentCount"));
+					const changeCount = currentCount+data.length;
+					$("#moreBtn").attr("currentCount",changeCount);
+					
+					const totalCount = Number($("#moreBtn").attr("totalCount"));
+					if(totalCount == changeCount){
+						$("#moreBtn").remove();
+					}
 				}
 			});
 		});
+		
+		$("#moreBtn").click();
 	
 	
 	

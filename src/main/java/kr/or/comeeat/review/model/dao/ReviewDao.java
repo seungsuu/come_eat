@@ -69,8 +69,8 @@ public class ReviewDao {
 	//ajax에 필요한 카운트 가져오기
 	public int totalCount(int loNo) {
 		String query = "select count(*) from review where lo_no=?";
-		List list = jdbc.query(query, reviewRowMapper,loNo);
-		return (int)list.get(0);
+		int result = jdbc.queryForObject(query, Integer.class,loNo);
+		return result;
 	}
 
 }

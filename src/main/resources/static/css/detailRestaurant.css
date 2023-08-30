@@ -166,7 +166,7 @@
 .reviewList_moreBtn{
 	text-align:center;
 }
-.moreBtn{
+#moreBtn{
 	border:none;
 	width:500px;
 	height:80px;
@@ -174,11 +174,11 @@
 	background-color:transparent;
 	cursor: pointer;
 }
-.moreBtn:hover{
+#moreBtn:hover{
 	font-weight:500;
 	color:#ff3700ff;
 }
-.moreBtn:hover>span{
+#moreBtn:hover>span{
 	font-weight:500;
 	color:#ff3700ff;
 }
