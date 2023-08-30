@@ -93,7 +93,14 @@
 						eventItemDiv.append(eventInfoDiv);
 						eventItemDiv.append(closeDiv);
 						
-						$(".event-wrap").append(eventItemDiv);
+						const a = $("<a>");
+						a.attr("href","/event/view?=eventNo="+event.eventNo);
+						
+						a.append(eventItemDiv);
+						
+						$(".event-wrap").append(a);
+						
+						
 
 					}
 					//새로읽어온 사진을 추가 완료한 시점
