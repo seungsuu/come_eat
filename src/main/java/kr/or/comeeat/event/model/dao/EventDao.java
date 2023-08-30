@@ -21,8 +21,8 @@ public class EventDao {
 		return totalCount;
 	}
 	public int insertEvent(Event e) {
-		String query = "insert into event values(EVENT_SEQ.nextval,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?,0,?,?)";
-		Object[]params = {e.getEventTitle(),e.getEventContent(),e.getMemberNo(),e.getFilepath(),e.getEventSubtitle(),e.getEventDate()};
+		String query = "insert into event values(event_seq.nextval,?,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),0)";
+		Object[] params = {e.getEventTitle(),e.getEventContent(),e.getMemberNo(),e.getFilepath(),e.getEventSubtitle(),e.getEventDate()};
 		int result = jdbc.update(query,params);
 		return result;
 	}

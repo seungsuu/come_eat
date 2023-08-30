@@ -32,8 +32,10 @@
 	background-color: #eee;
 }
 textarea {
+	border: 1px solid #eee;
 	resize:none;
 	height: 300px;
+	width: 100%;
 }
 .td-4{
 	width:20%;
