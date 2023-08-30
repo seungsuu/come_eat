@@ -37,7 +37,7 @@ public class BoardController {
 
 	// 리스트페이지 이동
 	@GetMapping(value = "/list")
-	public String boardList(int pageNum, Model model) {
+	public String boardList(int pageNum,int type, Model model) {
 		BoardData boardData = boardService.boardList(pageNum);
 		model.addAttribute("list", boardData.getList());
 		model.addAttribute("navi", boardData.getNavi());
@@ -54,6 +54,7 @@ public class BoardController {
 		model.addAttribute("list3", type3.getList());
 		model.addAttribute("navi3", type3.getNavi());
 		
+		model.addAttribute("type", type);
 		return "board/boardList";
 	}
 
