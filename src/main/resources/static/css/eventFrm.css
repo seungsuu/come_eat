@@ -16,6 +16,7 @@
 .input-form{
 	width: 100%;
 	border: 1px solid #eee;
+	height: 40px;
 }
 .writeBtn{
 	border: none;
