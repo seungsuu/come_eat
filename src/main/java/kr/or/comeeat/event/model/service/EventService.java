@@ -50,9 +50,18 @@ public class EventService {
 	}
 	
 	//게시물 수정하기
+	@Transactional
 	public int updateEvent(Event e) {
 		int result = eventDao.updateEvent(e);
 		return result;
 	}
 	
+
+
+	//게시물 삭제
+	@Transactional
+	public int deleteEvent(int eventNo) {
+		int result = eventDao.deleteEvent(eventNo);
+		return result;
+	}
 }

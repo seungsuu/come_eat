@@ -104,6 +104,7 @@ public class EventController {
 		return "event/eventUpdateFrm";
 	}
 	
+
 	//이벤트 닫기버튼
 	@GetMapping(value="/close")
 	public String closeEvent(int eventNo,int close,Model model) {
@@ -126,6 +127,10 @@ public class EventController {
 		model.addAttribute("loc", "/event/list");
 		return "common/msg";
 	}
+
+
+	
+	//이벤트게시판 수정
 
 	@PostMapping(value = "/update")
 	public String eventUpdate(Event e, MultipartFile updateFile, Model model) {
@@ -154,6 +159,24 @@ public class EventController {
 		model.addAttribute("loc","/event/list");
 		return "common/msg";
 	}
+	
+	//이벤트 게시판 삭제
+	@GetMapping(value="/delete")
+	public String deleteEvent(int eventNo, Model model) {
+		int result = eventService.deleteEvent(eventNo);
+		if(result>0) {
+			model.addAttribute("title", "삭제완료");
+			model.addAttribute("msg", "게시글이 삭제되었습니다.");
+			model.addAttribute("icon", "success");
+		}else {
+			model.addAttribute("title", "삭제실패");
+			model.addAttribute("msg", "게시글 삭제 중 문제가 발생했습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc", "/event/list");
+		return "common/msg";
+	}
 
+	
 }
 	
