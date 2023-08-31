@@ -45,5 +45,12 @@ public class EventDao {
 		return (Event)list.get(0);
 	}
 	
+	//이벤트 종료버튼
+	public int closeEvent(int eventNo, int close) {
+		String query = "update event set close=? where event_no=?";
+		int result = jdbc.update(query, close, eventNo);
+		return result;
+	}
+	
 
 }

@@ -16,19 +16,7 @@
 		</div>
 		<!-- 게시물 들어갈 공간 -->
 		<div class="event-wrap">
-			<!-- 
-			<div class="event-item">
-                <img class="event-img">
-                <div class="event-info">
-                    <p>이벤트기간</p>
-                    <p>이벤트제목</p>
-                    <p>이벤트소제목</p>
-                </div>
-                <div class="close">
-                  	  종료된이벤트입니다
-                </div>
-            </div>
-             -->
+
 		</div>
 		<!-- 
 			toalCount : 게시물 총 숫자 
@@ -57,10 +45,10 @@
 				type : "post",
 				data : {start:start, end:end},
 				success : function(data){
-					console.log(data);
-					for(let i=0; i<data.length; i++) {
+					for(let i=0; i<data.list.length; i++) {
 						
-						const event = data[i];
+						const event = data.list[i];
+						const level = data.level;
 						
 						const eventItemDiv = $("<div>");
 						eventItemDiv.addClass("event-item");
@@ -89,9 +77,14 @@
 						closeDiv.addClass("close");
 						closeDiv.text("종료된 이벤트 입니다");
 						
+						const btn = $("<a>");
+						btn.addClass("close-btn").addClass("open");
+						btn.attr("href","/event/close?eventNo="+event.eventNo+"&close=0").text("이벤트 열기");
+						
 						eventItemDiv.append(img);
 						eventItemDiv.append(eventInfoDiv);
 						eventItemDiv.append(closeDiv);
+						eventItemDiv.append(btn);
 						
 						const a = $("<a>");
 						a.attr("href","/event/view?eventNo="+event.eventNo);
@@ -100,7 +93,16 @@
 						
 						$(".event-wrap").append(a);
 						
+						btn.hide();
 						
+						if(event.close == 0){
+							closeDiv.hide();
+							btn.attr("href","/event/close?eventNo="+event.eventNo+"&close=1").text("이벤트 닫기");
+							btn.removeClass("open");
+						}
+						if(level == 1){
+							btn.show();
+						}
 
 					}
 					//새로읽어온 사진을 추가 완료한 시점

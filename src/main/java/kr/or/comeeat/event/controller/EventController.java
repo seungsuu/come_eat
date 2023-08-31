@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.comeeat.FileUtil;
 import kr.or.comeeat.event.model.service.EventService;
 import kr.or.comeeat.event.model.vo.Event;
+import kr.or.comeeat.event.model.vo.EventData;
 import kr.or.comeeat.magazine.model.vo.Magazine;
+import kr.or.comeeat.member.model.vo.Member;
 
 @Controller
 @RequestMapping("/event")
@@ -76,10 +79,12 @@ public class EventController {
 	
 	@ResponseBody
 	@PostMapping(value="/more")
-	public List more(int start, int end) {
+	public EventData more(int start, int end,@SessionAttribute(required = false) Member m) {
 		//List : photo 4개 받아옴.
 		List eventList = eventService.selectEventList(start,end);
-		return eventList;
+		int memberLevel = (m == null) ? 0 : m.getMemberLevel();
+		EventData enventData = new EventData(eventList,memberLevel);
+		return enventData;
 	}
 	
 	//게시판 상세보기
@@ -96,6 +101,29 @@ public class EventController {
 		Event e = eventService.selectOneEvent(eventNo);
 		model.addAttribute("e", e);
 		return "event/eventUpdateFrm";
+	}
+	
+	//이벤트 닫기버튼
+	@GetMapping(value="/close")
+	public String closeEvent(int eventNo,int close,Model model) {
+		int result = eventService.closeEvente(eventNo,close);
+		if(result>0) {
+			if(close == 0) {
+				model.addAttribute("title", "이벤트 오픈");
+				model.addAttribute("msg", "이벤트가 오픈됩니다");
+				model.addAttribute("icon", "success");
+			}else {				
+				model.addAttribute("title", "이벤트 종료");
+				model.addAttribute("msg", "이벤트가 종료처리 됩니다");
+				model.addAttribute("icon", "success");
+			}
+		}else {
+			model.addAttribute("title", "이벤트 종료 오류");
+			model.addAttribute("msg", "관리자에게 문의하세요.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc", "/event/list");
+		return "common/msg";
 	}
 }
 	

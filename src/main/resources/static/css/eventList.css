@@ -60,8 +60,32 @@
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0.5);
-    font-size: 50px;
+    font-size: 40px;
     color: #fff;
     line-height: 250px;
     text-align: center;
+    font-weight: 500;
+}
+.close-btn{
+    position: absolute;
+    right: 25px;
+    line-height: 40px;
+    padding: 0 10px;
+    top: calc(50% - (40px/2));
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #ff3700ff;
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    color: #ff3700ff;
+}
+.close-btn:hover{
+    background-color: #ff3700ff;
+    color: #fff;
+    border-color: #ff3700ff;
+}
+.open{
+	border-color: #bbb;
+	color: #bbb;
 }

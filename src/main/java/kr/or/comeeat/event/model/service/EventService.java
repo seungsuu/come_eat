@@ -40,4 +40,11 @@ public class EventService {
 		e = eventDao.selectOneEvent(eventNo);
 		return e;
 	}
+
+	//이벤트 종료버튼
+	@Transactional
+	public int closeEvente(int eventNo, int close) {
+		int result = eventDao.closeEvent(eventNo,close);
+		return result;
+	}
 }
