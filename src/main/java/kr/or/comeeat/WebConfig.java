@@ -2,6 +2,7 @@ package kr.or.comeeat;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -22,4 +23,19 @@ public class WebConfig implements WebMvcConfigurer{
 		//이벤트 게시판
 		registry.addResourceHandler("/event/**").addResourceLocations("classpath:/static/img/event/");
 	}
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		
+		registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/member/adminBook","/member/adminMember",
+				"/member/adminMypage","/magazine/magazineWriteFrm","/magazine/magazineUpdateFrm","member/myBook",
+				"/member/mySavePlace");
+		/*
+		.excludePathPatterns();
+		*/
+		
+		registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/member/adminBook","/member/adminMember",
+				"/member/adminMypage","/magazine/magazineWriteFrm","/magazine/magazineUpdateFrm");
+	}
+	
+	
 }

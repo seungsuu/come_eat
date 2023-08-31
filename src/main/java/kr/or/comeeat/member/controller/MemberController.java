@@ -287,8 +287,8 @@ public class MemberController {
 	public String checkedPayNo(String no, String level, Model model) {
 		boolean result = bookingService.checkedPayNo(no,level);
 		if(result) {
-			model.addAttribute("title", "환불완료!");
-			model.addAttribute("msg", "환불되었습니다.");
+			model.addAttribute("title", "환불변경!");
+			model.addAttribute("msg", "환불내역변경완료.");
 			model.addAttribute("icon", "success");
 			
 		}else {
@@ -336,6 +336,25 @@ public class MemberController {
 		return "common/msg";
 	}
 	
+	//로그인인터셉터
+	@GetMapping(value="/loginMsg")
+	public String loginMsg(Model model) {
+		model.addAttribute("title", "로그인");
+		model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+		model.addAttribute("icon", "info");
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
+	
+	//관리자 인터셉터
+	@GetMapping(value="/adminMsg")
+	public String adminMsg(Model model) {
+		model.addAttribute("title", "관리자 페이지");
+		model.addAttribute("msg", "관리자만 접근가능합니다!");
+		model.addAttribute("icon", "warning");
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
 }
 	
 
