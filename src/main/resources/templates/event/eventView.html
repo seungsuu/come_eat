@@ -2,20 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/magazineView.css">
+<link rel="stylesheet" href="/css/eventView.css">
 <title>event</title>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
 		<div class="content-wrap">
 			<div class="content-title" th:text="${e.eventTitle}"></div>
-			<div class="content-sub-title" th:text="${e.eventSubtitle}"></div>
-			
-			
-			
+			<div class="content-subtitle" th:text="${e.eventSubtitle}"></div>
+			<div class="img-box">
+				<img th:src="'/event/'+${e.filepath}">
+			</div>
+			<div class="event-date" th:text="${e.eventDate}"></div>
+			<div class="content" th:text="${eventContent}"></div>
 		</div>	
-		
-				
-	
+	<th:block th:include="common/footer"></th:block>
 </body>
 </html>
