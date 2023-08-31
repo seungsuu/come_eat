@@ -91,7 +91,7 @@ public class EventController {
 		}
 	
 	//게시글 수정게시판으로 이동
-	@GetMapping(value="/updateFrm")
+	@GetMapping(value="/eventUpdateFrm")
 	public String updateFrm(int eventNo,Model model) {
 		Event e = eventService.selectOneEvent(eventNo);
 		model.addAttribute("e", e);
