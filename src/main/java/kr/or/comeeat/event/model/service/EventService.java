@@ -40,4 +40,12 @@ public class EventService {
 		e = eventDao.selectOneEvent(eventNo);
 		return e;
 	}
+	
+	//게시물 수정하기
+	public int updateEvent(Event e) {
+		int result = eventDao.updateEvent(e);
+		return result;
+	}
+	
+	
 }

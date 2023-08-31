@@ -18,6 +18,7 @@ import kr.or.comeeat.FileUtil;
 import kr.or.comeeat.event.model.service.EventService;
 import kr.or.comeeat.event.model.vo.Event;
 import kr.or.comeeat.magazine.model.vo.Magazine;
+import kr.or.comeeat.review.model.vo.Review;
 
 @Controller
 @RequestMapping("/event")
@@ -97,6 +98,35 @@ public class EventController {
 		model.addAttribute("e", e);
 		return "event/eventUpdateFrm";
 	}
+	//이벤트게시판 수정
+
+	@PostMapping(value = "/update")
+	public String eventUpdate(Event e, MultipartFile updateFile, Model model) {
+		if(!updateFile.isEmpty()) {
+			String savepath = root + "event/"; // ->업로드 될 파일 경로
+			String filepath =  fileUtil.getFilepath(savepath, updateFile.getOriginalFilename());// ->원본파일 중복체크
+			e.setFilepath(filepath);// Review객체에 setting
+			File upFile = new File(savepath + filepath);
+			try {
+				updateFile.transferTo(upFile);
+			} catch (IllegalStateException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		int result = eventService.updateEvent(e);
+		if (result > 0) {
+			model.addAttribute("title", "수정 완료");
+			model.addAttribute("msg", "게시글이 수정되었습니다.");
+			model.addAttribute("icon", "success");
+		} else {
+			model.addAttribute("tilte", "수정 실패");
+			model.addAttribute("msg", "게시글 수정 중 문제가 발생했습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc","/event/list");
+		return "common/msg";
+	}
+
 }
-	
 	
