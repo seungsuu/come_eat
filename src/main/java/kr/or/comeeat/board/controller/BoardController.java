@@ -70,7 +70,7 @@ public class BoardController {
 		model.addAttribute("title", "작성취소");
 		model.addAttribute("msg", "작성한 글이 취소되었습니다");
 		model.addAttribute("icon", "info");
-		model.addAttribute("loc", "/board/list?pageNum=1");
+		model.addAttribute("loc", "/board/list?pageNum=1&type=0");
 		return "common/msg";
 	}
 
@@ -103,7 +103,7 @@ public class BoardController {
 			model.addAttribute("msg", "관리자에게 문의하세요");
 			model.addAttribute("icon", "error");
 		}
-		model.addAttribute("loc", "/board/list?pageNum=1");
+		model.addAttribute("loc", "/board/list?pageNum=1&type=0");
 		return "common/msg";
 	}
 
@@ -137,7 +137,7 @@ public class BoardController {
 			model.addAttribute("title", "조회실패");
 			model.addAttribute("msg", "관리자에게 문의하세요");
 			model.addAttribute("icon", "error");
-			model.addAttribute("loc", "/board/list?pageNum=1");
+			model.addAttribute("loc", "/board/list?pageNum=1&type=0");
 			return "common/msg";
 		}
 	}
@@ -157,7 +157,7 @@ public class BoardController {
 			model.addAttribute("title", "삭제완료");
 			model.addAttribute("msg", "게시글이 삭제되었습니다.");
 			model.addAttribute("icon", "success");
-			model.addAttribute("loc", "/board/list?pageNum=1");
+			model.addAttribute("loc", "/board/list?pageNum=1&type=0");
 		} else {
 			model.addAttribute("title", "삭제실패");
 			model.addAttribute("msg", "관리자에게 문의하세요");

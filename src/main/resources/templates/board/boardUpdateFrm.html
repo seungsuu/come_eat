@@ -61,7 +61,7 @@
 		$("[type=reset]").on("click",function(){
 			const boardNo = $(this).val();
 			if(confirm("작성을 취소하시겠습니까?")){				
-				location.href="/board/updateReset?boardNo="+boardNo;
+				location.href="/board/updateReset?boardNo="+boardNo+"&type=0";
 			}
 		});
 		//썸머노트 적용
@@ -103,16 +103,6 @@
 				}
 			});
 		}
-		
-		/* window.onload = function(){
-			const boardType = $(".boardType").val();
-			$("option").each(function(i, item){
-				console.log(item);
-				if(item.val() == boardType){
-					$(item).attr("selected",true);
-				}
-			})
-		} */
 	</script>
 </body>
 </html>
