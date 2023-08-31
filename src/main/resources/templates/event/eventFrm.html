@@ -2,60 +2,114 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>event게시판 작성</title>
-<link rel="stylesheet" href="/css/eventFrm.css">
+<title>event글쓰기 폼</title>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
+		<script type=""></script>
+		<script src="/summernote/summernote-lite.js"></script>
+		<script src="/summernote/lang/summernote-ko-KR.js"></script>
+		<link rel="stylesheet" href="/summernote/summernote-lite.css">
 		<div class="content-wrap">
-			<div class="content-title">EVENT</div>
-			<!-- 파일전송하는 조건 : method="post" / enctype = "multipart/form-data" -->
-			<form action="/event/write" method="post" enctype="multipart/form-data">
-				<table class="tbl eventWrite">
-					<tr class="tr-1">
-						<th class="td-2">제목</th>
-						<td colspan="3">
-							<input type="text" name="eventTitle" class="input-form">
-						</td>
-					</tr>
-					<tr class="tr-1">
-						<th class="td-2">소제목</th>
-							<td colspan="3">
-								<input type="text" name="eventSubtitle" class="input-form">
-							</td>
-					</tr>		
-					<tr class="tr-1">
-						<th class="td-2">작성자</th>
-						<td class="td-4">
-							<span th:text="${session.m.memberId}"></span>
-							<!-- 데이터 전송용 -->
-							<input type="hidden" name="memberNo" th:value="${session.m.memberNo}">
-						</td>
-						<th class="td-2">썸네일</th>
+			<div class="content-title">Event</div>
+			<form action="/event/write" method="post" enctype="multipart/form-data" >
+				<table class="tbl tbl-border">
+					<tr>
+						<th class="b-color-g" style="width: 20%;">제목</th>
 						<td>
-							<input type="file" name="imageFile" accept=".jpg,.png,.jpeg">
-						</td>
-					</tr>
-					<tr class="tr-1">
-						<th class="td-2">이벤트기간</th>
-						<td colspan="3">
-							<input type="text" name="eventDate" class="input-form">
+							<input type="text" name="eventTitle" class="input" placeholder="제목을 입력하세요" style="text-align: left; text-indent: 2em;" required>
 						</td>
 					</tr>
 					<tr>
-						<th class="td-3">내용</th>
-						<td colspan="3">
-							<textarea id="eventContent" name="eventContent"></textarea>
+						<th class="b-color-g">작성자</th>
+						<td>
+							<span th:text="${session.m.memberId}" style="text-align: left; text-indent: 2em; display:block;"></span>
+							<input type="hidden" name="memberNo" th:value="${session.m.memberNo}">
 						</td>
 					</tr>
-					<tr class="tr-1">
-						<th colspan="4">
-							<button type="submit" class="writeBtn">게시글 작성</button>
-						</th>
+					<tr>
+						<th class="b-color-g" style="width: 20%;">소제목</th>
+						<td>
+							<input type="text" name="eventSubtitle" class="input" placeholder="소제목을 입력하세요" style="text-align: left; text-indent: 2em;" required>
+						</td>
 					</tr>
+					<tr>
+						<th class="b-color-g" style="width: 20%;">이벤트기간</th>
+						<td>
+							<input type="text" name="event_date" class="input" placeholder="시작일 ~ 종료일" style="text-align: left; text-indent: 2em;" required>
+						</td>
+						<th class="b-color-g" style="width: 20%;">썸네일</th>
+						<td>
+							<input type="file" name="imageFile" accept=".jpg,.png,.jpeg" required>	
+						</td>
+					</tr>
+					<tr >
+						<td style="text-align: left;" colspan="4">
+							<textarea class="input textarea" name="eventContent" id="eventContent" required></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<button type="submit" class="btn-o" style="width:100%;" >게시글 작성</button>	
+						</td>
+						<td>
+						</td>
 				</table>
 			</form>
 		</div>
+		
 	<th:block th:include="common/footer"></th:block>
+	<script >
+	$("#eventContent").summernote({
+		  toolbar: [
+			    ['fontname', ['fontname']],
+			    ['fontsize', ['fontsize']],
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['color', ['forecolor','color']],
+			    ['table', ['table']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['insert',['picture','link','video']],
+			    ['view', ['fullscreen', 'help']]],
+				fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+				fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+		height: 400,
+		lang : "ko-KR",
+		callbacks :{
+			onImageUpload : function(files){
+				uploadImage(files[0],this);
+			}	
+		}
+	});
+	function uploadImage(file,editor){
+		const form = new FormData();
+		form.append("file",file);
+		$.ajax({
+			url : "/magazine/editor",
+			type : "post",
+			data : form,
+			processData : false,
+			contentType : false,
+			success : function(data){
+				console.log(data);
+				$(editor).summernote("insertImage",data);
+				$("#thumbnailPath").append("<option value="+data+">"+data.originName+"</option>");
+			}
+		});
+	}
+	
+	$("[name=imageFile]").on("change",function(){
+		console.log(this.files);
+		if(this.files.length !=0 && this.files[0] != 0){
+			const reader = new FileReader();
+			reader.readAsDataURL(this.files[0]);
+			reader.onload =function(e){
+				$("#img-view").attr("src",e.target.result);
+			}
+		}else{
+			$("#img-view").attr("src","");
+		}
+	});
+	</script>
 </body>
 </html>

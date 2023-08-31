@@ -56,12 +56,12 @@ public class EventService {
 		return result;
 	}
 	
-
-
-	//게시물 삭제
+	//게시물 삭제하기
 	@Transactional
 	public int deleteEvent(int eventNo) {
 		int result = eventDao.deleteEvent(eventNo);
 		return result;
+
 	}
+	
 }

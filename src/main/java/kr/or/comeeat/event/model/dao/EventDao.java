@@ -62,12 +62,13 @@ public class EventDao {
 		return result;
 	}
 	
-	//게시글 삭제
+	//이벤트 게시판 삭제
 	public int deleteEvent(int eventNo) {
-		String query = "delete from event where event_no=?";
+		String query="delete from event where event_no=?";
 		Object[] params = {eventNo};
-		int result = jdbc.update(query,params);
+		int result = jdbc.update(query, params);
 		return result;
 	}
+	}
 
-}
+
