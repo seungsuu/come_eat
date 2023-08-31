@@ -63,10 +63,10 @@
 					<li>
 						<input type="hidden" name="boardCommentWriter" th:value="${session.m.memberId}">
 						<input type="hidden" name="boardRef" th:value="${b.boardNo}">
-						<textarea name="boardCommentContent" class="input-form"></textarea>
+						<textarea name="boardCommentContent" class="input-form" required></textarea>
 					</li>
 					<li>
-						<button type="submit" class="btn">등록</button>
+						<button type="submit" class="btn" style="height:96px;  margin-left:10px;">등록</button>
 					</li>
 				</ul>
 			</form>

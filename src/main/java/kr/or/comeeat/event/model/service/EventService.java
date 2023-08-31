@@ -41,10 +41,18 @@ public class EventService {
 		return e;
 	}
 
+
 	//이벤트 종료버튼
 	@Transactional
 	public int closeEvente(int eventNo, int close) {
 		int result = eventDao.closeEvent(eventNo,close);
 		return result;
 	}
+	
+	//게시물 수정하기
+	public int updateEvent(Event e) {
+		int result = eventDao.updateEvent(e);
+		return result;
+	}
+	
 }

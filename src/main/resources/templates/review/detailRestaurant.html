@@ -121,7 +121,7 @@
 		<!-- 예약 -->
 		<div class="reservationBtn">
 			
-			<button class="modal-open-btn" style="cursor: pointer;">예약하기</button>
+			<button th:if="${session.m != null}" class="modal-open-btn" style="cursor: pointer;">예약하기</button>
 			
 
 		</div>

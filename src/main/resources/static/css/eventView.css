@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: #2f2f2f;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    outline: none;
+    font-size: 16px;
+}
+.content-wrap{
+    width: 1200px;
+    margin: 60px auto;
+    box-sizing: border-box;
+    min-height: calc(100vh - 350px);
+}
+/*제목공통클래스*/
+.content-title{
+    font-size: 36px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: 400;
+    padding: 80px 0 50px 0;
+    display: block;
+}
+.content-subtitle{
+	text-align: center;
+	font-size: 20px;
+	padding: 30px 0 10px 0;
+}
+.img-box{
+	text-align: center;
+	padding: 30px 0 30px 0;
+}
+.img-box>img{
+	width: 80%;
+}
+
