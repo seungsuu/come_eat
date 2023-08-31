@@ -191,10 +191,10 @@
     font-size: 14px;
     font-weight: 400;
 }
-
-.content-wrap>.box{
+.place-wrapper .box{
 	background-color: #f9f9f9;
 	border-radius: 10px;
 	line-height: 350px;
 	padding: 0;
+	margin-top: 100px;
 }
