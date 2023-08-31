@@ -10,6 +10,7 @@ import kr.or.comeeat.event.model.vo.Event;
 import kr.or.comeeat.event.model.vo.EventFileRowMapper;
 import kr.or.comeeat.event.model.vo.EventRowMapper;
 import kr.or.comeeat.magazine.model.vo.Magazine;
+import kr.or.comeeat.review.model.vo.Review;
 
 @Repository
 public class EventDao {
@@ -45,5 +46,12 @@ public class EventDao {
 		return (Event)list.get(0);
 	}
 	
+	//이벤트 게시글 수정
+	public int updateEvent(Event e) {
+		String query = "update event set event_title=?, event_subtitle=?, event_date=?, filepath=?, event_content=? where event_no=?";
+		Object[] params = {e.getEventTitle(),e.getEventSubtitle(),e.getEventDate(),e.getFilepath(),e.getEventContent(),e.getEventNo()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
 
 }
