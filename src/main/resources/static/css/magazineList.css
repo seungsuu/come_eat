@@ -36,7 +36,7 @@
 .magazine-item {
     position: relative;
     background: #fff;
-    width: 370px; 
+    width: calc(33.3333% - 20px); 
     height: 300px;
     margin:10px;
     cursor: pointer;
