@@ -1,25 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>이벤트게시판 수정</title>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-	<div class="page-content">
-	<div class="page-title">�̺�Ʈ�Խ��� ����</div>
-	<form action="/event/update" method="post" enctype="multipart/form-data" >
-	
-	
-	
-	
-	
-	
-	
-	
-	<button type="submit" class="btn">�����ϱ�</button>
-	</form>
-	</div>
+		<div class="content-wrap">
+			<div class="content-title">Event 수정하기</div>
+			<form action="/event/update" method="post" enctype="multipart/form-data" >
+				<table class="tbl tbl-border">
+					<tr>
+						<th class="b-color-g" style="width: 20%;">제목</th>
+						<td>
+							<input type="text" name="eventTitle" class="input" placeholder="제목을 입력하세요" style="text-align: left; text-indent: 2em;">
+						</td>
+					</tr>
+					<tr>
+						<th class="b-color-g">작성자</th>
+						<td>
+							<span th:text="${session.m.memberId}" style="text-align: left; text-indent: 2em; display:block;"></span>
+							<input type="hidden" name="memberNo" th:value="${session.m.memberNo}">
+							<input type="hidden" name="eventNo" th:value="${e.eventNo}">
+						</td>
+					</tr>
+					<tr>
+						<th class="b-color-g" style="width: 20%;">소제목</th>
+						<td>
+							<input type="text" name="eventSubtitle" class="input" placeholder="간략요약해주세요" style="text-align: left; text-indent: 2em;">
+						</td>
+					</tr>
+					<tr>
+						<th class="b-color-g" style="width: 20%;">이벤트기간</th>
+						<td>
+							<input type="text" name="eventDate" class="input" placeholder="이벤트기간" style="text-align: left; text-indent: 2em;">
+						</td>
+						<th class="b-color-g" style="width: 20%;">썸네일</th>
+						<td>
+							<input type="file" name="updateFile" accept=".jpg,.png,.jpeg">	
+						</td>
+					</tr>
+					<tr >
+						<td style="text-align: left;" colspan="4">
+							<textarea class="input textarea" name="eventContent" id="eventContent" th:text="${e.eventContent}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<button type="submit" class="btn" style="width:50%;">수정하기</button>		
+						</td>
+						<td>
+						</td>
+				</table>
+			</form>
+		</div>
 	<th:block th:include="common/footer"></th:block>
 </body>
 </html>
