@@ -20,6 +20,6 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addResourceHandler("/board/**").addResourceLocations("file:///C:/Temp/upload/board/");
 
 		//이벤트 게시판
-		registry.addResourceHandler("/event/**").addResourceLocations("file:///C:/Temp/upload/event/");
+		registry.addResourceHandler("/event/**").addResourceLocations("classpath:/static/img/event/");
 	}
 }
