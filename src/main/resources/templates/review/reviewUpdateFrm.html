@@ -62,7 +62,7 @@
 	                <input type="hidden" name="reviewNo" th:value="${r.reviewNo}">
 	                <input type="hidden" name="loNo" th:value="${r.loNo}">
 	                <div class="review-btn">
-	                    <button type="button" name="cancelBtn" class="btn cancelBtn" onclick="history.back()">취소</button>
+	                    <button type="button" name="cancelBtn" class="btn" id="cancelBtn" onclick="history.back()">취소</button>
 	                    <button type="submit" class="btn-o submitBtn">리뷰 등록</button>
 	                </div>
 	            </form>
@@ -93,6 +93,7 @@
 				reader.readAsDataURL(this.files[0]);
 				reader.onload = function(e){
 					$("#img-view").attr("src",e.target.result);
+					$("#img-view").next().next().show();
 				}
 			}else{
 				$("#img-view").attr("src","");
