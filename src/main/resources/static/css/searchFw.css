@@ -74,4 +74,8 @@ input {
 #errorMsg{
 	color: #ff3700ff;
 	font-size: 14px;
+	padding-left: 6px;
+}
+.content1{
+	padding-left:6px;
 }
