@@ -60,19 +60,21 @@
 
 	<th:block th:include="common/footer"></th:block>
 	<script>
+
+		$(".deleteDo").on("click",function(){
+			if(confirm("예약을 취소하시겠습니까?")){
+			const bookingNo = $(this).parent().parent().children().eq(0).text();
+			const loTitle = $(this).parent().parent().children().eq(1).text();
+			const memberName = $(this).parent().parent().children().eq(2).text();
+			const bookingDate = $(this).parent().parent().children().eq(3).text();
+			const bookingTime = $(this).parent().parent().children().eq(4).text();
+			const bookingTotalnum =$(this).parent().parent().children().eq(5).text();
+			location.href= "/member/deleteBooking?bookingNo="+bookingNo+"&loTitle="+loTitle+"&memberName="+memberName
+					+"&bookingDate="+bookingDate+"&bookingTime="+bookingTime+"&bookingTotalnum="+bookingTotalnum;
+			}
+		});
 	
-	$(".deleteDo").on("click",function(){
-		const bookingNo = $(this).parent().parent().children().eq(0).text();
-		const loTitle = $(this).parent().parent().children().eq(1).text();
-		const memberName = $(this).parent().parent().children().eq(2).text();
-		const bookingDate = $(this).parent().parent().children().eq(3).text();
-		const bookingTime = $(this).parent().parent().children().eq(4).text();
-		const bookingTotalnum =$(this).parent().parent().children().eq(5).text();
-		location.href= "/member/deleteBooking?bookingNo="+bookingNo+"&loTitle="+loTitle+"&memberName="+memberName
-				+"&bookingDate="+bookingDate+"&bookingTime="+bookingTime+"&bookingTotalnum="+bookingTotalnum;
-				
-		
-	});
+	
 	
 	</script>
 </body>

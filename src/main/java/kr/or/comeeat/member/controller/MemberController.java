@@ -326,7 +326,7 @@ public class MemberController {
 			model.addAttribute("title", "취소완료!");
 			model.addAttribute("msg", "환불은 추후 천천히됩니다");
 			model.addAttribute("icon", "success");
-			return "redirect:/member/myBook";
+			return "redirect:/member/mypage";
 		}else {
 			model.addAttribute("title", "취소실패!");
 			model.addAttribute("msg", "이돈은 제껍니다.");
