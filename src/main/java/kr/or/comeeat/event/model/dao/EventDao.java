@@ -34,7 +34,7 @@ public class EventDao {
 		return result;
 	}
 	public List selectEventList(int start, int end) {
-		String query = "select * from (select rownum as rnum, e.* from(select * from event order by 1 desc)e) where rnum between ? and ?";
+		String query = "select * from (select rownum as rnum, e.* from(select * from event order by close asc, event_no desc)e) where rnum between ? and ?";
 		List eventList = jdbc.query(query, eventRowMapper, start, end);
 		return eventList;
 	}
@@ -69,6 +69,6 @@ public class EventDao {
 		int result = jdbc.update(query, params);
 		return result;
 	}
-	}
+}
 
 
