@@ -288,21 +288,38 @@
 			var Now = new Date(); // 현재 날짜 및 시간
 			const memberNo = $("#memberNo").val(); 
 			const loNo = [[${list.loNo}]];
+			let title = "잠깐만!";
+			let msg = "예약자만 후기작성이 가능합니다!";
+			let icon = "warning";
 			$.ajax({
+				
 				type : "get",
 				url : "/booking/bookingTime",
 				data : {memberNo : memberNo, loNo : loNo},
 				success : function(data) {
+
 					var bookDay = new Date(data[0].bookingDate);
 					if(Now > bookDay){
 						location.href= "/review/reviewWriteFrm?loNo="+loNo;
+						
 					}else{
-						alert("양나민한테 문의하세요");
+						title = "잠깐만요!";
+						msg = "이용하고오신후에 작성이 가능합니다!";
+						icon = "warning";
+						swal({
+							title : title,
+							text : msg,
+							icon : icon
+						})
 					}
-					
 				},
 				error :
-					alert("양나민한테 문의하세요")
+					swal({
+						title : title,
+						text : msg,
+						icon : icon
+				})
+				
 			})
 			
 		})
