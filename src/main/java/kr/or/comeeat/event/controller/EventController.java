@@ -19,7 +19,7 @@ import kr.or.comeeat.FileUtil;
 import kr.or.comeeat.event.model.service.EventService;
 import kr.or.comeeat.event.model.vo.Event;
 import kr.or.comeeat.event.model.vo.EventData;
-import kr.or.comeeat.magazine.model.vo.Magazine;
+import kr.or.comeeat.event.model.vo.EventFile;
 import kr.or.comeeat.member.model.vo.Member;
 import kr.or.comeeat.review.model.vo.Review;
 
@@ -160,17 +160,17 @@ public class EventController {
 		return "common/msg";
 	}
 	
-	//이벤트 게시판 삭제
-	@GetMapping(value="/delete")
+	//이벤트게시판 삭제
+	@GetMapping(value = "/delete")
 	public String deleteEvent(int eventNo, Model model) {
 		int result = eventService.deleteEvent(eventNo);
 		if(result>0) {
-			model.addAttribute("title", "삭제완료");
+			model.addAttribute("title", "Event");
 			model.addAttribute("msg", "게시글이 삭제되었습니다.");
 			model.addAttribute("icon", "success");
-		}else {
-			model.addAttribute("title", "삭제실패");
-			model.addAttribute("msg", "게시글 삭제 중 문제가 발생했습니다.");
+		} else {
+			model.addAttribute("title", "Event");
+			model.addAttribute("msg", "게시글 삭제 중 오류가 발생했습니다!");
 			model.addAttribute("icon", "error");
 		}
 		model.addAttribute("loc", "/event/list");
