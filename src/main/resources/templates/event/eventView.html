@@ -27,8 +27,17 @@
 			</div>
 			<div class="btn-box" th:if="${session.m != null && session.m.memberLevel == 1}">
 				<a class="btn" th:href="@{/event/eventUpdateFrm(eventNo=${e.eventNo})}">수정</a>
+				<button class="btn" th:onclick="eventDelete([[${e.eventNo}]])">삭제</button>
 			</div>
-		</div>	
+		</div>
+		
+		<script>
+	function eventDelete(eventNo){
+		if(confirm("게시글을 삭제하시겠습니까?")){
+			location.href="/event/delete?eventNo="+eventNo;
+		}
+	}
+	</script>
 	<th:block th:include="common/footer"></th:block>
 </body>
 </html>
