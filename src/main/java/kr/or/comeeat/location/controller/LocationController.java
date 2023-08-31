@@ -48,7 +48,7 @@ public class LocationController {
 		}else {
 			//공공데이터 없는거..준비중
 			model.addAttribute("title", "coming soon!");
-			model.addAttribute("msg", "데이터 준비중인 지역입니다.");
+			model.addAttribute("msg", "데이터 준비중인 지역입니다");
 			model.addAttribute("icon", "info");
 			model.addAttribute("loc", "/location/foodList?pageNo=1&lo=su");
 			return "common/msg";
@@ -86,8 +86,12 @@ public class LocationController {
 	@GetMapping(value = "/savePlace")
 	public int selectSavePlace(String loNo, @SessionAttribute(required = false) Member m) {
 		int result = 0;
-		if (m != null) {
-			result = locationService.selectSavePlace(Integer.parseInt(loNo), m.memberNo);
+		if(m != null) {
+			if(m.memberLevel == 1) {
+				result = 3;
+			}else {				
+				result = locationService.selectSavePlace(Integer.parseInt(loNo), m.memberNo);
+			}
 		}
 		return result;
 	}

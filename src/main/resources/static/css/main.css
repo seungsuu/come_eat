@@ -163,7 +163,8 @@
     float: left;
     margin: 20px;
 }
-.main-content-location>div>a{
+.main-content-location>div>a,
+.main-content-location>div>button{
     display: block;
     width: 200px;
     height: 200px;
@@ -177,8 +178,11 @@
     background-position: center;
     background-size: cover;
     transition-duration: 500ms;
+    border: none;
+    cursor: pointer;
 }
-.main-content-location>div>a:hover{
+.main-content-location>div>a:hover,
+.main-content-location>div>button:hover{
 	transform: scale(1.1);
 	color: #ff3700ff;
 }

@@ -154,6 +154,11 @@
 							title = "저장취소";
 							msg = "저장이 취소되었습니다";
 							icon = "success";
+						}else if(data == 3){
+							$(save).children("span").text("favorite_border");
+							title = "회원 전용 기능";
+							msg = "관리자는 사용 할 수 없는 기능입니다";
+							icon = "warning";
 						}
 						//모달띄우기
 						swal({

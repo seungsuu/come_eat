@@ -330,7 +330,7 @@ public class LocationService {
 				e.printStackTrace();
 			}
 			loCode = list.get(0).getLoCode();
-			
+			System.out.println(loCode);
 			//최초 db insert
 			int result = locationDao.locationInsert(list);
 			if(result>0) {
