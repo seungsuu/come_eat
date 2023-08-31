@@ -41,33 +41,36 @@
 				</form>
 			</div>
 			<div id="map" style="width:100%; height:400px; margin:100px 0;"></div>
-			<div class="aroundPlace-content" th:if="${searchList != null}">
-				<ul>
-					<th:block th:each="searchList : ${searchList}">
-						<li class="aroundPlace-list">
-							<a th:href="@{/review/detailRestaurant(loNo=${searchList.loNo})}">
-								<div class="location-img-box" th:style="'background-image:url(' + ${searchList.loThumb} + ');'">
-	                    		</div>
-								<div class="img-content">
-									<div class="star">
-	                            		<span class="material-icons-round">grade</span>
-	                            		<span th:text="${searchList.starRate}"></span>
-	                        		</div>
-									<h2 th:text="${searchList.loTitle}"></h2>
-									<div th:text="${searchList.loAddr}"></div>
-									<div th:text="${searchList.loMenu}"></div>
-								</div>
-							</a>
-							<button class="save" th:value="${searchList.loNo}">
-	                			<span class="material-icons done">favorite_border</span>
-	               			 </button>
-						</li>
-					</th:block>
-				</ul>
-				<div th:if="${searchList.isEmpty()}" class="content-title box">
-					일치하는 검색 결과가 없습니다.
+			<th:block  th:if="${searchList != null}">
+				<div class="aroundPlace-content">
+					<ul>
+						<th:block th:each="searchList : ${searchList}">
+							<li class="aroundPlace-list">
+								<a th:href="@{/review/detailRestaurant(loNo=${searchList.loNo})}">
+									<div class="location-img-box" th:style="'background-image:url(' + ${searchList.loThumb} + ');'">
+		                    		</div>
+									<div class="img-content">
+										<div class="star">
+		                            		<span class="material-icons-round">grade</span>
+		                            		<span th:text="${searchList.starRate}"></span>
+		                        		</div>
+										<h2 th:text="${searchList.loTitle}"></h2>
+										<div th:text="${searchList.loAddr}"></div>
+										<div th:text="${searchList.loMenu}"></div>
+									</div>
+								</a>
+								<button class="save" th:value="${searchList.loNo}">
+		                			<span class="material-icons done">favorite_border</span>
+		               			 </button>
+							</li>
+						</th:block>
+					</ul>
 				</div>
-			</div>
+				<div th:if=${searchList.isEmpty()} class="content-title box">
+					일치하는 검색 결과가 없습니다.
+					<input type="hidden" value="1">
+				</div>
+			</th:block>
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
@@ -78,6 +81,11 @@
 	
 		//페이지 로드되면 저장내역 불러오기
 		window.onload = function(){
+			const mapHide = $(".content-title>input").val();
+			console.log(mapHide);
+			if(mapHide == 1){
+				$("#map").hide();
+			}
 			$(".save").each(function(i, item){
 				const loNo = $(".save").eq(i).val();
 				$.ajax({
@@ -90,6 +98,7 @@
 						}else{
 							$(".save").eq(i).children("span").text("favorite");
 						}
+						
 					}
 				});
 			});
