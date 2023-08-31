@@ -23,19 +23,20 @@
     flex-direction: column;
     justify-content: center;
     height: 600px;
-    padding-left: 100px;
+    text-align: center;
 }
 .main-textBox>p{
     color: #fff;
     font-weight: 600;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
     margin: 5px 0;
 }
 .main-textBox>p:first-child{
     font-size: 52px;
 }
 .main-textBox>p:last-child{
-    font-size: 32px;
+    font-size: 26px;
+    font-weight: 400;
 }
 .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after,
 .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
@@ -180,9 +181,10 @@
     transition-duration: 500ms;
     border: none;
     cursor: pointer;
+    background-color: #eee;
 }
 .main-content-location>div>a:hover,
 .main-content-location>div>button:hover{
 	transform: scale(1.1);
-	color: #ff3700ff;
+	background-color: #ff3700ff;
 }
