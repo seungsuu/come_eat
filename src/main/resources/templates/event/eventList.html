@@ -24,7 +24,7 @@
 			value : 다음 더보기 할때 시작 번호
 		 -->
 		<div class="moreBtn-wrap">
-		<button class="" id="moreBtn"
+		<button id="moreBtn"
 		 	th:totalCount="${totalCount}"
 			currentCount = "0"
 			value="1"
@@ -38,7 +38,7 @@
 			//추가로 가져올 게시물 시작 번호
 			const start = $(this).val();
 			//한번 더보기 누를때 추가로 가지고올 게시물 수
-			const amount = 4;
+			const amount = 5;
 			const end = Number(start)+amount-1;
 			$.ajax({
 				url : "/event/more",
@@ -107,17 +107,19 @@
 					}
 					//새로읽어온 사진을 추가 완료한 시점
 					//->더보기를 한번더 눌렀을때 읽어온 이후값을 조회하기 위한 준비작업
-					const currentVal = Number($("#moreBtn").val());
+					const currentVal= Number($("#moreBtn").val());
+				
 					$("#moreBtn").val(currentVal+amount);
-					//currentCount 변경
+					
 					const currentCount = Number($("#moreBtn").attr("currentCount"));
-					const changeCount = currentCount+data.length;
+					
+					const changeCount = currentCount+data.list.length;
 					$("#moreBtn").attr("currentCount",changeCount);
 					
 					const totalCount = Number($("#moreBtn").attr("totalCount"));
-					if(totalCount == changeCount) {
+					if(totalCount == changeCount){
 						$("#moreBtn").remove();
-					}	
+					}
 				}
 			});
 		});
