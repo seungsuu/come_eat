@@ -56,7 +56,7 @@
     font-weight: 600;
     margin: 10px 0;
 }
-.close{
+.event-item .close{
     width: 100%;
     height: 100%;
     position: absolute;
