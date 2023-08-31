@@ -14,16 +14,13 @@
 				<span class="event-subtitl-span" th:text="${e.eventSubtitle}"></span> 
 				<span class="event-subtitle-span">"</span>			
 			</div>
-			<div class="img-box">
-				<img th:src="'/event/'+${e.filepath}">
-			</div>
 			<div class="event-date">
 				<span class="event-date-span">- 이벤트기간: </span>
 				<span class="event-date-span" th:text="${e.eventDate}"></span> 
 			</div>
 			<div class="content"> 
 				<span class="event-content-span">- 이벤트내용: </span>
-				<span class="event-content-span" th:text="${e.eventContent}"></span>
+				<span class="event-content-span" th:utext="${e.eventContent}"></span>
 			</div>
 			<div class="btn-box" th:if="${session.m != null && session.m.memberLevel == 1}">
 				<a class="btn" th:href="@{/event/eventUpdateFrm(eventNo=${e.eventNo})}">수정</a>
