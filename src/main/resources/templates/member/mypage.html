@@ -108,7 +108,13 @@
 		});
 	</script>
 	<script>
-	
+		$(".btn").on("click",function(){
+			if(confirm("회원탈퇴를 하시겠습니까?")){
+				location.href="/";
+			}else{
+				return false;
+			}
+		});
 	</script>
 </body>
 </html>

@@ -31,10 +31,14 @@
 				<div class="magazine-content" th:utext="${m.magazineContent}">
 				</div>
 			</div>
-			<div th:if="${session.m !=null && session.m.memberNo == m.memberNo}" style="text-align:center; margin: 50px 0 30px 0;">
-				<a class="btn-o magazineViewBtn" th:href="@{/magazine/magazineUpdateFrm(magazineNo=${m.magazineNo})}" style="width:49%;">수정</a>
-				<button class="btn magazineViewBtn" th:onclick="magazineDelete([[${m.magazineNo}]])" style="width:49%;">삭제</button>
+			<div th:if="${session.m !=null && session.m.memberNo == m.memberNo}" style="text-align:center; margin: 30px 0 30px 0;">
+				<a class="btn-o magazineViewBtn" th:href="@{/magazine/magazineUpdateFrm(magazineNo=${m.magazineNo})}" style="width:550px;">수정</a>
+				<button class="btn magazineViewBtn" th:onclick="magazineDelete([[${m.magazineNo}]])" style="width:550px;">삭제</button>				
 			</div>
+			<div>
+				<a href="/magazine/list" class="btn" style="margin-left:50px; width: 1103px; font-size: 18px; line-height: 40px;">목록으로 돌아가기</a>
+			</div>
+			
 		</div>
 	<th:block th:include="common/footer"></th:block>
 	<script>

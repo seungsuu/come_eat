@@ -4,9 +4,28 @@
 <meta charset="UTF-8">
 <title>나의 맛집저장 내역</title>
 <link rel="stylesheet" href="/css/mySavePlace.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="/js/jquery-3.6.0.js"></script>
+<style>
+.swal-modal {
+	border-radius: 5px;
+}
+
+.swal-button {
+	background-color: #ddd;
+	font-size: 18px;
+	fonr-weight: 400;
+}
+
+.swal-button:not([disabled]):hover {
+	background-color: #ff3700ff;
+}
+
+.swal-footer {
+	text-align: center;
+}
+
+</style>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -22,12 +41,11 @@
 				<li><a th:href="@{/member/mybook(memberNo=${session.m.memberNo})}">예약내역</a></li>	
 			</ul>	
 		</div>
-		<div class="space"></div>
 		<th:block th:each="list : ${list}">
 			<div class="mypage-content">
 				<a th:href="@{/review/detailRestaurant(loNo=${list.loNo})}" class="save-place">
 					<div class="mypage-img-box">
-						<img th:src="${list.loThumb}" style="width:300px; height:230px;">
+						<img th:src="${list.loThumb}" style="width:200px; height:150px;">
 					</div>
 					<div class="mypage-content-info">
 						<div class="info">
@@ -41,15 +59,42 @@
 						</div>
 					</div>
 				</a>
-				<button class="save">
+				<button class="save" th:value="${list.loNo}">
 					<span class="material-icons done">favorite</span>
 				</button>
 			</div>
 		</th:block>
 	</div>
 	<th:block th:include="common/footer"></th:block>
+	<script src="/js/sweetalert.min.js"></script>
 	<script>
-	/*
+	
+	//페이지 로드되면 저장내역 불러오기
+		window.onload = function() {
+		//console.log("test");
+			$(".save").each(
+					function(i, item) {
+						const loNo = $(".save").eq(i).val();
+						$.ajax({
+							url : "/location/savePlaceSelect",
+							type : "get",
+							data : {
+								loNo : loNo
+							},
+							success : function(data) {
+								if (data == 0) {
+									$(".save").eq(i).children("span").text(
+											"favorite_border");
+								} else {
+									$(".save").eq(i).children("span").text(
+											"favorite");
+								}
+							}
+						});
+					});
+				}
+		
+	
 	//저장버튼
 		$(".save").on("click",function(){
 			const loNo = $(this).val();
@@ -83,7 +128,7 @@
 				}
 			});
 		});
-	*/
+	
 	</script>
 </body>
 </html>
