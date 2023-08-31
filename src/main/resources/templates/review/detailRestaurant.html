@@ -367,8 +367,15 @@
 							a1.attr("href","/review/reviewUpdateFrm?reviewNo="+review.reviewNo);
 							a1.text("수정").css("margin-right","10px");
 							const a2 = $("<a>");
-							a2.attr("href","/review/deleteReview?reviewNo="+review.reviewNo+"&loNo="+review.loNo);
+							a2.attr("href","javascript:void(0);");
+							a2.on("click",function(){
+								if(confirm("리뷰를 삭제하시겠습니까?")){
+									location.href="/review/deleteReview?reviewNo="+review.reviewNo+"&loNo="+review.loNo;
+								}
+							})
+							//a2.attr("href","/review/deleteReview?reviewNo="+review.reviewNo+"&loNo="+review.loNo);
 							a2.text("삭제");
+							a2.addClass("deleteReview");
 							div.append(a1).append(a2);
 						}
 						[/]
@@ -426,6 +433,10 @@
 		
 		$("#moreBtn").click();
 	
+		//리뷰 삭제할때 알람 주기
+		$(".deleteReview").on("click",function(){
+			return confirm("삭제하시겠습니까?");
+		});
 	
 	
 		//페이지 로드되면 저장내역 불러오기
