@@ -35,7 +35,7 @@ font-family: 'Noto Sans KR', sans-serif;
     font-size: 36px;
     line-height: 30px;
     text-align: center;
-    font-weight: 200;
+    font-weight: 600;
     padding: 80px 0 50px 0;
     display: block;
 }
@@ -51,6 +51,7 @@ font-family: 'Noto Sans KR', sans-serif;
     box-sizing: border-box;
     border: none;
     cursor: pointer;
+    transition-duration: 500ms;
 }
 /*회색버튼 hover 시 오랜지로 변경*/
 .btn:hover{
@@ -70,6 +71,7 @@ font-family: 'Noto Sans KR', sans-serif;
     box-sizing: border-box;
     border: none;
     cursor: pointer;
+    transition-duration: 500ms;
 }
 
 
@@ -132,7 +134,7 @@ font-family: 'Noto Sans KR', sans-serif;
     font-weight: 400;
 }
 .textarea-td{
-    height: 600px;
+    height: 400px;
     box-sizing: border-box;
     padding: 10PX;
     border: 1px solid #eee;
@@ -163,6 +165,7 @@ font-family: 'Noto Sans KR', sans-serif;
     padding: 10px;
     font-size: 18px;
     font-weight: 400;
+    transition-duration: 500ms;
 }
 .board-navi li>a:hover{
     color: #ff3700ff;
@@ -182,5 +185,73 @@ font-family: 'Noto Sans KR', sans-serif;
 
 
 
+/*지도마커*/
+.marker{
+    background-color: #fff;
+    width: 250px;
+    padding: 5px;
+    border-radius: 5px;
+    position: relative;
+    top:-108px;
+}
+.marker-last-box{
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    rotate: 45deg;
+    position: absolute;
+    bottom: -15px;
+    left: calc(50% - (30px/2));
+}
+.close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.close>span{
+	color: #ccc;
+}
+.marker-box{
+    overflow: hidden;
+}
+.marker-l{
+    width: 30%;
+    height: 80px;
+    border-radius: 5px;
+    float: left;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.marker-r{
+    width: 70%;
+    float: left;
+    box-sizing: border-box;
+}
+.marker-r>div{
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.marker-r>div{
+    padding: 5px;
+}
+.marker-r>div:first-child{
+    font-size: 18px;
+    font-weight: 600;
+    color: #ff3700ff;
+}
+.marker-r>div:last-child{
+    font-size: 14px;
+    font-weight: 400;
+}
+.content-wrap>.box{
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	line-height: 350px;
+	padding: 0;
+}
 
 

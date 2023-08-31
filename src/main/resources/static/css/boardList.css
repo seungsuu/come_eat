@@ -2,7 +2,7 @@
 /*카테고리 탭*/
 .board-tab{
     overflow: hidden;
-    margin: 40px 0 20px 0;
+    margin: 20px 0 10px 0;
 }
 .tab-button{
     float: left;
@@ -21,4 +21,7 @@
 }
 .tbl>tbody, .board-navi{
 	display:none;
+}
+.board-write-btn{
+	text-align: right;
 }
