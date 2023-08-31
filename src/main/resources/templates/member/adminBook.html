@@ -40,8 +40,8 @@
 						<td th:text="${b.loTitle}"></td>
 						<td th:text="${b.memberName}"></td>
 						<td th:text="${b.bookingDate}"></td>
-						<td th:text="${b.bookingTime}">시</td>
-						<td th:text="${b.bookingTotalnum}">명</td>
+						<td th:text="오후+${b.bookingTime}+시"></td>
+						<td th:text="${b.bookingTotalnum}+명"></td>
 						<td th:switch="${b.bookingPay}"><select th:case="1"
 							class="input-form">
 								<option value="1" selected>환불미완료</option>

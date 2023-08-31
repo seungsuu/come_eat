@@ -287,8 +287,8 @@ public class MemberController {
 	public String checkedPayNo(String no, String level, Model model) {
 		boolean result = bookingService.checkedPayNo(no,level);
 		if(result) {
-			model.addAttribute("title", "환불변경!");
-			model.addAttribute("msg", "환불내역변경완료.");
+			model.addAttribute("title", "환불상태변경!");
+			model.addAttribute("msg", "환불상태가 변경되었습니다!");
 			model.addAttribute("icon", "success");
 			
 		}else {
@@ -304,8 +304,8 @@ public class MemberController {
 	public String changePayNo(int delBookingNo ,int bookingPay, Model model) {
 		int result = bookingService.changeDelLevel(delBookingNo,bookingPay);
 		if(result>0) {
-			model.addAttribute("title", "환불완료!");
-			model.addAttribute("msg", "환불되었습니다.");
+			model.addAttribute("title", "환불상태변경");
+			model.addAttribute("msg", "환불상태가 변경되었습니다!");
 			model.addAttribute("icon", "success");
 			
 		}else {
