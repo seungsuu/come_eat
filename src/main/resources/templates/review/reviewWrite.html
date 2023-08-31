@@ -64,7 +64,7 @@
 	                <input type="hidden" name="reviewWriter" th:value="${session.m.memberId}">
 	                <input type="hidden" name="loNo" th:value="${list.loNo}">
 	                <div class="review-btn">
-	                    <button type="button" name="cancelBtn" class="btn cancelBtn" onclick="history.back()">취소</button>
+	                    <button type="button" name="cancelBtn" class="btn" id="cancelBtn" onclick="history.back()">취소</button>
 	                    <button type="submit" class="btn-o submitBtn">리뷰 등록</button>
 	                </div>
 	            </form>
