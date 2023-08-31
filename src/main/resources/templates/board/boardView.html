@@ -161,7 +161,7 @@
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
-
+	<script src="/js/sweetalert.min.js"></script>
 	<script>
 		//게시물 삭제
 		$("[type=button]").on("click",function(){
@@ -170,9 +170,18 @@
 				location.href="/board/delete?boardNo="+boardNo;
 			}
 		});
+		
+		let title = "로그인";
+		let msg = "로그인 후 이용해 주세요!";
+		let icon = "warning";
 		function loginMsg(){
-			alert("로그인 후 이용해 주세요");
+			swal({
+				title : title,
+				text : msg,
+				icon : icon
+			})
 		}
+		
 		function addLike(obj,boardCommentNo,memberNo){
 			const likeBtn = $(obj);
 			$.ajax({
