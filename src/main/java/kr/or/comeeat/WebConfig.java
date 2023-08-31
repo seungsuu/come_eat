@@ -28,13 +28,15 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/member/adminBook","/member/adminMember",
 				"/member/adminMypage","/magazine/magazineWriteFrm","/magazine/magazineUpdateFrm","member/myBook",
-				"/member/mySavePlace");
+				"/member/mySavePlace","/board/boardWrite","/board/boardUpdateFrm","/event/eventFrm",
+				"/event/eventUpdateFrm","/review/reviewWriteFrm","/review/reviewUpdateFrm");
 		/*
 		.excludePathPatterns();
 		*/
 		
 		registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/member/adminBook","/member/adminMember",
-				"/member/adminMypage","/magazine/magazineWriteFrm","/magazine/magazineUpdateFrm");
+				"/member/adminMypage","/magazine/magazineWriteFrm","/magazine/magazineUpdateFrm",
+				"/event/eventFrm","/event/eventUpdateFrm");
 	}
 	
 	
