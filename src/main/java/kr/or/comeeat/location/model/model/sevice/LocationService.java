@@ -56,11 +56,8 @@ public class LocationService {
 		search = search.replaceAll("부산", "");
 		search = search.replaceAll("전주", "");
 		search = search.replaceAll("인기", "");		
-		System.out.println(search);
 		
 				if(searchRE.contains("서울")||searchRE.contains("부산")||searchRE.contains("전주")) {
-					
-					System.out.println(search);
 					list = locationDao.searchListLocode(loCode,search,end,start);
 					total = locationDao.searchTotalLocode(search,loCode);
 
@@ -70,7 +67,6 @@ public class LocationService {
 					System.out.println(start);
 					list = locationDao.reviewBest(end,start);
 					total = locationDao.searchTotalBest();
-					 System.out.println(list);
 					
 				}else {
 					list = locationDao.searchList(search,end,start);
