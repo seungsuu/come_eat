@@ -36,7 +36,7 @@
 					<tr>
 						<th class="b-color-g" style="width: 20%;">이벤트기간</th>
 						<td>
-							<input type="text" name="event_date" class="input" placeholder="시작일 ~ 종료일" style="text-align: left; text-indent: 2em;" required>
+							<input type="text" name="eventDate" class="input" placeholder="시작일 ~ 종료일" style="text-align: left; text-indent: 2em;" required>
 						</td>
 						<th class="b-color-g" style="width: 20%;">썸네일</th>
 						<td>
@@ -85,7 +85,7 @@
 		const form = new FormData();
 		form.append("file",file);
 		$.ajax({
-			url : "/magazine/editor",
+			url : "/event/editor",
 			type : "post",
 			data : form,
 			processData : false,

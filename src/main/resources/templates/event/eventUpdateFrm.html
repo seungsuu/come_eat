@@ -17,7 +17,7 @@
 					<tr>
 						<th class="b-color-g" style="width: 20%;">제목</th>
 						<td>
-							<input type="text" name="eventTitle" class="input" placeholder="제목을 입력하세요" style="text-align: left; text-indent: 2em;" required>
+							<input type="text" name="eventTitle" class="input" placeholder="제목을 입력하세요" style="text-align: left; text-indent: 2em;" required th:value="${e.eventTitle}">
 						</td>
 					</tr>
 					<tr>
@@ -31,17 +31,17 @@
 					<tr>
 						<th class="b-color-g" style="width: 20%;">소제목</th>
 						<td>
-							<input type="text" name="eventSubtitle" class="input" placeholder="간략요약해주세요" style="text-align: left; text-indent: 2em;" required>
+							<input type="text" name="eventSubtitle" class="input" placeholder="간략요약해주세요" style="text-align: left; text-indent: 2em;" required th:value="${e.eventSubtitle}">
 						</td>
 					</tr>
 					<tr>
 						<th class="b-color-g" style="width: 20%;">이벤트기간</th>
 						<td>
-							<input type="text" name="eventDate" class="input" placeholder="이벤트기간" style="text-align: left; text-indent: 2em;" required>
+							<input type="text" name="eventDate" class="input" placeholder="이벤트기간" style="text-align: left; text-indent: 2em;" required th:value="${e.eventDate}">
 						</td>
 						<th class="b-color-g" style="width: 20%;">썸네일</th>
 						<td>
-							<input type="file" name="updateFile" accept=".jpg,.png,.jpeg" required>	
+							<input type="file" name="updateFile" accept=".jpg,.png,.jpeg" required th:value="${e.filepath}">	
 						</td>
 					</tr>
 					<tr >
