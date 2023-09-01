@@ -197,7 +197,7 @@ public class BoardController {
 	public String insertComment(BoardComment bc, Model model) {
 		int result = boardService.insertCommet(bc);
 		if (result > 0) {
-			model.addAttribute("title", "양나민 World");
+			model.addAttribute("title", "바르고 고운말 사용하기!");
 			model.addAttribute("msg", "댓글이 등록되었습니다");
 			model.addAttribute("icon", "success");
 		} else {

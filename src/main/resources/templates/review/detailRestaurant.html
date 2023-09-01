@@ -68,7 +68,7 @@
 					<div class="icon1" th:if="${session.m != null}">
 						<!--  -->
 						
-						<a class="review-btn" th:href="@{/review/reviewWriteFrm(loNo=${list.loNo})}">
+						<button class="review-btn" th:href="@{/review/reviewWriteFrm(loNo=${list.loNo})}">
 						
 							<div class="reviewBtn">
 								<span class="material-icons">edit_document</span>
@@ -76,7 +76,7 @@
 							<div>
 								<span>리뷰쓰기</span>
 							</div>
-						</a>
+						</button>
 					</div>
 					<div class="icon2">
 						<button class="save" th:value="${list.loNo}">
@@ -285,7 +285,7 @@
 	<script th:inline="javascript">
 		
 		//리뷰막기
-		/*
+		
 		$(".review-btn").on("click",function(){
 			var Now = new Date(); // 현재 날짜 및 시간
 			const memberNo = $("#memberNo").val(); 
@@ -325,7 +325,7 @@
 			})
 			
 		})
-		*/    
+	
 		
 
 		//리뷰 리스트 불러오기

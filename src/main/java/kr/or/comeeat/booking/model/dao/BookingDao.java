@@ -96,7 +96,7 @@ public class BookingDao {
 
 
 	public List bookingTime(int loNo, int memberNo) {
-		String query = "select * from booking where member_no=? and lo_No=? order by 1;";
+		String query = "select * from booking where member_no=? and lo_No=? order by 1";
 		List list = jdbc.query(query,bookingRowMapper, memberNo, loNo);
 		return list;
 	}
