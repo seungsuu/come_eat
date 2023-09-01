@@ -99,9 +99,9 @@ public class LocationDao {
 	
 	//베스트맛집조회
 	public List reviewBest(int end, int start) {
-		//String query = "SELECT L.* ,ROUND((SELECT AVG(REVIEW_GRADE) FROM REVIEW R WHERE R.LO_NO=L.LO_NO),1) STAR_RATE FROM LOCATION L  INNER JOIN (SELECT LO_NO FROM (SELECT ROWNUM, R.* FROM (SELECT LO_NO, AVG(REVIEW_GRADE) GRADE, COUNT(*) COUNT FROM REVIEW GROUP BY LO_NO ORDER BY GRADE DESC, COUNT DESC, LO_NO DESC) R ORDER BY 1)) R  ON L.LO_NO = R.LO_NO";
 		String query = "SELECT L.* ,ROUND((SELECT AVG(REVIEW_GRADE) FROM REVIEW R WHERE R.LO_NO=L.LO_NO),1) STAR_RATE FROM LOCATION L INNER JOIN (SELECT LO_NO FROM (SELECT ROWNUM AS RNUM, R.* FROM (SELECT LO_NO, AVG(REVIEW_GRADE) GRADE, COUNT(*) COUNT FROM REVIEW GROUP BY LO_NO ORDER BY GRADE DESC, COUNT DESC, LO_NO DESC) R ORDER BY 1)  WHERE RNUM BETWEEN ? AND ?) R  ON L.LO_NO = R.LO_NO";
 		List list = jdbc.query(query, locationRowMapper, start, end);
+		System.out.println(list);
 		return list;
 	}
 	
@@ -114,7 +114,6 @@ public class LocationDao {
 	
 	//검색조회 - 일반
 	public List searchList(String search, int end, int start) {
-		//String query = "SELECT L.* ,ROUND((SELECT AVG(REVIEW_GRADE) FROM REVIEW R WHERE R.LO_NO=L.LO_NO),1) STAR_RATE FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE (LO_ADDR LIKE ?) OR (LO_TITLE LIKE ?) OR  (LO_INFO LIKE ?) OR (LO_MENU LIKE ?) ORDER BY LO_NO DESC) L) L WHERE RNUM BETWEEN ? AND ?";
 		String query = "SELECT L.* ,ROUND((SELECT AVG(REVIEW_GRADE) FROM REVIEW R WHERE R.LO_NO=L.LO_NO),1) STAR_RATE FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE (LO_ADDR LIKE ?) OR (LO_TITLE LIKE ?) OR  (LO_INFO LIKE ?) OR (LO_MENU LIKE ?) ORDER BY LO_NO DESC) L ) L WHERE RNUM BETWEEN ? AND ?";
 		Object[] params = {"%"+search+"%","%"+search+"%","%"+search+"%","%"+search+"%",start,end};
 		List bList = jdbc.query(query, locationRowMapper,params);
@@ -136,11 +135,27 @@ public class LocationDao {
 		List bList = jdbc.query(query, locationRowMapper,params);
 		return bList;
 	}
-
+	
 	//네비게이션제작 - 전체게시물 수 조회 - 전체맛집
 	public int searchTotalAll() {
 		String query = "SELECT COUNT(*) FROM (SELECT * FROM LOCATION)";
 		int result = jdbc.queryForObject(query,Integer.class);
+		return result;
+	}
+	
+	//검색조회 - 지역 포함 일반검색
+	public List searchListLocode(String loCode, String search, int end, int start) {
+		String query = "SELECT L.* ,ROUND((SELECT AVG(REVIEW_GRADE) FROM REVIEW R WHERE R.LO_NO=L.LO_NO),1) STAR_RATE FROM (SELECT ROWNUM AS RNUM, L.* FROM (SELECT * FROM LOCATION WHERE ((LO_ADDR LIKE ?) OR (LO_TITLE LIKE ?) OR  (LO_INFO LIKE ?) OR (LO_MENU LIKE ?)) AND LO_CODE=? ORDER BY LO_NO DESC) L ) L WHERE RNUM BETWEEN ? AND ?";
+		Object[] params = {"%"+search+"%","%"+search+"%","%"+search+"%","%"+search+"%",loCode,start,end};
+		List bList = jdbc.query(query, locationRowMapper,params);
+		return bList;
+	}
+	
+	//네비게이션제작 - 전체게시물 수 조회 - 일반
+	public int searchTotalLocode(String search, String loCode) {
+		String query = "SELECT COUNT(*) FROM (SELECT * FROM LOCATION WHERE ((LO_ADDR LIKE ?) OR (LO_TITLE LIKE ?) OR  (LO_INFO LIKE ?) OR (LO_MENU LIKE ?)) AND LO_CODE=?)";
+		Object[] params = {"%"+search+"%","%"+search+"%","%"+search+"%","%"+search+"%",loCode};
+		int result = jdbc.queryForObject(query,Integer.class,params);
 		return result;
 	}
 
@@ -150,4 +165,6 @@ public class LocationDao {
 		List list = jdbc.query(query, locationRowMapper,memberNo);
 		return list;
 	}
+
+	
 }

@@ -1,5 +1,9 @@
-.content-title{
-    padding-top: 150px;
+body .content-wrap{
+	margin-top: 0;
+	margin-bottom: 200px;
+}
+body .content-title{
+    padding-top: 200px;
 }
 
 /*메인배너*/

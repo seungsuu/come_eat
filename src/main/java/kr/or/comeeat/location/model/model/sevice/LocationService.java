@@ -39,47 +39,45 @@ public class LocationService {
 		List list = null;
 		//총 게시물 수 조회(네비)
 		int total = 0;
-		search = search.replaceAll("신상", "");
-		search = search.replaceAll("신규", "");
 		
-		
-		if(search.contains("맛집")) {			
-			if(!search.replaceAll("맛집", "").equals("")) {
-				search = search.replaceAll("맛집", "");
-				if(search.contains("서울")||search.contains("부산")||search.contains("전주")) {
-					String loCode = "";
-					if(search.contains("서울")) {
-						loCode = "SEOUL";
-					}else if(search.contains("부산")) {
-						loCode = "BUSAN";
-					}else if(search.contains("전주")) {
-						loCode = "JEONNAM";
-					}
-					
-					if(!search.replaceAll("서울", "").equals("")||!search.replaceAll("서울", "").equals("")||!search.replaceAll("서울", "").equals("")) {
-						list = locationDao.searchList(search,end,start);
-						total = locationDao.searchTotal(search);
-					}else {						
-						list = locationDao.locationSelect(loCode,end,start);
-						total = locationDao.selectTotal(search);
-					}
-				}else if(!search.replaceAll("인기", "").equals("")) {	
-					search = search.replaceAll("인기", "");
-					list = locationDao.searchList(search,end,start);
-					total = locationDao.searchTotal(search);
-				}else {
-					list = locationDao.reviewBest(end,start);
-					total = locationDao.searchTotalBest();
-				}
-			}else{				
-				list = locationDao.searchListAll(search,end,start);
-				total = locationDao.searchTotalAll();
-			}
-		}else {
-			list = locationDao.searchList(search,end,start);
-			total = locationDao.searchTotal(search);
+		String loCode = "";
+		if(search.contains("서울")) {
+			loCode = "SEOUL";
+		}else if(search.contains("부산")) {
+			loCode = "BUSAN";
+		}else if(search.contains("전주")) {
+			loCode = "JEONNAM";
 		}
 		
+		search = search.replaceAll("신상", "");
+		search = search.replaceAll("신규", "");
+		search = search.replaceAll("맛집", "");
+		search = search.replaceAll("서울", "");
+		search = search.replaceAll("부산", "");
+		search = search.replaceAll("전주", "");
+		search = search.replaceAll("인기", "");		
+		System.out.println(search);
+		
+				if(searchRE.contains("서울")||searchRE.contains("부산")||searchRE.contains("전주")) {
+					
+					System.out.println(search);
+					list = locationDao.searchListLocode(loCode,search,end,start);
+					total = locationDao.searchTotalLocode(search,loCode);
+
+				}else if(searchRE.contains("인기")) {	
+					System.out.println(searchRE);
+					System.out.println(end);
+					System.out.println(start);
+					list = locationDao.reviewBest(end,start);
+					total = locationDao.searchTotalBest();
+					 System.out.println(list);
+					
+				}else {
+					list = locationDao.searchList(search,end,start);
+					total = locationDao.searchTotal(search);
+				}
+
+
 		search = searchRE;
 		
 		//총 페이지 수
