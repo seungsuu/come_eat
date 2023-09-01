@@ -73,8 +73,8 @@ public class BoardDao {
 
 	//게시글수정
 	public int boardUpdate(Board b) {
-		String query = "update board set board_title=?, board_content=? where board_no=?";
-		Object[] params = {b.getBoardTitle(),b.getBoardContent(),b.getBoardNo()};
+		String query = "update board set board_title=?, board_content=?, board_type=? where board_no=?";
+		Object[] params = {b.getBoardTitle(),b.getBoardContent(),b.getBoardType(),b.getBoardNo()};
 		int result = jdbc.update(query,params);
 		return result;
 	}
