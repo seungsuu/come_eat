@@ -7,54 +7,34 @@
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-	<!-- 
-		<div class="content-wrap">
-			<div class="content-title" th:text="${e.eventTitle}"></div>
-			<div class="cont0ent-subtitle">
-				<span class="event-subtitle-span">"</span>
-				<span class="event-subtitl-span" th:text="${e.eventSubtitle}"></span> 
-				<span class="event-subtitle-span">"</span>			
-			</div>
-			<div class="event_date" th:text="${e.eventDate}"></div>
-			<div class="content" th:utext="${e.eventContent}"></div>
-			<div class="btn-box" th:if="${session.m != null && session.m.memberLevel == 1}">
-				<a class="btn" th:href="@{/event/eventUpdateFrm(eventNo=${e.eventNo})}">수정</a>
-				<button class="btn" th:onclick="eventDelete([[${e.eventNo}]])">삭제</button>
-			</div>
-		</div>
-		 -->
 		 <div class="content-wrap">
+		 	<div class="content-title">이벤트 상세페이지</div>
 			<table class="tbl tbl-border">
 		        <tr>
 		            <th class="b-color-g" style="width: 20%;">제목</th>
-		            <td>
-		                <input type="text" name="eventTitle" class="input" th:text="${e.eventTitle}"  style="text-align: left; text-indent: 2em;" readonly>
-		            </td>
+		            <td th:text="${e.eventTitle}"  style="text-align: left; text-indent: 2em"></td>
 		        </tr>
 		        <tr>
 		            <th class="b-color-g" style="width: 20%;">소제목</th>
-		            <td>
-		                <input type="text" name="eventSubtitle" class="input" th:text="${e.eventSubtitle}" style="text-align: left; text-indent: 2em;" readonly>
-		            </td>
+		            <td th:text="${e.eventSubtitle}" style="text-align: left; text-indent: 2em"></td>
 		        </tr>
 		        <tr>
 		            <th class="b-color-g" style="width: 20%;">이벤트기간</th>
-		            <td>
-		                <input type="text" name="eventDate" class="input" th:text="${e.eventDate}" style="text-align: left; text-indent: 2em;" readonly>
-		            </td>
-		        </tr>
-		        <tr >
-		            <td colspan="4">
-		            	<div class="" th:utext="${e.eventContent}"></div>
-		            </td>
+		            <td th:text="${e.eventDate}" style="text-align: left; text-indent: 2em"></td>
 		        </tr>
 		        <tr>
-		            <td colspan="4" th:if="${session.m != null && session.m.memberLevel == 1}">
-		                <a class="btn" th:href="@{/event/eventUpdateFrm(eventNo=${e.eventNo})}">수정</a>
-						<button class="btn" th:onclick="eventDelete([[${e.eventNo}]])">삭제</button>
-		            </td>
-		            <td>
-		            </td>
+		            <td colspan="4" th:utext="${e.eventContent}"></td>
+		        </tr>
+		        <table class="tbl tbl-border" style="border-top: none;" th:if="${session.m != null && session.m.memberLevel == 1}">
+			        <tr>
+			            <td>
+							<button class="btn" th:onclick="eventDelete([[${e.eventNo}]])" style="width: 100%; font-size: 18px; line-height: 40px;">삭제</button>
+			            </td>
+			            <td>
+			                <a class="btn-o" th:href="@{/event/eventUpdateFrm(eventNo=${e.eventNo})}" style="width: 100%; font-size: 18px; line-height: 40px;">수정</a>
+			            </td>
+			       </tr> 
+		       </table>
 		    </table>
     	</div>
 		<script>
