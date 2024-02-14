@@ -2,24 +2,21 @@ package kr.or.comeeat.member.model.service;
 
 import java.util.List;
 import java.util.StringTokenizer;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import kr.or.comeeat.location.model.vo.SavePlace;
 import kr.or.comeeat.member.model.dao.MemberDao;
 import kr.or.comeeat.member.model.vo.Member;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class MemberService {
-	@Autowired
-	private MemberDao memberDao;
+	
+	private final MemberDao memberDao;
 
-	//로그인
-	public Member selectOneMemeber(String signId, String signPw) {
-		Member m = memberDao.selectOneMember(signId, signPw);
-		return m;
+	public Member selectOneMemeber(String memberId, String memberPw) {
+		Member loginMember = memberDao.selectOneMember(memberId, memberPw);
+		return loginMember;
 	}
 
 	//회원가입

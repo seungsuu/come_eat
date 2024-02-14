@@ -11,15 +11,15 @@ public class MemberRowMapper implements RowMapper<Member>  {
 
 	@Override
 	public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Member m = new Member();
-		m.setEnrollDate(rs.getString("enroll_date"));
-		m.setMemberPhone(rs.getString("member_phone"));
-		m.setMemberLevel(rs.getInt("member_level"));
-		m.setMemberEmail(rs.getString("member_email"));
-		m.setMemberName(rs.getString("member_name"));
-		m.setMemberPw(rs.getString("member_pw"));
-		m.setMemberId(rs.getString("member_id"));
-		m.setMemberNo(rs.getInt("member_no"));
-		return m;
+		Member member = new Member();
+		member.setMemberNo(rs.getInt("member_no"));
+		member.setMemberId(rs.getString("member_id"));
+		member.setMemberPw(rs.getString("member_pw"));
+		member.setMemberName(rs.getString("member_name"));
+		member.setMemberEmail(rs.getString("member_email"));
+		member.setMemberLevel(rs.getInt("member_level"));
+		member.setMemberPhone(rs.getString("member_phone"));
+		member.setMemberJoinDate(rs.getString("member_join_date"));
+		return member;
 	}
 }

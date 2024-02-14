@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 public class Member {
 	public int memberNo;
 	public String memberId;
@@ -16,5 +15,5 @@ public class Member {
 	public String memberEmail;
 	public int memberLevel;
 	public String memberPhone;
-	public String enrollDate;
+	public String memberJoinDate;
 }

@@ -42,7 +42,7 @@
                 <ul>
                     <li><a href="javascript:void(0)" id="search-btn"><span class="material-icons">search</span></a></li>
                     <!-- 로그아웃 상태일때 -->
-                    <li th:if="${session.m == null}"><a href="/member/login"><span class="material-icons">login</span></a></li>
+                    <li th:if="${session.m == null}"><a href="/login"><span class="material-icons">login</span></a></li>
                     <li th:if="${session.m == null}"><a href="/member/joinFrm"><span class="material-icons">face</span></a></li>
                     <!-- 로그인 상태일때 -->
                     <li th:if="${session.m != null}"><a href="/member/logout"><span class="material-icons">logout</span></a></li>

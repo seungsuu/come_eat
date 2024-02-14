@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-/*
-폰트
-font-family: 'Noto Sans KR', sans-serif;
-*/
 
-/*
-색상
-#ff3700ff; -- 포인트컬러
-#eee; -- 회색
-#2f2f2f; -- 글씨 기본색
-*/
 *{
     margin: 0;
     padding: 0;
@@ -21,6 +11,12 @@ font-family: 'Noto Sans KR', sans-serif;
     outline: none;
 }
 
+.field-error {
+   color: #ff3700ff;
+}
+.global-error > p {
+	margin: 20px 0;
+}
 .login-wrap{
     width: 1200px;  
     margin: 0 auto;
@@ -43,33 +39,30 @@ font-family: 'Noto Sans KR', sans-serif;
 }
 #login-frm{
     width: 600px;
-    overflow: hidden;
     margin: 0 auto;
 }
 .login-input-box{
     width: 400px;
-    float: left;
 }  
 
-.login-input-box>input{
-    width: 400px;
+.form-control{
+    width: 560px;
     height: 45px;
     background-color: white;
     border: 1px solid #eee;
     border-radius: 5px;
     padding-left: 15px;
+    box-sizing: border-box;
 }
 .login-btn-box{
     width: 200px;
-    float: left;
     text-align: center;
-    margin-top:25px;
+    margin-top:10px;
 }
 
-/* 로그인 버튼*/
 .login-btn-box>button{
-    width: 130px;
-    height: 115px;
+    width: 560px;
+    height: 50px;
     border: none;
     background-color: #eee;
     border-radius: 5px;
@@ -97,7 +90,6 @@ a:hover{
 }
 .join {
     border-bottom : 1px solid black;
-
 }
 .join-wrap{
     width: 600px;
@@ -105,7 +97,6 @@ a:hover{
     padding-top: 100px;
 }
 
-/*회원 가입 버튼*/
 .join-btn button{
     width: 560px;
     height: 50px;

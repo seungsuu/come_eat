@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+</head>
+	<style>
+		.error-input{
+			border-color: #ff3700ff; 
+		}
+	</style>
+<body>
+	<th:block th:include="common/header"></th:block>
+    <div class="content-wrap">
+        <div class="login-header">
+            LOGIN
+        </div>
+        <div class="login-content">
+            <form action="/login" method="post" id="login-frm" name="loginForm" th:object="${loginForm}">
+            
+            	<div th:if="${#fields.hasGlobalErrors()}" class="global-error">
+            		<p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">
+            	</div>
+            	
+                <div class="login-input-box">
+                    <label for="memberId">아이디</label>
+                    <input type="text" th:field="*{memberId}" class="form-control" th:errorclass="error-input"  >
+                    <div class="field-error" th:errors="*{memberId}">아이디 미입력 오류</div>
+                    
+                    <label for="memberPw">비밀번호</label>
+                    <input type="password" th:field="*{memberPw}" class="form-control" th:errorclass="error-input">
+                    <div class="field-error" th:errors="*{memberPw}">비밀번호 미입력 오류</div>
+                </div>
+                <div class="login-btn-box">
+                    <button type="submit" id="login-btn">로그인</button>
+                </div>
+            </form>
+            <div class="login-link-wrap">
+                <a href="/member/searchIdFrm">아이디 찾기</a>
+                <a>|</a>
+                <a href="/member/emailTest">비밀번호 찾기</a>
+            </div>
+        </div>
+        <div class="join">
+            <div class="join-wrap">
+                <p class="join-content">
+                    회원 가입 후 다양한 혜택을 받아보세요
+                </p>
+                <div class="join-btn">
+                	<a href="/member/joinFrm">
+                    <button type="button">회원가입</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="common/footer"></th:block>
+    <script th:inline="javascript">
+    	window.onload = function(){
+    		$("#search-btn").next().addClass("hover");
+    	};
+
+    </script>
+</body>
+</html>
